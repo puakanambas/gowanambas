@@ -95,6 +95,7 @@
                         <a href="#tentang" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Tentang</a>
                         <a href="#tugas-pokok" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Tugas Pokok</a>
                         <a href="#program" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Program</a>
+                        <a href="#pengurus" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Pengurus</a>
                         <a href="#organisasi" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Organisasi</a>
                         <a href="#simanja" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">SiMANJA</a>
                         <a href="#kegiatan" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Kegiatan</a>
@@ -111,6 +112,7 @@
             <a href="#tentang" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Tentang Kami</a>
             <a href="#tugas-pokok" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Tugas Pokok</a>
             <a href="#program" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Program Kerja</a>
+            <a href="#pengurus" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Pengurus</a>
             <a href="#organisasi" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Organisasi</a>
             <a href="#simanja" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">SiMANJA GOW</a>
             <a href="#kegiatan" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Kegiatan</a>
@@ -202,13 +204,26 @@
                     <div id="program-kerja-container" class="max-w-4xl mx-auto space-y-4 fade-in-section"></div>
                 </div>
             </section>
+
+            <!-- SEKSI PENGURUS INTI (DIKEMBALIKAN) -->
+            <section id="pengurus" class="py-16 sm:py-20 bg-slate-900">
+                <div class="container mx-auto px-4">
+                    <div class="text-center max-w-2xl mx-auto fade-in-section">
+                        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Struktur Pengurus Inti</h2>
+                        <p class="text-slate-400 mb-12">Motor penggerak organisasi yang berdedikasi untuk memajukan peran wanita di Kepulauan Anambas.</p>
+                    </div>
+                    <div id="pengurus-inti-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <p class="col-span-full text-center text-slate-400">Memuat data pengurus...</p>
+                    </div>
+                </div>
+            </section>
             
-            <section id="organisasi" class="py-16 sm:py-20 bg-slate-900">
+            <section id="organisasi" class="py-16 sm:py-20">
                 <div class="container mx-auto px-4"><div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4">Organisasi Tergabung</h2><p class="text-slate-400 mb-12">Sinergi kekuatan wanita Anambas dalam berbagai bidang melalui organisasi-organisasi anggota GOW.</p></div><div id="organisasi-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6"><p class="col-span-full text-center text-slate-400">Memuat data organisasi...</p></div></div>
             </section>
             
             <!-- BAGIAN SiMANJA GOW (Narasi Saja) -->
-            <section id="simanja" class="py-16 sm:py-20">
+            <section id="simanja" class="py-16 sm:py-20 bg-slate-900">
                 <div class="container mx-auto px-4">
                     <div class="max-w-3xl mx-auto text-center fade-in-section">
                         <h2 class="text-3xl sm:text-4xl font-bold mb-4">Platform Digital SiMANJA GOW</h2>
@@ -220,7 +235,7 @@
                 </div>
             </section>
 
-            <section id="kegiatan" class="py-16 sm:py-20 bg-slate-900">
+            <section id="kegiatan" class="py-16 sm:py-20">
                 <div class="container mx-auto px-4">
                     <div class="text-center max-w-2xl mx-auto fade-in-section">
                         <h2 class="text-3xl sm:text-4xl font-bold mb-4">Galeri Kegiatan</h2>
@@ -255,8 +270,8 @@
                     <a href="https://www.facebook.com/share/14JrYrAff1V/" target="_blank" class="text-slate-400 hover:text-pink-400 transition-colors"><i class="fab fa-facebook text-2xl"></i></a>
                     <a href="mailto:gow.anambas@gmail.com" class="text-slate-400 hover:text-pink-400 transition-colors"><i class="fas fa-envelope text-2xl"></i></a>
                 </div>
-                <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i>Jl. Kartini RT.04/RW.04 Tarempa, Kecamatan Siantan, Kode Pos 27971</p>
-                <p>&copy; <span id="copyright-year">2025</span> GOW KKA. All Rights Reserved.</p>
+                <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i>Jl. Kartini RT.04/RW.04 Tarempa, Kecamatan Siantan, Kode Pos 29791</p>
+                <p>&copy; <span id="copyright-year"></span> GOW KKA. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -276,6 +291,30 @@
         const showDetailPage = () => { mainContent.classList.add('hidden'); detailContent.classList.remove('hidden'); window.scrollTo(0, 0); };
         const organisasiProfiles = { "PKK": "Gerakan nasional yang bertujuan memberdayakan keluarga untuk meningkatkan kesejahteraan lahir batin menuju terwujudnya keluarga yang beriman, bertaqwa, berakhlak mulia, dan berbudi luhur.", "DWP": "Organisasi kemasyarakatan yang menghimpun istri Aparatur Sipil Negara (ASN) dengan tujuan meningkatkan kualitas sumber daya anggota untuk mencapai kesejahteraan keluarga dan masyarakat.", "IKIAD": "Wadah bagi istri-istri anggota DPRD untuk mendukung tugas suami, meningkatkan kepedulian sosial, dan membina kerukunan di lingkungan keluarga besar legislatif.", "JALASENASTRI": "Organisasi istri anggota Tentara Nasional Indonesia Angkatan Laut (TNI AL) yang berperan aktif dalam membina keluarga prajurit dan mendukung kegiatan sosial di lingkungan maritim.", "BHAYANGKARI": "Organisasi persatuan istri anggota Kepolisian Republik Indonesia (POLRI) yang mendukung tugas Polri serta berperan dalam meningkatkan kesejahteraan keluarga polisi dan masyarakat.", "PERSIT KARTIKA CHANDRA KIRANA": "Organisasi istri prajurit Tentara Nasional Indonesia Angkatan Darat (TNI AD) yang bertujuan untuk meningkatkan kesejahteraan, pendidikan, dan rasa persatuan di kalangan keluarga prajurit.", "DWP KEMENAG": "Bagian dari Dharma Wanita Persatuan yang berada di bawah naungan Kementerian Agama, fokus pada pembinaan keluarga dan kegiatan keagamaan di lingkungannya.", "DHARMAYUKTI KARINI": "Organisasi wanita di lingkungan Mahkamah Agung dan badan peradilan di bawahnya, bertujuan untuk mempererat persatuan dan mendukung tugas para abdi hukum.", "IKATAN ADHYAKSA DHARMAKARINI": "Organisasi persatuan istri para pegawai Kejaksaan Republik Indonesia (Adhyaksa) beserta para pegawai wanita Kejaksaan, yang bertujuan untuk membina kesejahteraan anggota dan keluarganya serta berperan aktif dalam kegiatan sosial kemasyarakatan.", "IAD": "Organisasi persatuan istri para pegawai Kejaksaan Republik Indonesia (Adhyaksa) beserta para pegawai wanita Kejaksaan, yang bertujuan untuk membina kesejahteraan anggota dan keluarganya serta berperan aktif dalam kegiatan sosial kemasyarakatan.", "PGRI": "Organisasi profesi yang menaungi para guru di Indonesia, di mana para guru wanita anggotanya juga aktif dalam memperjuangkan kualitas pendidikan dan kesejahteraan guru.", "BKMT": "Wadah yang menghimpun majelis-majelis taklim untuk meningkatkan pemahaman dan pengamalan ajaran Islam serta mempererat silaturahmi antar-muslimah.", "IBI": "Organisasi profesi bagi para bidan di Indonesia, berkomitmen untuk meningkatkan kualitas pelayanan kesehatan ibu dan anak serta profesionalisme para anggotanya.", "PSMTI": "Organisasi sosial kemasyarakatan bagi warga Tionghoa di Indonesia, di mana para wanitanya aktif dalam kegiatan sosial, budaya, dan pendidikan untuk mempererat persatuan bangsa.", "REDAT SRI TANJUNG": "Organisasi yang fokus pada pelestarian dan pengembangan seni serta budaya Melayu, khususnya di Kepulauan Anambas, untuk diwariskan kepada generasi muda.", "SALIMAH": "Organisasi massa yang peduli terhadap perempuan, anak, dan keluarga Indonesia, bertujuan untuk meningkatkan kualitas hidup mereka melalui program dakwah, pendidikan, dan sosial.", "FPPI": "Sebuah forum yang berjuang untuk pemberdayaan perempuan di berbagai sektor, mendorong kesetaraan gender, dan memperjuangkan hak-hak perempuan di Indonesia." };
         const loadStatistik = () => { const els = { organisasi: document.getElementById('total-organisasi'), pengurus: document.getElementById('total-pengurus'), kegiatan: document.getElementById('total-kegiatan') }; onSnapshot(collection(db, 'organisasi'), (snap) => { els.organisasi.textContent = snap.size; }); onSnapshot(collection(db, 'pengurus'), (snap) => { els.pengurus.textContent = snap.size; }); onSnapshot(collection(db, 'kegiatan'), (snap) => { els.kegiatan.textContent = snap.size; }); };
+        
+        const loadPengurusInti = () => {
+            const grid = document.getElementById('pengurus-inti-grid');
+            if (!grid) return;
+            const q = query(collection(db, 'pengurus'), orderBy("createdAt", "asc"));
+            onSnapshot(q, (snapshot) => {
+                const pengurusInti = snapshot.docs.filter(doc => doc.data().kategori === 'inti');
+                if (pengurusInti.length === 0) {
+                    grid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data pengurus inti belum tersedia.</p>';
+                    return;
+                }
+                grid.innerHTML = pengurusInti.map(doc => {
+                    const p = doc.data();
+                    const avatar = p.foto ?
+                        `<img src="${p.foto}" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover mx-auto mb-4 border-4 border-slate-700" onerror="this.src='https://placehold.co/112x112/334155/e5e7eb?text=${p.nama.charAt(0)}'">` :
+                        `<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-pink-500 to-fuchsia-600 flex items-center justify-center mx-auto mb-4 border-4 border-slate-700"><span class="text-3xl sm:text-4xl font-bold">${p.nama.charAt(0)}</span></div>`;
+                    return `<div class="card-base text-center p-6 rounded-xl fade-in-section">${avatar}<h3 class="text-xl font-bold">${p.nama}</h3><p class="text-amber-400">${p.jabatan}</p></div>`;
+                }).join('');
+                observeSections();
+            }, (error) => {
+                grid.innerHTML = '<p class="col-span-full text-center text-red-400">Gagal memuat data pengurus.</p>';
+            });
+        };
+
         const renderKegiatanGrid = (kegiatanList) => { const grid = document.getElementById('kegiatan-grid'); if (kegiatanList.length === 0) { grid.innerHTML = `<p class="col-span-full text-center text-slate-400">Tidak ada kegiatan yang cocok dengan kriteria Anda.</p>`; return; } grid.innerHTML = kegiatanList.map(k => { const tanggal = k.tanggal ? new Date(k.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : ''; return `<a href="#/kegiatan/${k.id}" class="card-base rounded-xl overflow-hidden group kegiatan-card fade-in-section"><div class="overflow-hidden h-56"><img src="${k.foto}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/600x400/334155/e5e7eb?text=Kegiatan'"></div><div class="p-6"><p class="text-sm text-slate-400 mb-2"><i class="fas fa-calendar-alt mr-2"></i>${tanggal}</p><h3 class="text-xl font-bold mb-3 h-20 line-clamp-3">${k.nama}</h3><p class="text-blue-400 text-sm"><i class="fas fa-map-marker-alt mr-2"></i>${k.lokasi}</p></div></a>`; }).join(''); observeSections(); };
         const applyFilters = () => { const searchTerm = document.getElementById('search-kegiatan').value.toLowerCase(); const selectedYear = document.getElementById('filter-tahun').value; let filteredKegiatan = allKegiatan; if (searchTerm) { filteredKegiatan = filteredKegiatan.filter(k => k.nama.toLowerCase().includes(searchTerm)); } if (selectedYear) { filteredKegiatan = filteredKegiatan.filter(k => k.tanggal && new Date(k.tanggal).getFullYear() == selectedYear); } renderKegiatanGrid(filteredKegiatan); };
         const loadKegiatan = () => { const q = query(collection(db, 'kegiatan'), orderBy("tanggal", "desc")); onSnapshot(q, (snapshot) => { allKegiatan = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); const filterTahun = document.getElementById('filter-tahun'); const years = [...new Set(allKegiatan.map(k => k.tanggal ? new Date(k.tanggal).getFullYear() : null).filter(Boolean))]; const currentOptions = Array.from(filterTahun.options).map(o => o.value); if (years.length !== currentOptions.length -1) { filterTahun.innerHTML = '<option value="">Semua Tahun</option>'; years.sort((a, b) => b - a).forEach(year => { const option = document.createElement('option'); option.value = year; option.textContent = year; filterTahun.appendChild(option); }); } applyFilters(); }, (error) => { document.getElementById('kegiatan-grid').innerHTML = '<p class="col-span-full text-center text-red-400">Gagal memuat data kegiatan.</p>'; }); };
@@ -289,10 +328,11 @@
         const observeSections = () => { const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in-section:not(.is-visible)').forEach(section => { observer.observe(section); }); };
         
         document.addEventListener('DOMContentLoaded', () => { 
-            document.getElementById('copyright-year').textContent = new Date().getFullYear(); 
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
             window.addEventListener('hashchange', router); 
             loadStatistik(); 
-            loadProgramKerja(); 
+            loadProgramKerja();
+            loadPengurusInti();
             loadOrganisasi(); 
             loadKegiatan(); 
             observeSections(); 
