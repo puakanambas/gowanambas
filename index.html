@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOW Kabupaten Kepulauan Anambas - Pemberdayaan Wanita, Membangun Negeri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet.js untuk Peta Interaktif -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0f172a; 
+            color: #e2e8f0;
+        }
+        .font-jawi {
+            font-family: 'Amiri', serif;
+        }
+        .header-glass { 
+            background: rgba(15, 23, 42, 0.7); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-bg {
+            background-image: linear-gradient(to top, #0f172a 10%, rgba(15, 23, 42, 0.7) 80%), url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center center;
+        }
+        .card-base { 
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .card-base:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+            border-color: rgba(219, 39, 119, 0.5);
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #db2777, #c026d3);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px -5px rgba(219, 39, 119, 0.6);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px -5px rgba(219, 39, 119, 0.8);
+        }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; }
+        .accordion-button svg { transition: transform 0.3s ease; }
+        .accordion-button[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+        .modal-overlay { transition: opacity 0.3s ease; }
+        .modal-content { transition: transform 0.3s ease, opacity 0.3s ease; }
+        
+        .leaflet-container {
+            border-radius: 0.75rem;
+            border: 1px solid #334155;
+        }
+        .leaflet-control-attribution a {
+            color: #cbd5e1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="header-glass sticky top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center space-x-2">
+                        <img src="https://iili.io/FPZFHv9.png" alt="Logo GOW Anambas" class="h-10 sm:h-12" onerror="this.src='https://placehold.co/150x48/0f172a/e5e7eb?text=GOW+Anambas'">
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <nav class="hidden lg:flex space-x-5 text-sm">
+                        <a href="#beranda" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Beranda</a>
+                        <a href="#tentang" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Tentang</a>
+                        <a href="#tugas-pokok" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Tugas Pokok</a>
+                        <a href="#program" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Program</a>
+                        <a href="#organisasi" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Organisasi</a>
+                        <a href="#simanja" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">SiMANJA</a>
+                        <a href="#kegiatan" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Kegiatan</a>
+                    </nav>
+                    <a href="https://simanjagow.vercel.app/" target="_blank" rel="noopener noreferrer" class="hidden md:inline-block border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors px-4 py-2 rounded-lg text-sm font-semibold">LOGIN SiMANJA</a>
+                    <div class="lg:hidden"><button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-xl sm:text-2xl"></i></button></div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-700">
+            <a href="https://simanjagow.vercel.app/" target="_blank" rel="noopener noreferrer" class="block py-3 px-4 text-base text-pink-400 font-semibold bg-slate-800 hover:bg-slate-700 text-center"><i class="fas fa-rocket w-5 text-center mr-2"></i>LOGIN SiMANJA</a>
+            <a href="#beranda" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Beranda</a>
+            <a href="#tentang" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Tentang Kami</a>
+            <a href="#tugas-pokok" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Tugas Pokok</a>
+            <a href="#program" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Program Kerja</a>
+            <a href="#organisasi" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Organisasi</a>
+            <a href="#simanja" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">SiMANJA GOW</a>
+            <a href="#kegiatan" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Kegiatan</a>
+        </div>
+    </header>
+
+    <main>
+        <div id="main-content">
+            <section id="beranda" class="hero-bg pt-20 pb-16 md:pt-40 md:pb-28 text-white text-center">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wider mb-2" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">GABUNGAN ORGANISASI WANITA</h1>
+                    <p class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-pink-400 mb-4">( GOW )</p>
+                    <p class="text-xl sm:text-2xl md:text-3xl font-semibold tracking-wide mb-4">KABUPATEN KEPULAUAN ANAMBAS</p>
+                    <p class="font-jawi text-3xl sm:text-4xl md:text-5xl mb-4 text-amber-400" dir="rtl">ݢابوڠن اورݢانيساسي وانيتا</p>
+                    <p class="text-lg sm:text-xl md:text-2xl font-semibold tracking-wide text-blue-400">THE ASSOCIATION OF WOMEN'S ORGANIZATIONS</p>
+                </div>
+            </section>
+
+            <section id="statistik" class="py-16 bg-slate-900 fade-in-section">
+                <div class="container mx-auto px-4"><div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center"><div class="card-base p-6 rounded-xl"><i class="fas fa-sitemap text-3xl sm:text-4xl text-pink-400 mb-3"></i><p class="text-4xl sm:text-5xl font-bold" id="total-organisasi">0</p><p class="text-slate-400 mt-1">Organisasi Anggota</p></div><div class="card-base p-6 rounded-xl"><i class="fas fa-user-tie text-3xl sm:text-4xl text-amber-400 mb-3"></i><p class="text-4xl sm:text-5xl font-bold" id="total-pengurus">0</p><p class="text-slate-400 mt-1">Total Pengurus</p></div><div class="card-base p-6 rounded-xl"><i class="fas fa-calendar-check text-3xl sm:text-4xl text-blue-400 mb-3"></i><p class="text-4xl sm:text-5xl font-bold" id="total-kegiatan">0</p><p class="text-slate-400 mt-1">Kegiatan Terlaksana</p></div></div></div>
+            </section>
+            
+            <section id="tentang" class="py-16 sm:py-20">
+                <div class="container mx-auto px-4">
+                    <div class="text-center max-w-3xl mx-auto fade-in-section">
+                        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Tentang GOW Anambas</h2>
+                        <p class="text-slate-400 mb-12">GOW Kabupaten Kepulauan Anambas resmi berdiri sejak ditetapkannya akta pendirian sebagai wadah permanen yang berasaskan Pancasila dan UUD 1945 untuk memperkuat kolaborasi antar organisasi wanita di Anambas.</p>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 sm:gap-12 items-center fade-in-section">
+                        <div class="lg:col-span-2 flex justify-center">
+                            <img src="https://iili.io/FPZFHv9.png" alt="Logo GOW Anambas Besar" class="max-w-xs md:max-w-sm" onerror="this.src='https://placehold.co/400x150/0f172a/e5e7eb?text=GOW+Anambas'">
+                        </div>
+                        <div class="lg:col-span-3 space-y-8">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-4 flex items-center"><i class="fas fa-eye fa-fw mr-3 text-pink-400"></i> Visi</h3>
+                                <blockquote class="border-l-4 border-pink-500 pl-4 italic text-slate-300 text-justify">
+                                    "Terwujudnya perempuan Anambas yang berdaya, mandiri, dan berperan aktif dalam mendukung pembangunan Kabupaten Kepulauan Anambas 2025–2030."
+                                </blockquote>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-4 flex items-center"><i class="fas fa-tasks fa-fw mr-3 text-pink-400"></i> Misi</h3>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center pt-1"><i class="fas fa-lightbulb fa-xs"></i></div><p class="text-slate-400 text-justify">Meningkatkan kapasitas perempuan melalui pendidikan, pelatihan, dan penguatan kewirausahaan.</p></li>
+                                    <li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center pt-1"><i class="fas fa-users fa-xs"></i></div><p class="text-slate-400 text-justify">Mendorong partisipasi aktif perempuan dalam proses pembangunan daerah.</p></li>
+                                    <li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center pt-1"><i class="fas fa-heart fa-xs"></i></div><p class="text-slate-400 text-justify">Membina kualitas hidup keluarga dengan fokus pada kesehatan, gizi, dan ketahanan keluarga.</p></li>
+                                    <li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center pt-1"><i class="fas fa-shield-alt fa-xs"></i></div><p class="text-slate-400 text-justify">Memperjuangkan perlindungan hak perempuan dan anak melalui edukasi dan advokasi.</p></li>
+                                    <li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center pt-1"><i class="fas fa-handshake fa-xs"></i></div><p class="text-slate-400 text-justify">Membangun sinergi dengan pemerintah daerah dan mitra strategis lainnya.</p></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-16 text-center fade-in-section">
+                         <h3 class="text-2xl font-bold mb-8">Struktur Pelindung & Penasehat</h3>
+                         <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="card-base p-6 rounded-xl">
+                                <i class="fas fa-shield-halved text-3xl text-amber-400 mb-3"></i>
+                                <h4 class="text-xl font-bold">Pelindung</h4>
+                                <p class="text-slate-400 mt-1">Bupati Kepulauan Anambas</p>
+                            </div>
+                            <div class="card-base p-6 rounded-xl">
+                                <i class="fas fa-user-friends text-3xl text-blue-400 mb-3"></i>
+                                <h4 class="text-xl font-bold">Penasehat</h4>
+                                <p class="text-slate-400 mt-1">Pimpinan organisasi istri dari unsur FORKOPIMDA & tokoh masyarakat</p>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="tugas-pokok" class="py-16 sm:py-20 bg-slate-900">
+                <div class="container mx-auto px-4">
+                    <div class="text-center max-w-3xl mx-auto fade-in-section">
+                        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Tugas Pokok Organisasi</h2>
+                        <p class="text-slate-400 mb-12">Fokus utama kami dalam menjalankan amanah organisasi sesuai Anggaran Dasar GOW Anambas.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto fade-in-section">
+                        <div class="card-base p-6 rounded-xl text-center"><i class="fas fa-chalkboard-teacher text-4xl text-pink-400 mb-4"></i><h3 class="text-xl font-bold mb-2">Pemberdayaan & Pelatihan</h3><p class="text-slate-400">Menyelenggarakan pelatihan di bidang pendidikan, keterampilan, dan ekonomi berbasis potensi lokal.</p></div>
+                        <div class="card-base p-6 rounded-xl text-center"><i class="fas fa-building-shield text-4xl text-amber-400 mb-4"></i><h3 class="text-xl font-bold mb-2">Dukungan Pembangunan</h3><p class="text-slate-400">Berperan aktif mendukung program pembangunan daerah, terutama di bidang sanitasi, pariwisata, dan UMKM.</p></div>
+                        <div class="card-base p-6 rounded-xl text-center"><i class="fas fa-gavel text-4xl text-blue-400 mb-4"></i><h3 class="text-xl font-bold mb-2">Advokasi & Edukasi</h3><p class="text-slate-400">Melakukan advokasi dan edukasi untuk perlindungan serta pemenuhan hak-hak perempuan.</p></div>
+                        <div class="card-base p-6 rounded-xl text-center lg:col-start-2"><i class="fas fa-handshake text-4xl text-green-400 mb-4"></i><h3 class="text-xl font-bold mb-2">Kemitraan Lintas Sektor</h3><p class="text-slate-400">Menjalin kemitraan dengan pemerintah, masyarakat, dan dunia usaha untuk memperkuat kolaborasi.</p></div>
+                        <div class="card-base p-6 rounded-xl text-center"><i class="fas fa-users-cog text-4xl text-purple-400 mb-4"></i><h3 class="text-xl font-bold mb-2">Solidaritas & Jaringan</h3><p class="text-slate-400">Menggalang solidaritas dan memperkuat jaringan antar organisasi wanita melalui berbagai forum.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="program" class="py-16 sm:py-20">
+                <div class="container mx-auto px-4">
+                    <div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4">Program Kerja GOW 2025-2030</h2><p class="text-slate-400 mb-12">Rencana aksi strategis untuk memberdayakan wanita dan berkontribusi pada pembangunan Kabupaten Kepulauan Anambas di berbagai bidang.</p></div>
+                    <div id="program-kerja-container" class="max-w-4xl mx-auto space-y-4 fade-in-section"></div>
+                </div>
+            </section>
+            
+            <section id="organisasi" class="py-16 sm:py-20 bg-slate-900">
+                <div class="container mx-auto px-4"><div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4">Organisasi Tergabung</h2><p class="text-slate-400 mb-12">Sinergi kekuatan wanita Anambas dalam berbagai bidang melalui organisasi-organisasi anggota GOW.</p></div><div id="organisasi-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6"><p class="col-span-full text-center text-slate-400">Memuat data organisasi...</p></div></div>
+            </section>
+            
+            <!-- BAGIAN SiMANJA GOW (Narasi Saja) -->
+            <section id="simanja" class="py-16 sm:py-20">
+                <div class="container mx-auto px-4">
+                    <div class="max-w-3xl mx-auto text-center fade-in-section">
+                        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Platform Digital SiMANJA GOW</h2>
+                        <p class="text-slate-400 mb-6 leading-relaxed">Sebagai wujud inovasi, GOW Anambas menghadirkan <strong class="font-semibold text-white">SiMANJA</strong> (Sistem Informasi Manajemen Jaringan GOW), sebuah platform digital eksklusif yang dirancang untuk memperkuat sinergi dan efektivitas organisasi. Platform ini berfungsi sebagai pusat data terpadu, memudahkan koordinasi program, serta mendukung tata kelola modern melalui digitalisasi administrasi.</p>
+                        <a href="https://simanjagow.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block px-8 py-3 rounded-lg font-semibold mt-4">
+                            <i class="fas fa-sign-in-alt mr-2"></i> Login ke SiMANJA GOW
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="kegiatan" class="py-16 sm:py-20 bg-slate-900">
+                <div class="container mx-auto px-4">
+                    <div class="text-center max-w-2xl mx-auto fade-in-section">
+                        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Galeri Kegiatan</h2>
+                        <p class="text-slate-400">Dokumentasi aksi dan kontribusi nyata kami untuk masyarakat Kepulauan Anambas.</p>
+                    </div>
+                    <div class="my-12 max-w-2xl mx-auto flex flex-col sm:flex-row gap-4 fade-in-section">
+                        <div class="relative flex-grow">
+                            <input type="search" id="search-kegiatan" placeholder="Cari nama kegiatan..." class="w-full bg-slate-800 border border-slate-700 rounded-lg py-2 pl-10 pr-4 text-white focus:ring-2 focus:ring-pink-500 focus:outline-none transition-colors">
+                            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        </div>
+                        <select id="filter-tahun" class="bg-slate-800 border border-slate-700 rounded-lg py-2 px-4 text-white focus:ring-2 focus:ring-pink-500 focus:outline-none transition-colors">
+                            <option value="">Semua Tahun</option>
+                        </select>
+                    </div>
+                    <div id="kegiatan-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <p class="col-span-full text-center text-slate-400">Memuat data kegiatan...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="detail-content" class="hidden"></div>
+    </main>
+    
+    <div id="modal-placeholder"></div>
+
+    <footer id="kontak" class="bg-slate-800 border-t border-slate-700">
+        <div class="container mx-auto px-4 py-8">
+            <div class="text-center text-slate-400 text-sm">
+                <div class="flex justify-center items-center gap-6 mb-4">
+                    <a href="https://www.instagram.com/gow_anambaskab" target="_blank" class="text-slate-400 hover:text-pink-400 transition-colors"><i class="fab fa-instagram text-2xl"></i></a>
+                    <a href="https://www.facebook.com/share/14JrYrAff1V/" target="_blank" class="text-slate-400 hover:text-pink-400 transition-colors"><i class="fab fa-facebook text-2xl"></i></a>
+                    <a href="mailto:gow.anambas@gmail.com" class="text-slate-400 hover:text-pink-400 transition-colors"><i class="fas fa-envelope text-2xl"></i></a>
+                </div>
+                <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i>Jl. Kartini RT.04/RW.04 Tarempa, Kecamatan Siantan, Kode Pos 27971</p>
+                <p>&copy; <span id="copyright-year">2025</span> GOW KKA. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        const firebaseConfig = { apiKey: "AIzaSyAboBugSdtduTa4MIAeQXFkM8QHdah8lcQ", authDomain: "simanja-gow-app.firebaseapp.com", projectId: "simanja-gow-app", storageBucket: "simanja-gow-app.appspot.com", messagingSenderId: "307105555893", appId: "1:307105555893:web:e5470c451f5c4fdacea5fc" };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const mainContent = document.getElementById('main-content');
+        const detailContent = document.getElementById('detail-content');
+        let allKegiatan = [];
+
+        const showMainPage = () => { mainContent.classList.remove('hidden'); detailContent.classList.add('hidden'); window.scrollTo(0, 0); };
+        const showDetailPage = () => { mainContent.classList.add('hidden'); detailContent.classList.remove('hidden'); window.scrollTo(0, 0); };
+        const organisasiProfiles = { "PKK": "Gerakan nasional yang bertujuan memberdayakan keluarga untuk meningkatkan kesejahteraan lahir batin menuju terwujudnya keluarga yang beriman, bertaqwa, berakhlak mulia, dan berbudi luhur.", "DWP": "Organisasi kemasyarakatan yang menghimpun istri Aparatur Sipil Negara (ASN) dengan tujuan meningkatkan kualitas sumber daya anggota untuk mencapai kesejahteraan keluarga dan masyarakat.", "IKIAD": "Wadah bagi istri-istri anggota DPRD untuk mendukung tugas suami, meningkatkan kepedulian sosial, dan membina kerukunan di lingkungan keluarga besar legislatif.", "JALASENASTRI": "Organisasi istri anggota Tentara Nasional Indonesia Angkatan Laut (TNI AL) yang berperan aktif dalam membina keluarga prajurit dan mendukung kegiatan sosial di lingkungan maritim.", "BHAYANGKARI": "Organisasi persatuan istri anggota Kepolisian Republik Indonesia (POLRI) yang mendukung tugas Polri serta berperan dalam meningkatkan kesejahteraan keluarga polisi dan masyarakat.", "PERSIT KARTIKA CHANDRA KIRANA": "Organisasi istri prajurit Tentara Nasional Indonesia Angkatan Darat (TNI AD) yang bertujuan untuk meningkatkan kesejahteraan, pendidikan, dan rasa persatuan di kalangan keluarga prajurit.", "DWP KEMENAG": "Bagian dari Dharma Wanita Persatuan yang berada di bawah naungan Kementerian Agama, fokus pada pembinaan keluarga dan kegiatan keagamaan di lingkungannya.", "DHARMAYUKTI KARINI": "Organisasi wanita di lingkungan Mahkamah Agung dan badan peradilan di bawahnya, bertujuan untuk mempererat persatuan dan mendukung tugas para abdi hukum.", "IKATAN ADHYAKSA DHARMAKARINI": "Organisasi persatuan istri para pegawai Kejaksaan Republik Indonesia (Adhyaksa) beserta para pegawai wanita Kejaksaan, yang bertujuan untuk membina kesejahteraan anggota dan keluarganya serta berperan aktif dalam kegiatan sosial kemasyarakatan.", "IAD": "Organisasi persatuan istri para pegawai Kejaksaan Republik Indonesia (Adhyaksa) beserta para pegawai wanita Kejaksaan, yang bertujuan untuk membina kesejahteraan anggota dan keluarganya serta berperan aktif dalam kegiatan sosial kemasyarakatan.", "PGRI": "Organisasi profesi yang menaungi para guru di Indonesia, di mana para guru wanita anggotanya juga aktif dalam memperjuangkan kualitas pendidikan dan kesejahteraan guru.", "BKMT": "Wadah yang menghimpun majelis-majelis taklim untuk meningkatkan pemahaman dan pengamalan ajaran Islam serta mempererat silaturahmi antar-muslimah.", "IBI": "Organisasi profesi bagi para bidan di Indonesia, berkomitmen untuk meningkatkan kualitas pelayanan kesehatan ibu dan anak serta profesionalisme para anggotanya.", "PSMTI": "Organisasi sosial kemasyarakatan bagi warga Tionghoa di Indonesia, di mana para wanitanya aktif dalam kegiatan sosial, budaya, dan pendidikan untuk mempererat persatuan bangsa.", "REDAT SRI TANJUNG": "Organisasi yang fokus pada pelestarian dan pengembangan seni serta budaya Melayu, khususnya di Kepulauan Anambas, untuk diwariskan kepada generasi muda.", "SALIMAH": "Organisasi massa yang peduli terhadap perempuan, anak, dan keluarga Indonesia, bertujuan untuk meningkatkan kualitas hidup mereka melalui program dakwah, pendidikan, dan sosial.", "FPPI": "Sebuah forum yang berjuang untuk pemberdayaan perempuan di berbagai sektor, mendorong kesetaraan gender, dan memperjuangkan hak-hak perempuan di Indonesia." };
+        const loadStatistik = () => { const els = { organisasi: document.getElementById('total-organisasi'), pengurus: document.getElementById('total-pengurus'), kegiatan: document.getElementById('total-kegiatan') }; onSnapshot(collection(db, 'organisasi'), (snap) => { els.organisasi.textContent = snap.size; }); onSnapshot(collection(db, 'pengurus'), (snap) => { els.pengurus.textContent = snap.size; }); onSnapshot(collection(db, 'kegiatan'), (snap) => { els.kegiatan.textContent = snap.size; }); };
+        const renderKegiatanGrid = (kegiatanList) => { const grid = document.getElementById('kegiatan-grid'); if (kegiatanList.length === 0) { grid.innerHTML = `<p class="col-span-full text-center text-slate-400">Tidak ada kegiatan yang cocok dengan kriteria Anda.</p>`; return; } grid.innerHTML = kegiatanList.map(k => { const tanggal = k.tanggal ? new Date(k.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : ''; return `<a href="#/kegiatan/${k.id}" class="card-base rounded-xl overflow-hidden group kegiatan-card fade-in-section"><div class="overflow-hidden h-56"><img src="${k.foto}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/600x400/334155/e5e7eb?text=Kegiatan'"></div><div class="p-6"><p class="text-sm text-slate-400 mb-2"><i class="fas fa-calendar-alt mr-2"></i>${tanggal}</p><h3 class="text-xl font-bold mb-3 h-20 line-clamp-3">${k.nama}</h3><p class="text-blue-400 text-sm"><i class="fas fa-map-marker-alt mr-2"></i>${k.lokasi}</p></div></a>`; }).join(''); observeSections(); };
+        const applyFilters = () => { const searchTerm = document.getElementById('search-kegiatan').value.toLowerCase(); const selectedYear = document.getElementById('filter-tahun').value; let filteredKegiatan = allKegiatan; if (searchTerm) { filteredKegiatan = filteredKegiatan.filter(k => k.nama.toLowerCase().includes(searchTerm)); } if (selectedYear) { filteredKegiatan = filteredKegiatan.filter(k => k.tanggal && new Date(k.tanggal).getFullYear() == selectedYear); } renderKegiatanGrid(filteredKegiatan); };
+        const loadKegiatan = () => { const q = query(collection(db, 'kegiatan'), orderBy("tanggal", "desc")); onSnapshot(q, (snapshot) => { allKegiatan = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); const filterTahun = document.getElementById('filter-tahun'); const years = [...new Set(allKegiatan.map(k => k.tanggal ? new Date(k.tanggal).getFullYear() : null).filter(Boolean))]; const currentOptions = Array.from(filterTahun.options).map(o => o.value); if (years.length !== currentOptions.length -1) { filterTahun.innerHTML = '<option value="">Semua Tahun</option>'; years.sort((a, b) => b - a).forEach(year => { const option = document.createElement('option'); option.value = year; option.textContent = year; filterTahun.appendChild(option); }); } applyFilters(); }, (error) => { document.getElementById('kegiatan-grid').innerHTML = '<p class="col-span-full text-center text-red-400">Gagal memuat data kegiatan.</p>'; }); };
+        document.getElementById('search-kegiatan').addEventListener('input', applyFilters); document.getElementById('filter-tahun').addEventListener('change', applyFilters);
+        const loadOrganisasi = () => { const grid = document.getElementById('organisasi-grid'); const q = query(collection(db, 'organisasi'), orderBy("nama", "asc")); onSnapshot(q, (snapshot) => { if (snapshot.empty) { grid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data organisasi belum tersedia.</p>'; return; } grid.innerHTML = snapshot.docs.map(doc => { const org = doc.data(); const id = doc.id; const logoHtml = org.logo ? `<img src="${org.logo}" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML = '<i class=\\'fas fa-sitemap text-3xl text-slate-500\\'></i>'">` : `<i class="fas fa-sitemap text-3xl text-slate-500"></i>`; return `<button data-org-id="${id}" class="org-card card-base text-center p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center fade-in-section h-36 sm:h-40"><div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-slate-800 flex items-center justify-center mb-3 overflow-hidden p-2">${logoHtml}</div><h4 class="font-semibold text-xs sm:text-sm leading-tight line-clamp-2">${org.nama}</h4></button>`; }).join(''); observeSections(); document.querySelectorAll('.org-card').forEach(card => { card.addEventListener('click', () => { renderOrganisasiDetail(card.dataset.orgId); }); }); }, (error) => { grid.innerHTML = '<p class="col-span-full text-center text-red-400">Gagal memuat data.</p>'; }); };
+        const renderDetailPage = async (kegiatanId) => { showDetailPage(); detailContent.innerHTML = `<div class="text-center py-40"><p class="text-slate-400">Memuat detail kegiatan...</p></div>`; try { const docRef = doc(db, 'kegiatan', kegiatanId); const docSnap = await getDoc(docRef); if (docSnap.exists()) { const data = docSnap.data(); const tanggal = data.tanggal ? new Date(data.tanggal).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : 'Tanggal tidak tersedia'; const mapHtml = (data.koordinat && data.koordinat.lat && data.koordinat.lng) ? `<h3 class="text-2xl font-bold mt-12 mb-4">Peta Lokasi</h3><div id="map" class="w-full h-80 z-0"></div>` : ''; detailContent.innerHTML = `<article class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12"><div class="max-w-3xl mx-auto"><div class="mb-6 sm:mb-8"><a href="#" class="nav-link text-pink-400 hover:text-pink-300 transition-colors"><i class="fas fa-arrow-left mr-2"></i>Kembali ke Beranda</a></div><h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">${data.nama}</h1><div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-slate-400 mb-6 border-b border-slate-700 pb-6"><span><i class="fas fa-calendar-alt mr-2 text-amber-400"></i>${tanggal}</span><span><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>${data.lokasi || 'Lokasi tidak tersedia'}</span></div><img src="${data.foto}" alt="${data.nama}" class="w-full rounded-xl mb-8" onerror="this.style.display='none'"><div class="prose prose-invert max-w-none text-slate-300 leading-relaxed text-justify whitespace-pre-line">${data.deskripsi || 'Deskripsi tidak tersedia.'}</div>${mapHtml}</div></article>`; if (data.koordinat && data.koordinat.lat && data.koordinat.lng) { setTimeout(() => { const map = L.map('map').setView([data.koordinat.lat, data.koordinat.lng], 15); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map); L.marker([data.koordinat.lat, data.koordinat.lng]).addTo(map).bindPopup(`<b>${data.nama}</b><br>${data.lokasi}`).openPopup(); }, 100); } } else { detailContent.innerHTML = `<div class="text-center py-40 px-4"><h2 class="text-2xl font-bold">404 - Kegiatan Tidak Ditemukan</h2><p class="text-slate-400 mt-4">Maaf, kami tidak dapat menemukan detail untuk kegiatan ini.</p><a href="#" class="nav-link mt-8 inline-block btn-primary px-6 py-3 rounded-lg">Kembali ke Beranda</a></div>`; } } catch (error) { detailContent.innerHTML = `<div class="text-center py-40 px-4"><h2 class="text-2xl font-bold text-red-400">Gagal Memuat Data</h2><p class="text-slate-400 mt-4">Terjadi kesalahan saat mengambil data. Silakan coba lagi nanti.</p><a href="#" class="nav-link mt-8 inline-block btn-primary px-6 py-3 rounded-lg">Kembali ke Beranda</a></div>`; } };
+        const loadProgramKerja = () => { const container = document.getElementById('program-kerja-container'); const dataProgram = [ { bidang: 'ORGANISASI DAN KADERISASI', icon: 'fa-users', programs: [{ name: 'Pelatihan Tata Boga', tujuan: 'Meningkatkan dan menguatkan kapasitas serta keterampilan sumber daya internal organisasi.', sasaran: 'Anggota GOW' }] }, { bidang: 'PENDIDIKAN, IPTEK DAN SOSIAL BUDAYA', icon: 'fa-graduation-cap', programs: [{ name: 'Peningkatan Keterampilan Kelompok Rentan (Lansia)', tujuan: 'Meningkatkan kemampuan dan keterampilan kelompok binaan (lansia) di Kecamatan Siantan & Palmatak.', sasaran: 'Lansia Buta Aksara (Usia 50+)' }, { name: 'Literasi Gemar Membaca', tujuan: 'Meningkatkan minat baca peserta didik dari tingkat PAUD hingga SMP.', sasaran: 'Peserta Didik (PAUD s/d SMP)' }, { name: 'Pusat Kreativitas Anak (PKA)', tujuan: 'Memanfaatkan waktu luang untuk kegiatan anak yang positif, kreatif, dan produktif.', sasaran: 'Masyarakat saat Minggu Energi Baru (MEB) Day' }] }, { bidang: 'KESEHATAN & KELUARGA BERENCANA', icon: 'fa-heartbeat', programs: [{ name: 'Pojok ASI (Ruang Laktasi)', tujuan: 'Menyediakan fasilitas responsif bagi Ibu Menyusui di area publik.', sasaran: 'Perkantoran & Tempat Umum' }, { name: 'SINTA LASKAR Sehat', tujuan: 'Program pendampingan anak stunting selama 56 hari dengan intervensi gizi.', sasaran: '39 Anak Stunting di Kecamatan Siantan' }, { name: 'Motorcycle Free Day (MFD)', tujuan: 'Menciptakan area bebas kendaraan untuk kegiatan kesehatan masyarakat.', sasaran: 'Masyarakat (Minggu ke-2 setiap bulan)' }] }, { bidang: 'KEAGAMAAN DAN MORAL', icon: 'fa-quran', programs: [{ name: 'Maghrib Mengaji', tujuan: 'Partisipasi aktif anggota GOW dalam kegiatan mengaji bersama.', sasaran: 'Anggota GOW' }, { name: 'Pelatihan Fardhu Kifayah', tujuan: 'Regenerasi dan peningkatan kemampuan masyarakat dalam mengurus jenazah.', sasaran: 'Daerah yang kekurangan tenaga kepengurusan jenazah' }] }, { bidang: 'EKONOMI, KOPERASI & KETENAGAKERJAAN', icon: 'fa-briefcase', programs: [{ name: 'Pembinaan UMKM', tujuan: 'Mendorong kemandirian ekonomi perempuan melalui pelatihan dan pendampingan.', sasaran: 'UMKM' }, { name: 'Gerai GOW', tujuan: 'Menjadi wadah untuk menunjang UMKM melalui kolaborasi dengan Dekranasda dan PLUD.', sasaran: 'UMKM' }, { name: 'Koperasi GOW', tujuan: 'Membuka lapangan kerja dan mempermudah transaksi bagi ASN melalui kantin.', sasaran: 'ASN & Masyarakat' }] }, { bidang: 'INFORMASI, KOMUNIKASI DAN HUMAS', icon: 'fa-bullhorn', programs: [{ name: 'Publikasi dan Dokumentasi', tujuan: 'Mempublikasikan semua kegiatan GOW melalui media sosial.', sasaran: 'Masyarakat' }, { name: 'GOW Podcast', tujuan: 'Membuat podcast edukatif dan informatif dengan tema-tema variatif.', sasaran: 'Masyarakat' }, { name: 'Lomba Video Kreatif Digital', tujuan: 'Menumbuhkan dan meningkatkan kreativitas digital masyarakat.', sasaran: 'Masyarakat' }] }, { bidang: 'HUKUM, HAM DAN KESETARAAN GENDER', icon: 'fa-balance-scale', programs: [{ name: 'Event Hari Ibu', tujuan: 'Memberikan wadah bagi masyarakat yang berkontribusi dalam kesetaraan gender.', sasaran: 'Organisasi-organisasi wanita' }, { name: 'GOW GOES TO SCHOOL', tujuan: 'Edukasi pencegahan kekerasan pada anak, pernikahan dini, dan kenakalan remaja.', sasaran: 'Sekolah-sekolah' }] } ]; container.innerHTML = dataProgram.map((bidang) => ` <div class="card-base rounded-lg"> <h2><button class="accordion-button flex justify-between items-center w-full p-4 sm:p-5 text-left font-semibold" aria-expanded="false"><div class="flex items-center text-base sm:text-lg"><i class="fas ${bidang.icon} w-6 text-center mr-4 text-pink-400"></i><span>${bidang.bidang}</span></div><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button></h2> <div class="accordion-content bg-slate-800/50 rounded-b-lg"> <div class="p-4 sm:p-5 border-t border-slate-700 divide-y divide-slate-700"> ${bidang.programs.map(prog => ` <div class="py-4 first:pt-0 last:pb-0"> <h4 class="font-semibold text-white">${prog.name}</h4> <div class="mt-2 pl-2 border-l-2 border-amber-400"><p class="text-sm text-slate-300"><strong class="font-semibold text-amber-400">Tujuan:</strong> ${prog.tujuan}</p></div> <div class="mt-2 pl-2 border-l-2 border-blue-400"><p class="text-sm text-slate-300"><strong class="font-semibold text-blue-400">Sasaran:</strong> ${prog.sasaran}</p></div> </div>`).join('')} </div> </div> </div>`).join(''); container.querySelectorAll('.accordion-button').forEach(button => { button.addEventListener('click', () => { const expanded = button.getAttribute('aria-expanded') === 'true'; button.setAttribute('aria-expanded', !expanded); const content = button.parentElement.nextElementSibling; content.style.maxHeight = expanded ? '0px' : content.scrollHeight + 'px'; }); }); };
+        const renderOrganisasiDetail = async (orgId) => { const placeholder = document.getElementById('modal-placeholder'); const docRef = doc(db, 'organisasi', orgId); const docSnap = await getDoc(docRef); if (docSnap.exists()) { const org = docSnap.data(); const ketua = org.infoKetua || {}; const profile = organisasiProfiles[org.nama.toUpperCase().replace(/\s/g, '')] || organisasiProfiles[org.nama] || "Informasi profil untuk organisasi ini belum tersedia."; const avatar = ketua.foto ? `<img src="${ketua.foto}" class="w-20 h-20 rounded-full object-cover border-4 border-slate-700" onerror="this.src='https://placehold.co/80x80/ec4899/ffffff?text=${(ketua.nama || '?').charAt(0)}'">` : `<div class="w-20 h-20 rounded-full bg-pink-500 flex items-center justify-center text-3xl font-bold border-4 border-slate-700">${(ketua.nama || '?').charAt(0)}</div>`; const modalHTML = ` <div id="org-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 modal-overlay"> <div class="bg-slate-800 border border-slate-700 rounded-xl w-full max-w-lg p-6 transform scale-95 opacity-0 modal-content"> <div class="flex flex-col sm:flex-row items-center text-center sm:text-left gap-5"> <img src="${org.logo || 'https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'}" class="w-24 h-24 object-contain flex-shrink-0" onerror="this.src='https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'"> <div> <h2 class="text-2xl font-bold text-white">${org.nama}</h2> <p class="text-slate-400 text-sm mt-3 text-justify">${profile}</p> </div> </div> <div class="my-6 border-t border-slate-700"></div> <h3 class="font-semibold text-lg mb-4 text-center">Dipimpin oleh:</h3> <div class="flex items-center justify-center space-x-4"> ${avatar} <div><p class="font-bold text-xl text-amber-400">${ketua.nama || '-'}</p><p class="text-slate-300">Ketua Organisasi</p></div> </div> <div class="text-center"> <button id="close-modal-btn" class="mt-8 bg-pink-600/20 text-pink-400 hover:bg-pink-600 hover:text-white transition-colors px-6 py-2 rounded-lg">Tutup</button> </div> </div> </div>`; placeholder.innerHTML = modalHTML; const modal = document.getElementById('org-modal'); const modalContent = modal.querySelector('.modal-content'); requestAnimationFrame(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('scale-95', 'opacity-0'); }); const closeModal = () => { modal.classList.add('opacity-0'); modalContent.classList.add('scale-95', 'opacity-0'); setTimeout(() => placeholder.innerHTML = '', 300); }; modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }); document.getElementById('close-modal-btn').addEventListener('click', closeModal); } };
+        const router = () => { const hash = window.location.hash; if(hash.startsWith('#/kegiatan/')) { renderDetailPage(hash.split('/')[2]); } else { showMainPage(); if (hash) { const targetElement = document.getElementById(hash.substring(1)); if (targetElement) { setTimeout(() => { targetElement.scrollIntoView({ behavior: 'smooth' }); }, 100); } } } };
+        const mobileMenu = document.getElementById('mobile-menu'); document.getElementById('mobile-menu-button').addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); }); document.body.addEventListener('click', (e) => { if (e.target.closest('#mobile-menu .nav-link') || e.target.closest('a.nav-link[href^="#"]')) { if(mobileMenu.classList.contains('hidden') === false) mobileMenu.classList.add('hidden'); } if (e.target.closest('#detail-content .nav-link')) { e.preventDefault(); window.location.hash = '#'; } if (e.target.closest('a[href="#kontak"]')) { e.preventDefault(); document.getElementById('kontak').scrollIntoView({behavior: 'smooth'}); } });
+        const observeSections = () => { const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in-section:not(.is-visible)').forEach(section => { observer.observe(section); }); };
+        
+        document.addEventListener('DOMContentLoaded', () => { 
+            document.getElementById('copyright-year').textContent = new Date().getFullYear(); 
+            window.addEventListener('hashchange', router); 
+            loadStatistik(); 
+            loadProgramKerja(); 
+            loadOrganisasi(); 
+            loadKegiatan(); 
+            observeSections(); 
+            router(); 
+        });
+    </script>
+</body>
+</html>
