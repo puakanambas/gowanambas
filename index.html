@@ -13,8 +13,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-    <!-- Chart.js untuk Grafik -->
+    <!-- Chart.js & Plugin Datalabels -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
     <style>
         body { 
@@ -349,8 +350,8 @@
                                 ${kecamatanOptions}
                             </select>
                         </div>
-                        <div class="bg-slate-800/50 rounded-lg p-4 h-96">
-                            <h4 id="chart-title" class="text-xl font-bold mb-4 text-center"></h4>
+                        <div class="bg-slate-800/50 rounded-lg p-4 h-96 relative">
+                            <h4 id="chart-title" class="text-lg font-bold mb-2 text-center text-slate-300"></h4>
                             <canvas id="data-chart-canvas"></canvas>
                         </div>
                     </div>
@@ -382,25 +383,32 @@
 
             let chartLabels;
             let chartDatasets;
+            let maxDataValue = 0;
 
             if (selectedKecamatan === 'Semua Kecamatan') {
                 titleEl.textContent = `${indicator} per Kecamatan`;
                 chartLabels = kecamatanList;
-                chartDatasets = indicatorData.datasets.map((dataset, index) => ({
-                    label: dataset.label,
-                    data: kecamatanList.map(kec => indicatorData.data[kec][index]),
-                    backgroundColor: dataset.color,
-                }));
+                chartDatasets = indicatorData.datasets.map((dataset, index) => {
+                    const data = kecamatanList.map(kec => indicatorData.data[kec][index]);
+                    const currentMax = Math.max(...data.filter(val => val !== null && val !== undefined));
+                    if (currentMax > maxDataValue) maxDataValue = currentMax;
+                    return {
+                        label: dataset.label,
+                        data: data,
+                        backgroundColor: dataset.color,
+                    };
+                });
             } else {
                 titleEl.textContent = `${indicator} di Kec. ${selectedKecamatan}`;
                 const dataForKec = indicatorData.data[selectedKecamatan];
+                maxDataValue = Math.max(...dataForKec.filter(val => val !== null && val !== undefined));
                 
                 if (indicatorData.datasets.length > 1) {
                     chartLabels = indicatorData.datasets.map(d => d.label);
                     chartDatasets = [{ label: 'Nilai', data: dataForKec, backgroundColor: indicatorData.datasets.map(d => d.color) }];
                 } else {
                     chartLabels = [indicatorData.datasets[0].label];
-                    chartDatasets = [{ label: indicatorData.datasets[0].label, data: dataForKec, backgroundColor: indicatorData.datasets[0].color }];
+                     chartDatasets = [{ label: indicatorData.datasets[0].label, data: dataForKec, backgroundColor: indicatorData.datasets[0].color }];
                 }
             }
 
@@ -414,14 +422,30 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {
-                        y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#94a3b8' } },
+                        y: { 
+                            beginAtZero: true, 
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }, 
+                            ticks: { color: '#94a3b8' },
+                            suggestedMax: maxDataValue * 1.25
+                        },
                         x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } }
                     },
                     plugins: { 
                         legend: { 
                             labels: { color: '#e2e8f0' },
                             display: selectedKecamatan === 'Semua Kecamatan' || indicatorData.datasets.length === 1
-                        } 
+                        },
+                        datalabels: {
+                            rotation: -90,
+                            anchor: 'center',
+                            align: 'center',
+                            color: '#ffffff',
+                            font: { weight: 'bold', size: 11 },
+                            formatter: (value) => {
+                                if (value === null || value === undefined) return '';
+                                return Math.round(value * 10) / 10;
+                            }
+                        }
                     }
                 }
             });
@@ -461,6 +485,8 @@
         const observeSections = () => { const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in-section:not(.is-visible)').forEach(section => { observer.observe(section); }); };
         
         document.addEventListener('DOMContentLoaded', () => { 
+            Chart.register(ChartDataLabels); // AKTIFKAN PLUGIN DATALABELS SECARA GLOBAL
+
             document.getElementById('copyright-year').textContent = new Date().getFullYear();
             window.addEventListener('hashchange', router); 
             loadStatistik(); 
