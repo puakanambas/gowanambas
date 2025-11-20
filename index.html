@@ -76,6 +76,7 @@
         .leaflet-container {
             border-radius: 0.75rem;
             border: 1px solid #334155;
+            z-index: 1;
         }
         .data-filter-btn {
             background-color: #334155;
@@ -86,6 +87,20 @@
             background: linear-gradient(to right, #db2777, #c026d3);
             color: #fff;
             box-shadow: 0 4px 15px -5px rgba(219, 39, 119, 0.6);
+        }
+        /* Scrollbar custom */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
         }
     </style>
 </head>
@@ -116,7 +131,7 @@
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-700">
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-700 bg-slate-900">
             <a href="#beranda" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Beranda</a>
             <a href="#tentang" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Tentang Kami</a>
             <a href="#program" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Program Kerja</a>
@@ -130,13 +145,13 @@
 
     <main>
         <div id="main-content">
-            <section id="beranda" class="hero-bg pt-20 pb-16 md:pt-40 md:pb-28 text-white text-center">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <section id="beranda" class="hero-bg pt-20 pb-16 md:pt-40 md:pb-28 text-white text-center relative">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wider mb-2" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">GABUNGAN ORGANISASI WANITA</h1>
-                    <p class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-pink-400 mb-4">( GOW )</p>
-                    <p class="text-xl sm:text-2xl md:text-3xl font-semibold tracking-wide mb-4">KABUPATEN KEPULAUAN ANAMBAS</p>
-                    <p class="font-jawi text-3xl sm:text-4xl md:text-5xl mb-4 text-amber-400" dir="rtl">ݢابوڠن اورݢانيساسي وانيتا</p>
-                    <p class="text-lg sm:text-xl md:text-2xl font-semibold tracking-wide text-blue-400">THE ASSOCIATION OF WOMEN'S ORGANIZATIONS</p>
+                    <p class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-pink-400 mb-4" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">( GOW )</p>
+                    <p class="text-xl sm:text-2xl md:text-3xl font-semibold tracking-wide mb-4" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">KABUPATEN KEPULAUAN ANAMBAS</p>
+                    <p class="font-jawi text-3xl sm:text-4xl md:text-5xl mb-4 text-amber-400" dir="rtl" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">ݢابوڠن اورݢانيساسي وانيتا</p>
+                    <p class="text-lg sm:text-xl md:text-2xl font-semibold tracking-wide text-blue-400" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">THE ASSOCIATION OF WOMEN'S ORGANIZATIONS</p>
                 </div>
             </section>
 
@@ -151,7 +166,7 @@
                         <p class="text-slate-400 mb-12">GOW Kabupaten Kepulauan Anambas resmi berdiri sejak ditetapkannya akta pendirian sebagai wadah permanen yang berasaskan Pancila dan UUD 1945 untuk memperkuat kolaborasi antar organisasi wanita di Anambas.</p>
                     </div>
                     <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 sm:gap-12 items-center fade-in-section">
-                        <div class="lg:col-span-2 flex justify-center"><img src="https://iili.io/FPZFHv9.png" alt="Logo GOW Anambas Besar" class="max-w-xs md:max-w-sm" onerror="this.src='https://placehold.co/400x150/0f172a/e5e7eb?text=GOW+Anambas'"></div>
+                        <div class="lg:col-span-2 flex justify-center"><img src="https://iili.io/FPZFHv9.png" alt="Logo GOW Anambas Besar" class="max-w-xs md:max-w-sm drop-shadow-2xl" onerror="this.src='https://placehold.co/400x150/0f172a/e5e7eb?text=GOW+Anambas'"></div>
                         <div class="lg:col-span-3 space-y-8">
                             <div><h3 class="text-2xl font-bold mb-4 flex items-center"><i class="fas fa-eye fa-fw mr-3 text-pink-400"></i> Visi</h3><blockquote class="border-l-4 border-pink-500 pl-4 italic text-slate-300 text-justify">"Terwujudnya perempuan Anambas yang berdaya, mandiri, dan berperan aktif dalam mendukung pembangunan Kabupaten Kepulauan Anambas 2025–2030."</blockquote></div>
                             <div><h3 class="text-2xl font-bold mb-4 flex items-center"><i class="fas fa-tasks fa-fw mr-3 text-pink-400"></i> Misi</h3><ul class="space-y-3"><li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center pt-1"><i class="fas fa-lightbulb fa-xs"></i></div><p class="text-slate-400 text-justify">Meningkatkan kapasitas perempuan melalui pendidikan, pelatihan, dan penguatan kewirausahaan.</p></li><li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center pt-1"><i class="fas fa-users fa-xs"></i></div><p class="text-slate-400 text-justify">Mendorong partisipasi aktif perempuan dalam proses pembangunan daerah.</p></li><li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center pt-1"><i class="fas fa-heart fa-xs"></i></div><p class="text-slate-400 text-justify">Membina kualitas hidup keluarga dengan fokus pada kesehatan, gizi, dan ketahanan keluarga.</p></li><li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center pt-1"><i class="fas fa-shield-alt fa-xs"></i></div><p class="text-slate-400 text-justify">Memperjuangkan perlindungan hak perempuan dan anak melalui edukasi dan advokasi.</p></li><li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center pt-1"><i class="fas fa-handshake fa-xs"></i></div><p class="text-slate-400 text-justify">Membangun sinergi dengan pemerintah daerah dan mitra strategis lainnya.</p></li></ul></div>
@@ -167,7 +182,7 @@
                 </div>
             </section>
 
-            <!-- SEKSI DATA TERPILAH BARU -->
+            <!-- SEKSI DATA TERPILAH -->
             <section id="data-terpilah" class="py-16 sm:py-20">
                 <div class="container mx-auto px-4">
                     <div class="text-center max-w-3xl mx-auto fade-in-section">
@@ -178,14 +193,15 @@
                     <div class="max-w-5xl mx-auto fade-in-section mt-16">
                         <h3 class="text-2xl font-bold text-center mb-8">Jelajahi Indikator per Sektor</h3>
                         <div id="data-filter-container" class="flex justify-center flex-wrap gap-3 mb-10">
-                            <button data-category="Pendidikan" class="data-filter-btn active font-semibold px-5 py-2 rounded-lg">Pendidikan</button>
+                            <button data-category="Kependudukan" class="data-filter-btn active font-semibold px-5 py-2 rounded-lg">Kependudukan</button>
+                            <button data-category="Pendidikan" class="data-filter-btn font-semibold px-5 py-2 rounded-lg">Pendidikan</button>
                             <button data-category="Kesehatan" class="data-filter-btn font-semibold px-5 py-2 rounded-lg">Kesehatan</button>
-                            <button data-category="Ekonomi & Ketenagakerjaan" class="data-filter-btn font-semibold px-5 py-2 rounded-lg">Ekonomi & Ketenagakerjaan</button>
+                            <button data-category="Ekonomi" class="data-filter-btn font-semibold px-5 py-2 rounded-lg">Ekonomi</button>
                             <button data-category="Partisipasi Publik" class="data-filter-btn font-semibold px-5 py-2 rounded-lg">Partisipasi Publik</button>
                             <button data-category="Perlindungan Khusus" class="data-filter-btn font-semibold px-5 py-2 rounded-lg">Perlindungan Khusus</button>
                         </div>
                         <div id="data-content-area" class="card-base rounded-xl p-6 md:p-8">
-                           <!-- Konten dinamis akan dimuat di sini oleh JS -->
+                           <!-- Konten dinamis dimuat oleh JS -->
                         </div>
                     </div>
                 </div>
@@ -226,6 +242,8 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, collection, onSnapshot, query, orderBy, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        
+        // Konfigurasi Firebase
         const firebaseConfig = { apiKey: "AIzaSyAboBugSdtduTa4MIAeQXFkM8QHdah8lcQ", authDomain: "simanja-gow-app.firebaseapp.com", projectId: "simanja-gow-app", storageBucket: "simanja-gow-app.appspot.com", messagingSenderId: "307105555893", appId: "1:307105555893:web:e5470c451f5c4fdacea5fc" };
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
@@ -242,22 +260,165 @@
         const organisasiProfiles = { "PKK": "Gerakan nasional yang bertujuan memberdayakan keluarga...", "DWP": "Organisasi kemasyarakatan yang menghimpun istri Aparatur Sipil Negara...", "IKIAD": "Wadah bagi istri-istri anggota DPRD...", "JALASENASTRI": "Organisasi istri anggota TNI Angkatan Laut...", "BHAYANGKARI": "Organisasi persatuan istri anggota POLRI...", "PERSIT KARTIKA CHANDRA KIRANA": "Organisasi istri prajurit TNI Angkatan Darat...", "DWP KEMENAG": "Bagian dari Dharma Wanita Persatuan di bawah Kementerian Agama...", "DHARMAYUKTI KARINI": "Organisasi wanita di lingkungan Mahkamah Agung...", "IKATAN ADHYAKSA DHARMAKARINI": "Organisasi persatuan istri para pegawai Kejaksaan...", "IAD": "Organisasi persatuan istri para pegawai Kejaksaan...", "PGRI": "Organisasi profesi yang menaungi para guru...", "BKMT": "Wadah yang menghimpun majelis-majelis taklim...", "IBI": "Organisasi profesi bagi para bidan...", "PSMTI": "Organisasi sosial kemasyarakatan bagi warga Tionghoa...", "REDAT SRI TANJUNG": "Organisasi yang fokus pada pelestarian seni dan budaya Melayu...", "SALIMAH": "Organisasi massa yang peduli terhadap perempuan, anak, dan keluarga...", "FPPI": "Sebuah forum yang berjuang untuk pemberdayaan perempuan..." };
 
         // --- FUNGSI PEMUAT DATA ---
-        const loadStatistik = () => { const els = { organisasi: document.getElementById('total-organisasi'), pengurus: document.getElementById('total-pengurus'), kegiatan: document.getElementById('total-kegiatan') }; onSnapshot(collection(db, 'organisasi'), (snap) => { els.organisasi.textContent = snap.size; }); onSnapshot(collection(db, 'pengurus'), (snap) => { els.pengurus.textContent = snap.size; }); onSnapshot(collection(db, 'kegiatan'), (snap) => { els.kegiatan.textContent = snap.size; }); };
-        const loadPengurusInti = () => { const grid = document.getElementById('pengurus-inti-grid'); if (!grid) return; const q = query(collection(db, 'pengurus'), orderBy("createdAt", "asc")); onSnapshot(q, (snapshot) => { const pengurusInti = snapshot.docs.filter(doc => doc.data().kategori === 'inti'); if (pengurusInti.length === 0) { grid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data pengurus inti belum tersedia.</p>'; return; } grid.innerHTML = pengurusInti.map(doc => { const p = doc.data(); const avatar = p.foto ? `<img src="${p.foto}" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover mx-auto mb-4 border-4 border-slate-700" onerror="this.src='https://placehold.co/112x112/334155/e5e7eb?text=${p.nama.charAt(0)}'">` : `<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-pink-500 to-fuchsia-600 flex items-center justify-center mx-auto mb-4 border-4 border-slate-700"><span class="text-3xl sm:text-4xl font-bold">${p.nama.charAt(0)}</span></div>`; return `<div class="card-base text-center p-6 rounded-xl fade-in-section">${avatar}<h3 class="text-xl font-bold">${p.nama}</h3><p class="text-amber-400">${p.jabatan}</p></div>`; }).join(''); observeSections(); }); };
-        const loadKegiatan = () => { const q = query(collection(db, 'kegiatan'), orderBy("tanggal", "desc")); onSnapshot(q, (snapshot) => { allKegiatan = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); const filterTahun = document.getElementById('filter-tahun'); const years = [...new Set(allKegiatan.map(k => k.tanggal ? new Date(k.tanggal).getFullYear() : null).filter(Boolean))]; filterTahun.innerHTML = '<option value="">Semua Tahun</option>'; years.sort((a, b) => b - a).forEach(year => { filterTahun.innerHTML += `<option value="${year}">${year}</option>`; }); applyFilters(); }); };
-        const loadOrganisasi = () => { const grid = document.getElementById('organisasi-grid'); if(!grid) return; const q = query(collection(db, 'organisasi'), orderBy("nama", "asc")); onSnapshot(q, (snapshot) => { if (snapshot.empty) { grid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data organisasi belum tersedia.</p>'; return; } grid.innerHTML = snapshot.docs.map(doc => { const org = doc.data(); const id = doc.id; const logoHtml = org.logo ? `<img src="${org.logo}" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML = '<i class=\\'fas fa-sitemap text-3xl text-slate-500\\'></i>'">` : `<i class="fas fa-sitemap text-3xl text-slate-500"></i>`; return `<button data-org-id="${id}" class="org-card card-base text-center p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center fade-in-section h-36 sm:h-40"><div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-slate-800 flex items-center justify-center mb-3 overflow-hidden p-2">${logoHtml}</div><h4 class="font-semibold text-xs sm:text-sm leading-tight line-clamp-2">${org.nama}</h4></button>`; }).join(''); observeSections(); document.querySelectorAll('.org-card').forEach(card => card.addEventListener('click', () => renderOrganisasiDetail(card.dataset.orgId))); }); };
-        const loadProgramKerja = () => { const container = document.getElementById('program-kerja-container'); const dataProgram = [ { bidang: 'ORGANISASI DAN KADERISASI', icon: 'fa-users', programs: [{ name: 'Pelatihan Tata Boga', tujuan: 'Meningkatkan dan menguatkan kapasitas serta keterampilan sumber daya internal organisasi.', sasaran: 'Anggota GOW' }] }, { bidang: 'PENDIDIKAN, IPTEK DAN SOSIAL BUDAYA', icon: 'fa-graduation-cap', programs: [{ name: 'Peningkatan Keterampilan Kelompok Rentan (Lansia)', tujuan: 'Meningkatkan kemampuan dan keterampilan kelompok binaan (lansia) di Kecamatan Siantan & Palmatak.', sasaran: 'Lansia Buta Aksara (Usia 50+)' }, { name: 'Literasi Gemar Membaca', tujuan: 'Meningkatkan minat baca peserta didik dari tingkat PAUD hingga SMP.', sasaran: 'Peserta Didik (PAUD s/d SMP)' }, { name: 'Pusat Kreativitas Anak (PKA)', tujuan: 'Memanfaatkan waktu luang untuk kegiatan anak yang positif, kreatif, dan produktif.', sasaran: 'Masyarakat saat Minggu Energi Baru (MEB) Day' }] }, { bidang: 'KESEHATAN & KELUARGA BERENCANA', icon: 'fa-heartbeat', programs: [{ name: 'Pojok ASI (Ruang Laktasi)', tujuan: 'Menyediakan fasilitas responsif bagi Ibu Menyusui di area publik.', sasaran: 'Perkantoran & Tempat Umum' }, { name: 'SINTA LASKAR Sehat', tujuan: 'Program pendampingan anak stunting selama 56 hari dengan intervensi gizi.', sasaran: '39 Anak Stunting di Kecamatan Siantan' }, { name: 'Motorcycle Free Day (MFD)', tujuan: 'Menciptakan area bebas kendaraan untuk kegiatan kesehatan masyarakat.', sasaran: 'Masyarakat (Minggu ke-2 setiap bulan)' }] }, { bidang: 'KEAGAMAAN DAN MORAL', icon: 'fa-quran', programs: [{ name: 'Maghrib Mengaji', tujuan: 'Partisipasi aktif anggota GOW dalam kegiatan mengaji bersama.', sasaran: 'Anggota GOW' }, { name: 'Pelatihan Fardhu Kifayah', tujuan: 'Regenerasi dan peningkatan kemampuan masyarakat dalam mengurus jenazah.', sasaran: 'Daerah yang kekurangan tenaga kepengurusan jenazah' }] }, { bidang: 'EKONOMI, KOPERASI & KETENAGAKERJAAN', icon: 'fa-briefcase', programs: [{ name: 'Pembinaan UMKM', tujuan: 'Mendorong kemandirian ekonomi perempuan melalui pelatihan dan pendampingan.', sasaran: 'UMKM' }, { name: 'Gerai GOW', tujuan: 'Menjadi wadah untuk menunjang UMKM melalui kolaborasi dengan Dekranasda dan PLUD.', sasaran: 'UMKM' }, { name: 'Koperasi GOW', tujuan: 'Membuka lapangan kerja dan mempermudah transaksi bagi ASN melalui kantin.', sasaran: 'ASN & Masyarakat' }] }, { bidang: 'INFORMASI, KOMUNIKASI DAN HUMAS', icon: 'fa-bullhorn', programs: [{ name: 'Publikasi dan Dokumentasi', tujuan: 'Mempublikasikan semua kegiatan GOW melalui media sosial.', sasaran: 'Masyarakat' }, { name: 'GOW Podcast', tujuan: 'Membuat podcast edukatif dan informatif dengan tema-tema variatif.', sasaran: 'Masyarakat' }, { name: 'Lomba Video Kreatif Digital', tujuan: 'Menumbuhkan dan meningkatkan kreativitas digital masyarakat.', sasaran: 'Masyarakat' }] }, { bidang: 'HUKUM, HAM DAN KESETARAAN GENDER', icon: 'fa-balance-scale', programs: [{ name: 'Event Hari Ibu', tujuan: 'Memberikan wadah bagi masyarakat yang berkontribusi dalam kesetaraan gender.', sasaran: 'Organisasi-organisasi wanita' }, { name: 'GOW GOES TO SCHOOL', tujuan: 'Edukasi pencegahan kekerasan pada anak, pernikahan dini, dan kenakalan remaja.', sasaran: 'Sekolah-sekolah' }] } ]; container.innerHTML = dataProgram.map((bidang) => ` <div class="card-base rounded-lg"> <h2><button class="accordion-button flex justify-between items-center w-full p-4 sm:p-5 text-left font-semibold" aria-expanded="false"><div class="flex items-center text-base sm:text-lg"><i class="fas ${bidang.icon} w-6 text-center mr-4 text-pink-400"></i><span>${bidang.bidang}</span></div><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button></h2> <div class="accordion-content bg-slate-800/50 rounded-b-lg"> <div class="p-4 sm:p-5 border-t border-slate-700 divide-y divide-slate-700"> ${bidang.programs.map(prog => ` <div class="py-4 first:pt-0 last:pb-0"> <h4 class="font-semibold text-white">${prog.name}</h4> <div class="mt-2 pl-2 border-l-2 border-amber-400"><p class="text-sm text-slate-300"><strong class="font-semibold text-amber-400">Tujuan:</strong> ${prog.tujuan}</p></div> <div class="mt-2 pl-2 border-l-2 border-blue-400"><p class="text-sm text-slate-300"><strong class="font-semibold text-blue-400">Sasaran:</strong> ${prog.sasaran}</p></div> </div>`).join('')} </div> </div> </div>`).join(''); container.querySelectorAll('.accordion-button').forEach(button => { button.addEventListener('click', () => { const expanded = button.getAttribute('aria-expanded') === 'true'; button.setAttribute('aria-expanded', !expanded); const content = button.parentElement.nextElementSibling; content.style.maxHeight = expanded ? '0px' : content.scrollHeight + 'px'; }); }); };
+        const loadStatistik = () => { 
+            const els = { organisasi: document.getElementById('total-organisasi'), pengurus: document.getElementById('total-pengurus'), kegiatan: document.getElementById('total-kegiatan') }; 
+            onSnapshot(collection(db, 'organisasi'), (snap) => { els.organisasi.textContent = snap.size; }); 
+            onSnapshot(collection(db, 'pengurus'), (snap) => { els.pengurus.textContent = snap.size; }); 
+            onSnapshot(collection(db, 'kegiatan'), (snap) => { els.kegiatan.textContent = snap.size; }); 
+        };
+        
+        const loadPengurusInti = () => { 
+            const grid = document.getElementById('pengurus-inti-grid'); if (!grid) return; 
+            const q = query(collection(db, 'pengurus'), orderBy("createdAt", "asc")); 
+            onSnapshot(q, (snapshot) => { 
+                const pengurusInti = snapshot.docs.filter(doc => doc.data().kategori === 'inti'); 
+                if (pengurusInti.length === 0) { grid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data pengurus inti belum tersedia.</p>'; return; } 
+                grid.innerHTML = pengurusInti.map(doc => { 
+                    const p = doc.data(); 
+                    const avatar = p.foto ? `<img src="${p.foto}" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover mx-auto mb-4 border-4 border-slate-700" onerror="this.src='https://placehold.co/112x112/334155/e5e7eb?text=${p.nama.charAt(0)}'">` : `<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-pink-500 to-fuchsia-600 flex items-center justify-center mx-auto mb-4 border-4 border-slate-700"><span class="text-3xl sm:text-4xl font-bold">${p.nama.charAt(0)}</span></div>`; 
+                    return `<div class="card-base text-center p-6 rounded-xl fade-in-section">${avatar}<h3 class="text-xl font-bold">${p.nama}</h3><p class="text-amber-400">${p.jabatan}</p></div>`; 
+                }).join(''); 
+                observeSections(); 
+            }); 
+        };
+        
+        const loadKegiatan = () => { 
+            const q = query(collection(db, 'kegiatan'), orderBy("tanggal", "desc")); 
+            onSnapshot(q, (snapshot) => { 
+                allKegiatan = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); 
+                const filterTahun = document.getElementById('filter-tahun'); 
+                const years = [...new Set(allKegiatan.map(k => k.tanggal ? new Date(k.tanggal).getFullYear() : null).filter(Boolean))]; 
+                filterTahun.innerHTML = '<option value="">Semua Tahun</option>'; 
+                years.sort((a, b) => b - a).forEach(year => { filterTahun.innerHTML += `<option value="${year}">${year}</option>`; }); 
+                applyFilters(); 
+            }); 
+        };
+        
+        const loadOrganisasi = () => { 
+            const grid = document.getElementById('organisasi-grid'); if(!grid) return; 
+            const q = query(collection(db, 'organisasi'), orderBy("nama", "asc")); 
+            onSnapshot(q, (snapshot) => { 
+                if (snapshot.empty) { grid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data organisasi belum tersedia.</p>'; return; } 
+                grid.innerHTML = snapshot.docs.map(doc => { 
+                    const org = doc.data(); 
+                    const id = doc.id; 
+                    const logoHtml = org.logo ? `<img src="${org.logo}" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML = '<i class=\\'fas fa-sitemap text-3xl text-slate-500\\'></i>'">` : `<i class="fas fa-sitemap text-3xl text-slate-500"></i>`; 
+                    return `<button data-org-id="${id}" class="org-card card-base text-center p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center fade-in-section h-36 sm:h-40"><div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-slate-800 flex items-center justify-center mb-3 overflow-hidden p-2">${logoHtml}</div><h4 class="font-semibold text-xs sm:text-sm leading-tight line-clamp-2">${org.nama}</h4></button>`; 
+                }).join(''); 
+                observeSections(); 
+                document.querySelectorAll('.org-card').forEach(card => card.addEventListener('click', () => renderOrganisasiDetail(card.dataset.orgId))); 
+            }); 
+        };
+        
+        const loadProgramKerja = () => { 
+            const container = document.getElementById('program-kerja-container'); 
+            const dataProgram = [ { bidang: 'ORGANISASI DAN KADERISASI', icon: 'fa-users', programs: [{ name: 'Pelatihan Tata Boga', tujuan: 'Meningkatkan dan menguatkan kapasitas serta keterampilan sumber daya internal organisasi.', sasaran: 'Anggota GOW' }] }, { bidang: 'PENDIDIKAN, IPTEK DAN SOSIAL BUDAYA', icon: 'fa-graduation-cap', programs: [{ name: 'Peningkatan Keterampilan Kelompok Rentan (Lansia)', tujuan: 'Meningkatkan kemampuan dan keterampilan kelompok binaan (lansia) di Kecamatan Siantan & Palmatak.', sasaran: 'Lansia Buta Aksara (Usia 50+)' }, { name: 'Literasi Gemar Membaca', tujuan: 'Meningkatkan minat baca peserta didik dari tingkat PAUD hingga SMP.', sasaran: 'Peserta Didik (PAUD s/d SMP)' }, { name: 'Pusat Kreativitas Anak (PKA)', tujuan: 'Memanfaatkan waktu luang untuk kegiatan anak yang positif, kreatif, dan produktif.', sasaran: 'Masyarakat saat Minggu Energi Baru (MEB) Day' }] }, { bidang: 'KESEHATAN & KELUARGA BERENCANA', icon: 'fa-heartbeat', programs: [{ name: 'Pojok ASI (Ruang Laktasi)', tujuan: 'Menyediakan fasilitas responsif bagi Ibu Menyusui di area publik.', sasaran: 'Perkantoran & Tempat Umum' }, { name: 'SINTA LASKAR Sehat', tujuan: 'Program pendampingan anak stunting selama 56 hari dengan intervensi gizi.', sasaran: '39 Anak Stunting di Kecamatan Siantan' }, { name: 'Motorcycle Free Day (MFD)', tujuan: 'Menciptakan area bebas kendaraan untuk kegiatan kesehatan masyarakat.', sasaran: 'Masyarakat (Minggu ke-2 setiap bulan)' }] }, { bidang: 'KEAGAMAAN DAN MORAL', icon: 'fa-quran', programs: [{ name: 'Maghrib Mengaji', tujuan: 'Partisipasi aktif anggota GOW dalam kegiatan mengaji bersama.', sasaran: 'Anggota GOW' }, { name: 'Pelatihan Fardhu Kifayah', tujuan: 'Regenerasi dan peningkatan kemampuan masyarakat dalam mengurus jenazah.', sasaran: 'Daerah yang kekurangan tenaga kepengurusan jenazah' }] }, { bidang: 'EKONOMI, KOPERASI & KETENAGAKERJAAN', icon: 'fa-briefcase', programs: [{ name: 'Pembinaan UMKM', tujuan: 'Mendorong kemandirian ekonomi perempuan melalui pelatihan dan pendampingan.', sasaran: 'UMKM' }, { name: 'Gerai GOW', tujuan: 'Menjadi wadah untuk menunjang UMKM melalui kolaborasi dengan Dekranasda dan PLUD.', sasaran: 'UMKM' }, { name: 'Koperasi GOW', tujuan: 'Membuka lapangan kerja dan mempermudah transaksi bagi ASN melalui kantin.', sasaran: 'ASN & Masyarakat' }] }, { bidang: 'INFORMASI, KOMUNIKASI DAN HUMAS', icon: 'fa-bullhorn', programs: [{ name: 'Publikasi dan Dokumentasi', tujuan: 'Mempublikasikan semua kegiatan GOW melalui media sosial.', sasaran: 'Masyarakat' }, { name: 'GOW Podcast', tujuan: 'Membuat podcast edukatif dan informatif dengan tema-tema variatif.', sasaran: 'Masyarakat' }, { name: 'Lomba Video Kreatif Digital', tujuan: 'Menumbuhkan dan meningkatkan kreativitas digital masyarakat.', sasaran: 'Masyarakat' }] }, { bidang: 'HUKUM, HAM DAN KESETARAAN GENDER', icon: 'fa-balance-scale', programs: [{ name: 'Event Hari Ibu', tujuan: 'Memberikan wadah bagi masyarakat yang berkontribusi dalam kesetaraan gender.', sasaran: 'Organisasi-organisasi wanita' }, { name: 'GOW GOES TO SCHOOL', tujuan: 'Edukasi pencegahan kekerasan pada anak, pernikahan dini, dan kenakalan remaja.', sasaran: 'Sekolah-sekolah' }] } ]; 
+            container.innerHTML = dataProgram.map((bidang) => ` <div class="card-base rounded-lg"> <h2><button class="accordion-button flex justify-between items-center w-full p-4 sm:p-5 text-left font-semibold" aria-expanded="false"><div class="flex items-center text-base sm:text-lg"><i class="fas ${bidang.icon} w-6 text-center mr-4 text-pink-400"></i><span>${bidang.bidang}</span></div><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button></h2> <div class="accordion-content bg-slate-800/50 rounded-b-lg"> <div class="p-4 sm:p-5 border-t border-slate-700 divide-y divide-slate-700"> ${bidang.programs.map(prog => ` <div class="py-4 first:pt-0 last:pb-0"> <h4 class="font-semibold text-white">${prog.name}</h4> <div class="mt-2 pl-2 border-l-2 border-amber-400"><p class="text-sm text-slate-300"><strong class="font-semibold text-amber-400">Tujuan:</strong> ${prog.tujuan}</p></div> <div class="mt-2 pl-2 border-l-2 border-blue-400"><p class="text-sm text-slate-300"><strong class="font-semibold text-blue-400">Sasaran:</strong> ${prog.sasaran}</p></div> </div>`).join('')} </div> </div> </div>`).join(''); 
+            container.querySelectorAll('.accordion-button').forEach(button => { 
+                button.addEventListener('click', () => { 
+                    const expanded = button.getAttribute('aria-expanded') === 'true'; 
+                    button.setAttribute('aria-expanded', !expanded); 
+                    const content = button.parentElement.nextElementSibling; 
+                    content.style.maxHeight = expanded ? '0px' : content.scrollHeight + 'px'; 
+                }); 
+            }); 
+        };
 
         // --- FUNGSI RENDER & INTERAKSI UI ---
-        const renderKegiatanGrid = (kegiatanList) => { const grid = document.getElementById('kegiatan-grid'); if (kegiatanList.length === 0) { grid.innerHTML = `<p class="col-span-full text-center text-slate-400">Tidak ada kegiatan yang cocok.</p>`; return; } grid.innerHTML = kegiatanList.map(k => { const tanggal = k.tanggal ? new Date(k.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : ''; return `<a href="#/kegiatan/${k.id}" class="card-base rounded-xl overflow-hidden group kegiatan-card fade-in-section"><div class="overflow-hidden h-56"><img src="${k.foto}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="this.src='https://placehold.co/600x400/334155/e5e7eb?text=Kegiatan'"></div><div class="p-6"><p class="text-sm text-slate-400 mb-2"><i class="fas fa-calendar-alt mr-2"></i>${tanggal}</p><h3 class="text-xl font-bold mb-3 h-20 line-clamp-3">${k.nama}</h3><p class="text-blue-400 text-sm"><i class="fas fa-map-marker-alt mr-2"></i>${k.lokasi}</p></div></a>`; }).join(''); observeSections(); };
-        const applyFilters = () => { const searchTerm = document.getElementById('search-kegiatan').value.toLowerCase(); const selectedYear = document.getElementById('filter-tahun').value; let filteredKegiatan = allKegiatan.filter(k => (!searchTerm || k.nama.toLowerCase().includes(searchTerm)) && (!selectedYear || (k.tanggal && new Date(k.tanggal).getFullYear() == selectedYear))); renderKegiatanGrid(filteredKegiatan); };
-        const renderDetailPage = async (kegiatanId) => { showDetailPage(); detailContent.innerHTML = `<div class="text-center py-40"><p class="text-slate-400">Memuat detail...</p></div>`; try { const docRef = doc(db, 'kegiatan', kegiatanId); const docSnap = await getDoc(docRef); if (docSnap.exists()) { const data = docSnap.data(); const tanggal = data.tanggal ? new Date(data.tanggal).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : 'N/A'; const mapHtml = (data.koordinat?.lat && data.koordinat?.lng) ? `<h3 class="text-2xl font-bold mt-12 mb-4">Peta Lokasi</h3><div id="map" class="w-full h-80 z-0"></div>` : ''; detailContent.innerHTML = `<article class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12"><div class="max-w-3xl mx-auto"><div class="mb-6 sm:mb-8"><a href="#" class="nav-link text-pink-400 hover:text-pink-300"><i class="fas fa-arrow-left mr-2"></i>Kembali ke Beranda</a></div><h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">${data.nama}</h1><div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-slate-400 mb-6 border-b border-slate-700 pb-6"><span><i class="fas fa-calendar-alt mr-2 text-amber-400"></i>${tanggal}</span><span><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>${data.lokasi || 'N/A'}</span></div><img src="${data.foto}" alt="${data.nama}" class="w-full rounded-xl mb-8" onerror="this.style.display='none'"><div class="prose prose-invert max-w-none text-slate-300 leading-relaxed text-justify whitespace-pre-line">${data.deskripsi || ''}</div>${mapHtml}</div></article>`; if (data.koordinat?.lat && data.koordinat?.lng) { setTimeout(() => { const map = L.map('map').setView([data.koordinat.lat, data.koordinat.lng], 15); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map); L.marker([data.koordinat.lat, data.koordinat.lng]).addTo(map).bindPopup(`<b>${data.nama}</b>`).openPopup(); }, 100); } } else { detailContent.innerHTML = `<div class="text-center py-40 px-4"><h2 class="text-2xl font-bold">404 - Tidak Ditemukan</h2><p class="text-slate-400 mt-4">Kegiatan ini tidak ditemukan.</p><a href="#" class="nav-link mt-8 inline-block btn-primary px-6 py-3 rounded-lg">Kembali</a></div>`; } } catch (error) { detailContent.innerHTML = `<div class="text-center py-40 px-4"><h2 class="text-2xl font-bold text-red-400">Gagal Memuat</h2><p class="text-slate-400 mt-4">Terjadi kesalahan saat mengambil data.</p><a href="#" class="nav-link mt-8 inline-block btn-primary px-6 py-3 rounded-lg">Kembali</a></div>`; } };
-        const renderOrganisasiDetail = async (orgId) => { const placeholder = document.getElementById('modal-placeholder'); const docRef = doc(db, 'organisasi', orgId); const docSnap = await getDoc(docRef); if (docSnap.exists()) { const org = docSnap.data(); const ketua = org.infoKetua || {}; const profile = organisasiProfiles[org.nama.toUpperCase().replace(/\s/g, '')] || organisasiProfiles[org.nama] || "Informasi profil belum tersedia."; const avatar = ketua.foto ? `<img src="${ketua.foto}" class="w-20 h-20 rounded-full object-cover border-4 border-slate-700" onerror="this.src='https://placehold.co/80x80/ec4899/ffffff?text=${(ketua.nama || '?').charAt(0)}'">` : `<div class="w-20 h-20 rounded-full bg-pink-500 flex items-center justify-center text-3xl font-bold border-4 border-slate-700">${(ketua.nama || '?').charAt(0)}</div>`; const modalHTML = ` <div id="org-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 modal-overlay"> <div class="bg-slate-800 border border-slate-700 rounded-xl w-full max-w-lg p-6 transform scale-95 opacity-0 modal-content"> <div class="flex flex-col sm:flex-row items-center text-center sm:text-left gap-5"> <img src="${org.logo || 'https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'}" class="w-24 h-24 object-contain" onerror="this.src='https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'"> <div> <h2 class="text-2xl font-bold text-white">${org.nama}</h2> <p class="text-slate-400 text-sm mt-3 text-justify">${profile}</p> </div> </div> <div class="my-6 border-t border-slate-700"></div> <h3 class="font-semibold text-lg mb-4 text-center">Dipimpin oleh:</h3> <div class="flex items-center justify-center space-x-4"> ${avatar} <div><p class="font-bold text-xl text-amber-400">${ketua.nama || '-'}</p><p class="text-slate-300">Ketua Organisasi</p></div> </div> <div class="text-center"> <button id="close-modal-btn" class="mt-8 bg-pink-600/20 text-pink-400 hover:bg-pink-600 hover:text-white transition-colors px-6 py-2 rounded-lg">Tutup</button> </div> </div> </div>`; placeholder.innerHTML = modalHTML; const modal = document.getElementById('org-modal'); const modalContent = modal.querySelector('.modal-content'); requestAnimationFrame(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('scale-95', 'opacity-0'); }); const closeModal = () => { modal.classList.add('opacity-0'); modalContent.classList.add('scale-95', 'opacity-0'); setTimeout(() => placeholder.innerHTML = '', 300); }; modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }); document.getElementById('close-modal-btn').addEventListener('click', closeModal); } };
+        const renderKegiatanGrid = (kegiatanList) => { 
+            const grid = document.getElementById('kegiatan-grid'); 
+            if (kegiatanList.length === 0) { grid.innerHTML = `<p class="col-span-full text-center text-slate-400">Tidak ada kegiatan yang cocok.</p>`; return; } 
+            grid.innerHTML = kegiatanList.map(k => { 
+                const tanggal = k.tanggal ? new Date(k.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : ''; 
+                return `<a href="#/kegiatan/${k.id}" class="card-base rounded-xl overflow-hidden group kegiatan-card fade-in-section"><div class="overflow-hidden h-56"><img src="${k.foto}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="this.src='https://placehold.co/600x400/334155/e5e7eb?text=Kegiatan'"></div><div class="p-6"><p class="text-sm text-slate-400 mb-2"><i class="fas fa-calendar-alt mr-2"></i>${tanggal}</p><h3 class="text-xl font-bold mb-3 h-20 line-clamp-3">${k.nama}</h3><p class="text-blue-400 text-sm"><i class="fas fa-map-marker-alt mr-2"></i>${k.lokasi}</p></div></a>`; 
+            }).join(''); 
+            observeSections(); 
+        };
+        
+        const applyFilters = () => { 
+            const searchTerm = document.getElementById('search-kegiatan').value.toLowerCase(); 
+            const selectedYear = document.getElementById('filter-tahun').value; 
+            let filteredKegiatan = allKegiatan.filter(k => (!searchTerm || k.nama.toLowerCase().includes(searchTerm)) && (!selectedYear || (k.tanggal && new Date(k.tanggal).getFullYear() == selectedYear))); 
+            renderKegiatanGrid(filteredKegiatan); 
+        };
+        
+        const renderDetailPage = async (kegiatanId) => { 
+            showDetailPage(); 
+            detailContent.innerHTML = `<div class="text-center py-40"><p class="text-slate-400">Memuat detail...</p></div>`; 
+            try { 
+                const docRef = doc(db, 'kegiatan', kegiatanId); 
+                const docSnap = await getDoc(docRef); 
+                if (docSnap.exists()) { 
+                    const data = docSnap.data(); 
+                    const tanggal = data.tanggal ? new Date(data.tanggal).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : 'N/A'; 
+                    const mapHtml = (data.koordinat?.lat && data.koordinat?.lng) ? `<h3 class="text-2xl font-bold mt-12 mb-4">Peta Lokasi</h3><div id="map" class="w-full h-80 z-0"></div>` : ''; 
+                    detailContent.innerHTML = `<article class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12"><div class="max-w-3xl mx-auto"><div class="mb-6 sm:mb-8"><a href="#" class="nav-link text-pink-400 hover:text-pink-300"><i class="fas fa-arrow-left mr-2"></i>Kembali ke Beranda</a></div><h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">${data.nama}</h1><div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-slate-400 mb-6 border-b border-slate-700 pb-6"><span><i class="fas fa-calendar-alt mr-2 text-amber-400"></i>${tanggal}</span><span><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>${data.lokasi || 'N/A'}</span></div><img src="${data.foto}" alt="${data.nama}" class="w-full rounded-xl mb-8" onerror="this.style.display='none'"><div class="prose prose-invert max-w-none text-slate-300 leading-relaxed text-justify whitespace-pre-line">${data.deskripsi || ''}</div>${mapHtml}</div></article>`; 
+                    if (data.koordinat?.lat && data.koordinat?.lng) { 
+                        setTimeout(() => { 
+                            const map = L.map('map').setView([data.koordinat.lat, data.koordinat.lng], 15); 
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map); 
+                            L.marker([data.koordinat.lat, data.koordinat.lng]).addTo(map).bindPopup(`<b>${data.nama}</b>`).openPopup(); 
+                        }, 100); 
+                    } 
+                } else { 
+                    detailContent.innerHTML = `<div class="text-center py-40 px-4"><h2 class="text-2xl font-bold">404 - Tidak Ditemukan</h2><p class="text-slate-400 mt-4">Kegiatan ini tidak ditemukan.</p><a href="#" class="nav-link mt-8 inline-block btn-primary px-6 py-3 rounded-lg">Kembali</a></div>`; 
+                } 
+            } catch (error) { 
+                detailContent.innerHTML = `<div class="text-center py-40 px-4"><h2 class="text-2xl font-bold text-red-400">Gagal Memuat</h2><p class="text-slate-400 mt-4">Terjadi kesalahan saat mengambil data.</p><a href="#" class="nav-link mt-8 inline-block btn-primary px-6 py-3 rounded-lg">Kembali</a></div>`; 
+            } 
+        };
+        
+        const renderOrganisasiDetail = async (orgId) => { 
+            const placeholder = document.getElementById('modal-placeholder'); 
+            const docRef = doc(db, 'organisasi', orgId); 
+            const docSnap = await getDoc(docRef); 
+            if (docSnap.exists()) { 
+                const org = docSnap.data(); 
+                const ketua = org.infoKetua || {}; 
+                const profile = organisasiProfiles[org.nama.toUpperCase().replace(/\s/g, '')] || organisasiProfiles[org.nama] || "Informasi profil belum tersedia."; 
+                const avatar = ketua.foto ? `<img src="${ketua.foto}" class="w-20 h-20 rounded-full object-cover border-4 border-slate-700" onerror="this.src='https://placehold.co/80x80/ec4899/ffffff?text=${(ketua.nama || '?').charAt(0)}'">` : `<div class="w-20 h-20 rounded-full bg-pink-500 flex items-center justify-center text-3xl font-bold border-4 border-slate-700">${(ketua.nama || '?').charAt(0)}</div>`; 
+                const modalHTML = ` <div id="org-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 modal-overlay"> <div class="bg-slate-800 border border-slate-700 rounded-xl w-full max-w-lg p-6 transform scale-95 opacity-0 modal-content"> <div class="flex flex-col sm:flex-row items-center text-center sm:text-left gap-5"> <img src="${org.logo || 'https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'}" class="w-24 h-24 object-contain" onerror="this.src='https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'"> <div> <h2 class="text-2xl font-bold text-white">${org.nama}</h2> <p class="text-slate-400 text-sm mt-3 text-justify">${profile}</p> </div> </div> <div class="my-6 border-t border-slate-700"></div> <h3 class="font-semibold text-lg mb-4 text-center">Dipimpin oleh:</h3> <div class="flex items-center justify-center space-x-4"> ${avatar} <div><p class="font-bold text-xl text-amber-400">${ketua.nama || '-'}</p><p class="text-slate-300">Ketua Organisasi</p></div> </div> <div class="text-center"> <button id="close-modal-btn" class="mt-8 bg-pink-600/20 text-pink-400 hover:bg-pink-600 hover:text-white transition-colors px-6 py-2 rounded-lg">Tutup</button> </div> </div> </div>`; 
+                placeholder.innerHTML = modalHTML; 
+                const modal = document.getElementById('org-modal'); 
+                const modalContent = modal.querySelector('.modal-content'); 
+                requestAnimationFrame(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('scale-95', 'opacity-0'); }); 
+                const closeModal = () => { modal.classList.add('opacity-0'); modalContent.classList.add('scale-95', 'opacity-0'); setTimeout(() => placeholder.innerHTML = '', 300); }; 
+                modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }); 
+                document.getElementById('close-modal-btn').addEventListener('click', closeModal); 
+            } 
+        };
         
         // --- LOGIKA UNTUK DATA TERPILAH ---
         const kecamatanList = ['Siantan', 'Siantan Selatan', 'Siantan Timur', 'Palmatak', 'Jemaja', 'Jemaja Barat', 'Jemaja Timur', 'Kute Siantan', 'Siantan Tengah', 'Siantan Utara'];
         
         const fullDataByCategory = {
+            'Kependudukan': {
+                sumber: 'Sumber: Dinas Kependudukan dan Pencatatan Sipil Kab. Kepulauan Anambas (Semester I Tahun 2025)',
+                indicators: {
+                    'Kepala Keluarga (KK)': {
+                        wawasan: { 
+                            default: '<p>💡 Data menunjukkan sebaran Kepala Keluarga Laki-laki dan Perempuan. Kecamatan Siantan memiliki jumlah KK perempuan tertinggi (800), diikuti Palmatak dan Jemaja.</p>', 
+                            'Siantan': '<p>💡 Kecamatan Siantan memiliki jumlah Kepala Keluarga Perempuan tertinggi di Kabupaten (800 KK), yang menunjukkan banyaknya wanita tangguh yang memimpin keluarga di ibu kota kabupaten.</p>'
+                        },
+                        datasets: [
+                            { label: 'KK Laki-laki', color: 'rgba(59, 130, 246, 0.7)' }, 
+                            { label: 'KK Perempuan', color: 'rgba(236, 72, 153, 0.7)' }
+                        ],
+                        data: { 
+                            'Siantan': [3597, 800], 
+                            'Palmatak': [2095, 444], 
+                            'Siantan Timur': [1239, 240], 
+                            'Siantan Selatan': [1030, 256], 
+                            'Jemaja Timur': [777, 148], 
+                            'Jemaja': [1728, 390], 
+                            'Siantan Tengah': [950, 191], 
+                            'Siantan Utara': [576, 101], 
+                            'Jemaja Barat': [306, 84], 
+                            'Kute Siantan': [1003, 191] 
+                        }
+                    }
+                }
+            },
             'Pendidikan': {
                 sumber: 'Sumber: BPS Kab. Kepulauan Anambas, "Potret Pendidikan 2024" (Data Simulasi)',
                 indicators: {
@@ -288,7 +449,7 @@
                     }
                 }
             },
-            'Ekonomi & Ketenagakerjaan': {
+            'Ekonomi': {
                 sumber: 'Sumber: Dinas KUKM Perindag, "Survei Tenaga Kerja 2024" (Data Simulasi)',
                  indicators: {
                     'Tingkat Partisipasi Angkatan Kerja': {
@@ -304,8 +465,20 @@
                 }
             },
             'Partisipasi Publik': {
-                 sumber: 'Sumber: DINSOSP3A, "Laporan Partisipasi Publik 2024" (Data Simulasi)',
+                 sumber: 'Sumber: BKPSDM Kab. Kepulauan Anambas (Data per 15 September 2025)',
                  indicators: {
+                    'Perempuan di Jabatan Eselon II & III': {
+                        type: 'kabupaten', // Penanda khusus data level kabupaten
+                        labels: ['Eselon II', 'Eselon III'],
+                        wawasan: { default: '<p>💡 Persentase perempuan di Eselon III (33.76%) sudah melampaui "critical mass" 30%, namun di Eselon II masih perlu ditingkatkan (13.79%). Ini menunjukkan kaderisasi kepemimpinan perempuan di level menengah berjalan baik.</p>'},
+                        datasets: [
+                            { label: 'Perempuan (Org)', color: 'rgba(236, 72, 153, 0.8)' },
+                            { label: 'Laki-laki (Org)', color: 'rgba(59, 130, 246, 0.8)' }
+                        ],
+                        // Data urut: [Data Eselon II, Data Eselon III]
+                        // Perempuan: [4, 53], Laki-laki: [25, 104] (Total 29 & 157)
+                        data: [ [4, 53], [25, 104] ] 
+                    },
                     'Keterlibatan Perempuan dalam Musrenbang': {
                          wawasan: { default: '<p>💡 Rata-rata kabupaten melampaui kuota 30% keterwakilan perempuan, sebuah capaian yang membanggakan.</p>', 'Siantan': '<p>💡 Kecamatan Siantan memiliki partisipasi perempuan di Musrenbangdes tertinggi, menjadi praktik baik yang bisa direplikasi.</p>'},
                         datasets: [{ label: 'Partisipasi Perempuan (%)', color: 'rgba(139, 92, 246, 0.7)' }],
@@ -346,7 +519,7 @@
                                 ${indicatorOptions}
                             </select>
                             <select id="kecamatan-filter" class="flex-grow bg-slate-800 border border-slate-700 rounded-lg py-2 px-4 focus:ring-2 focus:ring-pink-500 focus:outline-none">
-                                <option value="Semua Kecamatan">Semua Kecamatan</option>
+                                <option value="Semua Kecamatan">Semua Kecamatan / Kabupaten</option>
                                 ${kecamatanOptions}
                             </select>
                         </div>
@@ -377,6 +550,7 @@
             const titleEl = document.getElementById('chart-title');
             const wawasanEl = document.getElementById('wawasan-content');
             const sumberEl = document.getElementById('sumber-data');
+            const kecFilter = document.getElementById('kecamatan-filter');
 
             wawasanEl.innerHTML = indicatorData.wawasan[selectedKecamatan] || indicatorData.wawasan.default;
             sumberEl.textContent = fullDataByCategory[category].sumber;
@@ -385,30 +559,50 @@
             let chartDatasets;
             let maxDataValue = 0;
 
-            if (selectedKecamatan === 'Semua Kecamatan') {
-                titleEl.textContent = `${indicator} per Kecamatan`;
-                chartLabels = kecamatanList;
-                chartDatasets = indicatorData.datasets.map((dataset, index) => {
-                    const data = kecamatanList.map(kec => indicatorData.data[kec][index]);
-                    const currentMax = Math.max(...data.filter(val => val !== null && val !== undefined));
-                    if (currentMax > maxDataValue) maxDataValue = currentMax;
-                    return {
-                        label: dataset.label,
-                        data: data,
-                        backgroundColor: dataset.color,
-                    };
-                });
-            } else {
-                titleEl.textContent = `${indicator} di Kec. ${selectedKecamatan}`;
-                const dataForKec = indicatorData.data[selectedKecamatan];
-                maxDataValue = Math.max(...dataForKec.filter(val => val !== null && val !== undefined));
+            // Handle Data Level Kabupaten (Non-Kecamatan) seperti Eselon
+            if (indicatorData.type === 'kabupaten') {
+                kecFilter.disabled = true; // Disable filter kecamatan
+                kecFilter.value = "Semua Kecamatan";
+                titleEl.textContent = `${indicator} (Tingkat Kabupaten)`;
                 
-                if (indicatorData.datasets.length > 1) {
-                    chartLabels = indicatorData.datasets.map(d => d.label);
-                    chartDatasets = [{ label: 'Nilai', data: dataForKec, backgroundColor: indicatorData.datasets.map(d => d.color) }];
+                chartLabels = indicatorData.labels;
+                chartDatasets = indicatorData.datasets.map((ds, idx) => ({
+                    label: ds.label,
+                    data: indicatorData.data[idx],
+                    backgroundColor: ds.color
+                }));
+                 // Find max for scaling
+                const allValues = indicatorData.data.flat();
+                maxDataValue = Math.max(...allValues);
+
+            } else {
+                kecFilter.disabled = false;
+                // Logika Normal Per Kecamatan
+                if (selectedKecamatan === 'Semua Kecamatan') {
+                    titleEl.textContent = `${indicator} per Kecamatan`;
+                    chartLabels = kecamatanList;
+                    chartDatasets = indicatorData.datasets.map((dataset, index) => {
+                        const data = kecamatanList.map(kec => indicatorData.data[kec][index]);
+                        const currentMax = Math.max(...data.filter(val => val !== null && val !== undefined));
+                        if (currentMax > maxDataValue) maxDataValue = currentMax;
+                        return {
+                            label: dataset.label,
+                            data: data,
+                            backgroundColor: dataset.color,
+                        };
+                    });
                 } else {
-                    chartLabels = [indicatorData.datasets[0].label];
-                     chartDatasets = [{ label: indicatorData.datasets[0].label, data: dataForKec, backgroundColor: indicatorData.datasets[0].color }];
+                    titleEl.textContent = `${indicator} di Kec. ${selectedKecamatan}`;
+                    const dataForKec = indicatorData.data[selectedKecamatan];
+                    maxDataValue = Math.max(...dataForKec.filter(val => val !== null && val !== undefined));
+                    
+                    if (indicatorData.datasets.length > 1) {
+                        chartLabels = indicatorData.datasets.map(d => d.label);
+                        chartDatasets = [{ label: 'Nilai', data: dataForKec, backgroundColor: indicatorData.datasets.map(d => d.color) }];
+                    } else {
+                        chartLabels = [indicatorData.datasets[0].label];
+                        chartDatasets = [{ label: indicatorData.datasets[0].label, data: dataForKec, backgroundColor: indicatorData.datasets[0].color }];
+                    }
                 }
             }
 
@@ -433,7 +627,7 @@
                     plugins: { 
                         legend: { 
                             labels: { color: '#e2e8f0' },
-                            display: selectedKecamatan === 'Semua Kecamatan' || indicatorData.datasets.length === 1
+                            display: (selectedKecamatan === 'Semua Kecamatan' || indicatorData.datasets.length === 1) && indicatorData.type !== 'kabupaten' ? true : true
                         },
                         datalabels: {
                             rotation: -90,
@@ -456,7 +650,7 @@
             const dataContentArea = document.getElementById('data-content-area');
             if(!filterContainer || !dataContentArea) return;
 
-            renderDataContent('Pendidikan');
+            renderDataContent('Kependudukan');
 
             const handleFilterChange = () => {
                 const activeCategory = filterContainer.querySelector('.active').dataset.category;
@@ -481,8 +675,32 @@
         };
 
         // --- INISIALISASI & EVENT LISTENERS ---
-        const router = () => { const hash = window.location.hash; if(hash.startsWith('#/kegiatan/')) { renderDetailPage(hash.split('/')[2]); } else { showMainPage(); if (hash) { const targetElement = document.getElementById(hash.substring(1)); if (targetElement) { setTimeout(() => { targetElement.scrollIntoView({ behavior: 'smooth' }); }, 100); } } } };
-        const observeSections = () => { const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in-section:not(.is-visible)').forEach(section => { observer.observe(section); }); };
+        const router = () => { 
+            const hash = window.location.hash; 
+            if(hash.startsWith('#/kegiatan/')) { 
+                renderDetailPage(hash.split('/')[2]); 
+            } else { 
+                showMainPage(); 
+                if (hash) { 
+                    const targetElement = document.getElementById(hash.substring(1)); 
+                    if (targetElement) { 
+                        setTimeout(() => { targetElement.scrollIntoView({ behavior: 'smooth' }); }, 100); 
+                    } 
+                } 
+            } 
+        };
+        
+        const observeSections = () => { 
+            const observer = new IntersectionObserver((entries) => { 
+                entries.forEach(entry => { 
+                    if (entry.isIntersecting) { 
+                        entry.target.classList.add('is-visible'); 
+                        observer.unobserve(entry.target); 
+                    } 
+                }); 
+            }, { threshold: 0.1 }); 
+            document.querySelectorAll('.fade-in-section:not(.is-visible)').forEach(section => { observer.observe(section); }); 
+        };
         
         document.addEventListener('DOMContentLoaded', () => { 
             Chart.register(ChartDataLabels); // AKTIFKAN PLUGIN DATALABELS SECARA GLOBAL
@@ -500,7 +718,11 @@
             document.getElementById('search-kegiatan').addEventListener('input', applyFilters);
             document.getElementById('filter-tahun').addEventListener('change', applyFilters);
             document.getElementById('mobile-menu-button').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
-            document.body.addEventListener('click', (e) => { if (e.target.closest('#mobile-menu .nav-link') || e.target.closest('a.nav-link[href^="#"]')) { document.getElementById('mobile-menu').classList.add('hidden'); } if (e.target.closest('#detail-content .nav-link')) { e.preventDefault(); window.location.hash = '#'; } if (e.target.closest('a[href="#kontak"]')) { e.preventDefault(); document.getElementById('kontak').scrollIntoView({behavior: 'smooth'}); } });
+            document.body.addEventListener('click', (e) => { 
+                if (e.target.closest('#mobile-menu .nav-link') || e.target.closest('a.nav-link[href^="#"]')) { document.getElementById('mobile-menu').classList.add('hidden'); } 
+                if (e.target.closest('#detail-content .nav-link')) { e.preventDefault(); window.location.hash = '#'; } 
+                if (e.target.closest('a[href="#kontak"]')) { e.preventDefault(); document.getElementById('kontak').scrollIntoView({behavior: 'smooth'}); } 
+            });
         });
     </script>
 </body>
