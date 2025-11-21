@@ -37,15 +37,16 @@
             background-size: cover;
             background-position: center center;
         }
+        /* Border tipis berwarna senada footer pada kartu dasar */
         .card-base { 
             background: #1e293b;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(219, 39, 119, 0.3); 
             transition: all 0.3s ease;
         }
         .card-base:hover {
             transform: translateY(-8px);
             box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
-            border-color: rgba(219, 39, 119, 0.5);
+            border-color: rgba(219, 39, 119, 0.8);
         }
         .btn-primary {
             background: linear-gradient(to right, #db2777, #c026d3);
@@ -118,19 +119,43 @@
             cursor: not-allowed;
         }
 
-        /* Scrollbar custom */
+        /* Footer Social Stat Card Hover Effect */
+        .social-stat-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(219, 39, 119, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .social-stat-card:hover {
+            background: rgba(30, 41, 59, 0.8);
+            transform: translateY(-5px);
+            border-color: rgba(219, 39, 119, 0.6);
+            box-shadow: 0 10px 30px -10px rgba(219, 39, 119, 0.15);
+        }
+
+        /* Scrollbar custom untuk Modal & Body */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px; /* Lebih tipis untuk scrollbar dalam modal */
         }
         ::-webkit-scrollbar-track {
-            background: #0f172a;
+            background: rgba(15, 23, 42, 0.5);
         }
         ::-webkit-scrollbar-thumb {
-            background: #334155;
+            background: #475569;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
+            background: #64748b;
+        }
+        
+        /* Khusus untuk scrollbar di dalam modal teks */
+        .modal-text-scroll::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+        .modal-text-scroll::-webkit-scrollbar-thumb {
+            background: #db2777; /* Warna pink agar terlihat jelas */
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -272,8 +297,89 @@
     
     <div id="modal-placeholder"></div>
 
-    <footer id="kontak" class="bg-slate-800 border-t border-slate-700">
-        <div class="container mx-auto px-4 py-8"><div class="text-center text-slate-400 text-sm"><div class="flex justify-center items-center gap-6 mb-4"><a href="https://www.instagram.com/gow_anambaskab" target="_blank" class="text-slate-400 hover:text-pink-400 transition-colors"><i class="fab fa-instagram text-2xl"></i></a><a href="https://www.facebook.com/share/14JrYrAff1V/" target="_blank" class="text-slate-400 hover:text-pink-400 transition-colors"><i class="fab fa-facebook text-2xl"></i></a><a href="mailto:gow.anambas@gmail.com" class="text-slate-400 hover:text-pink-400 transition-colors"><i class="fas fa-envelope text-2xl"></i></a></div><p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i>Jl. Kartini RT.04/RW.04 Tarempa, Kecamatan Siantan, Kode Pos 29791</p><p>&copy; <span id="copyright-year"></span> GOW KKA. All Rights Reserved.</p></div></div>
+    <!-- Footer yang diperbarui dengan Statistik Sosial Media -->
+    <footer id="kontak" class="bg-slate-950 border-t border-slate-800 relative overflow-hidden">
+        <!-- Decorative top border -->
+        <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600"></div>
+        
+        <div class="container mx-auto px-4 py-12 sm:py-16">
+            <!-- Social Media Stats Section -->
+            <div class="max-w-5xl mx-auto mb-16 fade-in-section">
+                <div class="text-center mb-8">
+                    <h3 class="text-lg font-semibold text-slate-300 tracking-wide uppercase mb-2">Terhubung Dengan Kami</h3>
+                    <div class="w-16 h-1 bg-pink-500 mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Instagram Stats (Posisi 1) -->
+                    <a href="https://www.instagram.com/gow_anambaskab" target="_blank" class="social-stat-card rounded-2xl p-5 flex items-center gap-5 group">
+                        <div class="w-14 h-14 rounded-full bg-pink-600/20 text-pink-500 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(219,39,119,0.3)]">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-slate-400 text-xs font-bold tracking-widest uppercase mb-1">Instagram</p>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-3xl font-bold text-white counter-anim" data-target="1577">0</span>
+                                <span class="text-sm text-slate-500 font-medium">Pengikut</span>
+                            </div>
+                        </div>
+                        <div class="text-pink-500 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+
+                    <!-- Facebook Stats (Posisi 2) -->
+                    <a href="https://www.facebook.com/share/14JrYrAff1V/" target="_blank" class="social-stat-card rounded-2xl p-5 flex items-center gap-5 group">
+                        <div class="w-14 h-14 rounded-full bg-blue-600/20 text-blue-500 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-slate-400 text-xs font-bold tracking-widest uppercase mb-1">Facebook</p>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-3xl font-bold text-white counter-anim" data-target="111">0</span>
+                                <span class="text-sm text-slate-500 font-medium">Pengikut</span>
+                            </div>
+                        </div>
+                        <div class="text-blue-500 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+
+                    <!-- Email/Contact -->
+                    <a href="mailto:gow.anambas@gmail.com" class="social-stat-card rounded-2xl p-5 flex items-center gap-5 group">
+                        <div class="w-14 h-14 rounded-full bg-amber-500/20 text-amber-500 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(245,158,11,0.3)]">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-slate-400 text-xs font-bold tracking-widest uppercase mb-1">Email Resmi</p>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-lg font-bold text-white break-all line-clamp-1">gow.anambas@gmail.com</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-0.5">Hubungi Kami</p>
+                        </div>
+                         <div class="text-amber-500 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center border-t border-slate-800 pt-8">
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start space-x-3 mb-4">
+                        <img src="https://iili.io/FPZFHv9.png" alt="Logo GOW" class="h-10 transition-all duration-300">
+                        <span class="text-slate-300 font-semibold tracking-wider">GOW ANAMBAS</span>
+                    </div>
+                    <p class="text-slate-500 text-sm mb-2"><i class="fas fa-map-marker-alt mr-2 text-pink-500"></i>Jl. Kartini RT.04/RW.04 Tarempa, Kecamatan Siantan, Kode Pos 29791</p>
+                    <p class="text-slate-600 text-sm">&copy; <span id="copyright-year"></span> GOW KKA. All Rights Reserved.</p>
+                </div>
+                <div class="flex justify-center md:justify-end gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all duration-300"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-amber-500 hover:text-white transition-all duration-300"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script type="module">
@@ -299,8 +405,26 @@
         const showMainPage = () => { mainContent.classList.remove('hidden'); detailContent.classList.add('hidden'); window.scrollTo(0, 0); };
         const showDetailPage = () => { mainContent.classList.add('hidden'); detailContent.classList.remove('hidden'); window.scrollTo(0, 0); };
         
-        // --- PROFIL ORGANISASI (untuk modal) ---
-        const organisasiProfiles = { "PKK": "Gerakan nasional yang bertujuan memberdayakan keluarga...", "DWP": "Organisasi kemasyarakatan yang menghimpun istri Aparatur Sipil Negara...", "IKIAD": "Wadah bagi istri-istri anggota DPRD...", "JALASENASTRI": "Organisasi istri anggota TNI Angkatan Laut...", "BHAYANGKARI": "Organisasi persatuan istri anggota POLRI...", "PERSIT KARTIKA CHANDRA KIRANA": "Organisasi istri prajurit TNI Angkatan Darat...", "DWP KEMENAG": "Bagian dari Dharma Wanita Persatuan di bawah Kementerian Agama...", "DHARMAYUKTI KARINI": "Organisasi wanita di lingkungan Mahkamah Agung...", "IKATAN ADHYAKSA DHARMAKARINI": "Organisasi persatuan istri para pegawai Kejaksaan...", "IAD": "Organisasi persatuan istri para pegawai Kejaksaan...", "PGRI": "Organisasi profesi yang menaungi para guru...", "BKMT": "Wadah yang menghimpun majelis-majelis taklim...", "IBI": "Organisasi profesi bagi para bidan...", "PSMTI": "Organisasi sosial kemasyarakatan bagi warga Tionghoa...", "REDAT SRI TANJUNG": "Organisasi yang fokus pada pelestarian seni dan budaya Melayu...", "SALIMAH": "Organisasi massa yang peduli terhadap perempuan, anak, dan keluarga...", "FPPI": "Sebuah forum yang berjuang untuk pemberdayaan perempuan..." };
+        // --- PROFIL ORGANISASI LENGKAP (Updated Data) ---
+        const organisasiProfiles = { 
+            "PKK": "Gerakan nasional yang bertujuan memberdayakan keluarga untuk meningkatkan kesejahteraan menuju terwujudnya keluarga yang beriman dan bertaqwa kepada Tuhan Yang Maha Esa, berakhlak mulia dan berbudi luhur, sehat sejahtera, maju dan mandiri, kesetaraan dan keadilan gender serta kesadaran hukum dan lingkungan.", 
+            "DWP": "Organisasi kemasyarakatan yang menghimpun dan membina istri Aparatur Sipil Negara (ASN) dengan tujuan meningkatkan kualitas sumber daya anggota keluarga PNS untuk mencapai kesejahteraan nasional. DWP memiliki peran strategis dalam mendukung pembangunan melalui program pendidikan, ekonomi, dan sosial budaya.", 
+            "IKIAD": "Ikatan Istri Anggota Dewan (IKIAD) adalah wadah silaturahmi dan kegiatan sosial bagi istri-istri anggota DPRD. Organisasi ini berperan aktif dalam mendukung tugas suami sebagai wakil rakyat serta melakukan berbagai kegiatan sosial kemasyarakatan yang bermanfaat bagi konstituen dan masyarakat umum.", 
+            "JALASENASTRI": "Organisasi para istri prajurit TNI Angkatan Laut yang memiliki visi mewujudkan istri TNI AL yang berbudi luhur, setia, mandiri, dan bijaksana. Jalasenastri aktif dalam berbagai kegiatan sosial, pendidikan, dan ekonomi kreatif untuk mendukung kesejahteraan keluarga besar TNI AL.", 
+            "BHAYANGKARI": "Persatuan istri anggota Polri yang bertujuan membantu tugas Polri dalam mengemban tugas negara serta meningkatkan kesejahteraan keluarga Polri. Bhayangkari aktif dalam kegiatan sosial, pendidikan, dan kemanusiaan, serta menjadi teladan di tengah masyarakat.", 
+            "PERSIT KARTIKA CHANDRA KIRANA": "Organisasi persatuan istri prajurit TNI Angkatan Darat. Persit KCK bertugas membina istri prajurit guna mendukung tugas suami di satuan masing-masing serta berkontribusi dalam kegiatan sosial kemasyarakatan di lingkungan TNI AD.", 
+            "DWP KEMENAG": "Dharma Wanita Persatuan unit Kementerian Agama yang berfokus pada pembinaan istri pegawai Kemenag untuk mendukung tugas suami dalam bidang keagamaan dan kerukunan umat beragama, serta aktif dalam bidang pendidikan dan sosial.", 
+            "DHARMAYUKTI KARINI": "Organisasi wanita peradilan yang beranggotakan para Hakim Wanita, Istri Hakim, Istri Pejabat Struktural/Fungsional, dan Istri Pegawai di lingkungan Mahkamah Agung RI dan 4 Lingkungan Peradilan di bawahnya.", 
+            "IKATAN ADHYAKSA DHARMAKARINI": "Ikatan Adhyaksa Dharmakarini (IAD) adalah organisasi istri pegawai Kejaksaan, pegawai perempuan Kejaksaan, dan pensiunan pegawai perempuan Kejaksaan yang bertujuan mempererat tali silaturahmi dan mendukung tugas Kejaksaan RI.", 
+            "IAD": "Ikatan Adhyaksa Dharmakarini (IAD) adalah organisasi istri pegawai Kejaksaan, pegawai perempuan Kejaksaan, dan pensiunan pegawai perempuan Kejaksaan yang bertujuan mempererat tali silaturahmi dan mendukung tugas Kejaksaan RI.", 
+            "PGRI": "Persatuan Guru Republik Indonesia (PGRI) adalah organisasi profesi yang menaungi para guru di Indonesia. Dalam konteks GOW, biasanya diwakili oleh perempuan PGRI yang fokus pada peningkatan kompetensi guru wanita dan advokasi pendidikan bagi anak dan perempuan.", 
+            "BKMT": "Badan Kontak Majelis Taklim (BKMT) adalah organisasi independen yang menghimpun berbagai majelis taklim. BKMT berfokus pada pembinaan umat, pendidikan agama Islam, dan pemberdayaan perempuan melalui pendekatan keagamaan.", 
+            "IBI": "Ikatan Bidan Indonesia (IBI) adalah organisasi profesi bidan di Indonesia. IBI berperan penting dalam meningkatkan standar pelayanan kebidanan, kesehatan ibu dan anak, serta keluarga berencana di Kabupaten Kepulauan Anambas.", 
+            "PSMTI": "Paguyuban Sosial Marga Tionghoa Indonesia (PSMTI) adalah organisasi kemasyarakatan suku Tionghoa di Indonesia. Wanita PSMTI aktif dalam kegiatan sosial, pelestarian budaya, dan pembauran bangsa demi keutuhan NKRI.", 
+            "REDAT SRI TANJUNG": "Organisasi lokal yang fokus pada pelestarian seni, budaya, dan tradisi Melayu di Kepulauan Anambas. Anggotanya aktif dalam kegiatan kesenian, kerajinan tangan khas daerah, dan upacara adat.", 
+            "SALIMAH": "Persaudaraan Muslimah (Salimah) adalah organisasi massa perempuan yang peduli terhadap peningkatan kualitas hidup perempuan, anak, dan keluarga Indonesia. Salimah memiliki program unggulan di bidang dakwah, pendidikan, dan ekonomi.", 
+            "FPPI": "Forum Pemberdayaan Perempuan Indonesia (FPPI) adalah organisasi yang berjuang untuk kesetaraan dan pemberdayaan perempuan di berbagai sektor, termasuk politik, ekonomi, dan sosial, guna mewujudkan perempuan Indonesia yang mandiri dan bermartabat." 
+        };
 
         // --- FUNGSI PEMUAT DATA ---
         const loadStatistik = () => { 
@@ -478,6 +602,7 @@
             } 
         };
         
+        // --- UPDATE: RENDER MODAL DENGAN SCROLLBAR ---
         const renderOrganisasiDetail = async (orgId) => { 
             const placeholder = document.getElementById('modal-placeholder'); 
             const docRef = doc(db, 'organisasi', orgId); 
@@ -485,9 +610,35 @@
             if (docSnap.exists()) { 
                 const org = docSnap.data(); 
                 const ketua = org.infoKetua || {}; 
-                const profile = organisasiProfiles[org.nama.toUpperCase().replace(/\s/g, '')] || organisasiProfiles[org.nama] || "Informasi profil belum tersedia."; 
+                const profile = organisasiProfiles[org.nama.toUpperCase().replace(/\s/g, '')] || organisasiProfiles[org.nama] || "Informasi profil lengkap organisasi belum tersedia saat ini."; 
                 const avatar = ketua.foto ? `<img src="${ketua.foto}" class="w-20 h-20 rounded-full object-cover border-4 border-slate-700" onerror="this.src='https://placehold.co/80x80/ec4899/ffffff?text=${(ketua.nama || '?').charAt(0)}'">` : `<div class="w-20 h-20 rounded-full bg-pink-500 flex items-center justify-center text-3xl font-bold border-4 border-slate-700">${(ketua.nama || '?').charAt(0)}</div>`; 
-                const modalHTML = ` <div id="org-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 modal-overlay"> <div class="bg-slate-800 border border-slate-700 rounded-xl w-full max-w-lg p-6 transform scale-95 opacity-0 modal-content"> <div class="flex flex-col sm:flex-row items-center text-center sm:text-left gap-5"> <img src="${org.logo || 'https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'}" class="w-24 h-24 object-contain" onerror="this.src='https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'"> <div> <h2 class="text-2xl font-bold text-white">${org.nama}</h2> <p class="text-slate-400 text-sm mt-3 text-justify">${profile}</p> </div> </div> <div class="my-6 border-t border-slate-700"></div> <h3 class="font-semibold text-lg mb-4 text-center">Dipimpin oleh:</h3> <div class="flex items-center justify-center space-x-4"> ${avatar} <div><p class="font-bold text-xl text-amber-400">${ketua.nama || '-'}</p><p class="text-slate-300">Ketua Organisasi</p></div> </div> <div class="text-center"> <button id="close-modal-btn" class="mt-8 bg-pink-600/20 text-pink-400 hover:bg-pink-600 hover:text-white transition-colors px-6 py-2 rounded-lg">Tutup</button> </div> </div> </div>`; 
+                
+                const modalHTML = ` 
+                <div id="org-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 modal-overlay"> 
+                    <div class="bg-slate-800 border border-slate-700 rounded-xl w-full max-w-lg p-6 transform scale-95 opacity-0 modal-content"> 
+                        <div class="flex flex-col sm:flex-row items-start text-center sm:text-left gap-5"> 
+                            <img src="${org.logo || 'https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'}" class="w-24 h-24 object-contain flex-shrink-0 mx-auto sm:mx-0" onerror="this.src='https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'"> 
+                            <div class="w-full"> 
+                                <h2 class="text-2xl font-bold text-white mb-2">${org.nama}</h2> 
+                                <!-- Scrollable Description Container -->
+                                <div class="max-h-48 overflow-y-auto pr-2 modal-text-scroll">
+                                    <p class="text-slate-400 text-sm text-justify leading-relaxed">${profile}</p> 
+                                </div>
+                            </div> 
+                        </div> 
+                        <div class="my-6 border-t border-slate-700"></div> 
+                        <h3 class="font-semibold text-lg mb-4 text-center">Dipimpin oleh:</h3> 
+                        <div class="flex items-center justify-center space-x-4"> ${avatar} 
+                            <div>
+                                <p class="font-bold text-xl text-amber-400">${ketua.nama || '-'}</p>
+                                <p class="text-slate-300">Ketua Organisasi</p>
+                            </div> 
+                        </div> 
+                        <div class="text-center"> 
+                            <button id="close-modal-btn" class="mt-8 bg-pink-600/20 text-pink-400 hover:bg-pink-600 hover:text-white transition-colors px-6 py-2 rounded-lg">Tutup</button> 
+                        </div> 
+                    </div> 
+                </div>`; 
                 placeholder.innerHTML = modalHTML; 
                 const modal = document.getElementById('org-modal'); 
                 const modalContent = modal.querySelector('.modal-content'); 
@@ -771,6 +922,41 @@
             });
         };
 
+        // --- ANIMASI PENGHITUNG MEDSOS ---
+        const animateCounters = () => {
+            const counters = document.querySelectorAll('.counter-anim');
+            const speed = 50; 
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = +counter.getAttribute('data-target');
+                        let count = 0; 
+                        const inc = target / speed; 
+
+                        const updateCount = () => {
+                            count += inc;
+                            if (count < target) {
+                                counter.innerText = Math.ceil(count).toLocaleString('id-ID');
+                                requestAnimationFrame(updateCount);
+                            } else {
+                                counter.innerText = target.toLocaleString('id-ID');
+                            }
+                        };
+                        
+                        updateCount();
+                        observer.unobserve(counter); 
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => {
+                observer.observe(counter);
+            });
+        };
+
+
         // --- INISIALISASI & EVENT LISTENERS ---
         const router = () => { 
             const hash = window.location.hash; 
@@ -819,6 +1005,7 @@
             loadKegiatan(); 
             initializeDataSection();
             observeSections(); 
+            animateCounters(); // Inisialisasi animasi penghitung medsos
             router(); 
             document.getElementById('search-kegiatan').addEventListener('input', applyFilters);
             document.getElementById('filter-tahun').addEventListener('change', applyFilters);
