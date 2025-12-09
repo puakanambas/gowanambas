@@ -244,7 +244,7 @@
                         <h2 class="text-3xl sm:text-4xl font-bold mb-4">Data Terpilah: Potret Wanita & Anak</h2>
                         <p class="text-slate-400">Data adalah fondasi dari setiap aksi kami. Berikut adalah data statistik (kombinasi data internal GOW dan data publik BPS/Pemkab).</p>
                     </div>
-                     <!-- Detail per Kategori -->
+                      <!-- Detail per Kategori -->
                     <div class="max-w-5xl mx-auto fade-in-section mt-16">
                         <h3 class="text-2xl font-bold text-center mb-8">Jelajahi Indikator per Sektor</h3>
                         <div id="data-filter-container" class="flex justify-center flex-wrap gap-3 mb-10">
@@ -385,10 +385,19 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, collection, onSnapshot, query, orderBy, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        // Import signInWithCustomToken and onAuthStateChanged
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         
         // Konfigurasi Firebase
-        const firebaseConfig = { apiKey: "AIzaSyAboBugSdtduTa4MIAeQXFkM8QHdah8lcQ", authDomain: "simanja-gow-app.firebaseapp.com", projectId: "simanja-gow-app", storageBucket: "simanja-gow-app.appspot.com", messagingSenderId: "307105555893", appId: "1:307105555893:web:e5470c451f5c4fdacea5fc" };
+        let firebaseConfig;
+        try {
+            // Gunakan konfigurasi dari environment jika ada (mencegah error custom-token-mismatch)
+            firebaseConfig = JSON.parse(__firebase_config);
+        } catch (e) {
+            // Fallback ke hardcoded jika tidak ada
+            firebaseConfig = { apiKey: "AIzaSyAboBugSdtduTa4MIAeQXFkM8QHdah8lcQ", authDomain: "simanja-gow-app.firebaseapp.com", projectId: "simanja-gow-app", storageBucket: "simanja-gow-app.appspot.com", messagingSenderId: "307105555893", appId: "1:307105555893:web:e5470c451f5c4fdacea5fc" };
+        }
+        
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
@@ -653,98 +662,204 @@
         const kecamatanList = ['Siantan', 'Siantan Selatan', 'Siantan Timur', 'Palmatak', 'Jemaja', 'Jemaja Barat', 'Jemaja Timur', 'Kute Siantan', 'Siantan Tengah', 'Siantan Utara'];
         
         const fullDataByCategory = {
-            // 1. KEPENDUDUKAN: MENGGUNAKAN DATA AWAL (KK Gender Split)
             'Kependudukan': {
-                sumber: 'Sumber: Dinas Kependudukan dan Pencatatan Sipil Kab. Kepulauan Anambas (Semester I Tahun 2025)',
+                sumber: 'Sumber: Dinas Sosial PPPA (Data PMKS & Disabilitas Tahun 2023-2024)',
                 indicators: {
-                    'Kepala Keluarga (KK)': {
-                        wawasan: { 
-                            default: '<p>💡 Data menunjukkan sebaran Kepala Keluarga Laki-laki dan Perempuan. Kecamatan Siantan memiliki jumlah KK perempuan tertinggi (800), diikuti Palmatak dan Jemaja.</p>', 
-                            'Siantan': '<p>💡 Kecamatan Siantan memiliki jumlah Kepala Keluarga Perempuan tertinggi di Kabupaten (800 KK), yang menunjukkan banyaknya wanita tangguh yang memimpin keluarga di ibu kota kabupaten.</p>'
-                        },
+                    'Penduduk Lansia': {
+                        type: 'kabupaten',
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>💡 Data jumlah lansia berdasarkan jenis kelamin. Data ini penting untuk perencanaan program perlindungan sosial lansia.</p>' },
                         datasets: [
-                            { label: 'KK Laki-laki', color: 'rgba(59, 130, 246, 0.7)' }, 
-                            { label: 'KK Perempuan', color: 'rgba(236, 72, 153, 0.7)' }
+                            { label: '2023', color: 'rgba(96, 165, 250, 0.7)' },
+                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
                         ],
-                        data: { 
-                            'Siantan': [3597, 800], 
-                            'Palmatak': [2095, 444], 
-                            'Siantan Timur': [1239, 240], 
-                            'Siantan Selatan': [1030, 256], 
-                            'Jemaja Timur': [777, 148], 
-                            'Jemaja': [1728, 390], 
-                            'Siantan Tengah': [950, 191], 
-                            'Siantan Utara': [576, 101], 
-                            'Jemaja Barat': [306, 84], 
-                            'Kute Siantan': [1003, 191] 
-                        }
-                    }
-                }
-            },
-             // 2. PARTISIPASI PUBLIK: MENGGUNAKAN DATA AWAL (Eselon & Musrenbang)
-            'Partisipasi Publik': {
-                 sumber: 'Sumber: BKPSDM Kab. Kepulauan Anambas (Data per 15 September 2025)',
-                 indicators: {
-                    'Perempuan di Jabatan Eselon II & III': {
-                        type: 'kabupaten', // Penanda khusus data level kabupaten
-                        labels: ['Eselon II', 'Eselon III'],
-                        wawasan: { default: '<p>💡 Persentase perempuan di Eselon III (33.76%) sudah melampaui "critical mass" 30%, namun di Eselon II masih perlu ditingkatkan (13.79%). Ini menunjukkan kaderisasi kepemimpinan perempuan di level menengah berjalan baik.</p>'},
-                        datasets: [
-                            { label: 'Perempuan (Org)', color: 'rgba(236, 72, 153, 0.8)' },
-                            { label: 'Laki-laki (Org)', color: 'rgba(59, 130, 246, 0.8)' }
-                        ],
-                        data: [ [4, 53], [25, 104] ] 
+                        data: [ [0, 0], [0, 0] ] // Tabel 7.2
                     },
-                    'Keterlibatan Perempuan dalam Musrenbang': {
-                         wawasan: { default: '<p>💡 Rata-rata kabupaten melampaui kuota 30% keterwakilan perempuan, sebuah capaian yang membanggakan.</p>', 'Siantan': '<p>💡 Kecamatan Siantan memiliki partisipasi perempuan di Musrenbangdes tertinggi, menjadi praktik baik yang bisa direplikasi.</p>'},
-                        datasets: [{ label: 'Partisipasi Perempuan (%)', color: 'rgba(139, 92, 246, 0.7)' }],
-                        data: { 'Siantan': [41.2], 'Siantan Selatan': [35.8], 'Siantan Timur': [38.9], 'Palmatak': [29.7], 'Jemaja': [39.5], 'Jemaja Barat': [34.1], 'Jemaja Timur': [37.6], 'Kute Siantan': [28.9], 'Siantan Tengah': [36.3], 'Siantan Utara': [40.1] }
+                    'Penyandang Disabilitas': {
+                        type: 'kabupaten',
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>💡 Jumlah penyandang disabilitas yang terdata. Membantu dalam pemenuhan hak-hak disabilitas.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(52, 211, 153, 0.7)' },
+                            { label: '2024', color: 'rgba(251, 191, 36, 0.7)' }
+                        ],
+                        data: [ [0, 0], [0, 0] ] // Tabel 7.3.a
                     }
-                 }
+                }
             },
-            // 3. PENDIDIKAN: MENGGUNAKAN DATA REAL TERBARU (BPS 2023)
             'Pendidikan': {
-                sumber: 'Sumber: BPS Provinsi Kepulauan Riau (Angka Partisipasi Sekolah 2023)',
+                sumber: 'Sumber: Dinas Pendidikan (Data ABK Tahun 2024)',
                 indicators: {
-                    'Angka Partisipasi Sekolah (APS)': {
-                        wawasan: { default: '<p>💡 APS di Kabupaten Kepulauan Anambas tergolong sangat tinggi (>99% untuk usia SD/SMP). Ini menunjukkan akses pendidikan dasar sudah merata baik untuk laki-laki maupun perempuan.</p>'},
-                        datasets: [{ label: 'APS Usia 7-15 Tahun (%)', color: 'rgba(59, 130, 246, 0.7)' }],
-                        data: { 'Siantan': [99.5], 'Siantan Selatan': [99.1], 'Siantan Timur': [99.2], 'Palmatak': [99.3], 'Jemaja': [99.4], 'Jemaja Barat': [99.0], 'Jemaja Timur': [99.1], 'Kute Siantan': [99.2], 'Siantan Tengah': [99.1], 'Siantan Utara': [99.0] }
+                    'Anak Berkebutuhan Khusus (ABK)': {
+                        type: 'kabupaten',
+                        labels: ['Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Tuna Daksa', 'Autis', 'Tuna Ganda', 'Lamban Belajar'],
+                        wawasan: { default: '<p>💡 Sebaran siswa ABK berdasarkan jenis kekhususan. Data ini menjadi dasar penyediaan guru pendamping khusus dan sarana inklusi.</p>' },
+                        datasets: [
+                            { label: 'Laki-laki', color: 'rgba(59, 130, 246, 0.7)' },
+                            { label: 'Perempuan', color: 'rgba(236, 72, 153, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0] ] // Tabel 9.8.1.b
                     }
                 }
             },
-            // 4. KESEHATAN: MENGGUNAKAN DATA REAL TERBARU (SSGI 2022)
             'Kesehatan': {
-                sumber: 'Sumber: Survei Status Gizi Indonesia (SSGI) 2022 & Dinkes Anambas',
+                sumber: 'Sumber: Dinas Kesehatan PPKB (Data Kesehatan Ibu & Anak 2023-2024)',
                 indicators: {
-                    'Prevalensi Stunting': {
-                        wawasan: { default: '<p>💡 Angka prevalensi stunting di Kabupaten Kepulauan Anambas berhasil ditekan menjadi <strong>14,0%</strong> (2022), turun signifikan dari tahun sebelumnya. Target nasional adalah 14%, sehingga Anambas sudah berada di jalur yang tepat (on-track).</p>'},
-                        datasets: [{ label: 'Prevalensi Stunting (%)', color: 'rgba(245, 158, 11, 0.7)' }],
-                        data: { 'Siantan': [14.0], 'Siantan Selatan': [14.2], 'Siantan Timur': [13.8], 'Palmatak': [14.5], 'Jemaja': [13.5], 'Jemaja Barat': [14.1], 'Jemaja Timur': [13.9], 'Kute Siantan': [14.3], 'Siantan Tengah': [14.1], 'Siantan Utara': [13.7] }
+                    'Status Gizi Balita (Kurang & Buruk)': {
+                        type: 'kabupaten',
+                        labels: ['Gizi Kurang', 'Gizi Buruk'],
+                        wawasan: { default: '<p>💡 Indikator utama intervensi stunting. Menampilkan jumlah kasus gizi kurang dan buruk pada balita.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(251, 146, 60, 0.7)' },
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+                        ],
+                        data: [ [0, 0], [0, 0] ] // Tabel 9.11.5
+                    },
+                    'Cakupan ASI Ekslusif': {
+                        type: 'kabupaten',
+                        labels: ['Bayi Lahir', 'Dapat ASI Ekslusif'],
+                        wawasan: { default: '<p>💡 Proporsi bayi yang mendapatkan ASI ekslusif selama 6 bulan.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Tabel 9.11.4
+                    },
+                    'Kematian Bayi & Balita': {
+                        type: 'kabupaten',
+                        labels: ['Kematian Bayi', 'Kematian Balita'],
+                        wawasan: { default: '<p>💡 Angka kematian bayi dan balita sebagai indikator derajat kesehatan anak.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(107, 114, 128, 0.7)' },
+                            { label: '2024', color: 'rgba(31, 41, 55, 0.7)' }
+                        ],
+                        data: [ [0, 0], [0, 0] ] // Tabel 9.11.1
+                    },
+                    'Bayi BBLR (Berat Badan Lahir Rendah)': {
+                        type: 'kabupaten',
+                        labels: ['Bayi Lahir', 'Bayi BBLR'],
+                        wawasan: { default: '<p>💡 Jumlah bayi dengan berat badan lahir rendah, yang berisiko mengalami stunting.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(234, 179, 8, 0.7)' },
+                            { label: '2024', color: 'rgba(202, 138, 4, 0.7)' }
+                        ],
+                        data: [ [0, 0], [0, 0] ] // Tabel 9.11.3
+                    },
+                    'Cakupan Imunisasi Balita': {
+                        type: 'kabupaten',
+                        labels: ['BCG', 'DPT 3', 'Polio 3', 'Campak'],
+                        wawasan: { default: '<p>💡 Cakupan imunisasi dasar lengkap pada balita untuk mencegah penyakit.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(56, 189, 248, 0.7)' },
+                            { label: '2024', color: 'rgba(14, 165, 233, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0, 0], [0, 0, 0, 0] ] // Tabel 9.11.2
                     }
                 }
             },
-            // 5. EKONOMI: MENGGUNAKAN DATA REAL TERBARU (BPS 2023)
             'Ekonomi': {
-                sumber: 'Sumber: BPS Kepulauan Riau (Indikator Ketenagakerjaan 2023)',
-                 indicators: {
-                    'Tingkat Partisipasi Angkatan Kerja (TPAK)': {
-                        wawasan: { default: '<p>💡 TPAK Perempuan di Anambas (sekitar 64%) cenderung lebih tinggi dibandingkan rata-rata nasional karena peran aktif wanita di sektor pertanian dan perikanan keluarga.</p>'},
-                        datasets: [{ label: 'TPAK Perempuan (%)', color: 'rgba(236, 72, 153, 0.7)' }],
-                        data: { 'Siantan': [64.5], 'Siantan Selatan': [63.2], 'Siantan Timur': [65.1], 'Palmatak': [62.8], 'Jemaja': [64.8], 'Jemaja Barat': [63.5], 'Jemaja Timur': [64.1], 'Kute Siantan': [62.9], 'Siantan Tengah': [63.8], 'Siantan Utara': [65.5] }
+                sumber: 'Sumber: Dinas Sosial PPPA (Data Kemiskinan)',
+                indicators: {
+                    'Rumah Tangga Miskin': {
+                        type: 'kabupaten',
+                        labels: ['Laki-laki (Kepala Keluarga)', 'Perempuan (Kepala Keluarga)'],
+                        wawasan: { default: '<p>💡 Jumlah Rumah Tangga Miskin terdata berdasarkan jenis kelamin kepala keluarga.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(147, 51, 234, 0.7)' },
+                            { label: '2024', color: 'rgba(79, 70, 229, 0.7)' }
+                        ],
+                        data: [ [0, 0], [0, 0] ] // Tabel 7.2 (2)
                     }
                 }
             },
-            // 6. PERLINDUNGAN KHUSUS: MENGGUNAKAN DATA REAL TERBARU (PPA 2024)
-            'Perlindungan Khusus': {
-                 sumber: 'Sumber: UPTD PPA & Pemberitaan Media Lokal (Sampel Data 2024)',
-                 indicators: {
-                    'Kasus Kekerasan Terhadap Anak': {
-                        wawasan: { default: '<p>⚠️ Data pertengahan tahun 2024 mencatat setidaknya <strong>7 kasus</strong> kekerasan seksual terhadap anak. Angka ini menjadi alarm bagi GOW untuk mempergencar edukasi "Stop Kekerasan" ke sekolah dan keluarga.</p>'},
-                        datasets: [{ label: 'Kasus Terlapor (Jan-Jul 2024)', color: 'rgba(239, 68, 68, 0.7)' }],
-                        data: { 'Siantan': [3], 'Siantan Selatan': [0], 'Siantan Timur': [1], 'Palmatak': [2], 'Jemaja': [1], 'Jemaja Barat': [0], 'Jemaja Timur': [0], 'Kute Siantan': [0], 'Siantan Tengah': [0], 'Siantan Utara': [0] }
+            'Partisipasi Publik': {
+                sumber: 'Sumber: BKPSDM, DPMD, Sekretariat DPRD',
+                indicators: {
+                    'Kepala Desa & Lurah': {
+                        type: 'kabupaten',
+                        labels: ['Kepala Desa/Lurah'],
+                        wawasan: { default: '<p>💡 Keterwakilan perempuan sebagai pemimpin di tingkat desa dan kelurahan.</p>' },
+                        datasets: [
+                            { label: 'Laki-laki', color: 'rgba(34, 197, 94, 0.7)' },
+                            { label: 'Perempuan', color: 'rgba(236, 72, 153, 0.7)' }
+                        ],
+                        data: [ [0], [0] ] // Tabel 6.1.3a
+                    },
+                    'Anggota BPD (Badan Permusyawaratan Desa)': {
+                        type: 'kabupaten',
+                        labels: ['Anggota BPD'],
+                        wawasan: { default: '<p>💡 Partisipasi perempuan dalam lembaga legislatif desa (BPD).</p>' },
+                        datasets: [
+                            { label: 'Laki-laki', color: 'rgba(16, 185, 129, 0.7)' },
+                            { label: 'Perempuan', color: 'rgba(244, 114, 182, 0.7)' }
+                        ],
+                        data: [ [0], [0] ] // Tabel 6.1.3b
+                    },
+                    'Pejabat Eselon (II, III, IV)': {
+                        type: 'kabupaten',
+                        labels: ['Eselon II', 'Eselon III', 'Eselon IV'],
+                        wawasan: { default: '<p>💡 Partisipasi perempuan dalam jabatan struktural pemerintahan (Eselon II, III, dan IV).</p>' },
+                        datasets: [
+                            { label: 'Laki-laki', color: 'rgba(59, 130, 246, 0.7)' },
+                            { label: 'Perempuan', color: 'rgba(236, 72, 153, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0], [0, 0, 0] ] // Tabel 6.1.4
+                    },
+                    'Anggota DPRD': {
+                        type: 'kabupaten',
+                        labels: ['Anggota DPRD'],
+                        wawasan: { default: '<p>💡 Persentase keterwakilan perempuan di lembaga legislatif daerah.</p>' },
+                        datasets: [
+                            { label: 'Laki-laki', color: 'rgba(59, 130, 246, 0.7)' },
+                            { label: 'Perempuan', color: 'rgba(236, 72, 153, 0.7)' }
+                        ],
+                        data: [ [0], [0] ] // Tabel 6.2.1
                     }
-                 }
+                }
+            },
+            'Perlindungan Khusus': {
+                sumber: 'Sumber: Dinsos PPPA (SIMFONI PPA) & Pengadilan Agama',
+                indicators: {
+                    'Korban Kekerasan (Jenis)': {
+                        type: 'kabupaten',
+                        labels: ['Fisik', 'Psikis', 'Seksual', 'Penelantaran', 'TPPO'],
+                        wawasan: { default: '<p>⚠️ Jumlah korban kekerasan berdasarkan jenis kekerasan yang dialami.</p>' },
+                        datasets: [
+                            { label: 'Laki-laki', color: 'rgba(59, 130, 246, 0.7)' },
+                            { label: 'Perempuan', color: 'rgba(239, 68, 68, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0, 0, 0], [0, 0, 0, 0, 0] ] // Tabel 8.1.5
+                    },
+                    'Kasus Perceraian': {
+                        type: 'kabupaten',
+                        labels: ['Cerai Talak (Suami)', 'Cerai Gugat (Istri)'],
+                        wawasan: { default: '<p>💡 Tren kasus perceraian berdasarkan jenis permohonan di Pengadilan Agama.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(245, 158, 11, 0.7)' },
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+                        ],
+                        data: [ [0, 0], [0, 0] ] // Tabel 7.4.1
+                    },
+                    'Dispensasi Kawin': {
+                        type: 'kabupaten',
+                        labels: ['Jumlah Dispensasi'],
+                        wawasan: { default: '<p>⚠️ Angka permohonan dispensasi kawin (pernikahan dini) yang diputus oleh Pengadilan Agama.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(16, 185, 129, 0.7)' },
+                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+                        ],
+                        data: [ [0], [0] ] // Tabel 9.11.6
+                    },
+                    'Kasus TPPO (Perdagangan Orang)': {
+                        type: 'kabupaten',
+                        labels: ['Penyidikan', 'Penuntutan', 'Putusan'],
+                        wawasan: { default: '<p>⚠️ Proses hukum kasus Tindak Pidana Perdagangan Orang (TPPO) yang ditangani.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(107, 114, 128, 0.7)' },
+                            { label: '2024', color: 'rgba(31, 41, 55, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0], [0, 0, 0] ] // Tabel 8.2.2.a
+                    }
+                }
             }
         };
 
@@ -754,7 +869,13 @@
             if (!contentArea || !categoryData) return;
 
             const indicatorOptions = Object.keys(categoryData.indicators).map(ind => `<option value="${ind}">${ind}</option>`).join('');
-            const kecamatanOptions = kecamatanList.map(kec => `<option value="${kec}">${kec}</option>`).join('');
+            // Hide kecamatan filter if data is aggregation only
+            const showKecamatanFilter = Object.values(categoryData.indicators)[0].type !== 'kabupaten';
+            const kecamatanSelectHTML = showKecamatanFilter ? `
+                <select id="kecamatan-filter" class="flex-grow bg-slate-800 border border-slate-700 rounded-lg py-2 px-4 focus:ring-2 focus:ring-pink-500 focus:outline-none">
+                    <option value="Semua Kecamatan">Semua Kecamatan / Kabupaten</option>
+                    ${kecamatanList.map(kec => `<option value="${kec}">${kec}</option>`).join('')}
+                </select>` : '';
 
             contentArea.innerHTML = `
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -763,10 +884,7 @@
                              <select id="indicator-filter" class="flex-grow bg-slate-800 border border-slate-700 rounded-lg py-2 px-4 focus:ring-2 focus:ring-pink-500 focus:outline-none">
                                 ${indicatorOptions}
                             </select>
-                            <select id="kecamatan-filter" class="flex-grow bg-slate-800 border border-slate-700 rounded-lg py-2 px-4 focus:ring-2 focus:ring-pink-500 focus:outline-none">
-                                <option value="Semua Kecamatan">Semua Kecamatan / Kabupaten</option>
-                                ${kecamatanOptions}
-                            </select>
+                            ${kecamatanSelectHTML}
                         </div>
                         <div class="bg-slate-800/50 rounded-lg p-4 h-96 relative">
                             <h4 id="chart-title" class="text-lg font-bold mb-2 text-center text-slate-300"></h4>
@@ -806,8 +924,7 @@
 
             // Handle Data Level Kabupaten (Non-Kecamatan) seperti Eselon
             if (indicatorData.type === 'kabupaten') {
-                kecFilter.disabled = true; // Disable filter kecamatan
-                kecFilter.value = "Semua Kecamatan";
+                if(kecFilter) kecFilter.disabled = true; // Disable filter kecamatan if exists
                 titleEl.textContent = `${indicator} (Tingkat Kabupaten)`;
                 
                 chartLabels = indicatorData.labels;
@@ -821,7 +938,7 @@
                 maxDataValue = Math.max(...allValues);
 
             } else {
-                kecFilter.disabled = false;
+                if(kecFilter) kecFilter.disabled = false;
                 // Logika Normal Per Kecamatan
                 if (selectedKecamatan === 'Semua Kecamatan') {
                     titleEl.textContent = `${indicator} per Kecamatan`;
@@ -903,7 +1020,8 @@
             const handleFilterChange = () => {
                 const activeCategory = filterContainer.querySelector('.active').dataset.category;
                 const selectedIndicator = dataContentArea.querySelector('#indicator-filter').value;
-                const selectedKecamatan = dataContentArea.querySelector('#kecamatan-filter').value;
+                const kecFilter = dataContentArea.querySelector('#kecamatan-filter');
+                const selectedKecamatan = kecFilter ? kecFilter.value : 'Semua Kecamatan';
                 updateDataViews(activeCategory, selectedIndicator, selectedKecamatan);
             };
             
@@ -991,12 +1109,30 @@
             document.getElementById('copyright-year').textContent = new Date().getFullYear();
             
             // SETUP AUTHENTICATION
-            try {
-                await signInAnonymously(auth);
-            } catch (error) {
-                console.error("Gagal inisialisasi auth:", error);
-            }
+            const initAuth = async () => {
+                try {
+                    // Prioritize custom token if available
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        try {
+                            await signInWithCustomToken(auth, __initial_auth_token);
+                            return; // Success
+                        } catch (tokenError) {
+                            console.warn("Custom token failed, falling back to anonymous:", tokenError);
+                        }
+                    }
+                    
+                    // Fallback to anonymous sign-in (if token missing or failed)
+                    await signInAnonymously(auth);
+                } catch (error) {
+                    console.error("Gagal inisialisasi auth:", error);
+                }
+            };
 
+            // Wait for auth to complete before loading data
+            await initAuth();
+
+            // Setup listener for auth state changes if needed, but for now we just proceed
+            
             window.addEventListener('hashchange', router); 
             loadStatistik(); 
             loadProgramKerja();
@@ -1019,5 +1155,3 @@
     </script>
 </body>
 </html>
-
-
