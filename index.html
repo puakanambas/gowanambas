@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Leaflet.js untuk Peta Interaktif -->
@@ -26,6 +27,9 @@
         .font-jawi {
             font-family: 'Amiri', serif;
         }
+        .font-serif-display {
+            font-family: 'Playfair Display', serif;
+        }
         .header-glass { 
             background: rgba(15, 23, 42, 0.7); 
             backdrop-filter: blur(12px); 
@@ -33,6 +37,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .hero-bg {
+            /* Mengembalikan ke gambar Unsplash yang stabil karena file lokal tidak terbaca */
             background-image: linear-gradient(to top, #0f172a 10%, rgba(15, 23, 42, 0.7) 80%), url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center center;
@@ -173,6 +178,7 @@
                 <div class="flex items-center space-x-2">
                     <nav class="hidden lg:flex space-x-5 text-sm">
                         <a href="#beranda" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Beranda</a>
+                        <a href="#sambutan" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Sambutan</a>
                         <a href="#tentang" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Tentang</a>
                         <a href="#program" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Program</a>
                         <a href="#data-terpilah" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Data Terpilah</a>
@@ -188,6 +194,7 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-700 bg-slate-900">
             <a href="#beranda" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Beranda</a>
+            <a href="#sambutan" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Sambutan</a>
             <a href="#tentang" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Tentang Kami</a>
             <a href="#program" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Program Kerja</a>
             <a href="#data-terpilah" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Data Terpilah</a>
@@ -202,11 +209,83 @@
         <div id="main-content">
             <section id="beranda" class="hero-bg pt-20 pb-16 md:pt-40 md:pb-28 text-white text-center relative">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wider mb-2" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">GABUNGAN ORGANISASI WANITA</h1>
+                    <!-- CHANGED: Color to lime-400 -->
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wider mb-2 text-lime-400" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">GABUNGAN ORGANISASI WANITA</h1>
                     <p class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-pink-400 mb-4" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">( GOW )</p>
                     <p class="text-xl sm:text-2xl md:text-3xl font-semibold tracking-wide mb-4" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">KABUPATEN KEPULAUAN ANAMBAS</p>
                     <p class="font-jawi text-3xl sm:text-4xl md:text-5xl mb-4 text-amber-400" dir="rtl" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">ݢابوڠن اورݢانيساسي وانيتا</p>
                     <p class="text-lg sm:text-xl md:text-2xl font-semibold tracking-wide text-blue-400" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">THE ASSOCIATION OF WOMEN'S ORGANIZATIONS</p>
+                </div>
+            </section>
+
+            <!-- Sekapur Sirih / Sambutan Ketua -->
+            <section id="sambutan" class="py-20 relative overflow-hidden fade-in-section">
+                <!-- Background Decoration -->
+                <div class="absolute inset-0 bg-slate-900/95 z-0"></div>
+                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 bg-pink-500/10 rounded-full blur-3xl animate-pulse"></div>
+                <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+
+                <div class="container mx-auto px-4 relative z-10">
+                    <div class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 md:p-12 overflow-hidden shadow-2xl">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+                            
+                            <!-- Foto Ketua -->
+                            <div class="md:col-span-4 lg:col-span-3 flex flex-col items-center">
+                                <div class="relative group">
+                                    <!-- Glow Effect Behind Photo -->
+                                    <div class="absolute -inset-1.5 bg-gradient-to-tr from-pink-600 to-blue-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                                    <div class="relative w-52 h-64 sm:w-60 sm:h-72 rounded-2xl overflow-hidden border border-slate-600 bg-slate-900">
+                                        <!-- Placeholder Image - Replace src with actual photo URL if available -->
+                                        <img src="https://image2url.com/images/1765296252911-367055f7-f8e8-4c73-b637-47a6b1e9931e.png" alt="Ny. Kustiorini Raja Bayu" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 filter brightness-90 group-hover:brightness-100">
+                                    </div>
+                                    <!-- Floating Badge -->
+                                    <div class="absolute -bottom-4 -right-4 bg-amber-500 text-slate-900 p-2 rounded-lg shadow-lg rotate-3 group-hover:rotate-0 transition-transform">
+                                        <i class="fas fa-certificate text-xl"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-8 text-center">
+                                    <h3 class="text-xl sm:text-2xl font-bold text-white font-serif-display tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-500">Ny. Kustiorini Raja Bayu</h3>
+                                    <div class="h-1 w-16 bg-pink-500 mx-auto my-2 rounded-full"></div>
+                                    <p class="text-sm sm:text-base text-slate-300 font-medium tracking-wide">Ketua GOW Kabupaten Kepulauan Anambas</p>
+                                </div>
+                            </div>
+
+                            <!-- Teks Sambutan -->
+                            <div class="md:col-span-8 lg:col-span-9">
+                                <div class="relative pl-0 md:pl-6">
+                                    <i class="fas fa-quote-left text-5xl text-slate-700 absolute -top-8 -left-4 opacity-50"></i>
+                                    
+                                    <div class="mb-6">
+                                        <span class="text-pink-500 font-bold tracking-widest text-xs uppercase mb-2 block">Sambutan Ketua</span>
+                                        <!-- CHANGED: Color to lime-400 -->
+                                        <h2 class="text-3xl sm:text-4xl font-bold text-lime-400 font-serif-display">Sekapur Sirih</h2>
+                                    </div>
+
+                                    <div class="space-y-5 text-slate-300 leading-relaxed text-lg text-justify font-light">
+                                        <p>
+                                            <span class="font-semibold text-white text-2xl block mb-3 font-jawi" dir="rtl">السلام عليكم ورحمة الله وبركاته</span>
+                                            Puji syukur kita panjatkan ke hadirat Allah SWT. Selamat datang di portal digital resmi <strong class="text-pink-400">Gabungan Organisasi Wanita (GOW) Kabupaten Kepulauan Anambas</strong>.
+                                        </p>
+                                        <p>
+                                            Website ini kami persembahkan sebagai wujud transformasi digital GOW Anambas untuk memperluas jangkauan informasi dan memperkuat sinergi antar organisasi wanita. Di era yang serba dinamis ini, peran perempuan tidak hanya sebagai tiang negara, tetapi juga sebagai motor penggerak pembangunan yang adaptif dan inovatif.
+                                        </p>
+                                        <p>
+                                            Melalui wadah ini, mari kita rapatkan barisan, menyatukan visi, dan terus berkarya untuk menciptakan perempuan Anambas yang berdaya, mandiri, dan bermartabat demi kemajuan negeri <em>Kayuh Serentak Langkah Sepijak</em>.
+                                        </p>
+                                        <p class="font-semibold text-white mt-4 font-jawi text-2xl text-right" dir="rtl">
+                                            والسلام عليكم ورحمة الله وبركاته
+                                        </p>
+                                    </div>
+
+                                    <div class="mt-8 flex items-center gap-4">
+                                        <div class="h-px flex-1 bg-gradient-to-r from-pink-500/50 to-transparent"></div>
+                                        <span class="text-amber-400 font-jawi text-xl">سلام ڤمبردياان</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -217,7 +296,8 @@
             <section id="tentang" class="py-16 sm:py-20">
                 <div class="container mx-auto px-4">
                     <div class="text-center max-w-3xl mx-auto fade-in-section">
-                        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Tentang GOW Anambas</h2>
+                        <!-- CHANGED: Color to lime-400 -->
+                        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Tentang GOW Anambas</h2>
                         <p class="text-slate-400 mb-12">GOW Kabupaten Kepulauan Anambas resmi berdiri sejak ditetapkannya akta pendirian sebagai wadah permanen yang berasaskan Pancila dan UUD 1945 untuk memperkuat kolaborasi antar organisasi wanita di Anambas.</p>
                     </div>
                     <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 sm:gap-12 items-center fade-in-section">
@@ -232,7 +312,8 @@
             
             <section id="program" class="py-16 sm:py-20 bg-slate-900">
                 <div class="container mx-auto px-4">
-                    <div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4">Program Kerja GOW 2025-2030</h2><p class="text-slate-400 mb-12">Rencana aksi strategis untuk memberdayakan wanita dan berkontribusi pada pembangunan Kabupaten Kepulauan Anambas.</p></div>
+                    <!-- CHANGED: Color to lime-400 -->
+                    <div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Program Kerja GOW 2025-2030</h2><p class="text-slate-400 mb-12">Rencana aksi strategis untuk memberdayakan wanita dan berkontribusi pada pembangunan Kabupaten Kepulauan Anambas.</p></div>
                     <div id="program-kerja-container" class="max-w-4xl mx-auto space-y-4 fade-in-section"></div>
                 </div>
             </section>
@@ -241,7 +322,8 @@
             <section id="data-terpilah" class="py-16 sm:py-20">
                 <div class="container mx-auto px-4">
                     <div class="text-center max-w-3xl mx-auto fade-in-section">
-                        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Data Terpilah: Potret Wanita & Anak</h2>
+                        <!-- CHANGED: Color to lime-400 -->
+                        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Data Terpilah: Potret Wanita & Anak</h2>
                         <p class="text-slate-400">Data adalah fondasi dari setiap aksi kami. Berikut adalah data statistik (kombinasi data internal GOW dan data publik BPS/Pemkab).</p>
                     </div>
                       <!-- Detail per Kategori -->
@@ -264,7 +346,8 @@
 
             <section id="pengurus" class="py-16 sm:py-20 bg-slate-900">
                 <div class="container mx-auto px-4">
-                    <div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4">Struktur Pengurus Inti & Organisasi</h2><p class="text-slate-400 mb-12">Motor penggerak dan sinergi kekuatan wanita Anambas yang berdedikasi memajukan peran wanita.</p></div>
+                    <!-- CHANGED: Color to lime-400 -->
+                    <div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Struktur Pengurus Inti & Organisasi</h2><p class="text-slate-400 mb-12">Motor penggerak dan sinergi kekuatan wanita Anambas yang berdedikasi memajukan peran wanita.</p></div>
                     <h3 class="text-2xl font-bold text-center mb-8 fade-in-section">Pengurus Inti</h3>
                     <div id="pengurus-inti-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"><p class="col-span-full text-center text-slate-400">Memuat data pengurus...</p></div>
                     <h3 class="text-2xl font-bold text-center mb-8 fade-in-section">Organisasi Tergabung</h3>
@@ -274,7 +357,8 @@
             
             <section id="kegiatan" class="py-16 sm:py-20">
                 <div class="container mx-auto px-4">
-                    <div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4">Galeri Kegiatan</h2><p class="text-slate-400">Dokumentasi aksi dan kontribusi nyata kami untuk masyarakat Kepulauan Anambas.</p></div>
+                    <!-- CHANGED: Color to lime-400 -->
+                    <div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Galeri Kegiatan</h2><p class="text-slate-400">Dokumentasi aksi dan kontribusi nyata kami untuk masyarakat Kepulauan Anambas.</p></div>
                     <div class="my-12 max-w-2xl mx-auto flex flex-col sm:flex-row gap-4 fade-in-section"><div class="relative flex-grow"><input type="search" id="search-kegiatan" placeholder="Cari nama kegiatan..." class="w-full bg-slate-800 border border-slate-700 rounded-lg py-2 pl-10 pr-4 text-white focus:ring-2 focus:ring-pink-500 focus:outline-none transition-colors"><i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i></div><select id="filter-tahun" class="bg-slate-800 border border-slate-700 rounded-lg py-2 px-4 text-white focus:ring-2 focus:ring-pink-500 focus:outline-none transition-colors"><option value="">Semua Tahun</option></select></div>
                     
                     <!-- Grid Kegiatan -->
@@ -288,7 +372,8 @@
             </section>
             
             <section id="simanja" class="py-16 sm:py-20 bg-slate-900">
-                <div class="container mx-auto px-4"><div class="max-w-3xl mx-auto text-center fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4">Platform Digital SiMANJA GOW</h2><p class="text-slate-400 mb-6 leading-relaxed">Sebagai wujud inovasi, GOW Anambas menghadirkan <strong class="font-semibold text-white">SiMANJA</strong> (Sistem Informasi Manajemen Jaringan GOW), sebuah platform digital eksklusif yang dirancang untuk memperkuat sinergi dan efektivitas organisasi. Platform ini berfungsi sebagai pusat data terpadu, memudahkan koordinasi program, serta mendukung tata kelola modern melalui digitalisasi administrasi.</p><a href="https://simanjagow.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block px-8 py-3 rounded-lg font-semibold mt-4"><i class="fas fa-sign-in-alt mr-2"></i> Login ke SiMANJA GOW</a></div></div>
+                <!-- CHANGED: Color to lime-400 -->
+                <div class="container mx-auto px-4"><div class="max-w-3xl mx-auto text-center fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Platform Digital SiMANJA GOW</h2><p class="text-slate-400 mb-6 leading-relaxed">Sebagai wujud inovasi, GOW Anambas menghadirkan <strong class="font-semibold text-white">SiMANJA</strong> (Sistem Informasi Manajemen Jaringan GOW), sebuah platform digital eksklusif yang dirancang untuk memperkuat sinergi dan efektivitas organisasi. Platform ini berfungsi sebagai pusat data terpadu, memudahkan koordinasi program, serta mendukung tata kelola modern melalui digitalisasi administrasi.</p><a href="https://simanjagow.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block px-8 py-3 rounded-lg font-semibold mt-4"><i class="fas fa-sign-in-alt mr-2"></i> Login ke SiMANJA GOW</a></div></div>
             </section>
         </div>
 
