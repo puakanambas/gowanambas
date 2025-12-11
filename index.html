@@ -484,18 +484,51 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, onSnapshot, query, orderBy, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy, doc, getDoc, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         // Import signInWithCustomToken and onAuthStateChanged
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         
-        // Konfigurasi Firebase dan Environment
+        // =========================================================================================
+        // 🚨 PENGATURAN MODE PRODUKSI & DATA REAL 🚨
+        // =========================================================================================
+        
+        // Ganti nilai ini menjadi TRUE jika Anda ingin menghubungkan website ini ke database
+        // Firebase PROJECT ASLI (SimanjaGOW) saat di-hosting di server/domain Anda sendiri.
+        // Jika FALSE, website akan menggunakan mode simulasi (Sandbox) dengan data contoh.
+        const IS_PRODUCTION = true; 
+
+        // Masukkan Konfigurasi Firebase Project ASLI Anda di sini:
+        const productionConfig = {
+            apiKey: "AIzaSyAboBugSdtduTa4MIAeQXFkM8QHdah8lcQ",
+            authDomain: "simanja-gow-app.firebaseapp.com",
+            projectId: "simanja-gow-app",
+            storageBucket: "simanja-gow-app.appspot.com",
+            messagingSenderId: "307105555893",
+            appId: "1:307105555893:web:e5470c451f5c4fdacea5fc"
+        };
+
+        // =========================================================================================
+
+        // Logika Pemilihan Config (Jangan Diubah Bagian Ini)
         let firebaseConfig;
-        try {
-            // Gunakan konfigurasi dari environment jika ada
-            firebaseConfig = JSON.parse(__firebase_config);
-        } catch (e) {
-            // Fallback ke hardcoded jika environment variable tidak tersedia
-            firebaseConfig = { apiKey: "AIzaSyAboBugSdtduTa4MIAeQXFkM8QHdah8lcQ", authDomain: "simanja-gow-app.firebaseapp.com", projectId: "simanja-gow-app", storageBucket: "simanja-gow-app.appspot.com", messagingSenderId: "307105555893", appId: "1:307105555893:web:e5470c451f5c4fdacea5fc" };
+        
+        if (IS_PRODUCTION) {
+            firebaseConfig = productionConfig;
+            console.log("🚀 Mode Produksi Aktif: Menggunakan Konfigurasi Real.");
+        } else {
+            // Mode Sandbox / Preview Canvas
+            try {
+                // Gunakan konfigurasi dari environment jika ada
+                if (typeof __firebase_config !== 'undefined') {
+                    firebaseConfig = JSON.parse(__firebase_config);
+                } else {
+                    throw new Error("Env config missing");
+                }
+            } catch (e) {
+                // Fallback hardcoded untuk sandbox
+                firebaseConfig = { apiKey: "AIzaSyAboBugSdtduTa4MIAeQXFkM8QHdah8lcQ", authDomain: "simanja-gow-app.firebaseapp.com", projectId: "simanja-gow-app", storageBucket: "simanja-gow-app.appspot.com", messagingSenderId: "307105555893", appId: "1:307105555893:web:e5470c451f5c4fdacea5fc" };
+            }
+            console.log("🧪 Mode Sandbox Aktif: Menggunakan Database Simulasi.");
         }
         
         const app = initializeApp(firebaseConfig);
@@ -504,10 +537,26 @@
         // AppID for data isolation in this environment
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 
-        // --- Helper for Strict Paths ---
-        // Aturan ketat: Data publik harus ada di /artifacts/{appId}/public/data/...
-        const getCollectionRef = (colName) => collection(db, 'artifacts', appId, 'public', 'data', colName);
-        const getDocRef = (colName, docId) => doc(db, 'artifacts', appId, 'public', 'data', colName, docId);
+        // --- Helper for Strict Paths vs Real Paths ---
+        // Fungsi ini otomatis memilih jalur database yang benar berdasarkan mode
+        const getCollectionRef = (colName) => {
+            if (IS_PRODUCTION) {
+                // JALUR DATABASE ASLI (ROOT COLLECTION)
+                // Pastikan nama koleksi di Firestore asli Anda sesuai ('organisasi', 'kegiatan', dll)
+                return collection(db, colName); 
+            } else {
+                // JALUR SANDBOX (PREVIEW)
+                return collection(db, 'artifacts', appId, 'public', 'data', colName);
+            }
+        };
+
+        const getDocRef = (colName, docId) => {
+            if (IS_PRODUCTION) {
+                return doc(db, colName, docId);
+            } else {
+                return doc(db, 'artifacts', appId, 'public', 'data', colName, docId);
+            }
+        };
 
 
         // --- Variabel Global & Kontrol Halaman ---
@@ -541,6 +590,78 @@
             "REDAT SRI TANJUNG": "Organisasi lokal yang fokus pada pelestarian seni, budaya, dan tradisi Melayu di Kepulauan Anambas. Anggotanya aktif dalam kegiatan kesenian, kerajinan tangan khas daerah, dan upacara adat.", 
             "SALIMAH": "Persaudaraan Muslimah (Salimah) adalah organisasi massa perempuan yang peduli terhadap peningkatan kualitas hidup perempuan, anak, dan keluarga Indonesia. Salimah memiliki program unggulan di bidang dakwah, pendidikan, dan ekonomi.", 
             "FPPI": "Forum Pemberdayaan Perempuan Indonesia (FPPI) adalah organisasi yang berjuang untuk kesetaraan dan pemberdayaan perempuan di berbagai sektor, termasuk politik, ekonomi, dan sosial, guna mewujudkan perempuan Indonesia yang mandiri dan bermartabat." 
+        };
+
+        // --- FUNGSI MOCK DATA SEEDER ---
+        const seedDatabase = async () => {
+            // JANGAN JALANKAN SEEDING JIKA DI MODE PRODUKSI
+            if (IS_PRODUCTION) {
+                console.log("🚫 Seeding dibatalkan: Mode Produksi Aktif.");
+                return;
+            }
+
+            console.log("Memulai pengecekan database sandbox untuk seeding...");
+            
+            // 1. Seed Organisasi
+            const orgRef = getCollectionRef('organisasi');
+            const orgSnap = await getDocs(orgRef);
+            if (orgSnap.empty) {
+                console.log("Database Organisasi kosong. Melakukan seeding...");
+                const orgNames = Object.keys(organisasiProfiles);
+                for (const nama of orgNames) {
+                    await addDoc(orgRef, {
+                        nama: nama,
+                        logo: '', // Kosongkan agar pakai placeholder
+                        infoKetua: { nama: 'Ketua ' + nama, foto: '' }
+                    });
+                }
+            }
+
+            // 2. Seed Pengurus Inti
+            const pengurusRef = getCollectionRef('pengurus');
+            const pengurusSnap = await getDocs(pengurusRef);
+            if (pengurusSnap.empty) {
+                console.log("Database Pengurus kosong. Melakukan seeding...");
+                await addDoc(pengurusRef, {
+                    nama: 'Ny. Kustiorini Raja Bayu',
+                    jabatan: 'Ketua Umum',
+                    kategori: 'inti',
+                    foto: 'https://image2url.com/images/1765297566110-1ca2bbda-617b-457a-beb4-771c77025ad2.png',
+                    createdAt: 1
+                });
+                await addDoc(pengurusRef, {
+                    nama: 'Ny. Idarwati',
+                    jabatan: 'Sekretaris',
+                    kategori: 'inti',
+                    foto: '',
+                    createdAt: 2
+                });
+                await addDoc(pengurusRef, {
+                    nama: 'Ny. Yuliana',
+                    jabatan: 'Bendahara',
+                    kategori: 'inti',
+                    foto: '',
+                    createdAt: 3
+                });
+            }
+
+            // 3. Seed Kegiatan
+            const kegRef = getCollectionRef('kegiatan');
+            const kegSnap = await getDocs(kegRef);
+            if (kegSnap.empty) {
+                console.log("Database Kegiatan kosong. Melakukan seeding...");
+                const sampleKegiatan = [
+                    { nama: "Rapat Kerja Daerah GOW Tahun 2024", lokasi: "Gedung BPMS Tarempa", tanggal: new Date().toISOString(), foto: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070", deskripsi: "Rapat kerja membahas program strategis tahun 2025." },
+                    { nama: "Sosialisasi Pencegahan Stunting", lokasi: "Kecamatan Palmatak", tanggal: new Date(Date.now() - 86400000 * 5).toISOString(), foto: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070", deskripsi: "Kegiatan penyuluhan gizi bagi ibu hamil dan balita." },
+                    { nama: "Pelatihan Kewirausahaan UMKM", lokasi: "Tarempa", tanggal: new Date(Date.now() - 86400000 * 15).toISOString(), foto: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070", deskripsi: "Pelatihan digital marketing untuk pelaku usaha wanita." },
+                    { nama: "Peringatan Hari Ibu Ke-96", lokasi: "Aula Kantor Bupati", tanggal: new Date(Date.now() - 86400000 * 30).toISOString(), foto: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=2070", deskripsi: "Upacara dan syukuran peringatan Hari Ibu." },
+                    { nama: "Bakti Sosial Jumat Berkah", lokasi: "Masjid Jamik Tarempa", tanggal: new Date(Date.now() - 86400000 * 45).toISOString(), foto: "https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2070", deskripsi: "Pembagian sembako kepada kaum duafa." },
+                    { nama: "Senam Sehat Bersama", lokasi: "Lapangan Sulaiman Abdullah", tanggal: new Date(Date.now() - 86400000 * 60).toISOString(), foto: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070", deskripsi: "Senam pagi untuk menjaga kebugaran jasmani." }
+                ];
+                for (const keg of sampleKegiatan) {
+                    await addDoc(kegRef, keg);
+                }
+            }
         };
 
         // --- FUNGSI PEMUAT DATA ---
@@ -1542,6 +1663,9 @@
 
             // Wait for auth to complete before loading data
             await initAuth();
+
+            // PANGGIL FUNGSI SEEDING DATA DI SINI (HANYA JALAN JIKA BUKAN PRODUKSI)
+            await seedDatabase();
 
             // Setup listener for auth state changes if needed, but for now we just proceed
             
