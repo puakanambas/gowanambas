@@ -37,12 +37,10 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .hero-bg {
-            /* Mengembalikan ke gambar Unsplash yang stabil karena file lokal tidak terbaca */
             background-image: linear-gradient(to top, #0f172a 10%, rgba(15, 23, 42, 0.7) 80%), url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center center;
         }
-        /* Border tipis berwarna senada footer pada kartu dasar */
         .card-base { 
             background: #1e293b;
             border: 1px solid rgba(219, 39, 119, 0.3); 
@@ -209,7 +207,6 @@
         <div id="main-content">
             <section id="beranda" class="hero-bg pt-20 pb-16 md:pt-40 md:pb-28 text-white text-center relative">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <!-- CHANGED: Color to lime-400 -->
                     <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wider mb-2 text-lime-400" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">GABUNGAN ORGANISASI WANITA</h1>
                     <p class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-pink-400 mb-4" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">( GOW )</p>
                     <p class="text-xl sm:text-2xl md:text-3xl font-semibold tracking-wide mb-4" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">KABUPATEN KEPULAUAN ANAMBAS</p>
@@ -232,25 +229,22 @@
                             <!-- Foto Ketua -->
                             <div class="md:col-span-4 lg:col-span-3 flex flex-col items-center">
                                 <div class="relative group">
-                                    <!-- Decorative Elements (Blurry Blobs) -->
+                                    <!-- Decorative Elements -->
                                     <div class="absolute -top-8 -left-8 w-32 h-32 bg-purple-500/30 rounded-full blur-2xl -z-10 animate-pulse"></div>
                                     <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-pink-500/30 rounded-full blur-2xl -z-10 animate-pulse" style="animation-delay: 1s;"></div>
-
-                                    <!-- Main Glow Effect Behind Photo -->
                                     <div class="absolute -inset-1 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-[2rem] blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                                     
                                     <!-- Photo Container -->
                                     <div class="relative w-60 h-72 sm:w-64 sm:h-80 rounded-[2rem] overflow-hidden border-2 border-white/20 bg-slate-800 shadow-2xl">
-                                        <!-- Inner Background (Useful if PNG is transparent) -->
                                         <div class="absolute inset-0 bg-gradient-to-b from-slate-700/50 to-slate-900/80"></div>
                                         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
                                         
                                         <!-- Image -->
                                         <img src="https://image2url.com/images/1765297566110-1ca2bbda-617b-457a-beb4-771c77025ad2.png" 
                                              alt="Ny. Kustiorini Raja Bayu" 
-                                             class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 filter brightness-105">
+                                             class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 filter brightness-105"
+                                             onerror="this.src='https://placehold.co/400x500/334155/e5e7eb?text=FOTO+KETUA'">
                                         
-                                        <!-- Overlay Gradient for better text contrast/depth at bottom -->
                                         <div class="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/60 to-transparent"></div>
                                     </div>
 
@@ -282,7 +276,6 @@
                                     
                                     <div class="mb-6">
                                         <span class="text-pink-500 font-bold tracking-widest text-xs uppercase mb-2 block">Sambutan Ketua</span>
-                                        <!-- CHANGED: Color to lime-400 -->
                                         <h2 class="text-3xl sm:text-4xl font-bold text-lime-400 font-serif-display">Sekapur Sirih</h2>
                                     </div>
 
@@ -321,7 +314,6 @@
             <section id="tentang" class="py-16 sm:py-20">
                 <div class="container mx-auto px-4">
                     <div class="text-center max-w-3xl mx-auto fade-in-section">
-                        <!-- CHANGED: Color to lime-400 -->
                         <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Tentang GOW Anambas</h2>
                         <p class="text-slate-400 mb-12">GOW Kabupaten Kepulauan Anambas resmi berdiri sejak ditetapkannya akta pendirian sebagai wadah permanen yang berasaskan Pancila dan UUD 1945 untuk memperkuat kolaborasi antar organisasi wanita di Anambas.</p>
                     </div>
@@ -337,7 +329,6 @@
             
             <section id="program" class="py-16 sm:py-20 bg-slate-900">
                 <div class="container mx-auto px-4">
-                    <!-- CHANGED: Color to lime-400 -->
                     <div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Program Kerja GOW 2025-2030</h2><p class="text-slate-400 mb-12">Rencana aksi strategis untuk memberdayakan wanita dan berkontribusi pada pembangunan Kabupaten Kepulauan Anambas.</p></div>
                     <div id="program-kerja-container" class="max-w-4xl mx-auto space-y-4 fade-in-section"></div>
                 </div>
@@ -347,22 +338,24 @@
             <section id="data-terpilah" class="py-16 sm:py-20">
                 <div class="container mx-auto px-4">
                     <div class="text-center max-w-3xl mx-auto fade-in-section">
-                        <!-- CHANGED: Color to lime-400 -->
                         <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Data Terpilah: Potret Wanita & Anak</h2>
-                        <p class="text-slate-400">Data adalah fondasi dari setiap aksi kami. Berikut adalah data statistik (kombinasi data internal GOW dan data publik BPS/Pemkab).</p>
+                        <p class="text-slate-400">Data adalah fondasi dari setiap aksi kami. Berikut adalah data statistik yang bersumber dari BPS dan Dinas Terkait Kabupaten Kepulauan Anambas.</p>
                     </div>
                       <!-- Detail per Kategori -->
-                    <div class="max-w-5xl mx-auto fade-in-section mt-16">
+                    <div class="max-w-6xl mx-auto fade-in-section mt-16">
                         <h3 class="text-2xl font-bold text-center mb-8">Jelajahi Indikator per Sektor</h3>
-                        <div id="data-filter-container" class="flex justify-center flex-wrap gap-3 mb-10">
-                            <button data-category="Kependudukan" class="data-filter-btn active font-semibold px-5 py-2 rounded-lg">Kependudukan</button>
-                            <button data-category="Pendidikan" class="data-filter-btn font-semibold px-5 py-2 rounded-lg">Pendidikan</button>
-                            <button data-category="Kesehatan" class="data-filter-btn font-semibold px-5 py-2 rounded-lg">Kesehatan</button>
-                            <button data-category="Ekonomi" class="data-filter-btn font-semibold px-5 py-2 rounded-lg">Ekonomi</button>
-                            <button data-category="Partisipasi Publik" class="data-filter-btn font-semibold px-5 py-2 rounded-lg">Partisipasi Publik</button>
-                            <button data-category="Perlindungan Khusus" class="data-filter-btn font-semibold px-5 py-2 rounded-lg">Perlindungan Khusus</button>
+                        <div id="data-filter-container" class="flex justify-center flex-wrap gap-2 sm:gap-3 mb-10">
+                            <button data-category="Kependudukan" class="data-filter-btn active font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Kependudukan</button>
+                            <button data-category="Pembangunan Manusia" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Pembangunan Manusia</button>
+                            <button data-category="Pendidikan" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Pendidikan</button>
+                            <button data-category="Kesehatan" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Kesehatan</button>
+                            <button data-category="Ekonomi & Ketenagakerjaan" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Ekonomi & Naker</button>
+                            <button data-category="Politik & Pengambilan Keputusan" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Politik & Keputusan</button>
+                            <button data-category="Hukum & Sosial Budaya" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Hukum & Sosial</button>
+                            <button data-category="Kekerasan & Anak" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Kekerasan & Anak</button>
+                            <button data-category="Lingkungan" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Lingkungan</button>
                         </div>
-                        <div id="data-content-area" class="card-base rounded-xl p-6 md:p-8">
+                        <div id="data-content-area" class="card-base rounded-xl p-4 sm:p-8">
                            <!-- Konten dinamis dimuat oleh JS -->
                         </div>
                     </div>
@@ -371,7 +364,6 @@
 
             <section id="pengurus" class="py-16 sm:py-20 bg-slate-900">
                 <div class="container mx-auto px-4">
-                    <!-- CHANGED: Color to lime-400 -->
                     <div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Struktur Pengurus Inti & Organisasi</h2><p class="text-slate-400 mb-12">Motor penggerak dan sinergi kekuatan wanita Anambas yang berdedikasi memajukan peran wanita.</p></div>
                     <h3 class="text-2xl font-bold text-center mb-8 fade-in-section">Pengurus Inti</h3>
                     <div id="pengurus-inti-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"><p class="col-span-full text-center text-slate-400">Memuat data pengurus...</p></div>
@@ -382,7 +374,6 @@
             
             <section id="kegiatan" class="py-16 sm:py-20">
                 <div class="container mx-auto px-4">
-                    <!-- CHANGED: Color to lime-400 -->
                     <div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Galeri Kegiatan</h2><p class="text-slate-400">Dokumentasi aksi dan kontribusi nyata kami untuk masyarakat Kepulauan Anambas.</p></div>
                     <div class="my-12 max-w-2xl mx-auto flex flex-col sm:flex-row gap-4 fade-in-section"><div class="relative flex-grow"><input type="search" id="search-kegiatan" placeholder="Cari nama kegiatan..." class="w-full bg-slate-800 border border-slate-700 rounded-lg py-2 pl-10 pr-4 text-white focus:ring-2 focus:ring-pink-500 focus:outline-none transition-colors"><i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i></div><select id="filter-tahun" class="bg-slate-800 border border-slate-700 rounded-lg py-2 px-4 text-white focus:ring-2 focus:ring-pink-500 focus:outline-none transition-colors"><option value="">Semua Tahun</option></select></div>
                     
@@ -397,7 +388,6 @@
             </section>
             
             <section id="simanja" class="py-16 sm:py-20 bg-slate-900">
-                <!-- CHANGED: Color to lime-400 -->
                 <div class="container mx-auto px-4"><div class="max-w-3xl mx-auto text-center fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Platform Digital SiMANJA GOW</h2><p class="text-slate-400 mb-6 leading-relaxed">Sebagai wujud inovasi, GOW Anambas menghadirkan <strong class="font-semibold text-white">SiMANJA</strong> (Sistem Informasi Manajemen Jaringan GOW), sebuah platform digital eksklusif yang dirancang untuk memperkuat sinergi dan efektivitas organisasi. Platform ini berfungsi sebagai pusat data terpadu, memudahkan koordinasi program, serta mendukung tata kelola modern melalui digitalisasi administrasi.</p><a href="https://simanjagow.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block px-8 py-3 rounded-lg font-semibold mt-4"><i class="fas fa-sign-in-alt mr-2"></i> Login ke SiMANJA GOW</a></div></div>
             </section>
         </div>
@@ -498,19 +488,27 @@
         // Import signInWithCustomToken and onAuthStateChanged
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         
-        // Konfigurasi Firebase
+        // Konfigurasi Firebase dan Environment
         let firebaseConfig;
         try {
-            // Gunakan konfigurasi dari environment jika ada (mencegah error custom-token-mismatch)
+            // Gunakan konfigurasi dari environment jika ada
             firebaseConfig = JSON.parse(__firebase_config);
         } catch (e) {
-            // Fallback ke hardcoded jika tidak ada
+            // Fallback ke hardcoded jika environment variable tidak tersedia
             firebaseConfig = { apiKey: "AIzaSyAboBugSdtduTa4MIAeQXFkM8QHdah8lcQ", authDomain: "simanja-gow-app.firebaseapp.com", projectId: "simanja-gow-app", storageBucket: "simanja-gow-app.appspot.com", messagingSenderId: "307105555893", appId: "1:307105555893:web:e5470c451f5c4fdacea5fc" };
         }
         
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
+        // AppID for data isolation in this environment
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        // --- Helper for Strict Paths ---
+        // Aturan ketat: Data publik harus ada di /artifacts/{appId}/public/data/...
+        const getCollectionRef = (colName) => collection(db, 'artifacts', appId, 'public', 'data', colName);
+        const getDocRef = (colName, docId) => doc(db, 'artifacts', appId, 'public', 'data', colName, docId);
+
 
         // --- Variabel Global & Kontrol Halaman ---
         const mainContent = document.getElementById('main-content');
@@ -548,19 +546,23 @@
         // --- FUNGSI PEMUAT DATA ---
         const loadStatistik = () => { 
             const els = { organisasi: document.getElementById('total-organisasi'), pengurus: document.getElementById('total-pengurus'), kegiatan: document.getElementById('total-kegiatan') }; 
-            onSnapshot(collection(db, 'organisasi'), (snap) => { els.organisasi.textContent = snap.size; }); 
-            onSnapshot(collection(db, 'pengurus'), (snap) => { els.pengurus.textContent = snap.size; }); 
-            onSnapshot(collection(db, 'kegiatan'), (snap) => { els.kegiatan.textContent = snap.size; }); 
+            onSnapshot(getCollectionRef('organisasi'), (snap) => { els.organisasi.textContent = snap.size; }); 
+            onSnapshot(getCollectionRef('pengurus'), (snap) => { els.pengurus.textContent = snap.size; }); 
+            onSnapshot(getCollectionRef('kegiatan'), (snap) => { els.kegiatan.textContent = snap.size; }); 
         };
         
         const loadPengurusInti = () => { 
             const grid = document.getElementById('pengurus-inti-grid'); if (!grid) return; 
-            const q = query(collection(db, 'pengurus'), orderBy("createdAt", "asc")); 
-            onSnapshot(q, (snapshot) => { 
-                const pengurusInti = snapshot.docs.filter(doc => doc.data().kategori === 'inti'); 
+            // In Canvas environment, compound queries like orderBy require manual indexes.
+            // We fetch all and sort in memory instead.
+            onSnapshot(getCollectionRef('pengurus'), (snapshot) => { 
+                let docs = snapshot.docs.map(d => d.data());
+                // Sort by createdAt manually
+                docs.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
+
+                const pengurusInti = docs.filter(p => p.kategori === 'inti'); 
                 if (pengurusInti.length === 0) { grid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data pengurus inti belum tersedia.</p>'; return; } 
-                grid.innerHTML = pengurusInti.map(doc => { 
-                    const p = doc.data(); 
+                grid.innerHTML = pengurusInti.map(p => { 
                     const avatar = p.foto ? `<img src="${p.foto}" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover mx-auto mb-4 border-4 border-slate-700" onerror="this.src='https://placehold.co/112x112/334155/e5e7eb?text=${p.nama.charAt(0)}'">` : `<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-pink-500 to-fuchsia-600 flex items-center justify-center mx-auto mb-4 border-4 border-slate-700"><span class="text-3xl sm:text-4xl font-bold">${p.nama.charAt(0)}</span></div>`; 
                     return `<div class="card-base text-center p-6 rounded-xl fade-in-section">${avatar}<h3 class="text-xl font-bold">${p.nama}</h3><p class="text-amber-400">${p.jabatan}</p></div>`; 
                 }).join(''); 
@@ -569,9 +571,15 @@
         };
         
         const loadKegiatan = () => { 
-            const q = query(collection(db, 'kegiatan'), orderBy("tanggal", "desc")); 
-            onSnapshot(q, (snapshot) => { 
+            onSnapshot(getCollectionRef('kegiatan'), (snapshot) => { 
                 allKegiatan = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); 
+                // In-memory sort by date descending
+                allKegiatan.sort((a, b) => {
+                    const dateA = a.tanggal ? new Date(a.tanggal) : 0;
+                    const dateB = b.tanggal ? new Date(b.tanggal) : 0;
+                    return dateB - dateA;
+                });
+
                 const filterTahun = document.getElementById('filter-tahun'); 
                 const years = [...new Set(allKegiatan.map(k => k.tanggal ? new Date(k.tanggal).getFullYear() : null).filter(Boolean))]; 
                 filterTahun.innerHTML = '<option value="">Semua Tahun</option>'; 
@@ -582,14 +590,16 @@
         
         const loadOrganisasi = () => { 
             const grid = document.getElementById('organisasi-grid'); if(!grid) return; 
-            const q = query(collection(db, 'organisasi'), orderBy("nama", "asc")); 
-            onSnapshot(q, (snapshot) => { 
+            onSnapshot(getCollectionRef('organisasi'), (snapshot) => { 
                 if (snapshot.empty) { grid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data organisasi belum tersedia.</p>'; return; } 
-                grid.innerHTML = snapshot.docs.map(doc => { 
-                    const org = doc.data(); 
-                    const id = doc.id; 
+                
+                let docs = snapshot.docs.map(d => ({id: d.id, ...d.data()}));
+                // In-memory sort by name asc
+                docs.sort((a, b) => (a.nama || "").localeCompare(b.nama || ""));
+
+                grid.innerHTML = docs.map(org => { 
                     const logoHtml = org.logo ? `<img src="${org.logo}" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML = '<i class=\\'fas fa-sitemap text-3xl text-slate-500\\'></i>'">` : `<i class="fas fa-sitemap text-3xl text-slate-500"></i>`; 
-                    return `<button data-org-id="${id}" class="org-card card-base text-center p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center fade-in-section h-36 sm:h-40"><div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-slate-800 flex items-center justify-center mb-3 overflow-hidden p-2">${logoHtml}</div><h4 class="font-semibold text-xs sm:text-sm leading-tight line-clamp-2">${org.nama}</h4></button>`; 
+                    return `<button data-org-id="${org.id}" class="org-card card-base text-center p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center fade-in-section h-36 sm:h-40"><div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-slate-800 flex items-center justify-center mb-3 overflow-hidden p-2">${logoHtml}</div><h4 class="font-semibold text-xs sm:text-sm leading-tight line-clamp-2">${org.nama}</h4></button>`; 
                 }).join(''); 
                 observeSections(); 
                 document.querySelectorAll('.org-card').forEach(card => card.addEventListener('click', () => renderOrganisasiDetail(card.dataset.orgId))); 
@@ -699,7 +709,7 @@
             showDetailPage(); 
             detailContent.innerHTML = `<div class="text-center py-40"><p class="text-slate-400">Memuat detail...</p></div>`; 
             try { 
-                const docRef = doc(db, 'kegiatan', kegiatanId); 
+                const docRef = getDocRef('kegiatan', kegiatanId); 
                 const docSnap = await getDoc(docRef); 
                 if (docSnap.exists()) { 
                     const data = docSnap.data(); 
@@ -724,7 +734,7 @@
         // --- UPDATE: RENDER MODAL DENGAN SCROLLBAR ---
         const renderOrganisasiDetail = async (orgId) => { 
             const placeholder = document.getElementById('modal-placeholder'); 
-            const docRef = doc(db, 'organisasi', orgId); 
+            const docRef = getDocRef('organisasi', orgId); 
             const docSnap = await getDoc(docRef); 
             if (docSnap.exists()) { 
                 const org = docSnap.data(); 
@@ -773,201 +783,499 @@
         
         const fullDataByCategory = {
             'Kependudukan': {
-                sumber: 'Sumber: Dinas Sosial PPPA (Data PMKS & Disabilitas Tahun 2023-2024)',
+                sumber: 'Sumber: Dinas Kependudukan dan Pencatatan Sipil, BPS (Tabel 1.1 - 1.9)',
                 indicators: {
-                    'Penduduk Lansia': {
+                    'Komposisi Penduduk (0-4 Tahun)': {
                         type: 'kabupaten',
                         labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>💡 Data jumlah lansia berdasarkan jenis kelamin. Data ini penting untuk perencanaan program perlindungan sosial lansia.</p>' },
+                        wawasan: { default: '<p>💡 Jumlah balita (0-4 tahun) di Anambas pada tahun 2024 cukup seimbang antara laki-laki dan perempuan.</p>' },
                         datasets: [
-                            { label: '2023', color: 'rgba(96, 165, 250, 0.7)' },
+                            { label: '2023', color: 'rgba(59, 130, 246, 0.7)' },
                             { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
                         ],
-                        data: [ [0, 0], [0, 0] ] // Tabel 7.2
+                        data: [ [2050, 1959], [1997, 1899] ] // Tabel 1.1
                     },
-                    'Penyandang Disabilitas': {
+                    'Kepala Rumah Tangga': {
                         type: 'kabupaten',
                         labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>💡 Jumlah penyandang disabilitas yang terdata. Membantu dalam pemenuhan hak-hak disabilitas.</p>' },
+                        wawasan: { default: '<p>💡 Dominasi kepala rumah tangga laki-laki (13.231) dibanding perempuan (2.813) pada tahun 2024.</p>' },
                         datasets: [
-                            { label: '2023', color: 'rgba(52, 211, 153, 0.7)' },
-                            { label: '2024', color: 'rgba(251, 191, 36, 0.7)' }
+                            { label: '2023', color: 'rgba(59, 130, 246, 0.7)' },
+                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
                         ],
-                        data: [ [0, 0], [0, 0] ] // Tabel 7.3.a
+                        data: [ [12909, 2690], [13231, 2813] ] // Tabel 1.2
+                    },
+                    'Kepemilikan Akta & KIA (Anak)': {
+                        type: 'kabupaten',
+                        labels: ['Memiliki Akta', 'Tidak Memiliki Akta', 'Memiliki KIA', 'Tidak Memiliki KIA'],
+                        wawasan: { default: '<p>💡 Sebagian besar anak (0-17 tahun) sudah memiliki akta kelahiran, dan cakupan KIA terus meningkat.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+                        ],
+                        data: [ [15817, 130, 12235, 2753] ] // Tabel 1.9 (Total L+P)
+                    },
+                    'Penduduk Menurut Kelompok Umur': { // Tabel 1.3
+                        type: 'kabupaten',
+                        labels: ['0-4', '5-9', '10-14', '15-19', '20-50', '51+'],
+                        wawasan: { default: '<p>💡 Sebaran penduduk berdasarkan kelompok umur.</p>' },
+                        datasets: [
+                            { label: 'Laki-laki (2024)', color: 'rgba(59, 130, 246, 0.7)' },
+                            { label: 'Perempuan (2024)', color: 'rgba(236, 72, 153, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0] ] // Data 0
+                    }
+                }
+            },
+            'Pembangunan Manusia': {
+                sumber: 'Sumber: BPS Provinsi Kepulauan Riau (Tabel 1.4)',
+                indicators: {
+                    'Indeks Pembangunan': {
+                        type: 'kabupaten',
+                        labels: ['IPM', 'IPG', 'IDG'],
+                        wawasan: { default: '<p>💡 Capaian Indeks Pembangunan Gender (IPG) tahun 2024 mencapai 92.02, menunjukkan kesetaraan yang cukup baik.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(16, 185, 129, 0.7)' },
+                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+                        ],
+                        data: [ [70.26, 91.58, 62.29], [70.93, 92.02, 58.3] ] // Tabel 1.4
                     }
                 }
             },
             'Pendidikan': {
-                sumber: 'Sumber: Dinas Pendidikan (Data ABK Tahun 2024)',
+                sumber: 'Sumber: Dinas Pendidikan, BPS (Tabel 3.1 - 3.9)',
                 indicators: {
-                    'Anak Berkebutuhan Khusus (ABK)': {
+                    'Pendidikan Tertinggi Ditamatkan': {
                         type: 'kabupaten',
-                        labels: ['Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Tuna Daksa', 'Autis', 'Tuna Ganda', 'Lamban Belajar'],
-                        wawasan: { default: '<p>💡 Sebaran siswa ABK berdasarkan jenis kekhususan. Data ini menjadi dasar penyediaan guru pendamping khusus dan sarana inklusi.</p>' },
+                        labels: ['Tdk Sekolah', 'SD', 'SLTP', 'SLTA', 'PT'],
+                        wawasan: { default: '<p>💡 Distribusi tingkat pendidikan penduduk Anambas.</p>' },
                         datasets: [
-                            { label: 'Laki-laki', color: 'rgba(59, 130, 246, 0.7)' },
-                            { label: 'Perempuan', color: 'rgba(236, 72, 153, 0.7)' }
+                            { label: '2024 (Persentase)', color: 'rgba(59, 130, 246, 0.7)' }
                         ],
-                        data: [ [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0] ] // Tabel 9.8.1.b
+                        data: [ [16.18, 13.19, 0, 0, 0] ] // Tabel 1.5
+                    },
+                    'Angka Partisipasi Kasar (APK)': { // Tabel 3.1
+                        type: 'kabupaten',
+                        labels: ['SD', 'SLTP', 'SLTA'],
+                        wawasan: { default: '<p>💡 Angka Partisipasi Kasar (APK) pendidikan.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0] ] // Data 0
+                    },
+                    'Angka Partisipasi Sekolah (APS)': { // Tabel 3.2
+                        type: 'kabupaten',
+                        labels: ['7-12 Thn', '13-15 Thn', '16-18 Thn'],
+                        wawasan: { default: '<p>💡 Angka Partisipasi Sekolah berdasarkan kelompok umur.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0] ] // Data 0
+                    },
+                    'Angka Partisipasi Murni (APM)': {
+                        type: 'kabupaten',
+                        labels: ['SD', 'SLTP', 'SLTA'],
+                        wawasan: { default: '<p>💡 Data Angka Partisipasi Murni sekolah.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0] ] // Tabel 3.3 (Data 0)
+                    },
+                    'Angka Melek Huruf (AMH)': { // Tabel 3.4
+                        type: 'kabupaten',
+                        labels: ['Usia >15', 'Usia 15-24'],
+                        wawasan: { default: '<p>💡 Angka melek huruf penduduk.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Data 0
+                    },
+                    'Siswa Putus Sekolah': { // Tabel 3.5
+                        type: 'kabupaten',
+                        labels: ['SD', 'SLTP', 'SLTA'],
+                        wawasan: { default: '<p>⚠️ Jumlah siswa yang putus sekolah.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0] ] // Data 0
+                    },
+                    'Rata-Rata Lama Sekolah': { // Tabel 3.6
+                        type: 'kabupaten',
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>💡 Rata-rata lama sekolah penduduk.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(147, 51, 234, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Data 0
+                    },
+                    'Jumlah Guru (Negeri/Swasta)': { // Tabel 3.7
+                        type: 'kabupaten',
+                        labels: ['SD', 'SLTP', 'SLTA'],
+                        wawasan: { default: '<p>💡 Jumlah tenaga pengajar negeri dan swasta.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0] ] // Data 0
+                    },
+                    'Jumlah Guru (Sertifikasi)': {
+                        type: 'kabupaten',
+                        labels: ['SD', 'SLTP', 'SLTA'],
+                        wawasan: { default: '<p>💡 Jumlah guru yang telah tersertifikasi.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0] ] // Tabel 3.9 (Data 0)
                     }
                 }
             },
             'Kesehatan': {
-                sumber: 'Sumber: Dinas Kesehatan PPKB (Data Kesehatan Ibu & Anak 2023-2024)',
+                sumber: 'Sumber: Dinas Kesehatan PPKB (Tabel 2.1 - 2.8)',
                 indicators: {
-                    'Status Gizi Balita (Kurang & Buruk)': {
+                    'Angka Harapan Hidup (AHH)': {
                         type: 'kabupaten',
-                        labels: ['Gizi Kurang', 'Gizi Buruk'],
-                        wawasan: { default: '<p>💡 Indikator utama intervensi stunting. Menampilkan jumlah kasus gizi kurang dan buruk pada balita.</p>' },
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>💡 AHH perempuan (70.41) lebih tinggi dibanding laki-laki (66.43) pada tahun 2024.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(96, 165, 250, 0.7)' },
+                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+                        ],
+                        data: [ [66.15, 70.14], [66.43, 70.41] ] // Tabel 2.1
+                    },
+                    'Kematian Ibu': { // Tabel 2.2
+                        type: 'kabupaten',
+                        labels: ['< 20 Thn', '20-35 Thn', '> 35 Thn'],
+                        wawasan: { default: '<p>💡 Data kematian ibu hamil, melahirkan, dan nifas (Nihil).</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0] ] // Data 0
+                    },
+                    'Kesehatan Ibu Hamil': {
+                        type: 'kabupaten',
+                        labels: ['Bumil KEK', 'Bumil Risti'],
+                        wawasan: { default: '<p>💡 Pemantauan ibu hamil dengan risiko Kekurangan Energi Kronis (KEK) dan Resiko Tinggi.</p>' },
                         datasets: [
                             { label: '2023', color: 'rgba(251, 146, 60, 0.7)' },
                             { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
                         ],
-                        data: [ [0, 0], [0, 0] ] // Tabel 9.11.5
+                        data: [ [73, 255], [126, 149] ] // Tabel 2.3
                     },
-                    'Cakupan ASI Ekslusif': {
+                    'Peserta KB Aktif': {
                         type: 'kabupaten',
-                        labels: ['Bayi Lahir', 'Dapat ASI Ekslusif'],
-                        wawasan: { default: '<p>💡 Proporsi bayi yang mendapatkan ASI ekslusif selama 6 bulan.</p>' },
+                        labels: ['Perempuan', 'Laki-laki'],
+                        wawasan: { default: '<p>💡 Partisipasi KB didominasi perempuan (6.970) dibanding laki-laki (259).</p>' },
                         datasets: [
                             { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
                         ],
-                        data: [ [0, 0] ] // Tabel 9.11.4
+                        data: [ [6970, 259] ] // Tabel 2.6
                     },
-                    'Kematian Bayi & Balita': {
+                    'Peserta KB Baru': { // Tabel 2.7
                         type: 'kabupaten',
-                        labels: ['Kematian Bayi', 'Kematian Balita'],
-                        wawasan: { default: '<p>💡 Angka kematian bayi dan balita sebagai indikator derajat kesehatan anak.</p>' },
+                        labels: ['Perempuan', 'Laki-laki'],
+                        wawasan: { default: '<p>💡 Peserta KB baru tahun 2024.</p>' },
                         datasets: [
-                            { label: '2023', color: 'rgba(107, 114, 128, 0.7)' },
-                            { label: '2024', color: 'rgba(31, 41, 55, 0.7)' }
+                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
                         ],
-                        data: [ [0, 0], [0, 0] ] // Tabel 9.11.1
+                        data: [ [699, 81] ] // Tabel 2.7
                     },
-                    'Bayi BBLR (Berat Badan Lahir Rendah)': {
+                    'Kasus HIV/AIDS': {
                         type: 'kabupaten',
-                        labels: ['Bayi Lahir', 'Bayi BBLR'],
-                        wawasan: { default: '<p>💡 Jumlah bayi dengan berat badan lahir rendah, yang berisiko mengalami stunting.</p>' },
-                        datasets: [
-                            { label: '2023', color: 'rgba(234, 179, 8, 0.7)' },
-                            { label: '2024', color: 'rgba(202, 138, 4, 0.7)' }
-                        ],
-                        data: [ [0, 0], [0, 0] ] // Tabel 9.11.3
-                    },
-                    'Cakupan Imunisasi Balita': {
-                        type: 'kabupaten',
-                        labels: ['BCG', 'DPT 3', 'Polio 3', 'Campak'],
-                        wawasan: { default: '<p>💡 Cakupan imunisasi dasar lengkap pada balita untuk mencegah penyakit.</p>' },
-                        datasets: [
-                            { label: '2023', color: 'rgba(56, 189, 248, 0.7)' },
-                            { label: '2024', color: 'rgba(14, 165, 233, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0, 0], [0, 0, 0, 0] ] // Tabel 9.11.2
-                    }
-                }
-            },
-            'Ekonomi': {
-                sumber: 'Sumber: Dinas Sosial PPPA (Data Kemiskinan)',
-                indicators: {
-                    'Rumah Tangga Miskin': {
-                        type: 'kabupaten',
-                        labels: ['Laki-laki (Kepala Keluarga)', 'Perempuan (Kepala Keluarga)'],
-                        wawasan: { default: '<p>💡 Jumlah Rumah Tangga Miskin terdata berdasarkan jenis kelamin kepala keluarga.</p>' },
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>💡 Terdapat peningkatan kasus HIV yang terdeteksi pada tahun 2024.</p>' },
                         datasets: [
                             { label: '2023', color: 'rgba(147, 51, 234, 0.7)' },
-                            { label: '2024', color: 'rgba(79, 70, 229, 0.7)' }
-                        ],
-                        data: [ [0, 0], [0, 0] ] // Tabel 7.2 (2)
-                    }
-                }
-            },
-            'Partisipasi Publik': {
-                sumber: 'Sumber: BKPSDM, DPMD, Sekretariat DPRD',
-                indicators: {
-                    'Kepala Desa & Lurah': {
-                        type: 'kabupaten',
-                        labels: ['Kepala Desa/Lurah'],
-                        wawasan: { default: '<p>💡 Keterwakilan perempuan sebagai pemimpin di tingkat desa dan kelurahan.</p>' },
-                        datasets: [
-                            { label: 'Laki-laki', color: 'rgba(34, 197, 94, 0.7)' },
-                            { label: 'Perempuan', color: 'rgba(236, 72, 153, 0.7)' }
-                        ],
-                        data: [ [0], [0] ] // Tabel 6.1.3a
-                    },
-                    'Anggota BPD (Badan Permusyawaratan Desa)': {
-                        type: 'kabupaten',
-                        labels: ['Anggota BPD'],
-                        wawasan: { default: '<p>💡 Partisipasi perempuan dalam lembaga legislatif desa (BPD).</p>' },
-                        datasets: [
-                            { label: 'Laki-laki', color: 'rgba(16, 185, 129, 0.7)' },
-                            { label: 'Perempuan', color: 'rgba(244, 114, 182, 0.7)' }
-                        ],
-                        data: [ [0], [0] ] // Tabel 6.1.3b
-                    },
-                    'Pejabat Eselon (II, III, IV)': {
-                        type: 'kabupaten',
-                        labels: ['Eselon II', 'Eselon III', 'Eselon IV'],
-                        wawasan: { default: '<p>💡 Partisipasi perempuan dalam jabatan struktural pemerintahan (Eselon II, III, dan IV).</p>' },
-                        datasets: [
-                            { label: 'Laki-laki', color: 'rgba(59, 130, 246, 0.7)' },
-                            { label: 'Perempuan', color: 'rgba(236, 72, 153, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0], [0, 0, 0] ] // Tabel 6.1.4
-                    },
-                    'Anggota DPRD': {
-                        type: 'kabupaten',
-                        labels: ['Anggota DPRD'],
-                        wawasan: { default: '<p>💡 Persentase keterwakilan perempuan di lembaga legislatif daerah.</p>' },
-                        datasets: [
-                            { label: 'Laki-laki', color: 'rgba(59, 130, 246, 0.7)' },
-                            { label: 'Perempuan', color: 'rgba(236, 72, 153, 0.7)' }
-                        ],
-                        data: [ [0], [0] ] // Tabel 6.2.1
-                    }
-                }
-            },
-            'Perlindungan Khusus': {
-                sumber: 'Sumber: Dinsos PPPA (SIMFONI PPA) & Pengadilan Agama',
-                indicators: {
-                    'Korban Kekerasan (Jenis)': {
-                        type: 'kabupaten',
-                        labels: ['Fisik', 'Psikis', 'Seksual', 'Penelantaran', 'TPPO'],
-                        wawasan: { default: '<p>⚠️ Jumlah korban kekerasan berdasarkan jenis kekerasan yang dialami.</p>' },
-                        datasets: [
-                            { label: 'Laki-laki', color: 'rgba(59, 130, 246, 0.7)' },
-                            { label: 'Perempuan', color: 'rgba(239, 68, 68, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0, 0, 0], [0, 0, 0, 0, 0] ] // Tabel 8.1.5
-                    },
-                    'Kasus Perceraian': {
-                        type: 'kabupaten',
-                        labels: ['Cerai Talak (Suami)', 'Cerai Gugat (Istri)'],
-                        wawasan: { default: '<p>💡 Tren kasus perceraian berdasarkan jenis permohonan di Pengadilan Agama.</p>' },
-                        datasets: [
-                            { label: '2023', color: 'rgba(245, 158, 11, 0.7)' },
-                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
-                        ],
-                        data: [ [0, 0], [0, 0] ] // Tabel 7.4.1
-                    },
-                    'Dispensasi Kawin': {
-                        type: 'kabupaten',
-                        labels: ['Jumlah Dispensasi'],
-                        wawasan: { default: '<p>⚠️ Angka permohonan dispensasi kawin (pernikahan dini) yang diputus oleh Pengadilan Agama.</p>' },
-                        datasets: [
-                            { label: '2023', color: 'rgba(16, 185, 129, 0.7)' },
                             { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
                         ],
-                        data: [ [0], [0] ] // Tabel 9.11.6
+                        data: [ [6, 1], [8, 6] ] // Tabel 2.4
                     },
-                    'Kasus TPPO (Perdagangan Orang)': {
+                    'HIV/AIDS per Kelompok Umur': { // Tabel 2.5
+                        type: 'kabupaten',
+                        labels: ['0-4', '5-14', '15-19', '20-24', '25-49'],
+                        wawasan: { default: '<p>💡 Sebaran kasus HIV berdasarkan kelompok umur.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+                        ],
+                        data: [ [0, 1, 0, 1, 9] ] // Tabel 2.5 snippet
+                    },
+                    'Kebutuhan KB Belum Terpenuhi (Unmet Need)': { // Tabel 2.8
+                        type: 'kabupaten',
+                        labels: ['Unmet Need'],
+                        wawasan: { default: '<p>💡 Penurunan angka Unmet Need yang signifikan.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(251, 146, 60, 0.7)' },
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+                        ],
+                        data: [ [226], [1] ] // Tabel 2.8
+                    }
+                }
+            },
+            'Ekonomi & Ketenagakerjaan': {
+                sumber: 'Sumber: DKUMPP, BPS (Tabel 1.6-1.8, 5.1-5.12)',
+                indicators: {
+                    'Anggota Koperasi': {
+                        type: 'kabupaten',
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>💡 Peningkatan signifikan keanggotaan koperasi pada tahun 2024.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(59, 130, 246, 0.7)' },
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+                        ],
+                        data: [ [552, 616], [993, 819] ] // Tabel 5.7
+                    },
+                    'Tingkat Pengangguran Terbuka': {
+                        type: 'kabupaten',
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>💡 Data tingkat pengangguran terbuka.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Tabel 5.8 (Data kosong)
+                    },
+                    'Pekerja Sektor Informal': {
+                        type: 'kabupaten',
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>💡 Data pekerja di sektor informal.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Tabel 5.5 (Data kosong)
+                    },
+                    'Tenaga Kerja Migran (AKAD)': { // Tabel 5.3.a
+                        type: 'kabupaten',
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>💡 Tenaga Kerja Antar Kerja Antar Daerah (AKAD).</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Data 0
+                    },
+                    'Tenaga Kerja Migran (AKAN)': { // Tabel 5.3.b
+                        type: 'kabupaten',
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>💡 Tenaga Kerja Antar Kerja Antar Negara (AKAN).</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Data 0
+                    },
+                    'Perempuan Profesional': { // Tabel 5.10
+                        type: 'kabupaten',
+                        labels: ['Jumlah'],
+                        wawasan: { default: '<p>💡 Jumlah perempuan pekerja profesional dan manajerial.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+                        ],
+                        data: [ [0] ] // Data 0
+                    },
+                    'Pekerja Menurut Lapangan Usaha': { // Tabel 1.6 & 5.11.1
+                        type: 'kabupaten',
+                        labels: ['Pertanian/Kehutanan', 'Industri', 'Perdagangan', 'Jasa', 'Lainnya'],
+                        wawasan: { default: '<p>💡 Distribusi pekerja berdasarkan lapangan usaha utama.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0, 0, 0] ] // Data 0
+                    }
+                }
+            },
+            'Politik & Pengambilan Keputusan': {
+                sumber: 'Sumber: Kesbangpol, Polres, PA (Tabel 6.2-7.4)',
+                indicators: {
+                    'Pengurus Partai Politik': {
+                        type: 'kabupaten',
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>💡 Keterwakilan perempuan dalam pengurus harian partai politik tercatat 69 orang.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(96, 165, 250, 0.7)' },
+                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+                        ],
+                        data: [ [203, 69], [203, 69] ] // Tabel 6.2.2
+                    },
+                    'Kaukus Perempuan Parlemen': { // Tabel 6.2.3
+                        type: 'kabupaten',
+                        labels: ['Pengurus', 'Anggota'],
+                        wawasan: { default: '<p>💡 Data Kaukus Perempuan Parlemen.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Data 0
+                    },
+                    'Pejabat Kepolisian': { // Tabel 6.3.4
+                        type: 'kabupaten',
+                        labels: ['Kapolres/L', 'Kapolres/P', 'Kapolsek/L', 'Kapolsek/P'],
+                        wawasan: { default: '<p>💡 Data pejabat di lingkungan Kepolisian Resort Anambas.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0, 0] ] // Data 0
+                    },
+                    'Jaksa (Struktural & Fungsional)': { // Tabel 6.3.1
+                        type: 'kabupaten',
+                        labels: ['Struktural/L', 'Struktural/P', 'Fungsional/L', 'Fungsional/P'],
+                        wawasan: { default: '<p>💡 Data Jaksa di Kejaksaan Negeri.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0, 0] ] // Data 0
+                    },
+                    'Hakim (PN & PA)': { // Tabel 6.3.2
+                        type: 'kabupaten',
+                        labels: ['Hakim/L', 'Hakim/P'],
+                        wawasan: { default: '<p>💡 Data Hakim di Pengadilan Negeri dan Agama.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Data 0
+                    }
+                }
+            },
+            'Hukum & Sosial Budaya': {
+                sumber: 'Sumber: Dinsos PPPA, BPBD, Pengadilan Agama (Tabel 4.2, 5.2, 7.1-7.4)',
+                indicators: {
+                    'Penghuni Lapas & Rutan': { // Tabel 7.1
+                        type: 'kabupaten',
+                        labels: ['Tahanan Dewasa', 'Tahanan Anak', 'Napi Dewasa', 'Napi Anak'],
+                        wawasan: { default: '<p>⚠️ Data penghuni Lapas dan Rutan di Kabupaten Kepulauan Anambas.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(100, 116, 139, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0, 0] ] // Data 0
+                    },
+                    'Kasus Perceraian': { // Tabel 7.4.1
+                        type: 'kabupaten',
+                        labels: ['Cerai Talak (Suami)', 'Cerai Gugat (Istri)'],
+                        wawasan: { default: '<p>⚠️ Angka cerai gugat (istri) lebih tinggi dibandingkan cerai talak.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+                        ],
+                        data: [ [30, 85] ] // Estimasi dari PDF
+                    },
+                    'Rumah Tangga Miskin': { // Tabel 7.2 (2)
+                        type: 'kabupaten',
+                        labels: ['Kepala Laki-laki', 'Kepala Perempuan'],
+                        wawasan: { default: '<p>💡 Jumlah Rumah Tangga Miskin.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Data 0
+                    },
+                    'Penduduk Lansia Terlantar': { // Tabel 7.2
+                        type: 'kabupaten',
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>💡 Jumlah penduduk lansia terlantar.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(147, 51, 234, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Data 0
+                    },
+                    'Penyandang Disabilitas': { // Tabel 7.3.a & 7.3.b
+                        type: 'kabupaten',
+                        labels: ['Dewasa L', 'Dewasa P', 'Anak L', 'Anak P'],
+                        wawasan: { default: '<p>💡 Data penyandang disabilitas (Dewasa dan Anak).</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0, 0] ] // Data 0
+                    }
+                }
+            },
+            'Lingkungan': {
+                sumber: 'Sumber: Dinsos PPPA, BPBD (Tabel 4.2)',
+                indicators: {
+                    'Korban Bencana Alam': {
+                        type: 'kabupaten',
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>⚠️ Dampak bencana alam (Banjir Bandang, Angin Puting Beliung) terhadap penduduk pada tahun 2023.</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(100, 116, 139, 0.7)' }
+                        ],
+                        data: [ [406, 343] ] // Tabel 4.2 (Sum)
+                    }
+                }
+            },
+            'Kekerasan & Anak': {
+                sumber: 'Sumber: Dinsos PPPA, UPTD PPA (Tabel 8.1-9.11)',
+                indicators: {
+                    'Dispensasi Kawin Anak': {
+                        type: 'kabupaten',
+                        labels: ['Jumlah Kasus'],
+                        wawasan: { default: '<p>⚠️ Penurunan positif kasus dispensasi kawin dari 32 (2023) menjadi 23 (2024).</p>' },
+                        datasets: [
+                            { label: '2023', color: 'rgba(251, 146, 60, 0.7)' },
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+                        ],
+                        data: [ [32], [23] ] // Tabel 9.11.6
+                    },
+                    'Kekerasan Terhadap Anak': { // Tabel 9.1.2
+                        type: 'kabupaten',
+                        labels: ['Fisik', 'Psikis', 'Seksual', 'Penelantaran', 'Lainnya'],
+                        wawasan: { default: '<p>⚠️ Data kasus kekerasan terhadap anak yang dilaporkan.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0, 0, 0] ] // Data 0
+                    },
+                    'Anak Berhadapan Hukum': { // Tabel 9.4 & 9.9
+                        type: 'kabupaten',
+                        labels: ['Laki-laki', 'Perempuan'],
+                        wawasan: { default: '<p>⚠️ Data anak yang berhadapan dengan hukum.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Data 0
+                    },
+                    'Pelaku Kekerasan (Pekerjaan)': { // Tabel 8.1.10.a
+                        type: 'kabupaten',
+                        labels: ['Tidak Bekerja', 'Bekerja'],
+                        wawasan: { default: '<p>⚠️ Status pekerjaan pelaku kekerasan.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(107, 114, 128, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Data 0
+                    },
+                    'Pelaku Kekerasan (Hubungan)': { // Tabel 8.1.10.a
+                        type: 'kabupaten',
+                        labels: ['Orang Tua', 'Keluarga', 'Suami/Istri', 'Lainnya'],
+                        wawasan: { default: '<p>⚠️ Hubungan pelaku kekerasan dengan korban.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0, 0] ] // Data 0
+                    },
+                    'Pelaku TPPO': { // Tabel 8.2.2.a
                         type: 'kabupaten',
                         labels: ['Penyidikan', 'Penuntutan', 'Putusan'],
-                        wawasan: { default: '<p>⚠️ Proses hukum kasus Tindak Pidana Perdagangan Orang (TPPO) yang ditangani.</p>' },
+                        wawasan: { default: '<p>⚠️ Data pelaku Tindak Pidana Perdagangan Orang (TPPO).</p>' },
                         datasets: [
-                            { label: '2023', color: 'rgba(107, 114, 128, 0.7)' },
-                            { label: '2024', color: 'rgba(31, 41, 55, 0.7)' }
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
                         ],
-                        data: [ [0, 0, 0], [0, 0, 0] ] // Tabel 8.2.2.a
+                        data: [ [0, 0, 0] ] // Data 0
+                    },
+                    'Anak Jalanan & Terlantar': { // Tabel 9.2 & 9.3
+                        type: 'kabupaten',
+                        labels: ['Anak Jalanan', 'Anak Terlantar'],
+                        wawasan: { default: '<p>⚠️ Data anak jalanan dan terlantar.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Data 0
+                    },
+                    'Panti Asuhan': { // Tabel 9.7.a
+                        type: 'kabupaten',
+                        labels: ['Jumlah Panti', 'Anak Asuh'],
+                        wawasan: { default: '<p>💡 Data panti asuhan anak.</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
+                        ],
+                        data: [ [0, 0] ] // Data 0
+                    },
+                    'Layanan TESA': { // Tabel 9.6.a/b
+                        type: 'kabupaten',
+                        labels: ['Konseling', 'Informasi', 'Lainnya'],
+                        wawasan: { default: '<p>💡 Pemanfaatan layanan Telepon Sahabat Anak (TESA).</p>' },
+                        datasets: [
+                            { label: '2024', color: 'rgba(147, 51, 234, 0.7)' }
+                        ],
+                        data: [ [0, 0, 0] ] // Data 0
                     }
                 }
             }
@@ -993,8 +1301,8 @@
                         <div class="flex flex-col sm:flex-row gap-4 mb-6">
                              <select id="indicator-filter" class="flex-grow bg-slate-800 border border-slate-700 rounded-lg py-2 px-4 focus:ring-2 focus:ring-pink-500 focus:outline-none">
                                 ${indicatorOptions}
-                            </select>
-                            ${kecamatanSelectHTML}
+                             </select>
+                             ${kecamatanSelectHTML}
                         </div>
                         <div class="bg-slate-800/50 rounded-lg p-4 h-96 relative">
                             <h4 id="chart-title" class="text-lg font-bold mb-2 text-center text-slate-300"></h4>
@@ -1125,7 +1433,7 @@
             const dataContentArea = document.getElementById('data-content-area');
             if(!filterContainer || !dataContentArea) return;
 
-            renderDataContent('Kependudukan');
+            renderDataContent('Kependudukan'); // Set default awal
 
             const handleFilterChange = () => {
                 const activeCategory = filterContainer.querySelector('.active').dataset.category;
@@ -1223,16 +1531,10 @@
                 try {
                     // Prioritize custom token if available
                     if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        try {
-                            await signInWithCustomToken(auth, __initial_auth_token);
-                            return; // Success
-                        } catch (tokenError) {
-                            console.warn("Custom token failed, falling back to anonymous:", tokenError);
-                        }
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
                     }
-                    
-                    // Fallback to anonymous sign-in (if token missing or failed)
-                    await signInAnonymously(auth);
                 } catch (error) {
                     console.error("Gagal inisialisasi auth:", error);
                 }
