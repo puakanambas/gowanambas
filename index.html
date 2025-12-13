@@ -74,15 +74,119 @@
 
         }
 
-        .hero-bg {
+        
 
-            background-image: linear-gradient(to top, #0f172a 10%, rgba(15, 23, 42, 0.7) 80%), url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=2070&auto=format&fit=crop');
+        /* --- Hero Slideshow Styles --- */
+
+        .hero-section {
+
+            position: relative;
+
+            overflow: hidden;
+
+            /* Responsive height: Taller on desktop, slightly shorter on mobile to preserve landscape aspect */
+
+            height: 80vh; 
+
+            min-height: 600px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        @media (min-width: 768px) {
+
+            .hero-section {
+
+                height: 100vh; /* Full screen on desktop */
+
+            }
+
+        }
+
+
+
+        .slideshow-container {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            z-index: 0;
+
+        }
+
+
+
+        .slide {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            opacity: 0;
+
+            transition: opacity 1.5s ease-in-out, transform 6s linear; /* Smooth fade & slow zoom */
 
             background-size: cover;
 
-            background-position: center center;
+            background-position: center top; /* Prioritize heads/faces at the top */
+
+            transform: scale(1.05); /* Slight zoom start */
 
         }
+
+
+
+        .slide.active {
+
+            opacity: 1;
+
+            transform: scale(1); /* Zoom to normal */
+
+            z-index: 1;
+
+        }
+
+
+
+        /* Overlay gradient untuk memastikan teks terbaca */
+
+        .hero-overlay {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: linear-gradient(to top, #0f172a 10%, rgba(15, 23, 42, 0.4) 100%);
+
+            z-index: 2;
+
+        }
+
+
 
         .card-base { 
 
@@ -412,9 +516,43 @@
 
         <div id="main-content">
 
-            <section id="beranda" class="hero-bg pt-20 pb-16 md:pt-40 md:pb-28 text-white text-center relative">
+            <!-- Hero Section dengan Slideshow -->
 
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <section id="beranda" class="hero-section text-white text-center">
+
+                <!-- Slideshow Container -->
+
+                <div class="slideshow-container" id="hero-slideshow">
+
+                    <!-- Slide 1 -->
+
+                    <div class="slide active" style="background-image: url('https://res.cloudinary.com/dybchljzd/image/upload/v1765607152/IMG-20251212-WA0013_ounyot.jpg');"></div>
+
+                    <!-- Slide 2 -->
+
+                    <div class="slide" style="background-image: url('https://res.cloudinary.com/dybchljzd/image/upload/v1765607152/IMG-20251212-WA0014_vzumwv.jpg');"></div>
+
+                    <!-- Slide 3 -->
+
+                    <div class="slide" style="background-image: url('https://res.cloudinary.com/dybchljzd/image/upload/v1765607152/IMG-20251212-WA0000_texyik.jpg');"></div>
+
+                    <!-- Slide 4 -->
+
+                    <div class="slide" style="background-image: url('https://res.cloudinary.com/dybchljzd/image/upload/v1765607152/IMG-20251212-WA0003_ccciak.jpg');"></div>
+
+                </div>
+
+
+
+                <!-- Overlay -->
+
+                <div class="hero-overlay"></div>
+
+
+
+                <!-- Content (di atas overlay) -->
+
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-16 md:pt-40 md:pb-28">
 
                     <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wider mb-2 text-lime-400" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">GABUNGAN ORGANISASI WANITA</h1>
 
@@ -1136,6 +1274,14 @@
 
         let dataChart = null; 
 
+        // Slideshow Variables
+
+        let currentSlide = 0;
+
+        let slideInterval;
+
+
+
         const showMainPage = () => { mainContent.classList.remove('hidden'); detailContent.classList.add('hidden'); window.scrollTo(0, 0); };
 
         const showDetailPage = () => { mainContent.classList.add('hidden'); detailContent.classList.remove('hidden'); window.scrollTo(0, 0); };
@@ -1252,7 +1398,7 @@
 
                     kategori: 'inti',
 
-                    foto: 'https://iili.io/f7cr5e2.png',
+                    foto: 'https://res.cloudinary.com/dybchljzd/image/upload/w_600,q_auto,f_auto/v1765596516/Untitled_design_20251212_215809_0000_c8pxqh.png',
 
                     createdAt: 1
 
@@ -1323,6 +1469,36 @@
                 }
 
             }
+
+        };
+
+
+
+        // --- SLIDESHOW LOGIC ---
+
+        const initSlideshow = () => {
+
+            const slides = document.querySelectorAll('.slide');
+
+            if (slides.length === 0) return;
+
+
+
+            const nextSlide = () => {
+
+                slides[currentSlide].classList.remove('active');
+
+                currentSlide = (currentSlide + 1) % slides.length;
+
+                slides[currentSlide].classList.add('active');
+
+            };
+
+
+
+            // Ganti slide setiap 5 detik
+
+            slideInterval = setInterval(nextSlide, 5000);
 
         };
 
@@ -3361,6 +3537,8 @@
             observeSections(); 
 
             animateCounters(); // Inisialisasi animasi penghitung medsos
+
+            initSlideshow(); // Jalankan slideshow saat halaman dimuat
 
             router(); 
 
