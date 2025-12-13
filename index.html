@@ -1,1693 +1,3391 @@
 <!DOCTYPE html>
+
 <html lang="id" class="scroll-smooth">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>GOW Kabupaten Kepulauan Anambas - Pemberdayaan Wanita, Membangun Negeri</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     
+
     <!-- Leaflet.js untuk Peta Interaktif -->
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+
+
     <!-- Chart.js & Plugin Datalabels -->
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
+
+
     <style>
+
         body { 
+
             font-family: 'Inter', sans-serif; 
+
             background-color: #0f172a; 
+
             color: #e2e8f0;
+
         }
+
         .font-jawi {
+
             font-family: 'Amiri', serif;
+
         }
+
         .font-serif-display {
+
             font-family: 'Playfair Display', serif;
+
         }
+
         .header-glass { 
+
             background: rgba(15, 23, 42, 0.7); 
+
             backdrop-filter: blur(12px); 
+
             -webkit-backdrop-filter: blur(12px);
+
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
         }
+
         .hero-bg {
+
             background-image: linear-gradient(to top, #0f172a 10%, rgba(15, 23, 42, 0.7) 80%), url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=2070&auto=format&fit=crop');
+
             background-size: cover;
+
             background-position: center center;
+
         }
+
         .card-base { 
+
             background: #1e293b;
+
             border: 1px solid rgba(219, 39, 119, 0.3); 
+
             transition: all 0.3s ease;
+
         }
+
         .card-base:hover {
+
             transform: translateY(-8px);
+
             box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+
             border-color: rgba(219, 39, 119, 0.8);
+
         }
+
         .btn-primary {
+
             background: linear-gradient(to right, #db2777, #c026d3);
+
             transition: all 0.3s ease;
+
             box-shadow: 0 4px 15px -5px rgba(219, 39, 119, 0.6);
+
         }
+
         .btn-primary:hover {
+
             transform: translateY(-2px);
+
             box-shadow: 0 7px 20px -5px rgba(219, 39, 119, 0.8);
+
         }
+
         .fade-in-section {
+
             opacity: 0;
+
             transform: translateY(20px);
+
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
         }
+
         .fade-in-section.is-visible {
+
             opacity: 1;
+
             transform: translateY(0);
+
         }
+
         
+
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; }
+
         .accordion-button svg { transition: transform 0.3s ease; }
+
         .accordion-button[aria-expanded="true"] svg { transform: rotate(180deg); }
 
+
+
         .modal-overlay { transition: opacity 0.3s ease; }
+
         .modal-content { transition: transform 0.3s ease, opacity 0.3s ease; }
+
         
+
         .leaflet-container {
+
             border-radius: 0.75rem;
+
             border: 1px solid #334155;
+
             z-index: 1;
+
         }
+
         .data-filter-btn {
+
             background-color: #334155;
+
             color: #cbd5e1;
+
             transition: all 0.2s ease-in-out;
+
         }
+
         .data-filter-btn.active, .data-filter-btn:hover {
+
             background: linear-gradient(to right, #db2777, #c026d3);
+
             color: #fff;
+
             box-shadow: 0 4px 15px -5px rgba(219, 39, 119, 0.6);
+
         }
+
         
+
         /* Pagination Styles */
+
         .pagination-btn {
+
             width: 40px;
+
             height: 40px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             border-radius: 8px;
+
             background-color: #1e293b;
+
             border: 1px solid #334155;
+
             color: #cbd5e1;
+
             font-weight: 600;
+
             transition: all 0.2s;
+
             cursor: pointer;
+
         }
+
         .pagination-btn:hover:not(:disabled) {
+
             background-color: #334155;
+
             color: #fff;
+
         }
+
         .pagination-btn.active {
+
             background: linear-gradient(to right, #db2777, #c026d3);
+
             color: white;
+
             border-color: transparent;
+
         }
+
         .pagination-btn:disabled {
+
             opacity: 0.5;
+
             cursor: not-allowed;
+
         }
+
+
 
         /* Footer Social Stat Card Hover Effect */
+
         .social-stat-card {
+
             background: rgba(30, 41, 59, 0.5);
+
             backdrop-filter: blur(8px);
+
             border: 1px solid rgba(219, 39, 119, 0.3);
+
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
         }
+
         .social-stat-card:hover {
+
             background: rgba(30, 41, 59, 0.8);
+
             transform: translateY(-5px);
+
             border-color: rgba(219, 39, 119, 0.6);
+
             box-shadow: 0 10px 30px -10px rgba(219, 39, 119, 0.15);
+
         }
+
+
 
         /* Scrollbar custom untuk Modal & Body */
+
         ::-webkit-scrollbar {
+
             width: 6px; /* Lebih tipis untuk scrollbar dalam modal */
+
         }
+
         ::-webkit-scrollbar-track {
+
             background: rgba(15, 23, 42, 0.5);
+
         }
+
         ::-webkit-scrollbar-thumb {
+
             background: #475569;
+
             border-radius: 4px;
+
         }
+
         ::-webkit-scrollbar-thumb:hover {
+
             background: #64748b;
+
         }
+
         
+
         /* Khusus untuk scrollbar di dalam modal teks */
+
         .modal-text-scroll::-webkit-scrollbar-track {
+
             background: rgba(0,0,0,0.2);
+
             border-radius: 4px;
+
         }
+
         .modal-text-scroll::-webkit-scrollbar-thumb {
+
             background: #db2777; /* Warna pink agar terlihat jelas */
+
             border-radius: 4px;
+
         }
+
     </style>
+
 </head>
+
 <body class="antialiased">
 
+
+
     <!-- Header -->
+
     <header id="header" class="header-glass sticky top-0 z-50 transition-all duration-300">
+
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
             <div class="flex items-center justify-between h-16 sm:h-20">
+
                 <div class="flex-shrink-0">
+
                     <a href="#" class="flex items-center space-x-2">
+
                         <img src="https://iili.io/FPZFHv9.png" alt="Logo GOW Anambas" class="h-10 sm:h-12" onerror="this.src='https://placehold.co/150x48/0f172a/e5e7eb?text=GOW+Anambas'">
+
                     </a>
+
                 </div>
+
                 <div class="flex items-center space-x-2">
+
                     <nav class="hidden lg:flex space-x-5 text-sm">
+
                         <a href="#beranda" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Beranda</a>
+
                         <a href="#sambutan" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Sambutan</a>
+
                         <a href="#tentang" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Tentang</a>
+
                         <a href="#program" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Program</a>
+
                         <a href="#data-terpilah" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Data Terpilah</a>
+
                         <a href="#pengurus" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Pengurus</a>
+
                         <a href="#kegiatan" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">Kegiatan</a>
+
                         <a href="#simanja" class="nav-link text-slate-300 hover:text-amber-400 transition-colors">SiMANJA</a>
+
                     </nav>
+
                     <a href="https://simanjagow.vercel.app/" target="_blank" rel="noopener noreferrer" class="hidden md:inline-block border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors px-4 py-2 rounded-lg text-sm font-semibold">LOGIN SiMANJA</a>
+
                     <div class="lg:hidden"><button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-xl sm:text-2xl"></i></button></div>
+
                 </div>
+
             </div>
+
         </div>
+
         <!-- Mobile Menu -->
+
         <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-700 bg-slate-900">
+
             <a href="#beranda" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Beranda</a>
+
             <a href="#sambutan" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Sambutan</a>
+
             <a href="#tentang" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Tentang Kami</a>
+
             <a href="#program" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Program Kerja</a>
+
             <a href="#data-terpilah" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Data Terpilah</a>
+
             <a href="#pengurus" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Pengurus</a>
+
             <a href="#kegiatan" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">Kegiatan</a>
+
             <a href="#simanja" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700">SiMANJA GOW</a>
+
             <a href="https://simanjagow.vercel.app/" target="_blank" rel="noopener noreferrer" class="block py-3 px-4 text-base text-pink-400 font-semibold bg-slate-800 hover:bg-slate-700 text-center"><i class="fas fa-rocket w-5 text-center mr-2"></i>LOGIN SiMANJA</a>
+
         </div>
+
     </header>
 
+
+
     <main>
+
         <div id="main-content">
+
             <section id="beranda" class="hero-bg pt-20 pb-16 md:pt-40 md:pb-28 text-white text-center relative">
+
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
                     <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wider mb-2 text-lime-400" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">GABUNGAN ORGANISASI WANITA</h1>
+
                     <p class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-pink-400 mb-4" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">( GOW )</p>
+
                     <p class="text-xl sm:text-2xl md:text-3xl font-semibold tracking-wide mb-4" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">KABUPATEN KEPULAUAN ANAMBAS</p>
+
                     <p class="font-jawi text-3xl sm:text-4xl md:text-5xl mb-4 text-amber-400" dir="rtl" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">ݢابوڠن اورݢانيساسي وانيتا</p>
+
                     <p class="text-lg sm:text-xl md:text-2xl font-semibold tracking-wide text-blue-400" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.7);">THE ASSOCIATION OF WOMEN'S ORGANIZATIONS</p>
+
                 </div>
+
             </section>
+
+
 
             <!-- Sekapur Sirih / Sambutan Ketua -->
+
             <section id="sambutan" class="py-20 relative overflow-hidden fade-in-section">
+
                 <!-- Background Decoration -->
+
                 <div class="absolute inset-0 bg-slate-900/95 z-0"></div>
+
                 <div class="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 bg-pink-500/10 rounded-full blur-3xl animate-pulse"></div>
+
                 <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
 
+
+
                 <div class="container mx-auto px-4 relative z-10">
+
                     <div class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 md:p-12 overflow-hidden shadow-2xl">
+
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+
                             
+
                             <!-- Foto Ketua -->
+
                             <div class="md:col-span-4 lg:col-span-3 flex flex-col items-center">
+
                                 <div class="relative group">
+
                                     <!-- Decorative Elements -->
+
                                     <div class="absolute -top-8 -left-8 w-32 h-32 bg-purple-500/30 rounded-full blur-2xl -z-10 animate-pulse"></div>
+
                                     <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-pink-500/30 rounded-full blur-2xl -z-10 animate-pulse" style="animation-delay: 1s;"></div>
+
                                     <div class="absolute -inset-1 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-[2rem] blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+
                                     
+
                                     <!-- Photo Container -->
+
                                     <div class="relative w-60 h-72 sm:w-64 sm:h-80 rounded-[2rem] overflow-hidden border-2 border-white/20 bg-slate-800 shadow-2xl">
+
                                         <div class="absolute inset-0 bg-gradient-to-b from-slate-700/50 to-slate-900/80"></div>
+
                                         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+
                                         
+
                                         <!-- Image -->
-                                        <img src="https://image2url.com/images/1765297566110-1ca2bbda-617b-457a-beb4-771c77025ad2.png" 
+
+                                        <img src="https://iili.io/f716LyG.md.png" 
+
                                              alt="Ny. Kustiorini Raja Bayu" 
+
                                              class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 filter brightness-105"
+
                                              onerror="this.src='https://placehold.co/400x500/334155/e5e7eb?text=FOTO+KETUA'">
+
                                         
+
                                         <div class="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/60 to-transparent"></div>
+
                                     </div>
+
+
 
                                     <!-- Floating Badge/Decoration -->
+
                                     <div class="absolute -bottom-5 -right-5 z-20">
+
                                          <div class="relative flex items-center justify-center w-14 h-14">
+
                                             <div class="absolute w-full h-full bg-pink-500 rounded-full opacity-50 animate-ping"></div>
+
                                             <div class="relative w-12 h-12 bg-gradient-to-br from-amber-300 to-orange-500 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.5)] border-2 border-white">
+
                                                 <i class="fas fa-crown text-white text-sm"></i>
+
                                             </div>
+
                                          </div>
+
                                     </div>
+
                                 </div>
+
                                 <div class="mt-10 text-center relative z-10">
+
                                     <h3 class="text-2xl sm:text-3xl font-bold font-serif-display tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 drop-shadow-sm">Ny. Kustiorini Raja Bayu</h3>
+
                                     <div class="flex items-center justify-center gap-3 my-3">
+
                                         <div class="h-px w-10 bg-gradient-to-r from-transparent to-pink-500"></div>
+
                                         <i class="fas fa-star text-[10px] text-pink-400 animate-spin-slow"></i>
+
                                         <div class="h-px w-10 bg-gradient-to-l from-transparent to-pink-500"></div>
+
                                     </div>
+
                                     <p class="text-sm text-slate-300 font-semibold tracking-wider uppercase">Ketua GOW Kabupaten Kepulauan Anambas</p>
+
                                 </div>
+
                             </div>
+
+
 
                             <!-- Teks Sambutan -->
+
                             <div class="md:col-span-8 lg:col-span-9">
+
                                 <div class="relative pl-0 md:pl-6">
+
                                     <i class="fas fa-quote-left text-5xl text-slate-700 absolute -top-8 -left-4 opacity-50"></i>
+
                                     
+
                                     <div class="mb-6">
+
                                         <span class="text-pink-500 font-bold tracking-widest text-xs uppercase mb-2 block">Sambutan Ketua</span>
+
                                         <h2 class="text-3xl sm:text-4xl font-bold text-lime-400 font-serif-display">Sekapur Sirih</h2>
+
                                     </div>
+
+
 
                                     <div class="space-y-5 text-slate-300 leading-relaxed text-lg text-justify font-light">
+
                                         <p>
+
                                             <span class="font-semibold text-white text-2xl block mb-3 font-jawi" dir="rtl">السلام عليكم ورحمة الله وبركاته</span>
+
                                             Puji syukur kita panjatkan ke hadirat Allah SWT. Selamat datang di portal digital resmi <strong class="text-pink-400">Gabungan Organisasi Wanita (GOW) Kabupaten Kepulauan Anambas</strong>.
+
                                         </p>
+
                                         <p>
+
                                             Website ini kami persembahkan sebagai wujud transformasi digital GOW Anambas untuk memperluas jangkauan informasi dan memperkuat sinergi antar organisasi wanita. Di era yang serba dinamis ini, peran perempuan tidak hanya sebagai tiang negara, tetapi juga sebagai motor penggerak pembangunan yang adaptif dan inovatif.
+
                                         </p>
+
                                         <p>
+
                                             Melalui wadah ini, mari kita rapatkan barisan, menyatukan visi, dan terus berkarya untuk menciptakan perempuan Anambas yang berdaya, mandiri, dan bermartabat demi kemajuan negeri <em>Kayuh Serentak Langkah Sepijak</em>.
+
                                         </p>
+
                                         <p class="font-semibold text-white mt-4 font-jawi text-2xl text-right" dir="rtl">
+
                                         </p>
+
                                     </div>
+
+
 
                                     <div class="mt-8 flex items-center gap-4">
+
                                         <div class="h-px flex-1 bg-gradient-to-r from-pink-500/50 to-transparent"></div>
+
                                         <span class="text-amber-400 font-jawi text-xl"></span>
+
                                     </div>
+
                                 </div>
+
                             </div>
 
+
+
                         </div>
+
                     </div>
+
                 </div>
+
             </section>
+
+
 
             <section id="statistik" class="py-16 bg-slate-900 fade-in-section">
+
                 <div class="container mx-auto px-4"><div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center"><div class="card-base p-6 rounded-xl"><i class="fas fa-sitemap text-3xl sm:text-4xl text-pink-400 mb-3"></i><p class="text-4xl sm:text-5xl font-bold" id="total-organisasi">0</p><p class="text-slate-400 mt-1">Organisasi Anggota</p></div><div class="card-base p-6 rounded-xl"><i class="fas fa-user-tie text-3xl sm:text-4xl text-amber-400 mb-3"></i><p class="text-4xl sm:text-5xl font-bold" id="total-pengurus">0</p><p class="text-slate-400 mt-1">Total Pengurus</p></div><div class="card-base p-6 rounded-xl"><i class="fas fa-calendar-check text-3xl sm:text-4xl text-blue-400 mb-3"></i><p class="text-4xl sm:text-5xl font-bold" id="total-kegiatan">0</p><p class="text-slate-400 mt-1">Kegiatan Terlaksana</p></div></div></div>
+
             </section>
+
             
+
             <section id="tentang" class="py-16 sm:py-20">
+
                 <div class="container mx-auto px-4">
+
                     <div class="text-center max-w-3xl mx-auto fade-in-section">
+
                         <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Tentang GOW Anambas</h2>
+
                         <p class="text-slate-400 mb-12">GOW Kabupaten Kepulauan Anambas resmi berdiri sejak ditetapkannya akta pendirian sebagai wadah permanen yang berasaskan Pancila dan UUD 1945 untuk memperkuat kolaborasi antar organisasi wanita di Anambas.</p>
+
                     </div>
+
                     <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 sm:gap-12 items-center fade-in-section">
+
                         <div class="lg:col-span-2 flex justify-center"><img src="https://iili.io/FPZFHv9.png" alt="Logo GOW Anambas Besar" class="max-w-xs md:max-w-sm drop-shadow-2xl" onerror="this.src='https://placehold.co/400x150/0f172a/e5e7eb?text=GOW+Anambas'"></div>
+
                         <div class="lg:col-span-3 space-y-8">
+
                             <div><h3 class="text-2xl font-bold mb-4 flex items-center"><i class="fas fa-eye fa-fw mr-3 text-pink-400"></i> Visi</h3><blockquote class="border-l-4 border-pink-500 pl-4 italic text-slate-300 text-justify">"Terwujudnya perempuan Anambas yang berdaya, mandiri, dan berperan aktif dalam mendukung pembangunan Kabupaten Kepulauan Anambas 2025–2030."</blockquote></div>
+
                             <div><h3 class="text-2xl font-bold mb-4 flex items-center"><i class="fas fa-tasks fa-fw mr-3 text-pink-400"></i> Misi</h3><ul class="space-y-3"><li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center pt-1"><i class="fas fa-lightbulb fa-xs"></i></div><p class="text-slate-400 text-justify">Meningkatkan kapasitas perempuan melalui pendidikan, pelatihan, dan penguatan kewirausahaan.</p></li><li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center pt-1"><i class="fas fa-users fa-xs"></i></div><p class="text-slate-400 text-justify">Mendorong partisipasi aktif perempuan dalam proses pembangunan daerah.</p></li><li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center pt-1"><i class="fas fa-heart fa-xs"></i></div><p class="text-slate-400 text-justify">Membina kualitas hidup keluarga dengan fokus pada kesehatan, gizi, dan ketahanan keluarga.</p></li><li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center pt-1"><i class="fas fa-shield-alt fa-xs"></i></div><p class="text-slate-400 text-justify">Memperjuangkan perlindungan hak perempuan dan anak melalui edukasi dan advokasi.</p></li><li class="flex items-start space-x-3"><div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center pt-1"><i class="fas fa-handshake fa-xs"></i></div><p class="text-slate-400 text-justify">Membangun sinergi dengan pemerintah daerah dan mitra strategis lainnya.</p></li></ul></div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </section>
+
             
+
             <section id="program" class="py-16 sm:py-20 bg-slate-900">
+
                 <div class="container mx-auto px-4">
+
                     <div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Program Kerja GOW 2025-2030</h2><p class="text-slate-400 mb-12">Rencana aksi strategis untuk memberdayakan wanita dan berkontribusi pada pembangunan Kabupaten Kepulauan Anambas.</p></div>
+
                     <div id="program-kerja-container" class="max-w-4xl mx-auto space-y-4 fade-in-section"></div>
+
                 </div>
+
             </section>
+
+
 
             <!-- SEKSI DATA TERPILAH -->
+
             <section id="data-terpilah" class="py-16 sm:py-20">
+
                 <div class="container mx-auto px-4">
+
                     <div class="text-center max-w-3xl mx-auto fade-in-section">
+
                         <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Data Terpilah: Potret Wanita & Anak</h2>
+
                         <p class="text-slate-400">Data adalah fondasi dari setiap aksi kami. Berikut adalah data statistik yang bersumber dari BPS dan Dinas Terkait Kabupaten Kepulauan Anambas.</p>
+
                     </div>
+
                       <!-- Detail per Kategori -->
+
                     <div class="max-w-6xl mx-auto fade-in-section mt-16">
+
                         <h3 class="text-2xl font-bold text-center mb-8">Jelajahi Indikator per Sektor</h3>
+
                         <div id="data-filter-container" class="flex justify-center flex-wrap gap-2 sm:gap-3 mb-10">
+
                             <button data-category="Kependudukan" class="data-filter-btn active font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Kependudukan</button>
+
                             <button data-category="Pembangunan Manusia" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Pembangunan Manusia</button>
+
                             <button data-category="Pendidikan" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Pendidikan</button>
+
                             <button data-category="Kesehatan" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Kesehatan</button>
+
                             <button data-category="Ekonomi & Ketenagakerjaan" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Ekonomi & Naker</button>
+
                             <button data-category="Politik & Pengambilan Keputusan" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Politik & Keputusan</button>
+
                             <button data-category="Hukum & Sosial Budaya" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Hukum & Sosial</button>
+
                             <button data-category="Kekerasan & Anak" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Kekerasan & Anak</button>
+
                             <button data-category="Lingkungan" class="data-filter-btn font-semibold px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base">Lingkungan</button>
+
                         </div>
+
                         <div id="data-content-area" class="card-base rounded-xl p-4 sm:p-8">
+
                            <!-- Konten dinamis dimuat oleh JS -->
+
                         </div>
+
                     </div>
+
                 </div>
+
             </section>
+
+
 
             <section id="pengurus" class="py-16 sm:py-20 bg-slate-900">
+
                 <div class="container mx-auto px-4">
+
                     <div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Struktur Pengurus Inti & Organisasi</h2><p class="text-slate-400 mb-12">Motor penggerak dan sinergi kekuatan wanita Anambas yang berdedikasi memajukan peran wanita.</p></div>
+
                     <h3 class="text-2xl font-bold text-center mb-8 fade-in-section">Pengurus Inti</h3>
+
                     <div id="pengurus-inti-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"><p class="col-span-full text-center text-slate-400">Memuat data pengurus...</p></div>
+
                     <h3 class="text-2xl font-bold text-center mb-8 fade-in-section">Organisasi Tergabung</h3>
+
                     <div id="organisasi-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6"><p class="col-span-full text-center text-slate-400">Memuat data organisasi...</p></div>
+
                 </div>
+
             </section>
+
             
+
             <section id="kegiatan" class="py-16 sm:py-20">
+
                 <div class="container mx-auto px-4">
+
                     <div class="text-center max-w-2xl mx-auto fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Galeri Kegiatan</h2><p class="text-slate-400">Dokumentasi aksi dan kontribusi nyata kami untuk masyarakat Kepulauan Anambas.</p></div>
+
                     <div class="my-12 max-w-2xl mx-auto flex flex-col sm:flex-row gap-4 fade-in-section"><div class="relative flex-grow"><input type="search" id="search-kegiatan" placeholder="Cari nama kegiatan..." class="w-full bg-slate-800 border border-slate-700 rounded-lg py-2 pl-10 pr-4 text-white focus:ring-2 focus:ring-pink-500 focus:outline-none transition-colors"><i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i></div><select id="filter-tahun" class="bg-slate-800 border border-slate-700 rounded-lg py-2 px-4 text-white focus:ring-2 focus:ring-pink-500 focus:outline-none transition-colors"><option value="">Semua Tahun</option></select></div>
+
                     
+
                     <!-- Grid Kegiatan -->
+
                     <div id="kegiatan-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><p class="col-span-full text-center text-slate-400">Memuat data kegiatan...</p></div>
+
                     
+
                     <!-- Kontainer Paginasi -->
+
                     <div id="pagination-controls" class="flex justify-center items-center gap-2 mt-12 fade-in-section hidden">
+
                         <!-- Tombol paginasi akan dirender di sini oleh JS -->
+
                     </div>
+
                 </div>
+
             </section>
+
             
+
             <section id="simanja" class="py-16 sm:py-20 bg-slate-900">
+
                 <div class="container mx-auto px-4"><div class="max-w-3xl mx-auto text-center fade-in-section"><h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Platform Digital SiMANJA GOW</h2><p class="text-slate-400 mb-6 leading-relaxed">Sebagai wujud inovasi, GOW Anambas menghadirkan <strong class="font-semibold text-white">SiMANJA</strong> (Sistem Informasi Manajemen Jaringan GOW), sebuah platform digital eksklusif yang dirancang untuk memperkuat sinergi dan efektivitas organisasi. Platform ini berfungsi sebagai pusat data terpadu, memudahkan koordinasi program, serta mendukung tata kelola modern melalui digitalisasi administrasi.</p><a href="https://simanjagow.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block px-8 py-3 rounded-lg font-semibold mt-4"><i class="fas fa-sign-in-alt mr-2"></i> Login ke SiMANJA GOW</a></div></div>
+
             </section>
+
         </div>
+
+
 
         <div id="detail-content" class="hidden"></div>
+
     </main>
+
     
+
     <div id="modal-placeholder"></div>
 
+
+
     <!-- Footer yang diperbarui dengan Statistik Sosial Media -->
+
     <footer id="kontak" class="bg-slate-950 border-t border-slate-800 relative overflow-hidden">
+
         <!-- Decorative top border -->
+
         <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600"></div>
+
         
+
         <div class="container mx-auto px-4 py-12 sm:py-16">
+
             <!-- Social Media Stats Section -->
+
             <div class="max-w-5xl mx-auto mb-16 fade-in-section">
+
                 <div class="text-center mb-8">
+
                     <h3 class="text-lg font-semibold text-slate-300 tracking-wide uppercase mb-2">Terhubung Dengan Kami</h3>
+
                     <div class="w-16 h-1 bg-pink-500 mx-auto rounded-full"></div>
+
                 </div>
+
                 
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
                     <!-- Instagram Stats (Posisi 1) -->
+
                     <a href="https://www.instagram.com/gow_anambaskab" target="_blank" class="social-stat-card rounded-2xl p-5 flex items-center gap-5 group">
+
                         <div class="w-14 h-14 rounded-full bg-pink-600/20 text-pink-500 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(219,39,119,0.3)]">
+
                             <i class="fab fa-instagram"></i>
+
                         </div>
+
                         <div class="flex-1">
+
                             <p class="text-slate-400 text-xs font-bold tracking-widest uppercase mb-1">Instagram</p>
+
                             <div class="flex items-baseline gap-1">
+
                                 <span class="text-3xl font-bold text-white counter-anim" data-target="1518">0</span>
+
                                 <span class="text-sm text-slate-500 font-medium">Pengikut</span>
+
                             </div>
+
                         </div>
+
                         <div class="text-pink-500 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+
                             <i class="fas fa-arrow-right"></i>
+
                         </div>
+
                     </a>
+
+
 
                     <!-- Facebook Stats (Posisi 2) -->
+
                     <a href="https://www.facebook.com/share/14JrYrAff1V/" target="_blank" class="social-stat-card rounded-2xl p-5 flex items-center gap-5 group">
+
                         <div class="w-14 h-14 rounded-full bg-blue-600/20 text-blue-500 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+
                             <i class="fab fa-facebook-f"></i>
+
                         </div>
+
                         <div class="flex-1">
+
                             <p class="text-slate-400 text-xs font-bold tracking-widest uppercase mb-1">Facebook</p>
+
                             <div class="flex items-baseline gap-1">
+
                                 <span class="text-3xl font-bold text-white counter-anim" data-target="111">0</span>
+
                                 <span class="text-sm text-slate-500 font-medium">Pengikut</span>
+
                             </div>
+
                         </div>
+
                         <div class="text-blue-500 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+
                             <i class="fas fa-arrow-right"></i>
+
                         </div>
+
                     </a>
+
+
 
                     <!-- Email/Contact -->
+
                     <a href="mailto:gow.anambas@gmail.com" class="social-stat-card rounded-2xl p-5 flex items-center gap-5 group">
+
                         <div class="w-14 h-14 rounded-full bg-amber-500/20 text-amber-500 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(245,158,11,0.3)]">
+
                             <i class="fas fa-envelope"></i>
+
                         </div>
+
                         <div class="flex-1">
+
                             <p class="text-slate-400 text-xs font-bold tracking-widest uppercase mb-1">Email Resmi</p>
+
                             <div class="flex items-baseline gap-1">
+
                                 <span class="text-lg font-bold text-white break-all line-clamp-1">gow.anambas@gmail.com</span>
+
                             </div>
+
                             <p class="text-xs text-slate-500 mt-0.5">Hubungi Kami</p>
+
                         </div>
+
                          <div class="text-amber-500 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+
                             <i class="fas fa-arrow-right"></i>
+
                         </div>
+
                     </a>
+
                 </div>
+
             </div>
+
+
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center border-t border-slate-800 pt-8">
+
                 <div class="text-center md:text-left">
+
                     <div class="flex items-center justify-center md:justify-start space-x-3 mb-4">
+
                         <img src="https://iili.io/FPZFHv9.png" alt="Logo GOW" class="h-10 transition-all duration-300">
+
                         <span class="text-slate-300 font-semibold tracking-wider">GOW ANAMBAS</span>
+
                     </div>
+
                     <p class="text-slate-500 text-sm mb-2"><i class="fas fa-map-marker-alt mr-2 text-pink-500"></i>Jl. Kartini RT.04/RW.04 Tarempa, Kecamatan Siantan, Kode Pos 29791</p>
+
                     <p class="text-slate-600 text-sm">&copy; <span id="copyright-year"></span> GOW KKA. All Rights Reserved.</p>
+
                 </div>
+
                 <div class="flex justify-center md:justify-end gap-4">
+
                     <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all duration-300"><i class="fab fa-instagram"></i></a>
+
                     <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300"><i class="fab fa-facebook-f"></i></a>
+
                     <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-amber-500 hover:text-white transition-all duration-300"><i class="fas fa-envelope"></i></a>
+
                 </div>
+
             </div>
+
         </div>
+
     </footer>
 
+
+
     <script type="module">
+
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+
         import { getFirestore, collection, onSnapshot, query, orderBy, doc, getDoc, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
         // Import signInWithCustomToken and onAuthStateChanged
+
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
         
+
         // =========================================================================================
+
         // 🚨 PENGATURAN MODE PRODUKSI & DATA REAL 🚨
+
         // =========================================================================================
+
         
+
         // Ganti nilai ini menjadi TRUE jika Anda ingin menghubungkan website ini ke database
+
         // Firebase PROJECT ASLI (SimanjaGOW) saat di-hosting di server/domain Anda sendiri.
+
         // Jika FALSE, website akan menggunakan mode simulasi (Sandbox) dengan data contoh.
+
         const IS_PRODUCTION = true; 
 
+
+
         // Masukkan Konfigurasi Firebase Project ASLI Anda di sini:
+
         const productionConfig = {
+
             apiKey: "AIzaSyAboBugSdtduTa4MIAeQXFkM8QHdah8lcQ",
+
             authDomain: "simanja-gow-app.firebaseapp.com",
+
             projectId: "simanja-gow-app",
+
             storageBucket: "simanja-gow-app.appspot.com",
+
             messagingSenderId: "307105555893",
+
             appId: "1:307105555893:web:e5470c451f5c4fdacea5fc"
+
         };
+
+
 
         // =========================================================================================
 
+
+
         // Logika Pemilihan Config (Jangan Diubah Bagian Ini)
+
         let firebaseConfig;
+
         
+
         if (IS_PRODUCTION) {
+
             firebaseConfig = productionConfig;
+
             console.log("🚀 Mode Produksi Aktif: Menggunakan Konfigurasi Real.");
+
         } else {
+
             // Mode Sandbox / Preview Canvas
+
             try {
+
                 // Gunakan konfigurasi dari environment jika ada
+
                 if (typeof __firebase_config !== 'undefined') {
+
                     firebaseConfig = JSON.parse(__firebase_config);
+
                 } else {
+
                     throw new Error("Env config missing");
+
                 }
+
             } catch (e) {
+
                 // Fallback hardcoded untuk sandbox
+
                 firebaseConfig = { apiKey: "AIzaSyAboBugSdtduTa4MIAeQXFkM8QHdah8lcQ", authDomain: "simanja-gow-app.firebaseapp.com", projectId: "simanja-gow-app", storageBucket: "simanja-gow-app.appspot.com", messagingSenderId: "307105555893", appId: "1:307105555893:web:e5470c451f5c4fdacea5fc" };
+
             }
+
             console.log("🧪 Mode Sandbox Aktif: Menggunakan Database Simulasi.");
+
         }
+
         
+
         const app = initializeApp(firebaseConfig);
+
         const db = getFirestore(app);
+
         const auth = getAuth(app);
+
         // AppID for data isolation in this environment
+
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 
+
+
         // --- Helper for Strict Paths vs Real Paths ---
+
         // Fungsi ini otomatis memilih jalur database yang benar berdasarkan mode
+
         const getCollectionRef = (colName) => {
+
             if (IS_PRODUCTION) {
+
                 // JALUR DATABASE ASLI (ROOT COLLECTION)
+
                 // Pastikan nama koleksi di Firestore asli Anda sesuai ('organisasi', 'kegiatan', dll)
+
                 return collection(db, colName); 
+
             } else {
+
                 // JALUR SANDBOX (PREVIEW)
+
                 return collection(db, 'artifacts', appId, 'public', 'data', colName);
+
             }
+
         };
 
+
+
         const getDocRef = (colName, docId) => {
+
             if (IS_PRODUCTION) {
+
                 return doc(db, colName, docId);
+
             } else {
+
                 return doc(db, 'artifacts', appId, 'public', 'data', colName, docId);
+
             }
+
         };
+
+
+
 
 
         // --- Variabel Global & Kontrol Halaman ---
+
         const mainContent = document.getElementById('main-content');
+
         const detailContent = document.getElementById('detail-content');
+
         let allKegiatan = [];
+
         let currentFilteredKegiatan = []; // Menampung hasil filter saat ini
+
         let currentPage = 1; // Halaman aktif saat ini
+
         const itemsPerPage = 6; // Batas item per halaman
 
+
+
         let dataChart = null; 
+
         const showMainPage = () => { mainContent.classList.remove('hidden'); detailContent.classList.add('hidden'); window.scrollTo(0, 0); };
+
         const showDetailPage = () => { mainContent.classList.add('hidden'); detailContent.classList.remove('hidden'); window.scrollTo(0, 0); };
+
         
+
         // --- PROFIL ORGANISASI LENGKAP (Updated Data) ---
+
         const organisasiProfiles = { 
+
             "PKK": "Gerakan nasional yang bertujuan memberdayakan keluarga untuk meningkatkan kesejahteraan menuju terwujudnya keluarga yang beriman dan bertaqwa kepada Tuhan Yang Maha Esa, berakhlak mulia dan berbudi luhur, sehat sejahtera, maju dan mandiri, kesetaraan dan keadilan gender serta kesadaran hukum dan lingkungan.", 
+
             "DWP": "Organisasi kemasyarakatan yang menghimpun dan membina istri Aparatur Sipil Negara (ASN) dengan tujuan meningkatkan kualitas sumber daya anggota keluarga PNS untuk mencapai kesejahteraan nasional. DWP memiliki peran strategis dalam mendukung pembangunan melalui program pendidikan, ekonomi, dan sosial budaya.", 
+
             "IKIAD": "Ikatan Istri Anggota Dewan (IKIAD) adalah wadah silaturahmi dan kegiatan sosial bagi istri-istri anggota DPRD. Organisasi ini berperan aktif dalam mendukung tugas suami sebagai wakil rakyat serta melakukan berbagai kegiatan sosial kemasyarakatan yang bermanfaat bagi konstituen dan masyarakat umum.", 
+
             "JALASENASTRI": "Organisasi para istri prajurit TNI Angkatan Laut yang memiliki visi mewujudkan istri TNI AL yang berbudi luhur, setia, mandiri, dan bijaksana. Jalasenastri aktif dalam berbagai kegiatan sosial, pendidikan, dan ekonomi kreatif untuk mendukung kesejahteraan keluarga besar TNI AL.", 
+
             "BHAYANGKARI": "Persatuan istri anggota Polri yang bertujuan membantu tugas Polri dalam mengemban tugas negara serta meningkatkan kesejahteraan keluarga Polri. Bhayangkari aktif dalam kegiatan sosial, pendidikan, dan kemanusiaan, serta menjadi teladan di tengah masyarakat.", 
+
             "PERSIT KARTIKA CHANDRA KIRANA": "Organisasi persatuan istri prajurit TNI Angkatan Darat. Persit KCK bertugas membina istri prajurit guna mendukung tugas suami di satuan masing-masing serta berkontribusi dalam kegiatan sosial kemasyarakatan di lingkungan TNI AD.", 
+
             "DWP KEMENAG": "Dharma Wanita Persatuan unit Kementerian Agama yang berfokus pada pembinaan istri pegawai Kemenag untuk mendukung tugas suami dalam bidang keagamaan dan kerukunan umat beragama, serta aktif dalam bidang pendidikan dan sosial.", 
+
             "DHARMAYUKTI KARINI": "Organisasi wanita peradilan yang beranggotakan para Hakim Wanita, Istri Hakim, Istri Pejabat Struktural/Fungsional, dan Istri Pegawai di lingkungan Mahkamah Agung RI dan 4 Lingkungan Peradilan di bawahnya.", 
+
             "IKATAN ADHYAKSA DHARMAKARINI": "Ikatan Adhyaksa Dharmakarini (IAD) adalah organisasi istri pegawai Kejaksaan, pegawai perempuan Kejaksaan, dan pensiunan pegawai perempuan Kejaksaan yang bertujuan mempererat tali silaturahmi dan mendukung tugas Kejaksaan RI.", 
+
             "IAD": "Ikatan Adhyaksa Dharmakarini (IAD) adalah organisasi istri pegawai Kejaksaan, pegawai perempuan Kejaksaan, dan pensiunan pegawai perempuan Kejaksaan yang bertujuan mempererat tali silaturahmi dan mendukung tugas Kejaksaan RI.", 
+
             "PGRI": "Persatuan Guru Republik Indonesia (PGRI) adalah organisasi profesi yang menaungi para guru di Indonesia. Dalam konteks GOW, biasanya diwakili oleh perempuan PGRI yang fokus pada peningkatan kompetensi guru wanita dan advokasi pendidikan bagi anak dan perempuan.", 
+
             "BKMT": "Badan Kontak Majelis Taklim (BKMT) adalah organisasi independen yang menghimpun berbagai majelis taklim. BKMT berfokus pada pembinaan umat, pendidikan agama Islam, dan pemberdayaan perempuan melalui pendekatan keagamaan.", 
+
             "IBI": "Ikatan Bidan Indonesia (IBI) adalah organisasi profesi bidan di Indonesia. IBI berperan penting dalam meningkatkan standar pelayanan kebidanan, kesehatan ibu dan anak, serta keluarga berencana di Kabupaten Kepulauan Anambas.", 
+
             "PSMTI": "Paguyuban Sosial Marga Tionghoa Indonesia (PSMTI) adalah organisasi kemasyarakatan suku Tionghoa di Indonesia. Wanita PSMTI aktif dalam kegiatan sosial, pelestarian budaya, dan pembauran bangsa demi keutuhan NKRI.", 
+
             "REDAT SRI TANJUNG": "Organisasi lokal yang fokus pada pelestarian seni, budaya, dan tradisi Melayu di Kepulauan Anambas. Anggotanya aktif dalam kegiatan kesenian, kerajinan tangan khas daerah, dan upacara adat.", 
+
             "SALIMAH": "Persaudaraan Muslimah (Salimah) adalah organisasi massa perempuan yang peduli terhadap peningkatan kualitas hidup perempuan, anak, dan keluarga Indonesia. Salimah memiliki program unggulan di bidang dakwah, pendidikan, dan ekonomi.", 
+
             "FPPI": "Forum Pemberdayaan Perempuan Indonesia (FPPI) adalah organisasi yang berjuang untuk kesetaraan dan pemberdayaan perempuan di berbagai sektor, termasuk politik, ekonomi, dan sosial, guna mewujudkan perempuan Indonesia yang mandiri dan bermartabat." 
+
         };
+
+
 
         // --- FUNGSI MOCK DATA SEEDER ---
+
         const seedDatabase = async () => {
+
             // JANGAN JALANKAN SEEDING JIKA DI MODE PRODUKSI
+
             if (IS_PRODUCTION) {
+
                 console.log("🚫 Seeding dibatalkan: Mode Produksi Aktif.");
+
                 return;
+
             }
+
+
 
             console.log("Memulai pengecekan database sandbox untuk seeding...");
+
             
+
             // 1. Seed Organisasi
+
             const orgRef = getCollectionRef('organisasi');
+
             const orgSnap = await getDocs(orgRef);
+
             if (orgSnap.empty) {
+
                 console.log("Database Organisasi kosong. Melakukan seeding...");
+
                 const orgNames = Object.keys(organisasiProfiles);
+
                 for (const nama of orgNames) {
+
                     await addDoc(orgRef, {
+
                         nama: nama,
+
                         logo: '', // Kosongkan agar pakai placeholder
+
                         infoKetua: { nama: 'Ketua ' + nama, foto: '' }
+
                     });
+
                 }
+
             }
+
+
 
             // 2. Seed Pengurus Inti
+
             const pengurusRef = getCollectionRef('pengurus');
+
             const pengurusSnap = await getDocs(pengurusRef);
+
             if (pengurusSnap.empty) {
+
                 console.log("Database Pengurus kosong. Melakukan seeding...");
+
                 await addDoc(pengurusRef, {
+
                     nama: 'Ny. Kustiorini Raja Bayu',
+
                     jabatan: 'Ketua Umum',
+
                     kategori: 'inti',
+
                     foto: 'https://image2url.com/images/1765297566110-1ca2bbda-617b-457a-beb4-771c77025ad2.png',
+
                     createdAt: 1
+
                 });
+
                 await addDoc(pengurusRef, {
+
                     nama: 'Ny. Idarwati',
+
                     jabatan: 'Sekretaris',
+
                     kategori: 'inti',
+
                     foto: '',
+
                     createdAt: 2
+
                 });
+
                 await addDoc(pengurusRef, {
+
                     nama: 'Ny. Yuliana',
+
                     jabatan: 'Bendahara',
+
                     kategori: 'inti',
+
                     foto: '',
+
                     createdAt: 3
+
                 });
+
             }
+
+
 
             // 3. Seed Kegiatan
+
             const kegRef = getCollectionRef('kegiatan');
+
             const kegSnap = await getDocs(kegRef);
+
             if (kegSnap.empty) {
+
                 console.log("Database Kegiatan kosong. Melakukan seeding...");
+
                 const sampleKegiatan = [
+
                     { nama: "Rapat Kerja Daerah GOW Tahun 2024", lokasi: "Gedung BPMS Tarempa", tanggal: new Date().toISOString(), foto: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070", deskripsi: "Rapat kerja membahas program strategis tahun 2025." },
+
                     { nama: "Sosialisasi Pencegahan Stunting", lokasi: "Kecamatan Palmatak", tanggal: new Date(Date.now() - 86400000 * 5).toISOString(), foto: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070", deskripsi: "Kegiatan penyuluhan gizi bagi ibu hamil dan balita." },
+
                     { nama: "Pelatihan Kewirausahaan UMKM", lokasi: "Tarempa", tanggal: new Date(Date.now() - 86400000 * 15).toISOString(), foto: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070", deskripsi: "Pelatihan digital marketing untuk pelaku usaha wanita." },
+
                     { nama: "Peringatan Hari Ibu Ke-96", lokasi: "Aula Kantor Bupati", tanggal: new Date(Date.now() - 86400000 * 30).toISOString(), foto: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=2070", deskripsi: "Upacara dan syukuran peringatan Hari Ibu." },
+
                     { nama: "Bakti Sosial Jumat Berkah", lokasi: "Masjid Jamik Tarempa", tanggal: new Date(Date.now() - 86400000 * 45).toISOString(), foto: "https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2070", deskripsi: "Pembagian sembako kepada kaum duafa." },
+
                     { nama: "Senam Sehat Bersama", lokasi: "Lapangan Sulaiman Abdullah", tanggal: new Date(Date.now() - 86400000 * 60).toISOString(), foto: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070", deskripsi: "Senam pagi untuk menjaga kebugaran jasmani." }
+
                 ];
+
                 for (const keg of sampleKegiatan) {
+
                     await addDoc(kegRef, keg);
+
                 }
+
             }
+
         };
+
+
 
         // --- FUNGSI PEMUAT DATA ---
+
         const loadStatistik = () => { 
+
             const els = { organisasi: document.getElementById('total-organisasi'), pengurus: document.getElementById('total-pengurus'), kegiatan: document.getElementById('total-kegiatan') }; 
+
             onSnapshot(getCollectionRef('organisasi'), (snap) => { els.organisasi.textContent = snap.size; }); 
+
             onSnapshot(getCollectionRef('pengurus'), (snap) => { els.pengurus.textContent = snap.size; }); 
+
             onSnapshot(getCollectionRef('kegiatan'), (snap) => { els.kegiatan.textContent = snap.size; }); 
+
         };
+
         
+
         const loadPengurusInti = () => { 
+
             const grid = document.getElementById('pengurus-inti-grid'); if (!grid) return; 
+
             // In Canvas environment, compound queries like orderBy require manual indexes.
+
             // We fetch all and sort in memory instead.
+
             onSnapshot(getCollectionRef('pengurus'), (snapshot) => { 
+
                 let docs = snapshot.docs.map(d => d.data());
+
                 // Sort by createdAt manually
+
                 docs.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
 
+
+
                 const pengurusInti = docs.filter(p => p.kategori === 'inti'); 
+
                 if (pengurusInti.length === 0) { grid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data pengurus inti belum tersedia.</p>'; return; } 
+
                 grid.innerHTML = pengurusInti.map(p => { 
+
                     const avatar = p.foto ? `<img src="${p.foto}" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover mx-auto mb-4 border-4 border-slate-700" onerror="this.src='https://placehold.co/112x112/334155/e5e7eb?text=${p.nama.charAt(0)}'">` : `<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-pink-500 to-fuchsia-600 flex items-center justify-center mx-auto mb-4 border-4 border-slate-700"><span class="text-3xl sm:text-4xl font-bold">${p.nama.charAt(0)}</span></div>`; 
+
                     return `<div class="card-base text-center p-6 rounded-xl fade-in-section">${avatar}<h3 class="text-xl font-bold">${p.nama}</h3><p class="text-amber-400">${p.jabatan}</p></div>`; 
+
                 }).join(''); 
+
                 observeSections(); 
+
             }); 
+
         };
+
         
+
         const loadKegiatan = () => { 
+
             onSnapshot(getCollectionRef('kegiatan'), (snapshot) => { 
+
                 allKegiatan = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); 
+
                 // In-memory sort by date descending
+
                 allKegiatan.sort((a, b) => {
+
                     const dateA = a.tanggal ? new Date(a.tanggal) : 0;
+
                     const dateB = b.tanggal ? new Date(b.tanggal) : 0;
+
                     return dateB - dateA;
+
                 });
 
+
+
                 const filterTahun = document.getElementById('filter-tahun'); 
+
                 const years = [...new Set(allKegiatan.map(k => k.tanggal ? new Date(k.tanggal).getFullYear() : null).filter(Boolean))]; 
+
                 filterTahun.innerHTML = '<option value="">Semua Tahun</option>'; 
+
                 years.sort((a, b) => b - a).forEach(year => { filterTahun.innerHTML += `<option value="${year}">${year}</option>`; }); 
+
                 applyFilters(); // Memanggil filter yang akan memicu paginasi awal
+
             }); 
+
         };
+
         
+
         const loadOrganisasi = () => { 
+
             const grid = document.getElementById('organisasi-grid'); if(!grid) return; 
+
             onSnapshot(getCollectionRef('organisasi'), (snapshot) => { 
+
                 if (snapshot.empty) { grid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data organisasi belum tersedia.</p>'; return; } 
+
                 
+
                 let docs = snapshot.docs.map(d => ({id: d.id, ...d.data()}));
+
                 // In-memory sort by name asc
+
                 docs.sort((a, b) => (a.nama || "").localeCompare(b.nama || ""));
 
+
+
                 grid.innerHTML = docs.map(org => { 
+
                     const logoHtml = org.logo ? `<img src="${org.logo}" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML = '<i class=\\'fas fa-sitemap text-3xl text-slate-500\\'></i>'">` : `<i class="fas fa-sitemap text-3xl text-slate-500"></i>`; 
+
                     return `<button data-org-id="${org.id}" class="org-card card-base text-center p-3 sm:p-4 rounded-xl flex flex-col items-center justify-center fade-in-section h-36 sm:h-40"><div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-slate-800 flex items-center justify-center mb-3 overflow-hidden p-2">${logoHtml}</div><h4 class="font-semibold text-xs sm:text-sm leading-tight line-clamp-2">${org.nama}</h4></button>`; 
+
                 }).join(''); 
+
                 observeSections(); 
+
                 document.querySelectorAll('.org-card').forEach(card => card.addEventListener('click', () => renderOrganisasiDetail(card.dataset.orgId))); 
+
             }); 
+
         };
+
         
+
         const loadProgramKerja = () => { 
+
             const container = document.getElementById('program-kerja-container'); 
+
             const dataProgram = [ { bidang: 'ORGANISASI DAN KADERISASI', icon: 'fa-users', programs: [{ name: 'Pelatihan Tata Boga', tujuan: 'Meningkatkan dan menguatkan kapasitas serta keterampilan sumber daya internal organisasi.', sasaran: 'Anggota GOW' }] }, { bidang: 'PENDIDIKAN, IPTEK DAN SOSIAL BUDAYA', icon: 'fa-graduation-cap', programs: [{ name: 'Peningkatan Keterampilan Kelompok Rentan (Lansia)', tujuan: 'Meningkatkan kemampuan dan keterampilan kelompok binaan (lansia) di Kecamatan Siantan & Palmatak.', sasaran: 'Lansia Buta Aksara (Usia 50+)' }, { name: 'Literasi Gemar Membaca', tujuan: 'Meningkatkan minat baca peserta didik dari tingkat PAUD hingga SMP.', sasaran: 'Peserta Didik (PAUD s/d SMP)' }, { name: 'Pusat Kreativitas Anak (PKA)', tujuan: 'Memanfaatkan waktu luang untuk kegiatan anak yang positif, kreatif, dan produktif.', sasaran: 'Masyarakat saat Minggu Energi Baru (MEB) Day' }] }, { bidang: 'KESEHATAN & KELUARGA BERENCANA', icon: 'fa-heartbeat', programs: [{ name: 'Pojok ASI (Ruang Laktasi)', tujuan: 'Menyediakan fasilitas responsif bagi Ibu Menyusui di area publik.', sasaran: 'Perkantoran & Tempat Umum' }, { name: 'SINTA LASKAR Sehat', tujuan: 'Program pendampingan anak stunting selama 56 hari dengan intervensi gizi.', sasaran: '39 Anak Stunting di Kecamatan Siantan' }, { name: 'Motorcycle Free Day (MFD)', tujuan: 'Menciptakan area bebas kendaraan untuk kegiatan kesehatan masyarakat.', sasaran: 'Masyarakat (Minggu ke-2 setiap bulan)' }] }, { bidang: 'KEAGAMAAN DAN MORAL', icon: 'fa-quran', programs: [{ name: 'Maghrib Mengaji', tujuan: 'Partisipasi aktif anggota GOW dalam kegiatan mengaji bersama.', sasaran: 'Anggota GOW' }, { name: 'Pelatihan Fardhu Kifayah', tujuan: 'Regenerasi dan peningkatan kemampuan masyarakat dalam mengurus jenazah.', sasaran: 'Daerah yang kekurangan tenaga kepengurusan jenazah' }] }, { bidang: 'EKONOMI, KOPERASI & KETENAGAKERJAAN', icon: 'fa-briefcase', programs: [{ name: 'Pembinaan UMKM', tujuan: 'Mendorong kemandirian ekonomi perempuan melalui pelatihan dan pendampingan.', sasaran: 'UMKM' }, { name: 'Gerai GOW', tujuan: 'Menjadi wadah untuk menunjang UMKM melalui kolaborasi dengan Dekranasda dan PLUD.', sasaran: 'UMKM' }, { name: 'Koperasi GOW', tujuan: 'Membuka lapangan kerja dan mempermudah transaksi bagi ASN melalui kantin.', sasaran: 'ASN & Masyarakat' }] }, { bidang: 'INFORMASI, KOMUNIKASI DAN HUMAS', icon: 'fa-bullhorn', programs: [{ name: 'Publikasi dan Dokumentasi', tujuan: 'Mempublikasikan semua kegiatan GOW melalui media sosial.', sasaran: 'Masyarakat' }, { name: 'GOW Podcast', tujuan: 'Membuat podcast edukatif dan informatif dengan tema-tema variatif.', sasaran: 'Masyarakat' }, { name: 'Lomba Video Kreatif Digital', tujuan: 'Menumbuhkan dan meningkatkan kreativitas digital masyarakat.', sasaran: 'Masyarakat' }] }, { bidang: 'HUKUM, HAM DAN KESETARAAN GENDER', icon: 'fa-balance-scale', programs: [{ name: 'Event Hari Ibu', tujuan: 'Memberikan wadah bagi masyarakat yang berkontribusi dalam kesetaraan gender.', sasaran: 'Organisasi-organisasi wanita' }, { name: 'GOW GOES TO SCHOOL', tujuan: 'Edukasi pencegahan kekerasan pada anak, pernikahan dini, dan kenakalan remaja.', sasaran: 'Sekolah-sekolah' }] } ]; 
+
             container.innerHTML = dataProgram.map((bidang) => ` <div class="card-base rounded-lg"> <h2><button class="accordion-button flex justify-between items-center w-full p-4 sm:p-5 text-left font-semibold" aria-expanded="false"><div class="flex items-center text-base sm:text-lg"><i class="fas ${bidang.icon} w-6 text-center mr-4 text-pink-400"></i><span>${bidang.bidang}</span></div><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button></h2> <div class="accordion-content bg-slate-800/50 rounded-b-lg"> <div class="p-4 sm:p-5 border-t border-slate-700 divide-y divide-slate-700"> ${bidang.programs.map(prog => ` <div class="py-4 first:pt-0 last:pb-0"> <h4 class="font-semibold text-white">${prog.name}</h4> <div class="mt-2 pl-2 border-l-2 border-amber-400"><p class="text-sm text-slate-300"><strong class="font-semibold text-amber-400">Tujuan:</strong> ${prog.tujuan}</p></div> <div class="mt-2 pl-2 border-l-2 border-blue-400"><p class="text-sm text-slate-300"><strong class="font-semibold text-blue-400">Sasaran:</strong> ${prog.sasaran}</p></div> </div>`).join('')} </div> </div> </div>`).join(''); 
+
             container.querySelectorAll('.accordion-button').forEach(button => { 
+
                 button.addEventListener('click', () => { 
+
                     const expanded = button.getAttribute('aria-expanded') === 'true'; 
+
                     button.setAttribute('aria-expanded', !expanded); 
+
                     const content = button.parentElement.nextElementSibling; 
+
                     content.style.maxHeight = expanded ? '0px' : content.scrollHeight + 'px'; 
+
                 }); 
+
             }); 
+
         };
+
+
 
         // --- FUNGSI RENDER & INTERAKSI UI (DENGAN PAGINASI) ---
+
         
+
         const renderKegiatanGrid = (kegiatanList) => { 
+
             const grid = document.getElementById('kegiatan-grid'); 
+
             if (kegiatanList.length === 0) { 
+
                 grid.innerHTML = `<p class="col-span-full text-center text-slate-400">Tidak ada kegiatan yang cocok.</p>`; 
+
                 return; 
+
             } 
+
             grid.innerHTML = kegiatanList.map(k => { 
+
                 const tanggal = k.tanggal ? new Date(k.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : ''; 
+
                 return `<a href="#/kegiatan/${k.id}" class="card-base rounded-xl overflow-hidden group kegiatan-card fade-in-section"><div class="overflow-hidden h-56"><img src="${k.foto}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="this.src='https://placehold.co/600x400/334155/e5e7eb?text=Kegiatan'"></div><div class="p-6"><p class="text-sm text-slate-400 mb-2"><i class="fas fa-calendar-alt mr-2"></i>${tanggal}</p><h3 class="text-xl font-bold mb-3 h-20 line-clamp-3">${k.nama}</h3><p class="text-blue-400 text-sm"><i class="fas fa-map-marker-alt mr-2"></i>${k.lokasi}</p></div></a>`; 
+
             }).join(''); 
+
             observeSections(); 
+
         };
 
+
+
         // Fungsi untuk merender tombol paginasi
+
         const renderPagination = (totalItems) => {
+
             const paginationContainer = document.getElementById('pagination-controls');
+
             const totalPages = Math.ceil(totalItems / itemsPerPage);
 
+
+
             // Sembunyikan paginasi jika hanya ada 1 halaman
+
             if (totalPages <= 1) {
+
                 paginationContainer.classList.add('hidden');
+
                 return;
+
             }
+
+
 
             paginationContainer.classList.remove('hidden');
+
             let paginationHTML = '';
 
+
+
             // Tombol Previous
+
             paginationHTML += `<button class="pagination-btn" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>`;
 
+
+
             // Tombol Angka Halaman
+
             for (let i = 1; i <= totalPages; i++) {
+
                 // Tampilkan halaman pertama, terakhir, dan sekitar halaman aktif
+
                 if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+
                     paginationHTML += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+
                 } else if (i === currentPage - 2 || i === currentPage + 2) {
+
                     paginationHTML += `<span class="text-slate-500 px-1">...</span>`;
+
                 }
+
             }
 
+
+
             // Tombol Next
+
             paginationHTML += `<button class="pagination-btn" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>`;
+
+
 
             paginationContainer.innerHTML = paginationHTML;
 
+
+
             // Event Listeners untuk Tombol Paginasi
+
             paginationContainer.querySelectorAll('.pagination-btn').forEach(btn => {
+
                 btn.addEventListener('click', () => {
+
                     if (!btn.disabled) {
+
                         currentPage = parseInt(btn.dataset.page);
+
                         updatePaginatedView();
+
                         // Scroll smooth ke bagian atas grid kegiatan agar user sadar halaman berubah
+
                         document.getElementById('kegiatan').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
                     }
+
                 });
+
             });
+
         };
+
+
 
         // Fungsi Utama Pengatur Tampilan Paginasi
+
         const updatePaginatedView = () => {
+
             const startIndex = (currentPage - 1) * itemsPerPage;
+
             const endIndex = startIndex + itemsPerPage;
+
             
+
             // Ambil potongan data untuk halaman ini
+
             const pageData = currentFilteredKegiatan.slice(startIndex, endIndex);
+
             
+
             renderKegiatanGrid(pageData);
+
             renderPagination(currentFilteredKegiatan.length);
+
         };
+
         
+
         // Fungsi Filter Data
+
         const applyFilters = () => { 
+
             const searchTerm = document.getElementById('search-kegiatan').value.toLowerCase(); 
+
             const selectedYear = document.getElementById('filter-tahun').value; 
+
             
+
             // Filter data mentah dan simpan di variabel global
+
             currentFilteredKegiatan = allKegiatan.filter(k => (!searchTerm || k.nama.toLowerCase().includes(searchTerm)) && (!selectedYear || (k.tanggal && new Date(k.tanggal).getFullYear() == selectedYear))); 
+
             
+
             // Reset ke halaman 1 setiap kali filter berubah
+
             currentPage = 1;
+
             updatePaginatedView();
+
         };
+
         
+
         const renderDetailPage = async (kegiatanId) => { 
+
             showDetailPage(); 
+
             detailContent.innerHTML = `<div class="text-center py-40"><p class="text-slate-400">Memuat detail...</p></div>`; 
+
             try { 
+
                 const docRef = getDocRef('kegiatan', kegiatanId); 
+
                 const docSnap = await getDoc(docRef); 
+
                 if (docSnap.exists()) { 
+
                     const data = docSnap.data(); 
+
                     const tanggal = data.tanggal ? new Date(data.tanggal).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : 'N/A'; 
+
                     const mapHtml = (data.koordinat?.lat && data.koordinat?.lng) ? `<h3 class="text-2xl font-bold mt-12 mb-4">Peta Lokasi</h3><div id="map" class="w-full h-80 z-0"></div>` : ''; 
+
                     detailContent.innerHTML = `<article class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12"><div class="max-w-3xl mx-auto"><div class="mb-6 sm:mb-8"><a href="#" class="nav-link text-pink-400 hover:text-pink-300"><i class="fas fa-arrow-left mr-2"></i>Kembali ke Beranda</a></div><h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">${data.nama}</h1><div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-slate-400 mb-6 border-b border-slate-700 pb-6"><span><i class="fas fa-calendar-alt mr-2 text-amber-400"></i>${tanggal}</span><span><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>${data.lokasi || 'N/A'}</span></div><img src="${data.foto}" alt="${data.nama}" class="w-full rounded-xl mb-8" onerror="this.style.display='none'"><div class="prose prose-invert max-w-none text-slate-300 leading-relaxed text-justify whitespace-pre-line">${data.deskripsi || ''}</div>${mapHtml}</div></article>`; 
+
                     if (data.koordinat?.lat && data.koordinat?.lng) { 
+
                         setTimeout(() => { 
+
                             const map = L.map('map').setView([data.koordinat.lat, data.koordinat.lng], 15); 
+
                             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map); 
+
                             L.marker([data.koordinat.lat, data.koordinat.lng]).addTo(map).bindPopup(`<b>${data.nama}</b>`).openPopup(); 
+
                         }, 100); 
+
                     } 
+
                 } else { 
+
                     detailContent.innerHTML = `<div class="text-center py-40 px-4"><h2 class="text-2xl font-bold">404 - Tidak Ditemukan</h2><p class="text-slate-400 mt-4">Kegiatan ini tidak ditemukan.</p><a href="#" class="nav-link mt-8 inline-block btn-primary px-6 py-3 rounded-lg">Kembali</a></div>`; 
+
                 } 
+
             } catch (error) { 
+
                 detailContent.innerHTML = `<div class="text-center py-40 px-4"><h2 class="text-2xl font-bold text-red-400">Gagal Memuat</h2><p class="text-slate-400 mt-4">Terjadi kesalahan saat mengambil data.</p><a href="#" class="nav-link mt-8 inline-block btn-primary px-6 py-3 rounded-lg">Kembali</a></div>`; 
+
             } 
+
         };
+
         
+
         // --- UPDATE: RENDER MODAL DENGAN SCROLLBAR ---
+
         const renderOrganisasiDetail = async (orgId) => { 
+
             const placeholder = document.getElementById('modal-placeholder'); 
+
             const docRef = getDocRef('organisasi', orgId); 
+
             const docSnap = await getDoc(docRef); 
+
             if (docSnap.exists()) { 
+
                 const org = docSnap.data(); 
+
                 const ketua = org.infoKetua || {}; 
+
                 const profile = organisasiProfiles[org.nama.toUpperCase().replace(/\s/g, '')] || organisasiProfiles[org.nama] || "Informasi profil lengkap organisasi belum tersedia saat ini."; 
+
                 const avatar = ketua.foto ? `<img src="${ketua.foto}" class="w-20 h-20 rounded-full object-cover border-4 border-slate-700" onerror="this.src='https://placehold.co/80x80/ec4899/ffffff?text=${(ketua.nama || '?').charAt(0)}'">` : `<div class="w-20 h-20 rounded-full bg-pink-500 flex items-center justify-center text-3xl font-bold border-4 border-slate-700">${(ketua.nama || '?').charAt(0)}</div>`; 
+
                 
+
                 const modalHTML = ` 
+
                 <div id="org-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 modal-overlay"> 
+
                     <div class="bg-slate-800 border border-slate-700 rounded-xl w-full max-w-lg p-6 transform scale-95 opacity-0 modal-content"> 
+
                         <div class="flex flex-col sm:flex-row items-start text-center sm:text-left gap-5"> 
+
                             <img src="${org.logo || 'https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'}" class="w-24 h-24 object-contain flex-shrink-0 mx-auto sm:mx-0" onerror="this.src='https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'"> 
+
                             <div class="w-full"> 
+
                                 <h2 class="text-2xl font-bold text-white mb-2">${org.nama}</h2> 
+
                                 <!-- Scrollable Description Container -->
+
                                 <div class="max-h-48 overflow-y-auto pr-2 modal-text-scroll">
+
                                     <p class="text-slate-400 text-sm text-justify leading-relaxed">${profile}</p> 
+
                                 </div>
+
                             </div> 
+
                         </div> 
+
                         <div class="my-6 border-t border-slate-700"></div> 
+
                         <h3 class="font-semibold text-lg mb-4 text-center">Dipimpin oleh:</h3> 
+
                         <div class="flex items-center justify-center space-x-4"> ${avatar} 
+
                             <div>
+
                                 <p class="font-bold text-xl text-amber-400">${ketua.nama || '-'}</p>
+
                                 <p class="text-slate-300">Ketua Organisasi</p>
+
                             </div> 
+
                         </div> 
+
                         <div class="text-center"> 
+
                             <button id="close-modal-btn" class="mt-8 bg-pink-600/20 text-pink-400 hover:bg-pink-600 hover:text-white transition-colors px-6 py-2 rounded-lg">Tutup</button> 
+
                         </div> 
+
                     </div> 
+
                 </div>`; 
+
                 placeholder.innerHTML = modalHTML; 
+
                 const modal = document.getElementById('org-modal'); 
+
                 const modalContent = modal.querySelector('.modal-content'); 
+
                 requestAnimationFrame(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('scale-95', 'opacity-0'); }); 
+
                 const closeModal = () => { modal.classList.add('opacity-0'); modalContent.classList.add('scale-95', 'opacity-0'); setTimeout(() => placeholder.innerHTML = '', 300); }; 
+
                 modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }); 
+
                 document.getElementById('close-modal-btn').addEventListener('click', closeModal); 
+
             } 
+
         };
+
         
+
         // --- DATA TERPILAH (KOMBINASI DATA AWAL & DATA REAL) ---
+
         const kecamatanList = ['Siantan', 'Siantan Selatan', 'Siantan Timur', 'Palmatak', 'Jemaja', 'Jemaja Barat', 'Jemaja Timur', 'Kute Siantan', 'Siantan Tengah', 'Siantan Utara'];
+
         
+
         const fullDataByCategory = {
+
             'Kependudukan': {
-                sumber: 'Sumber: Dinas Kependudukan dan Pencatatan Sipil, BPS (Tabel 1.1 - 1.9)',
+
+                sumber: 'Sumber: Dinas Kependudukan dan Pencatatan Sipil, BPS',
+
                 indicators: {
-                    'Komposisi Penduduk (0-4 Tahun)': {
+
+                    'Komposisi Penduduk': {
+
                         type: 'kabupaten',
+
                         labels: ['Laki-laki', 'Perempuan'],
+
                         wawasan: { default: '<p>💡 Jumlah balita (0-4 tahun) di Anambas pada tahun 2024 cukup seimbang antara laki-laki dan perempuan.</p>' },
+
                         datasets: [
+
                             { label: '2023', color: 'rgba(59, 130, 246, 0.7)' },
+
                             { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+
                         ],
-                        data: [ [2050, 1959], [1997, 1899] ] // Tabel 1.1
+
+                        data: [ [2050, 1959], [1997, 1899] ] 
+
                     },
+
                     'Kepala Rumah Tangga': {
+
                         type: 'kabupaten',
+
                         labels: ['Laki-laki', 'Perempuan'],
+
                         wawasan: { default: '<p>💡 Dominasi kepala rumah tangga laki-laki (13.231) dibanding perempuan (2.813) pada tahun 2024.</p>' },
+
                         datasets: [
+
                             { label: '2023', color: 'rgba(59, 130, 246, 0.7)' },
+
                             { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+
                         ],
-                        data: [ [12909, 2690], [13231, 2813] ] // Tabel 1.2
+
+                        data: [ [12909, 2690], [13231, 2813] ] 
+
                     },
-                    'Kepemilikan Akta & KIA (Anak)': {
+
+                    'Kepemilikan Akta & KIA': {
+
                         type: 'kabupaten',
+
                         labels: ['Memiliki Akta', 'Tidak Memiliki Akta', 'Memiliki KIA', 'Tidak Memiliki KIA'],
+
                         wawasan: { default: '<p>💡 Sebagian besar anak (0-17 tahun) sudah memiliki akta kelahiran, dan cakupan KIA terus meningkat.</p>' },
+
                         datasets: [
+
                             { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+
                         ],
-                        data: [ [15817, 130, 12235, 2753] ] // Tabel 1.9 (Total L+P)
+
+                        data: [ [15817, 130, 12235, 2753] ] 
+
                     },
-                    'Penduduk Menurut Kelompok Umur': { // Tabel 1.3
+
+                    'Penduduk Menurut Kelompok Umur': { 
+
                         type: 'kabupaten',
+
                         labels: ['0-4', '5-9', '10-14', '15-19', '20-50', '51+'],
+
                         wawasan: { default: '<p>💡 Sebaran penduduk berdasarkan kelompok umur.</p>' },
+
                         datasets: [
+
                             { label: 'Laki-laki (2024)', color: 'rgba(59, 130, 246, 0.7)' },
+
                             { label: 'Perempuan (2024)', color: 'rgba(236, 72, 153, 0.7)' }
+
                         ],
-                        data: [ [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0] ] // Data 0
+
+                        data: [ [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0] ] 
+
                     }
+
                 }
+
             },
+
             'Pembangunan Manusia': {
-                sumber: 'Sumber: BPS Provinsi Kepulauan Riau (Tabel 1.4)',
+
+                sumber: 'Sumber: BPS Provinsi Kepulauan Riau',
+
                 indicators: {
+
                     'Indeks Pembangunan': {
+
                         type: 'kabupaten',
+
                         labels: ['IPM', 'IPG', 'IDG'],
+
                         wawasan: { default: '<p>💡 Capaian Indeks Pembangunan Gender (IPG) tahun 2024 mencapai 92.02, menunjukkan kesetaraan yang cukup baik.</p>' },
+
                         datasets: [
+
                             { label: '2023', color: 'rgba(16, 185, 129, 0.7)' },
+
                             { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+
                         ],
-                        data: [ [70.26, 91.58, 62.29], [70.93, 92.02, 58.3] ] // Tabel 1.4
+
+                        data: [ [70.26, 91.58, 62.29], [70.93, 92.02, 58.3] ] 
+
                     }
+
                 }
+
             },
+
             'Pendidikan': {
-                sumber: 'Sumber: Dinas Pendidikan, BPS (Tabel 3.1 - 3.9)',
+
+                sumber: 'Sumber: Dinas Pendidikan, BPS',
+
                 indicators: {
+
                     'Pendidikan Tertinggi Ditamatkan': {
+
                         type: 'kabupaten',
+
                         labels: ['Tdk Sekolah', 'SD', 'SLTP', 'SLTA', 'PT'],
+
                         wawasan: { default: '<p>💡 Distribusi tingkat pendidikan penduduk Anambas.</p>' },
+
                         datasets: [
+
                             { label: '2024 (Persentase)', color: 'rgba(59, 130, 246, 0.7)' }
+
                         ],
-                        data: [ [16.18, 13.19, 0, 0, 0] ] // Tabel 1.5
+
+                        data: [ [0, 0, 0, 0, 0] ] 
+
                     },
-                    'Angka Partisipasi Kasar (APK)': { // Tabel 3.1
+
+                    'Angka Partisipasi Kasar': { 
+
                         type: 'kabupaten',
-                        labels: ['SD', 'SLTP', 'SLTA'],
+
+                        labels: ['SD (07-12)', 'SLTP (13-15)', 'SLTA (16-18)'],
+
                         wawasan: { default: '<p>💡 Angka Partisipasi Kasar (APK) pendidikan.</p>' },
+
                         datasets: [
-                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0] ] // Data 0
-                    },
-                    'Angka Partisipasi Sekolah (APS)': { // Tabel 3.2
-                        type: 'kabupaten',
-                        labels: ['7-12 Thn', '13-15 Thn', '16-18 Thn'],
-                        wawasan: { default: '<p>💡 Angka Partisipasi Sekolah berdasarkan kelompok umur.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0] ] // Data 0
-                    },
-                    'Angka Partisipasi Murni (APM)': {
-                        type: 'kabupaten',
-                        labels: ['SD', 'SLTP', 'SLTA'],
-                        wawasan: { default: '<p>💡 Data Angka Partisipasi Murni sekolah.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0] ] // Tabel 3.3 (Data 0)
-                    },
-                    'Angka Melek Huruf (AMH)': { // Tabel 3.4
-                        type: 'kabupaten',
-                        labels: ['Usia >15', 'Usia 15-24'],
-                        wawasan: { default: '<p>💡 Angka melek huruf penduduk.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
-                        ],
-                        data: [ [0, 0] ] // Data 0
-                    },
-                    'Siswa Putus Sekolah': { // Tabel 3.5
-                        type: 'kabupaten',
-                        labels: ['SD', 'SLTP', 'SLTA'],
-                        wawasan: { default: '<p>⚠️ Jumlah siswa yang putus sekolah.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0] ] // Data 0
-                    },
-                    'Rata-Rata Lama Sekolah': { // Tabel 3.6
-                        type: 'kabupaten',
-                        labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>💡 Rata-rata lama sekolah penduduk.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(147, 51, 234, 0.7)' }
-                        ],
-                        data: [ [0, 0] ] // Data 0
-                    },
-                    'Jumlah Guru (Negeri/Swasta)': { // Tabel 3.7
-                        type: 'kabupaten',
-                        labels: ['SD', 'SLTP', 'SLTA'],
-                        wawasan: { default: '<p>💡 Jumlah tenaga pengajar negeri dan swasta.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0] ] // Data 0
-                    },
-                    'Jumlah Guru (Sertifikasi)': {
-                        type: 'kabupaten',
-                        labels: ['SD', 'SLTP', 'SLTA'],
-                        wawasan: { default: '<p>💡 Jumlah guru yang telah tersertifikasi.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0] ] // Tabel 3.9 (Data 0)
-                    }
-                }
-            },
-            'Kesehatan': {
-                sumber: 'Sumber: Dinas Kesehatan PPKB (Tabel 2.1 - 2.8)',
-                indicators: {
-                    'Angka Harapan Hidup (AHH)': {
-                        type: 'kabupaten',
-                        labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>💡 AHH perempuan (70.41) lebih tinggi dibanding laki-laki (66.43) pada tahun 2024.</p>' },
-                        datasets: [
-                            { label: '2023', color: 'rgba(96, 165, 250, 0.7)' },
-                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
-                        ],
-                        data: [ [66.15, 70.14], [66.43, 70.41] ] // Tabel 2.1
-                    },
-                    'Kematian Ibu': { // Tabel 2.2
-                        type: 'kabupaten',
-                        labels: ['< 20 Thn', '20-35 Thn', '> 35 Thn'],
-                        wawasan: { default: '<p>💡 Data kematian ibu hamil, melahirkan, dan nifas (Nihil).</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0] ] // Data 0
-                    },
-                    'Kesehatan Ibu Hamil': {
-                        type: 'kabupaten',
-                        labels: ['Bumil KEK', 'Bumil Risti'],
-                        wawasan: { default: '<p>💡 Pemantauan ibu hamil dengan risiko Kekurangan Energi Kronis (KEK) dan Resiko Tinggi.</p>' },
-                        datasets: [
-                            { label: '2023', color: 'rgba(251, 146, 60, 0.7)' },
-                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
-                        ],
-                        data: [ [73, 255], [126, 149] ] // Tabel 2.3
-                    },
-                    'Peserta KB Aktif': {
-                        type: 'kabupaten',
-                        labels: ['Perempuan', 'Laki-laki'],
-                        wawasan: { default: '<p>💡 Partisipasi KB didominasi perempuan (6.970) dibanding laki-laki (259).</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
-                        ],
-                        data: [ [6970, 259] ] // Tabel 2.6
-                    },
-                    'Peserta KB Baru': { // Tabel 2.7
-                        type: 'kabupaten',
-                        labels: ['Perempuan', 'Laki-laki'],
-                        wawasan: { default: '<p>💡 Peserta KB baru tahun 2024.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
-                        ],
-                        data: [ [699, 81] ] // Tabel 2.7
-                    },
-                    'Kasus HIV/AIDS': {
-                        type: 'kabupaten',
-                        labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>💡 Terdapat peningkatan kasus HIV yang terdeteksi pada tahun 2024.</p>' },
-                        datasets: [
-                            { label: '2023', color: 'rgba(147, 51, 234, 0.7)' },
-                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
-                        ],
-                        data: [ [6, 1], [8, 6] ] // Tabel 2.4
-                    },
-                    'HIV/AIDS per Kelompok Umur': { // Tabel 2.5
-                        type: 'kabupaten',
-                        labels: ['0-4', '5-14', '15-19', '20-24', '25-49'],
-                        wawasan: { default: '<p>💡 Sebaran kasus HIV berdasarkan kelompok umur.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
-                        ],
-                        data: [ [0, 1, 0, 1, 9] ] // Tabel 2.5 snippet
-                    },
-                    'Kebutuhan KB Belum Terpenuhi (Unmet Need)': { // Tabel 2.8
-                        type: 'kabupaten',
-                        labels: ['Unmet Need'],
-                        wawasan: { default: '<p>💡 Penurunan angka Unmet Need yang signifikan.</p>' },
-                        datasets: [
-                            { label: '2023', color: 'rgba(251, 146, 60, 0.7)' },
-                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
-                        ],
-                        data: [ [226], [1] ] // Tabel 2.8
-                    }
-                }
-            },
-            'Ekonomi & Ketenagakerjaan': {
-                sumber: 'Sumber: DKUMPP, BPS (Tabel 1.6-1.8, 5.1-5.12)',
-                indicators: {
-                    'Anggota Koperasi': {
-                        type: 'kabupaten',
-                        labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>💡 Peningkatan signifikan keanggotaan koperasi pada tahun 2024.</p>' },
-                        datasets: [
+
                             { label: '2023', color: 'rgba(59, 130, 246, 0.7)' },
-                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
-                        ],
-                        data: [ [552, 616], [993, 819] ] // Tabel 5.7
-                    },
-                    'Tingkat Pengangguran Terbuka': {
-                        type: 'kabupaten',
-                        labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>💡 Data tingkat pengangguran terbuka.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
-                        ],
-                        data: [ [0, 0] ] // Tabel 5.8 (Data kosong)
-                    },
-                    'Pekerja Sektor Informal': {
-                        type: 'kabupaten',
-                        labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>💡 Data pekerja di sektor informal.</p>' },
-                        datasets: [
+
                             { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+
                         ],
-                        data: [ [0, 0] ] // Tabel 5.5 (Data kosong)
+
+                        data: [ [75.65, 92.93, 0], [76.48, 93.68, 0] ] 
+
                     },
-                    'Tenaga Kerja Migran (AKAD)': { // Tabel 5.3.a
+
+                    'Angka Partisipasi Sekolah': { 
+
                         type: 'kabupaten',
-                        labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>💡 Tenaga Kerja Antar Kerja Antar Daerah (AKAD).</p>' },
+
+                        labels: ['07-12 Tahun', '13-15 Tahun', '16-18 Tahun'],
+
+                        wawasan: { default: '<p>💡 Angka Partisipasi Sekolah berdasarkan kelompok umur.</p>' },
+
                         datasets: [
-                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
+
+                            { label: '2023', color: 'rgba(59, 130, 246, 0.7)' },
+
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+
                         ],
-                        data: [ [0, 0] ] // Data 0
+
+                        data: [ [99.39, 97.68, 0], [99.8, 97.51, 0] ] 
+
                     },
-                    'Tenaga Kerja Migran (AKAN)': { // Tabel 5.3.b
+
+                    'Angka Partisipasi Murni': {
+
                         type: 'kabupaten',
-                        labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>💡 Tenaga Kerja Antar Kerja Antar Negara (AKAN).</p>' },
+
+                        labels: ['SD (07-12)', 'SLTP (13-15)', 'SLTA (16-18)'],
+
+                        wawasan: { default: '<p>💡 Data Angka Partisipasi Murni sekolah.</p>' },
+
                         datasets: [
+
+                            { label: '2023', color: 'rgba(59, 130, 246, 0.7)' },
+
                             { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+
                         ],
-                        data: [ [0, 0] ] // Data 0
+
+                        data: [ [67.73, 70.16, 0], [67.98, 69.67, 0] ] 
+
                     },
-                    'Perempuan Profesional': { // Tabel 5.10
+
+                    'Angka Melek Huruf': { 
+
                         type: 'kabupaten',
-                        labels: ['Jumlah'],
-                        wawasan: { default: '<p>💡 Jumlah perempuan pekerja profesional dan manajerial.</p>' },
+
+                        labels: ['Usia >15', 'Usia 15-24'],
+
+                        wawasan: { default: '<p>💡 Angka melek huruf penduduk.</p>' },
+
                         datasets: [
-                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+
+                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
+
                         ],
-                        data: [ [0] ] // Data 0
+
+                        data: [ [0, 0] ] 
+
                     },
-                    'Pekerja Menurut Lapangan Usaha': { // Tabel 1.6 & 5.11.1
+
+                    'Siswa Putus Sekolah': { 
+
                         type: 'kabupaten',
-                        labels: ['Pertanian/Kehutanan', 'Industri', 'Perdagangan', 'Jasa', 'Lainnya'],
-                        wawasan: { default: '<p>💡 Distribusi pekerja berdasarkan lapangan usaha utama.</p>' },
+
+                        labels: ['SD', 'SLTP', 'SLTA'],
+
+                        wawasan: { default: '<p>⚠️ Jumlah siswa yang putus sekolah.</p>' },
+
                         datasets: [
+
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+
+                        ],
+
+                        data: [ [39, 40, 0] ] 
+
+                    },
+
+                    'Rata-Rata Lama Sekolah': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['2023', '2024'],
+
+                        wawasan: { default: '<p>💡 Rata-rata lama sekolah penduduk.</p>' },
+
+                        datasets: [
+
+                            { label: 'Total', color: 'rgba(147, 51, 234, 0.7)' }
+
+                        ],
+
+                        data: [ [7.4, 7.53] ] 
+
+                    },
+
+                    'Jumlah Guru': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['SD', 'SLTP', 'SLTA'],
+
+                        wawasan: { default: '<p>💡 Jumlah tenaga pengajar negeri dan swasta.</p>' },
+
+                        datasets: [
+
                             { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+
                         ],
-                        data: [ [0, 0, 0, 0, 0] ] // Data 0
-                    }
-                }
-            },
-            'Politik & Pengambilan Keputusan': {
-                sumber: 'Sumber: Kesbangpol, Polres, PA (Tabel 6.2-7.4)',
-                indicators: {
-                    'Pengurus Partai Politik': {
+
+                        data: [ [0, 0, 0] ] 
+
+                    },
+
+                    'Jumlah Guru Sertifikasi': {
+
                         type: 'kabupaten',
-                        labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>💡 Keterwakilan perempuan dalam pengurus harian partai politik tercatat 69 orang.</p>' },
+
+                        labels: ['SD', 'SLTP', 'SLTA'],
+
+                        wawasan: { default: '<p>💡 Jumlah guru yang telah tersertifikasi.</p>' },
+
                         datasets: [
+
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0, 0] ] 
+
+                    }
+
+                }
+
+            },
+
+            'Kesehatan': {
+
+                sumber: 'Sumber: Dinas Kesehatan PPKB',
+
+                indicators: {
+
+                    'Angka Harapan Hidup': {
+
+                        type: 'kabupaten',
+
+                        labels: ['Laki-laki', 'Perempuan'],
+
+                        wawasan: { default: '<p>💡 AHH perempuan (70.41) lebih tinggi dibanding laki-laki (66.43) pada tahun 2024.</p>' },
+
+                        datasets: [
+
                             { label: '2023', color: 'rgba(96, 165, 250, 0.7)' },
+
                             { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+
                         ],
-                        data: [ [203, 69], [203, 69] ] // Tabel 6.2.2
+
+                        data: [ [66.15, 70.14], [66.43, 70.41] ] 
+
                     },
-                    'Kaukus Perempuan Parlemen': { // Tabel 6.2.3
+
+                    'Kematian Ibu': { 
+
                         type: 'kabupaten',
-                        labels: ['Pengurus', 'Anggota'],
-                        wawasan: { default: '<p>💡 Data Kaukus Perempuan Parlemen.</p>' },
+
+                        labels: ['< 20 Thn', '20-35 Thn', '> 35 Thn'],
+
+                        wawasan: { default: '<p>💡 Data kematian ibu hamil, melahirkan, dan nifas (Nihil).</p>' },
+
                         datasets: [
-                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
-                        ],
-                        data: [ [0, 0] ] // Data 0
-                    },
-                    'Pejabat Kepolisian': { // Tabel 6.3.4
-                        type: 'kabupaten',
-                        labels: ['Kapolres/L', 'Kapolres/P', 'Kapolsek/L', 'Kapolsek/P'],
-                        wawasan: { default: '<p>💡 Data pejabat di lingkungan Kepolisian Resort Anambas.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0, 0] ] // Data 0
-                    },
-                    'Jaksa (Struktural & Fungsional)': { // Tabel 6.3.1
-                        type: 'kabupaten',
-                        labels: ['Struktural/L', 'Struktural/P', 'Fungsional/L', 'Fungsional/P'],
-                        wawasan: { default: '<p>💡 Data Jaksa di Kejaksaan Negeri.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0, 0] ] // Data 0
-                    },
-                    'Hakim (PN & PA)': { // Tabel 6.3.2
-                        type: 'kabupaten',
-                        labels: ['Hakim/L', 'Hakim/P'],
-                        wawasan: { default: '<p>💡 Data Hakim di Pengadilan Negeri dan Agama.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
-                        ],
-                        data: [ [0, 0] ] // Data 0
-                    }
-                }
-            },
-            'Hukum & Sosial Budaya': {
-                sumber: 'Sumber: Dinsos PPPA, BPBD, Pengadilan Agama (Tabel 4.2, 5.2, 7.1-7.4)',
-                indicators: {
-                    'Penghuni Lapas & Rutan': { // Tabel 7.1
-                        type: 'kabupaten',
-                        labels: ['Tahanan Dewasa', 'Tahanan Anak', 'Napi Dewasa', 'Napi Anak'],
-                        wawasan: { default: '<p>⚠️ Data penghuni Lapas dan Rutan di Kabupaten Kepulauan Anambas.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(100, 116, 139, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0, 0] ] // Data 0
-                    },
-                    'Kasus Perceraian': { // Tabel 7.4.1
-                        type: 'kabupaten',
-                        labels: ['Cerai Talak (Suami)', 'Cerai Gugat (Istri)'],
-                        wawasan: { default: '<p>⚠️ Angka cerai gugat (istri) lebih tinggi dibandingkan cerai talak.</p>' },
-                        datasets: [
+
                             { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+
                         ],
-                        data: [ [30, 85] ] // Estimasi dari PDF
+
+                        data: [ [0, 0, 0] ] 
+
                     },
-                    'Rumah Tangga Miskin': { // Tabel 7.2 (2)
+
+                    'Kesehatan Ibu Hamil': {
+
                         type: 'kabupaten',
-                        labels: ['Kepala Laki-laki', 'Kepala Perempuan'],
-                        wawasan: { default: '<p>💡 Jumlah Rumah Tangga Miskin.</p>' },
+
+                        labels: ['Bumil KEK', 'Bumil Risti'],
+
+                        wawasan: { default: '<p>💡 Pemantauan ibu hamil dengan risiko Kekurangan Energi Kronis (KEK) dan Resiko Tinggi.</p>' },
+
                         datasets: [
-                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
-                        ],
-                        data: [ [0, 0] ] // Data 0
-                    },
-                    'Penduduk Lansia Terlantar': { // Tabel 7.2
-                        type: 'kabupaten',
-                        labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>💡 Jumlah penduduk lansia terlantar.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(147, 51, 234, 0.7)' }
-                        ],
-                        data: [ [0, 0] ] // Data 0
-                    },
-                    'Penyandang Disabilitas': { // Tabel 7.3.a & 7.3.b
-                        type: 'kabupaten',
-                        labels: ['Dewasa L', 'Dewasa P', 'Anak L', 'Anak P'],
-                        wawasan: { default: '<p>💡 Data penyandang disabilitas (Dewasa dan Anak).</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0, 0] ] // Data 0
-                    }
-                }
-            },
-            'Lingkungan': {
-                sumber: 'Sumber: Dinsos PPPA, BPBD (Tabel 4.2)',
-                indicators: {
-                    'Korban Bencana Alam': {
-                        type: 'kabupaten',
-                        labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>⚠️ Dampak bencana alam (Banjir Bandang, Angin Puting Beliung) terhadap penduduk pada tahun 2023.</p>' },
-                        datasets: [
-                            { label: '2023', color: 'rgba(100, 116, 139, 0.7)' }
-                        ],
-                        data: [ [406, 343] ] // Tabel 4.2 (Sum)
-                    }
-                }
-            },
-            'Kekerasan & Anak': {
-                sumber: 'Sumber: Dinsos PPPA, UPTD PPA (Tabel 8.1-9.11)',
-                indicators: {
-                    'Dispensasi Kawin Anak': {
-                        type: 'kabupaten',
-                        labels: ['Jumlah Kasus'],
-                        wawasan: { default: '<p>⚠️ Penurunan positif kasus dispensasi kawin dari 32 (2023) menjadi 23 (2024).</p>' },
-                        datasets: [
+
                             { label: '2023', color: 'rgba(251, 146, 60, 0.7)' },
-                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
-                        ],
-                        data: [ [32], [23] ] // Tabel 9.11.6
-                    },
-                    'Kekerasan Terhadap Anak': { // Tabel 9.1.2
-                        type: 'kabupaten',
-                        labels: ['Fisik', 'Psikis', 'Seksual', 'Penelantaran', 'Lainnya'],
-                        wawasan: { default: '<p>⚠️ Data kasus kekerasan terhadap anak yang dilaporkan.</p>' },
-                        datasets: [
+
                             { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+
                         ],
-                        data: [ [0, 0, 0, 0, 0] ] // Data 0
+
+                        data: [ [73, 255], [126, 149] ] 
+
                     },
-                    'Anak Berhadapan Hukum': { // Tabel 9.4 & 9.9
+
+                    'Peserta KB Aktif': {
+
                         type: 'kabupaten',
+
+                        labels: ['Perempuan', 'Laki-laki'],
+
+                        wawasan: { default: '<p>💡 Partisipasi KB didominasi perempuan (6.970) dibanding laki-laki (259).</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+
+                        ],
+
+                        data: [ [6970, 259] ] 
+
+                    },
+
+                    'Peserta KB Baru': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Perempuan', 'Laki-laki'],
+
+                        wawasan: { default: '<p>💡 Peserta KB baru tahun 2024.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
+
+                        ],
+
+                        data: [ [699, 81] ] 
+
+                    },
+
+                    'Kasus HIV/AIDS': {
+
+                        type: 'kabupaten',
+
                         labels: ['Laki-laki', 'Perempuan'],
-                        wawasan: { default: '<p>⚠️ Data anak yang berhadapan dengan hukum.</p>' },
+
+                        wawasan: { default: '<p>💡 Terdapat peningkatan kasus HIV yang terdeteksi pada tahun 2024.</p>' },
+
                         datasets: [
-                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
+
+                            { label: '2023', color: 'rgba(147, 51, 234, 0.7)' },
+
+                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+
                         ],
-                        data: [ [0, 0] ] // Data 0
+
+                        data: [ [6, 1], [8, 6] ] 
+
                     },
-                    'Pelaku Kekerasan (Pekerjaan)': { // Tabel 8.1.10.a
+
+                    'HIV/AIDS per Kelompok Umur': { 
+
                         type: 'kabupaten',
-                        labels: ['Tidak Bekerja', 'Bekerja'],
-                        wawasan: { default: '<p>⚠️ Status pekerjaan pelaku kekerasan.</p>' },
+
+                        labels: ['0-4', '5-14', '15-19', '20-24', '25-49'],
+
+                        wawasan: { default: '<p>💡 Sebaran kasus HIV berdasarkan kelompok umur.</p>' },
+
                         datasets: [
-                            { label: '2024', color: 'rgba(107, 114, 128, 0.7)' }
-                        ],
-                        data: [ [0, 0] ] // Data 0
-                    },
-                    'Pelaku Kekerasan (Hubungan)': { // Tabel 8.1.10.a
-                        type: 'kabupaten',
-                        labels: ['Orang Tua', 'Keluarga', 'Suami/Istri', 'Lainnya'],
-                        wawasan: { default: '<p>⚠️ Hubungan pelaku kekerasan dengan korban.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0, 0] ] // Data 0
-                    },
-                    'Pelaku TPPO': { // Tabel 8.2.2.a
-                        type: 'kabupaten',
-                        labels: ['Penyidikan', 'Penuntutan', 'Putusan'],
-                        wawasan: { default: '<p>⚠️ Data pelaku Tindak Pidana Perdagangan Orang (TPPO).</p>' },
-                        datasets: [
+
                             { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+
                         ],
-                        data: [ [0, 0, 0] ] // Data 0
+
+                        data: [ [0, 1, 0, 1, 9] ] 
+
                     },
-                    'Anak Jalanan & Terlantar': { // Tabel 9.2 & 9.3
+
+                    'Kebutuhan KB Belum Terpenuhi': { 
+
                         type: 'kabupaten',
-                        labels: ['Anak Jalanan', 'Anak Terlantar'],
-                        wawasan: { default: '<p>⚠️ Data anak jalanan dan terlantar.</p>' },
+
+                        labels: ['Unmet Need'],
+
+                        wawasan: { default: '<p>💡 Penurunan angka Unmet Need yang signifikan.</p>' },
+
                         datasets: [
+
+                            { label: '2023', color: 'rgba(251, 146, 60, 0.7)' },
+
                             { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+
                         ],
-                        data: [ [0, 0] ] // Data 0
-                    },
-                    'Panti Asuhan': { // Tabel 9.7.a
-                        type: 'kabupaten',
-                        labels: ['Jumlah Panti', 'Anak Asuh'],
-                        wawasan: { default: '<p>💡 Data panti asuhan anak.</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
-                        ],
-                        data: [ [0, 0] ] // Data 0
-                    },
-                    'Layanan TESA': { // Tabel 9.6.a/b
-                        type: 'kabupaten',
-                        labels: ['Konseling', 'Informasi', 'Lainnya'],
-                        wawasan: { default: '<p>💡 Pemanfaatan layanan Telepon Sahabat Anak (TESA).</p>' },
-                        datasets: [
-                            { label: '2024', color: 'rgba(147, 51, 234, 0.7)' }
-                        ],
-                        data: [ [0, 0, 0] ] // Data 0
+
+                        data: [ [226], [1] ] 
+
                     }
+
                 }
+
+            },
+
+            'Ekonomi & Ketenagakerjaan': {
+
+                sumber: 'Sumber: DKUMPP, BPS',
+
+                indicators: {
+
+                    'Anggota Koperasi': {
+
+                        type: 'kabupaten',
+
+                        labels: ['Laki-laki', 'Perempuan'],
+
+                        wawasan: { default: '<p>💡 Peningkatan signifikan keanggotaan koperasi pada tahun 2024.</p>' },
+
+                        datasets: [
+
+                            { label: '2023', color: 'rgba(59, 130, 246, 0.7)' },
+
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+
+                        ],
+
+                        data: [ [552, 616], [993, 819] ] 
+
+                    },
+
+                    'Tingkat Pengangguran Terbuka': {
+
+                        type: 'kabupaten',
+
+                        labels: ['Laki-laki', 'Perempuan'],
+
+                        wawasan: { default: '<p>💡 Data tingkat pengangguran terbuka.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0] ] 
+
+                    },
+
+                    'Pekerja Sektor Informal': {
+
+                        type: 'kabupaten',
+
+                        labels: ['Laki-laki', 'Perempuan'],
+
+                        wawasan: { default: '<p>💡 Data pekerja di sektor informal.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0] ] 
+
+                    },
+
+                    'Tenaga Kerja Migran (AKAD)': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Laki-laki', 'Perempuan'],
+
+                        wawasan: { default: '<p>💡 Tenaga Kerja Antar Kerja Antar Daerah (AKAD).</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0] ] 
+
+                    },
+
+                    'Tenaga Kerja Migran (AKAN)': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Laki-laki', 'Perempuan'],
+
+                        wawasan: { default: '<p>💡 Tenaga Kerja Antar Kerja Antar Negara (AKAN).</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0] ] 
+
+                    },
+
+                    'Perempuan Profesional': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Jumlah'],
+
+                        wawasan: { default: '<p>💡 Jumlah perempuan pekerja profesional dan manajerial.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+
+                        ],
+
+                        data: [ [0] ] 
+
+                    },
+
+                    'Pekerja Menurut Lapangan Usaha': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Pertanian/Kehutanan', 'Industri', 'Perdagangan', 'Jasa', 'Lainnya'],
+
+                        wawasan: { default: '<p>💡 Distribusi pekerja berdasarkan lapangan usaha utama.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0, 0, 0, 0] ] 
+
+                    }
+
+                }
+
+            },
+
+            'Politik & Pengambilan Keputusan': {
+
+                sumber: 'Sumber: Kesbangpol, Polres, PA',
+
+                indicators: {
+
+                    'Pengurus Partai Politik': {
+
+                        type: 'kabupaten',
+
+                        labels: ['Laki-laki', 'Perempuan'],
+
+                        wawasan: { default: '<p>💡 Keterwakilan perempuan dalam pengurus harian partai politik tercatat 69 orang.</p>' },
+
+                        datasets: [
+
+                            { label: '2023', color: 'rgba(96, 165, 250, 0.7)' },
+
+                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+
+                        ],
+
+                        data: [ [203, 69], [203, 69] ] 
+
+                    },
+
+                    'Kaukus Perempuan Parlemen': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Pengurus', 'Anggota'],
+
+                        wawasan: { default: '<p>💡 Data Kaukus Perempuan Parlemen.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0] ] 
+
+                    },
+
+                    'Pejabat Kepolisian': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Kapolres/L', 'Kapolres/P', 'Kapolsek/L', 'Kapolsek/P'],
+
+                        wawasan: { default: '<p>💡 Data pejabat di lingkungan Kepolisian Resort Anambas.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0, 0, 0] ] 
+
+                    },
+
+                    'Jaksa (Struktural & Fungsional)': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Struktural/L', 'Struktural/P', 'Fungsional/L', 'Fungsional/P'],
+
+                        wawasan: { default: '<p>💡 Data Jaksa di Kejaksaan Negeri.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0, 0, 0] ] 
+
+                    },
+
+                    'Hakim (PN & PA)': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Hakim/L', 'Hakim/P'],
+
+                        wawasan: { default: '<p>💡 Data Hakim di Pengadilan Negeri dan Agama.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0] ] 
+
+                    }
+
+                }
+
+            },
+
+            'Hukum & Sosial Budaya': {
+
+                sumber: 'Sumber: Dinsos PPPA, BPBD, Pengadilan Agama',
+
+                indicators: {
+
+                    'Penghuni Lapas & Rutan': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Tahanan Dewasa', 'Tahanan Anak', 'Napi Dewasa', 'Napi Anak'],
+
+                        wawasan: { default: '<p>⚠️ Data penghuni Lapas dan Rutan di Kabupaten Kepulauan Anambas.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(100, 116, 139, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0, 0, 0] ] 
+
+                    },
+
+                    'Kasus Perceraian': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Cerai Talak (Suami)', 'Cerai Gugat (Istri)'],
+
+                        wawasan: { default: '<p>⚠️ Angka cerai gugat (istri) lebih tinggi dibandingkan cerai talak.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+
+                        ],
+
+                        data: [ [30, 85] ] 
+
+                    },
+
+                    'Rumah Tangga Miskin': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Kepala Laki-laki', 'Kepala Perempuan'],
+
+                        wawasan: { default: '<p>💡 Jumlah Rumah Tangga Miskin.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0] ] 
+
+                    },
+
+                    'Penduduk Lansia Terlantar': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Laki-laki', 'Perempuan'],
+
+                        wawasan: { default: '<p>💡 Jumlah penduduk lansia terlantar.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(147, 51, 234, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0] ] 
+
+                    },
+
+                    'Penyandang Disabilitas': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Dewasa L', 'Dewasa P', 'Anak L', 'Anak P'],
+
+                        wawasan: { default: '<p>💡 Data penyandang disabilitas (Dewasa dan Anak).</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0, 0, 0] ] 
+
+                    }
+
+                }
+
+            },
+
+            'Lingkungan': {
+
+                sumber: 'Sumber: Dinsos PPPA, BPBD',
+
+                indicators: {
+
+                    'Korban Bencana Alam': {
+
+                        type: 'kabupaten',
+
+                        labels: ['Laki-laki', 'Perempuan'],
+
+                        wawasan: { default: '<p>⚠️ Dampak bencana alam (Banjir Bandang, Angin Puting Beliung) terhadap penduduk pada tahun 2023.</p>' },
+
+                        datasets: [
+
+                            { label: '2023', color: 'rgba(100, 116, 139, 0.7)' }
+
+                        ],
+
+                        data: [ [406, 343] ] 
+
+                    }
+
+                }
+
+            },
+
+            'Kekerasan & Anak': {
+
+                sumber: 'Sumber: Dinsos PPPA, UPTD PPA',
+
+                indicators: {
+
+                    'Dispensasi Kawin Anak': {
+
+                        type: 'kabupaten',
+
+                        labels: ['Jumlah Kasus'],
+
+                        wawasan: { default: '<p>⚠️ Penurunan positif kasus dispensasi kawin dari 32 (2023) menjadi 23 (2024).</p>' },
+
+                        datasets: [
+
+                            { label: '2023', color: 'rgba(251, 146, 60, 0.7)' },
+
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+
+                        ],
+
+                        data: [ [32], [23] ] 
+
+                    },
+
+                    'Kekerasan Terhadap Anak': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Fisik', 'Psikis', 'Seksual', 'Penelantaran', 'Lainnya'],
+
+                        wawasan: { default: '<p>⚠️ Data kasus kekerasan terhadap anak yang dilaporkan.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0, 0, 0, 0] ] 
+
+                    },
+
+                    'Anak Berhadapan Hukum': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Laki-laki', 'Perempuan'],
+
+                        wawasan: { default: '<p>⚠️ Data anak yang berhadapan dengan hukum.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0] ] 
+
+                    },
+
+                    'Pelaku Kekerasan (Pekerjaan)': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Tidak Bekerja', 'Bekerja'],
+
+                        wawasan: { default: '<p>⚠️ Status pekerjaan pelaku kekerasan.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(107, 114, 128, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0] ] 
+
+                    },
+
+                    'Pelaku Kekerasan (Hubungan)': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Orang Tua', 'Keluarga', 'Suami/Istri', 'Lainnya'],
+
+                        wawasan: { default: '<p>⚠️ Hubungan pelaku kekerasan dengan korban.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0, 0, 0] ] 
+
+                    },
+
+                    'Pelaku TPPO': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Penyidikan', 'Penuntutan', 'Putusan'],
+
+                        wawasan: { default: '<p>⚠️ Data pelaku Tindak Pidana Perdagangan Orang (TPPO).</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(239, 68, 68, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0, 0] ] 
+
+                    },
+
+                    'Anak Jalanan & Terlantar': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Anak Jalanan', 'Anak Terlantar'],
+
+                        wawasan: { default: '<p>⚠️ Data anak jalanan dan terlantar.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(16, 185, 129, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0] ] 
+
+                    },
+
+                    'Panti Asuhan': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Jumlah Panti', 'Anak Asuh'],
+
+                        wawasan: { default: '<p>💡 Data panti asuhan anak.</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(59, 130, 246, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0] ] 
+
+                    },
+
+                    'Layanan TESA': { 
+
+                        type: 'kabupaten',
+
+                        labels: ['Konseling', 'Informasi', 'Lainnya'],
+
+                        wawasan: { default: '<p>💡 Pemanfaatan layanan Telepon Sahabat Anak (TESA).</p>' },
+
+                        datasets: [
+
+                            { label: '2024', color: 'rgba(147, 51, 234, 0.7)' }
+
+                        ],
+
+                        data: [ [0, 0, 0] ] 
+
+                    }
+
+                }
+
             }
+
         };
+
+
 
         const renderDataContent = (category) => {
+
             const contentArea = document.getElementById('data-content-area');
+
             const categoryData = fullDataByCategory[category];
+
             if (!contentArea || !categoryData) return;
 
+
+
             const indicatorOptions = Object.keys(categoryData.indicators).map(ind => `<option value="${ind}">${ind}</option>`).join('');
+
             // Hide kecamatan filter if data is aggregation only
+
             const showKecamatanFilter = Object.values(categoryData.indicators)[0].type !== 'kabupaten';
+
             const kecamatanSelectHTML = showKecamatanFilter ? `
+
                 <select id="kecamatan-filter" class="flex-grow bg-slate-800 border border-slate-700 rounded-lg py-2 px-4 focus:ring-2 focus:ring-pink-500 focus:outline-none">
+
                     <option value="Semua Kecamatan">Semua Kecamatan / Kabupaten</option>
+
                     ${kecamatanList.map(kec => `<option value="${kec}">${kec}</option>`).join('')}
+
                 </select>` : '';
 
+
+
             contentArea.innerHTML = `
+
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
                     <div class="lg:col-span-2">
+
                         <div class="flex flex-col sm:flex-row gap-4 mb-6">
+
                              <select id="indicator-filter" class="flex-grow bg-slate-800 border border-slate-700 rounded-lg py-2 px-4 focus:ring-2 focus:ring-pink-500 focus:outline-none">
+
                                 ${indicatorOptions}
+
                              </select>
+
                              ${kecamatanSelectHTML}
+
                         </div>
+
                         <div class="bg-slate-800/50 rounded-lg p-4 h-96 relative">
+
                             <h4 id="chart-title" class="text-lg font-bold mb-2 text-center text-slate-300"></h4>
+
                             <canvas id="data-chart-canvas"></canvas>
+
                         </div>
+
                     </div>
+
                     <div class="lg:col-span-1">
+
                         <div class="bg-slate-800/50 rounded-xl p-5 h-full">
+
                             <h5 class="text-lg font-bold flex items-center mb-3"><i class="fas fa-lightbulb mr-3 text-amber-400"></i>Pojok Wawasan</h5>
+
                             <div id="wawasan-content" class="text-sm text-slate-300 space-y-3"></div>
+
                             <div class="mt-6 pt-4 border-t border-slate-700">
+
                                 <p class="text-xs text-slate-400 font-semibold">SUMBER DATA:</p>
+
                                 <p id="sumber-data" class="text-xs text-slate-500 italic"></p>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>`;
+
             
+
             updateDataViews(category, Object.keys(categoryData.indicators)[0], 'Semua Kecamatan');
+
         };
+
+
 
         const updateDataViews = (category, indicator, selectedKecamatan) => {
+
             const indicatorData = fullDataByCategory[category].indicators[indicator];
+
             if (!indicatorData) return;
+
             
+
             const titleEl = document.getElementById('chart-title');
+
             const wawasanEl = document.getElementById('wawasan-content');
+
             const sumberEl = document.getElementById('sumber-data');
+
             const kecFilter = document.getElementById('kecamatan-filter');
 
+
+
             wawasanEl.innerHTML = indicatorData.wawasan[selectedKecamatan] || indicatorData.wawasan.default;
+
             sumberEl.textContent = fullDataByCategory[category].sumber;
 
+
+
             let chartLabels;
+
             let chartDatasets;
+
             let maxDataValue = 0;
 
+
+
             // Handle Data Level Kabupaten (Non-Kecamatan) seperti Eselon
+
             if (indicatorData.type === 'kabupaten') {
+
                 if(kecFilter) kecFilter.disabled = true; // Disable filter kecamatan if exists
+
                 titleEl.textContent = `${indicator} (Tingkat Kabupaten)`;
+
                 
+
                 chartLabels = indicatorData.labels;
+
                 chartDatasets = indicatorData.datasets.map((ds, idx) => ({
+
                     label: ds.label,
+
                     data: indicatorData.data[idx],
+
                     backgroundColor: ds.color
+
                 }));
+
                  // Find max for scaling
+
                 const allValues = indicatorData.data.flat();
+
                 maxDataValue = Math.max(...allValues);
 
+
+
             } else {
+
                 if(kecFilter) kecFilter.disabled = false;
+
                 // Logika Normal Per Kecamatan
+
                 if (selectedKecamatan === 'Semua Kecamatan') {
+
                     titleEl.textContent = `${indicator} per Kecamatan`;
+
                     chartLabels = kecamatanList;
+
                     chartDatasets = indicatorData.datasets.map((dataset, index) => {
+
                         // Mapping data berdasarkan nama kecamatan di kecamatanList
+
                         const data = kecamatanList.map(kec => indicatorData.data[kec][index]);
+
                         const currentMax = Math.max(...data.filter(val => val !== null && val !== undefined));
+
                         if (currentMax > maxDataValue) maxDataValue = currentMax;
+
                         return {
+
                             label: dataset.label,
+
                             data: data,
+
                             backgroundColor: dataset.color,
+
                         };
+
                     });
+
                 } else {
+
                     titleEl.textContent = `${indicator} di Kec. ${selectedKecamatan}`;
+
                     const dataForKec = indicatorData.data[selectedKecamatan];
+
                     maxDataValue = Math.max(...dataForKec.filter(val => val !== null && val !== undefined));
+
                     
+
                     if (indicatorData.datasets.length > 1) {
+
                         chartLabels = indicatorData.datasets.map(d => d.label);
+
                         chartDatasets = [{ label: 'Nilai', data: dataForKec, backgroundColor: indicatorData.datasets.map(d => d.color) }];
+
                     } else {
+
                         chartLabels = [indicatorData.datasets[0].label];
+
                         chartDatasets = [{ label: indicatorData.datasets[0].label, data: dataForKec, backgroundColor: indicatorData.datasets[0].color }];
+
                     }
+
                 }
+
             }
 
+
+
             const ctx = document.getElementById('data-chart-canvas').getContext('2d');
+
             if (dataChart) dataChart.destroy();
+
             
+
             dataChart = new Chart(ctx, {
+
                 type: 'bar',
+
                 data: { labels: chartLabels, datasets: chartDatasets },
+
                 options: {
+
                     responsive: true,
+
                     maintainAspectRatio: false,
+
                     scales: {
+
                         y: { 
+
                             beginAtZero: true, 
+
                             grid: { color: 'rgba(255, 255, 255, 0.1)' }, 
+
                             ticks: { color: '#94a3b8' },
+
                             suggestedMax: maxDataValue * 1.25
+
                         },
+
                         x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } }
+
                     },
+
                     plugins: { 
+
                         legend: { 
+
                             labels: { color: '#e2e8f0' },
+
                             display: (selectedKecamatan === 'Semua Kecamatan' || indicatorData.datasets.length === 1) && indicatorData.type !== 'kabupaten' ? true : true
+
                         },
+
                         datalabels: {
+
                             rotation: -90,
+
                             anchor: 'center',
+
                             align: 'center',
+
                             color: '#ffffff',
+
                             font: { weight: 'bold', size: 11 },
+
                             formatter: (value) => {
+
                                 if (value === null || value === undefined) return '';
+
                                 // Format angka ribuan jika > 1000
+
                                 if (value > 1000) return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
                                 return Math.round(value * 10) / 10;
+
                             }
+
                         }
+
                     }
+
                 }
+
             });
+
         };
 
+
+
         const initializeDataSection = () => {
+
              const filterContainer = document.getElementById('data-filter-container');
+
             const dataContentArea = document.getElementById('data-content-area');
+
             if(!filterContainer || !dataContentArea) return;
+
+
 
             renderDataContent('Kependudukan'); // Set default awal
 
+
+
             const handleFilterChange = () => {
+
                 const activeCategory = filterContainer.querySelector('.active').dataset.category;
+
                 const selectedIndicator = dataContentArea.querySelector('#indicator-filter').value;
+
                 const kecFilter = dataContentArea.querySelector('#kecamatan-filter');
+
                 const selectedKecamatan = kecFilter ? kecFilter.value : 'Semua Kecamatan';
+
                 updateDataViews(activeCategory, selectedIndicator, selectedKecamatan);
+
             };
+
             
+
             filterContainer.addEventListener('click', (e) => {
+
                 if (e.target.matches('.data-filter-btn')) {
+
                     filterContainer.querySelector('.active').classList.remove('active');
+
                     e.target.classList.add('active');
+
                     renderDataContent(e.target.dataset.category);
+
                 }
+
             });
+
+
 
             dataContentArea.addEventListener('change', (e) => {
+
                 if(e.target.matches('#indicator-filter') || e.target.matches('#kecamatan-filter')) {
+
                     handleFilterChange();
+
                 }
+
             });
+
         };
+
+
 
         // --- ANIMASI PENGHITUNG MEDSOS ---
+
         const animateCounters = () => {
+
             const counters = document.querySelectorAll('.counter-anim');
+
             const speed = 50; 
 
+
+
             const observer = new IntersectionObserver((entries, observer) => {
+
                 entries.forEach(entry => {
+
                     if (entry.isIntersecting) {
+
                         const counter = entry.target;
+
                         const target = +counter.getAttribute('data-target');
+
                         let count = 0; 
+
                         const inc = target / speed; 
 
+
+
                         const updateCount = () => {
+
                             count += inc;
+
                             if (count < target) {
+
                                 counter.innerText = Math.ceil(count).toLocaleString('id-ID');
+
                                 requestAnimationFrame(updateCount);
+
                             } else {
+
                                 counter.innerText = target.toLocaleString('id-ID');
+
                             }
+
                         };
+
                         
+
                         updateCount();
+
                         observer.unobserve(counter); 
+
                     }
+
                 });
+
             }, { threshold: 0.5 });
 
+
+
             counters.forEach(counter => {
+
                 observer.observe(counter);
+
             });
+
         };
+
+
+
 
 
         // --- INISIALISASI & EVENT LISTENERS ---
+
         const router = () => { 
+
             const hash = window.location.hash; 
+
             if(hash.startsWith('#/kegiatan/')) { 
+
                 renderDetailPage(hash.split('/')[2]); 
+
             } else { 
+
                 showMainPage(); 
+
                 if (hash) { 
+
                     const targetElement = document.getElementById(hash.substring(1)); 
+
                     if (targetElement) { 
+
                         setTimeout(() => { targetElement.scrollIntoView({ behavior: 'smooth' }); }, 100); 
+
                     } 
+
                 } 
+
             } 
+
         };
+
         
+
         const observeSections = () => { 
+
             const observer = new IntersectionObserver((entries) => { 
+
                 entries.forEach(entry => { 
+
                     if (entry.isIntersecting) { 
+
                         entry.target.classList.add('is-visible'); 
+
                         observer.unobserve(entry.target); 
+
                     } 
+
                 }); 
+
             }, { threshold: 0.1 }); 
+
             document.querySelectorAll('.fade-in-section:not(.is-visible)').forEach(section => { observer.observe(section); }); 
+
         };
+
         
+
         document.addEventListener('DOMContentLoaded', async () => { 
+
             Chart.register(ChartDataLabels); // AKTIFKAN PLUGIN DATALABELS SECARA GLOBAL
 
+
+
             document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
             
+
             // SETUP AUTHENTICATION
+
             const initAuth = async () => {
+
                 try {
+
                     // Prioritize custom token if available
+
                     if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+
                         await signInWithCustomToken(auth, __initial_auth_token);
+
                     } else {
+
                         await signInAnonymously(auth);
+
                     }
+
                 } catch (error) {
+
                     console.error("Gagal inisialisasi auth:", error);
+
                 }
+
             };
 
+
+
             // Wait for auth to complete before loading data
+
             await initAuth();
 
+
+
             // PANGGIL FUNGSI SEEDING DATA DI SINI (HANYA JALAN JIKA BUKAN PRODUKSI)
+
             await seedDatabase();
 
+
+
             // Setup listener for auth state changes if needed, but for now we just proceed
+
             
+
             window.addEventListener('hashchange', router); 
+
             loadStatistik(); 
+
             loadProgramKerja();
+
             loadPengurusInti();
+
             loadOrganisasi(); 
+
             loadKegiatan(); 
+
             initializeDataSection();
+
             observeSections(); 
+
             animateCounters(); // Inisialisasi animasi penghitung medsos
+
             router(); 
+
             document.getElementById('search-kegiatan').addEventListener('input', applyFilters);
+
             document.getElementById('filter-tahun').addEventListener('change', applyFilters);
+
             document.getElementById('mobile-menu-button').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+
             document.body.addEventListener('click', (e) => { 
+
                 if (e.target.closest('#mobile-menu .nav-link') || e.target.closest('a.nav-link[href^="#"]')) { document.getElementById('mobile-menu').classList.add('hidden'); } 
+
                 if (e.target.closest('#detail-content .nav-link')) { e.preventDefault(); window.location.hash = '#'; } 
+
                 if (e.target.closest('a[href="#kontak"]')) { e.preventDefault(); document.getElementById('kontak').scrollIntoView({behavior: 'smooth'}); } 
+
             });
+
         });
+
     </script>
+
 </body>
+
+
 
 </html>
