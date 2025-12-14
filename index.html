@@ -3,7 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags Utama -->
     <title>GOW Kabupaten Kepulauan Anambas - Pemberdayaan Wanita, Membangun Negeri</title>
+    <meta name="description" content="Website Resmi Gabungan Organisasi Wanita (GOW) Kabupaten Kepulauan Anambas. Pusat informasi profil, program kerja, kegiatan, dan data pemberdayaan wanita di Anambas.">
+    <meta name="keywords" content="GOW Anambas, Gabungan Organisasi Wanita, Kepulauan Anambas, Organisasi Wanita, Pemberdayaan Perempuan, Anambas, Kegiatan Sosial Anambas">
+    <meta name="author" content="GOW Kabupaten Kepulauan Anambas">
+    <meta name="robots" content="index, follow">
+    <!-- Canonical URL (Agar Google tahu alamat asli website) -->
+    <link rel="canonical" href="https://gowanambaskab.id/" />
+    
+    <!-- TEMPEL KODE DARI GOOGLE SEARCH CONSOLE DI BAWAH INI -->
+    <meta name="google-site-verification" content="<meta name="google-site-verification" content="Dc2tOevfapHhQtcv0sksrbqPAcGPDgfaSfR69dDkq8Q" />" />
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gowanambaskab.id/">
+    <meta property="og:title" content="GOW Kabupaten Kepulauan Anambas">
+    <meta property="og:description" content="Mewujudkan perempuan Anambas yang berdaya, mandiri, dan bermartabat.">
+    <meta property="og:image" content="https://res.cloudinary.com/dybchljzd/image/upload/v1765607152/IMG-20251212-WA0013_ounyot.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://gowanambaskab.id/">
+    <meta property="twitter:title" content="GOW Kabupaten Kepulauan Anambas">
+    <meta property="twitter:description" content="Mewujudkan perempuan Anambas yang berdaya, mandiri, dan bermartabat.">
+    <meta property="twitter:image" content="https://res.cloudinary.com/dybchljzd/image/upload/v1765607152/IMG-20251212-WA0013_ounyot.jpg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
@@ -1148,29 +1174,24 @@
                     const tanggal = data.tanggal ? new Date(data.tanggal).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : 'N/A'; 
                     const mapHtml = (data.koordinat?.lat && data.koordinat?.lng) ? `<div class="mt-8 p-4 bg-slate-800 rounded-xl border border-slate-700"><h3 class="text-xl font-bold mb-4 text-white"><i class="fas fa-map-marked-alt mr-2 text-blue-400"></i>Lokasi Kegiatan</h3><div id="map" class="w-full h-80 rounded-lg z-0"></div></div>` : ''; 
                     
-                    // PERBAIKAN: Judul dipindahkan ke bawah foto
                     container.innerHTML = `
                     <div class="container mx-auto px-4">
                         <div class="max-w-4xl mx-auto">
                             <div class="mb-8"><a href="#/kegiatan" class="text-pink-400 hover:text-pink-300 font-semibold flex items-center"><i class="fas fa-arrow-left mr-2"></i> Kembali ke Arsip</a></div>
                             <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
-                                <!-- Bagian Foto (Tanpa Teks Overlay) -->
-                                <div class="relative h-64 sm:h-[500px]">
+                                <div class="relative h-64 sm:h-96">
                                     <img src="${data.foto}" alt="${data.nama}" class="w-full h-full object-cover" onerror="this.style.display='none'">
-                                    <!-- Overlay dihapus/dibuat transparan karena teks sudah pindah -->
-                                </div>
-                                
-                                <!-- Bagian Konten (Judul & Deskripsi) -->
-                                <div class="p-6 sm:p-10">
-                                    <!-- Judul & Metadata dipindahkan ke sini -->
-                                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">${data.nama}</h1>
-                                    
-                                    <div class="flex flex-wrap gap-4 text-sm font-medium text-slate-300 mb-8 border-b border-slate-800 pb-6">
-                                        <span class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700"><i class="fas fa-calendar-alt mr-2 text-amber-400"></i>${tanggal}</span>
-                                        <span class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700"><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>${data.lokasi || 'N/A'}</span>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                                    <div class="absolute bottom-0 left-0 p-6 sm:p-10 w-full">
+                                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-2 drop-shadow-lg">${data.nama}</h1>
+                                        <div class="flex flex-wrap gap-4 text-sm font-medium text-slate-300">
+                                            <span class="bg-slate-800/80 backdrop-blur px-3 py-1 rounded-full"><i class="fas fa-calendar-alt mr-2 text-amber-400"></i>${tanggal}</span>
+                                            <span class="bg-slate-800/80 backdrop-blur px-3 py-1 rounded-full"><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>${data.lokasi || 'N/A'}</span>
+                                        </div>
                                     </div>
-
-                                    <div class="prose prose-lg prose-invert max-w-none text-slate-300 leading-relaxed text-justify whitespace-pre-line mb-8">${data.deskripsi || ''}</div>
+                                </div>
+                                <div class="p-6 sm:p-10">
+                                    <div class="prose prose-lg prose-invert max-w-none text-slate-300 leading-relaxed text-justify whitespace-pre-line border-b border-slate-800 pb-8 mb-8">${data.deskripsi || ''}</div>
                                     ${mapHtml}
                                 </div>
                             </div>
