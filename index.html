@@ -4,43 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Meta Tags Utama -->
+    <!-- ========================================= -->
+    <!-- PENGATURAN SEO (Search Engine Optimization) -->
+    <!-- ========================================= -->
     <title>GOW Kabupaten Kepulauan Anambas - Pemberdayaan Wanita, Membangun Negeri</title>
     <meta name="description" content="Website Resmi Gabungan Organisasi Wanita (GOW) Kabupaten Kepulauan Anambas. Pusat informasi profil, program kerja, kegiatan, dan data pemberdayaan wanita di Anambas.">
     <meta name="keywords" content="GOW Anambas, Gabungan Organisasi Wanita, Kepulauan Anambas, Organisasi Wanita, Pemberdayaan Perempuan, Anambas, Kegiatan Sosial Anambas">
     <meta name="author" content="GOW Kabupaten Kepulauan Anambas">
     <meta name="robots" content="index, follow">
-    <!-- Canonical URL (Agar Google tahu alamat asli website) -->
     <link rel="canonical" href="https://gowanambaskab.id/" />
     
-    <!-- TEMPEL KODE DARI GOOGLE SEARCH CONSOLE DI BAWAH INI -->
-    <meta name="google-site-verification" content="<meta name="google-site-verification" content="Dc2tOevfapHhQtcv0sksrbqPAcGPDgfaSfR69dDkq8Q" />" />
+    <!-- PENTING: Ganti tulisan di bawah dengan kode dari Google Search Console Anda -->
+    <meta name="google-site-verification" content="Dc2tOevfapHhQtcv0sksrbqPAcGPDgfaSfR69dDkq8Q" />
 
-    <!-- Open Graph / Facebook / WhatsApp -->
+    <!-- Open Graph / Facebook / WhatsApp Preview -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gowanambaskab.id/">
     <meta property="og:title" content="GOW Kabupaten Kepulauan Anambas">
     <meta property="og:description" content="Mewujudkan perempuan Anambas yang berdaya, mandiri, dan bermartabat.">
     <meta property="og:image" content="https://res.cloudinary.com/dybchljzd/image/upload/v1765607152/IMG-20251212-WA0013_ounyot.jpg">
 
-    <!-- Twitter -->
+    <!-- Twitter Preview -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://gowanambaskab.id/">
     <meta property="twitter:title" content="GOW Kabupaten Kepulauan Anambas">
     <meta property="twitter:description" content="Mewujudkan perempuan Anambas yang berdaya, mandiri, dan bermartabat.">
     <meta property="twitter:image" content="https://res.cloudinary.com/dybchljzd/image/upload/v1765607152/IMG-20251212-WA0013_ounyot.jpg">
 
+    <!-- Styles & Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Leaflet.js untuk Peta Interaktif -->
+    <!-- Leaflet.js & Chart.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-    <!-- Chart.js & Plugin Datalabels -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
@@ -73,12 +73,12 @@
         }
         .slideshow-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
         
-        /* PERBAIKAN: Background position diubah agar foto agak terpotong bagian atasnya */
         .slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0;
             transition: opacity 1.5s ease-in-out, transform 6s linear;
             background-size: cover; 
-            background-position: center 25%; /* Menggeser titik fokus vertikal ke 25% (memotong sedikit bagian atas) */
+            /* Posisi background disesuaikan agar wajah orang terlihat (tidak terlalu atas) */
+            background-position: center 25%; 
             transform: scale(1.05);
         }
         
@@ -230,7 +230,6 @@
                 </div>
                 <div class="hero-overlay"></div>
                 <div class="container mx-auto px-4 relative z-10 pt-20">
-                    <!-- Perbaikan: Ukuran font disesuaikan agar lebih proporsional (Good Web Typography) -->
                     <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-wider mb-2 text-lime-400 drop-shadow-lg">GABUNGAN ORGANISASI WANITA</h1>
                     <p class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-pink-500 mb-4 drop-shadow-lg">( GOW )</p>
                     <p class="text-lg sm:text-xl md:text-2xl font-semibold tracking-wide mb-4 text-white drop-shadow-md">KABUPATEN KEPULAUAN ANAMBAS</p>
@@ -243,25 +242,15 @@
                 </div>
             </section>
 
-            <!-- Sambutan Ketua (DIKEMBALIKAN) -->
+            <!-- Sambutan Ketua -->
             <section class="py-24 relative overflow-hidden group">
-                <!-- Modern Background Base -->
                 <div class="absolute inset-0 bg-[#0B1120] z-0"></div>
-                
-                <!-- Abstract Gradient Shapes (Aurora Effect) -->
                 <div class="absolute -top-[20%] -right-[10%] w-[700px] h-[700px] bg-gradient-to-br from-fuchsia-600/20 via-purple-600/20 to-blue-600/20 rounded-full blur-[120px] animate-pulse"></div>
                 <div class="absolute -bottom-[20%] -left-[10%] w-[600px] h-[600px] bg-gradient-to-tr from-blue-600/20 via-teal-600/20 to-emerald-600/20 rounded-full blur-[100px] animate-pulse" style="animation-delay: 2s;"></div>
-                
-                <!-- Geometric Grid Pattern Overlay -->
-                <div class="absolute inset-0 z-0 opacity-[0.03]" 
-                     style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 40px 40px;">
-                </div>
+                <div class="absolute inset-0 z-0 opacity-[0.03]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 40px 40px;"></div>
 
                 <div class="container mx-auto px-4 relative z-10">
-                    <!-- Glassmorphism Card Enhanced -->
                     <div class="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] p-8 md:p-14 shadow-2xl relative overflow-hidden">
-                        
-                        <!-- Subtle Inner Glow & Decoration -->
                         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-pink-500/50 to-transparent"></div>
                         <div class="absolute bottom-0 right-0 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl -mr-16 -mb-16 pointer-events-none"></div>
 
@@ -269,27 +258,21 @@
                             <!-- Foto Ketua -->
                             <div class="md:col-span-4 lg:col-span-3 flex flex-col items-center">
                                 <!-- Kotak Foto dengan Border Gradasi (Pink - Lime) -->
-                                <!-- Perbaikan: Padding dikurangi lagi jadi p-[2px] agar lebih tipis dan elegan -->
                                 <div class="relative w-72 h-96 sm:w-64 sm:h-80 rounded-[2rem] p-[2px] bg-gradient-to-br from-pink-500 via-fuchsia-500 to-lime-400 shadow-2xl group-hover:scale-[1.02] transition-transform duration-500 mb-6">
                                     <div class="relative w-full h-full rounded-[1.9rem] overflow-hidden bg-slate-800">
-                                        <!-- Background gradient -->
-                                        <!-- Perbaikan: Bagian atas (from) dibuat transparent agar wajah tidak gelap -->
+                                        <!-- Background gradient: Bagian atas transparan agar wajah terang -->
                                         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900/90 z-10"></div>
                                         
-                                        <!-- Foto dengan efek hover -->
-                                        <!-- Perbaikan: object-center untuk menaikkan posisi wajah, scale-105 agar lebih penuh -->
+                                        <!-- Foto Ketua: Posisi dinaikkan (object-center) dan skala diatur -->
                                         <img src="https://res.cloudinary.com/dybchljzd/image/upload/w_600,q_auto,f_auto/v1765596516/Untitled_design_20251212_215809_0000_c8pxqh.png" 
                                              alt="Ny. Kustiorini Raja Bayu" 
                                              class="w-full h-full object-cover object-center scale-105 transition-transform duration-700 group-hover:scale-110 group-hover:brightness-110 relative z-0"
                                              onerror="this.src='https://placehold.co/400x500/334155/e5e7eb?text=FOTO+KETUA'">
                                              
-                                        <!-- Shadow/Bayangan di Bawah Foto -->
-                                        <!-- Perbaikan: Tinggi shadow dikurangi (h-20) agar tidak menutupi baju/badan terlalu banyak -->
+                                        <!-- Shadow Bawah: Tinggi dikurangi agar tidak menutupi badan -->
                                         <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-900/90 to-transparent z-20 pointer-events-none"></div>
                                     </div>
                                 </div>
-                                
-                                <!-- Label Nama (Dipindahkan ke luar foto) -->
                                 <div class="text-center relative z-10">
                                     <h3 class="text-2xl font-bold font-serif-display text-amber-400 leading-tight mb-2 drop-shadow-md">Ny. Kustiorini Raja Bayu</h3>
                                     <div class="inline-block h-px w-12 bg-pink-500 mb-2"></div>
@@ -306,16 +289,13 @@
                                     </div>
                                     <h2 class="text-4xl md:text-5xl font-bold text-white font-serif-display leading-tight">Sekapur Sirih</h2>
                                 </div>
-                                
                                 <div class="text-slate-300 leading-loose text-lg text-justify font-light space-y-6">
                                     <p><span class="font-semibold text-white text-xl font-jawi block mb-2" dir="rtl">السلام عليكم ورحمة الله وبركاته</span></p>
                                     <p>Puji syukur kita panjatkan ke hadirat Allah SWT. Selamat datang di portal digital resmi <strong class="text-pink-400 font-semibold">Gabungan Organisasi Wanita (GOW) Kabupaten Kepulauan Anambas</strong>.</p>
                                     <p>Website ini kami persembahkan sebagai wujud transformasi digital GOW Anambas untuk memperluas jangkauan informasi dan memperkuat sinergi antar organisasi wanita. Di era yang serba dinamis ini, peran perempuan tidak hanya sebagai tiang negara, tetapi juga sebagai motor penggerak pembangunan yang adaptif dan inovatif.</p>
                                     <p>Melalui wadah ini, mari kita rapatkan barisan, menyatukan visi, dan terus berkarya untuk menciptakan perempuan Anambas yang berdaya, mandiri, dan bermartabat demi kemajuan negeri <em class="text-amber-400 not-italic">Kayuh Serentak Langkah Sepijak</em>.</p>
                                 </div>
-                                
                                 <div class="pt-2">
-                                    <!-- Aksen garis dekoratif -->
                                     <div class="w-24 h-1 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full"></div>
                                 </div>
                             </div>
@@ -324,86 +304,54 @@
                 </div>
             </section>
 
-            <!-- Statistik Singkat (Diperbarui Lebih Modern) -->
+            <!-- Statistik Singkat -->
             <section class="py-16 bg-slate-900 relative">
-                <!-- Background Decoration -->
                 <div class="absolute top-0 left-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="absolute bottom-0 right-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div class="container mx-auto px-4 relative z-10">
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                        
                         <!-- Card 1: Organisasi -->
                         <div class="group relative bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 hover:border-pink-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(236,72,153,0.3)]">
-                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                                <i class="fas fa-sitemap text-6xl text-pink-500 transform rotate-12"></i>
-                            </div>
+                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><i class="fas fa-sitemap text-6xl text-pink-500 transform rotate-12"></i></div>
                             <div class="flex items-center gap-4 mb-2">
-                                <div class="w-12 h-12 rounded-lg bg-pink-500/20 text-pink-400 flex items-center justify-center text-2xl">
-                                    <i class="fas fa-network-wired"></i>
-                                </div>
+                                <div class="w-12 h-12 rounded-lg bg-pink-500/20 text-pink-400 flex items-center justify-center text-2xl"><i class="fas fa-network-wired"></i></div>
                                 <p class="text-sm font-bold text-slate-300 uppercase tracking-wider">Organisasi</p>
                             </div>
-                            <!-- Diperbaiki: data-target="0" -->
+                            <!-- Data target di-set 0 untuk menghindari angka palsu saat loading -->
                             <p class="text-4xl font-extrabold text-white mt-2 counter-anim" id="total-organisasi" data-target="0">0</p>
-                            <div class="w-full bg-slate-700 h-1 mt-4 rounded-full overflow-hidden">
-                                <div class="bg-pink-500 h-full w-3/4 group-hover:w-full transition-all duration-1000 ease-out"></div>
-                            </div>
+                            <div class="w-full bg-slate-700 h-1 mt-4 rounded-full overflow-hidden"><div class="bg-pink-500 h-full w-3/4 group-hover:w-full transition-all duration-1000 ease-out"></div></div>
                         </div>
-
                         <!-- Card 2: Pengurus -->
                         <div class="group relative bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(245,158,11,0.3)]">
-                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                                <i class="fas fa-users text-6xl text-amber-500 transform rotate-12"></i>
-                            </div>
+                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><i class="fas fa-users text-6xl text-amber-500 transform rotate-12"></i></div>
                             <div class="flex items-center gap-4 mb-2">
-                                <div class="w-12 h-12 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl">
-                                    <i class="fas fa-user-tie"></i>
-                                </div>
+                                <div class="w-12 h-12 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl"><i class="fas fa-user-tie"></i></div>
                                 <p class="text-sm font-bold text-slate-300 uppercase tracking-wider">Pengurus</p>
                             </div>
-                            <!-- Diperbaiki: data-target="0" -->
                             <p class="text-4xl font-extrabold text-white mt-2 counter-anim" id="total-pengurus" data-target="0">0</p>
-                            <div class="w-full bg-slate-700 h-1 mt-4 rounded-full overflow-hidden">
-                                <div class="bg-amber-500 h-full w-2/3 group-hover:w-full transition-all duration-1000 ease-out"></div>
-                            </div>
+                            <div class="w-full bg-slate-700 h-1 mt-4 rounded-full overflow-hidden"><div class="bg-amber-500 h-full w-2/3 group-hover:w-full transition-all duration-1000 ease-out"></div></div>
                         </div>
-
                         <!-- Card 3: Kegiatan -->
                         <div class="group relative bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(59,130,246,0.3)]">
-                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                                <i class="fas fa-calendar-check text-6xl text-blue-500 transform rotate-12"></i>
-                            </div>
+                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><i class="fas fa-calendar-check text-6xl text-blue-500 transform rotate-12"></i></div>
                             <div class="flex items-center gap-4 mb-2">
-                                <div class="w-12 h-12 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl">
-                                    <i class="fas fa-clipboard-list"></i>
-                                </div>
+                                <div class="w-12 h-12 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl"><i class="fas fa-clipboard-list"></i></div>
                                 <p class="text-sm font-bold text-slate-300 uppercase tracking-wider">Kegiatan</p>
                             </div>
-                            <!-- Diperbaiki: data-target="0" -->
                             <p class="text-4xl font-extrabold text-white mt-2 counter-anim" id="total-kegiatan" data-target="0">0</p>
-                            <div class="w-full bg-slate-700 h-1 mt-4 rounded-full overflow-hidden">
-                                <div class="bg-blue-500 h-full w-1/2 group-hover:w-full transition-all duration-1000 ease-out"></div>
-                            </div>
+                            <div class="w-full bg-slate-700 h-1 mt-4 rounded-full overflow-hidden"><div class="bg-blue-500 h-full w-1/2 group-hover:w-full transition-all duration-1000 ease-out"></div></div>
                         </div>
-
                         <!-- Card 4: Tahun Aktif -->
                         <div class="group relative bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(16,185,129,0.3)]">
-                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                                <i class="fas fa-flag text-6xl text-emerald-500 transform rotate-12"></i>
-                            </div>
+                            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><i class="fas fa-flag text-6xl text-emerald-500 transform rotate-12"></i></div>
                             <div class="flex items-center gap-4 mb-2">
-                                <div class="w-12 h-12 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl">
-                                    <i class="fas fa-hourglass-start"></i>
-                                </div>
+                                <div class="w-12 h-12 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl"><i class="fas fa-hourglass-start"></i></div>
                                 <p class="text-sm font-bold text-slate-300 uppercase tracking-wider">Masa Bakti</p>
                             </div>
                             <p class="text-4xl font-extrabold text-white mt-2">2025</p>
-                            <div class="w-full bg-slate-700 h-1 mt-4 rounded-full overflow-hidden">
-                                <div class="bg-emerald-500 h-full w-full"></div>
-                            </div>
+                            <div class="w-full bg-slate-700 h-1 mt-4 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full w-full"></div></div>
                         </div>
-
                     </div>
                 </div>
             </section>
@@ -418,7 +366,7 @@
                         </div>
                         <a href="#/kegiatan" class="hidden sm:inline-flex items-center text-sm font-semibold text-slate-300 hover:text-white transition-colors">Lihat Semua Arsip <i class="fas fa-arrow-right ml-2 text-pink-500"></i></a>
                     </div>
-                    <!-- PERBAIKAN: Mengubah grid menjadi 4 kolom pada layar besar (lg:grid-cols-4) -->
+                    <!-- 4 Kolom di Home -->
                     <div id="home-kegiatan-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         <p class="col-span-full text-center text-slate-500 py-10">Memuat kegiatan terbaru...</p>
                     </div>
@@ -430,8 +378,10 @@
         </div>
 
         <!-- ========================================= -->
-        <!-- HALAMAN TENTANG (About Page) -->
+        <!-- HALAMAN LAINNYA (Tentang, Program, Data, Pengurus, Kegiatan, SiMANJA) -->
         <!-- ========================================= -->
+        
+        <!-- About Page -->
         <div id="page-tentang" class="page-section pt-24 pb-20">
             <div class="container mx-auto px-4">
                 <div class="text-center max-w-3xl mx-auto mb-16 fade-in-section">
@@ -439,72 +389,44 @@
                     <div class="w-20 h-1 bg-pink-500 mx-auto rounded-full mb-6"></div>
                     <p class="text-slate-400 text-lg">GOW Kabupaten Kepulauan Anambas resmi berdiri sejak ditetapkannya akta pendirian sebagai wadah permanen yang berasaskan Pancasila dan UUD 1945 untuk memperkuat kolaborasi antar organisasi wanita di Anambas.</p>
                 </div>
-                
+                <!-- Visi Misi Grids -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start fade-in-section">
                     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-xl">
                         <h3 class="text-2xl font-bold mb-6 flex items-center text-white"><i class="fas fa-eye fa-fw mr-3 text-pink-500"></i> Visi</h3>
-                        <blockquote class="border-l-4 border-pink-500 pl-6 py-2 italic text-slate-300 text-lg leading-relaxed bg-slate-900/50 rounded-r-lg">
-                            "Terwujudnya perempuan Anambas yang berdaya, mandiri, dan berperan aktif dalam mendukung pembangunan Kabupaten Kepulauan Anambas 2025–2030."
-                        </blockquote>
+                        <blockquote class="border-l-4 border-pink-500 pl-6 py-2 italic text-slate-300 text-lg leading-relaxed bg-slate-900/50 rounded-r-lg">"Terwujudnya perempuan Anambas yang berdaya, mandiri, dan berperan aktif dalam mendukung pembangunan Kabupaten Kepulauan Anambas 2025–2030."</blockquote>
                     </div>
-                    
                     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-xl">
                         <h3 class="text-2xl font-bold mb-6 flex items-center text-white"><i class="fas fa-tasks fa-fw mr-3 text-blue-500"></i> Misi</h3>
                         <ul class="space-y-4">
-                            <li class="flex items-start">
-                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center mt-1 mr-4"><span class="font-bold">1</span></div>
-                                <p class="text-slate-300">Meningkatkan kapasitas perempuan melalui pendidikan, pelatihan, dan penguatan kewirausahaan.</p>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center mt-1 mr-4"><span class="font-bold">2</span></div>
-                                <p class="text-slate-300">Mendorong partisipasi aktif perempuan dalam proses pembangunan daerah.</p>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center mt-1 mr-4"><span class="font-bold">3</span></div>
-                                <p class="text-slate-300">Membina kualitas hidup keluarga dengan fokus pada kesehatan, gizi, dan ketahanan keluarga.</p>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center mt-1 mr-4"><span class="font-bold">4</span></div>
-                                <p class="text-slate-300">Memperjuangkan perlindungan hak perempuan dan anak melalui edukasi dan advokasi.</p>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center mt-1 mr-4"><span class="font-bold">5</span></div>
-                                <p class="text-slate-300">Membangun sinergi dengan pemerintah daerah dan mitra strategis lainnya.</p>
-                            </li>
+                            <li class="flex items-start"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center mt-1 mr-4"><span class="font-bold">1</span></div><p class="text-slate-300">Meningkatkan kapasitas perempuan melalui pendidikan, pelatihan, dan penguatan kewirausahaan.</p></li>
+                            <li class="flex items-start"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center mt-1 mr-4"><span class="font-bold">2</span></div><p class="text-slate-300">Mendorong partisipasi aktif perempuan dalam proses pembangunan daerah.</p></li>
+                            <li class="flex items-start"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center mt-1 mr-4"><span class="font-bold">3</span></div><p class="text-slate-300">Membina kualitas hidup keluarga dengan fokus pada kesehatan, gizi, dan ketahanan keluarga.</p></li>
+                            <li class="flex items-start"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center mt-1 mr-4"><span class="font-bold">4</span></div><p class="text-slate-300">Memperjuangkan perlindungan hak perempuan dan anak melalui edukasi dan advokasi.</p></li>
+                            <li class="flex items-start"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center mt-1 mr-4"><span class="font-bold">5</span></div><p class="text-slate-300">Membangun sinergi dengan pemerintah daerah dan mitra strategis lainnya.</p></li>
                         </ul>
                     </div>
                 </div>
-
-                <div class="mt-20 text-center fade-in-section">
-                    <img src="https://iili.io/FPZFHv9.png" alt="Logo Besar" class="h-32 mx-auto mb-6 drop-shadow-2xl opacity-80">
-                    <!-- <p class="text-slate-500 max-w-2xl mx-auto">Bersatu kita teguh, bercerai kita runtuh. GOW Anambas hadir sebagai perekat persatuan organisasi wanita demi kemajuan daerah tercinta.</p> -->
-                </div>
+                <div class="mt-20 text-center fade-in-section"><img src="https://iili.io/FPZFHv9.png" alt="Logo Besar" class="h-32 mx-auto mb-6 drop-shadow-2xl opacity-80"></div>
             </div>
         </div>
 
-        <!-- ========================================= -->
-        <!-- HALAMAN PROGRAM (Program Page) -->
-        <!-- ========================================= -->
+        <!-- Program Page -->
         <div id="page-program" class="page-section pt-24 pb-20 bg-slate-900">
             <div class="container mx-auto px-4">
                 <div class="text-center max-w-2xl mx-auto mb-16 fade-in-section">
                     <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Program Kerja GOW 2025-2030</h2>
                     <p class="text-slate-400">Rencana aksi strategis untuk memberdayakan wanita dan berkontribusi pada pembangunan Kabupaten Kepulauan Anambas.</p>
                 </div>
-                <div id="program-kerja-container" class="max-w-4xl mx-auto space-y-4 fade-in-section">
-                    <!-- Loaded by JS -->
-                </div>
+                <div id="program-kerja-container" class="max-w-4xl mx-auto space-y-4 fade-in-section"></div>
             </div>
         </div>
 
-        <!-- ========================================= -->
-        <!-- HALAMAN DATA (Data Page) -->
-        <!-- ========================================= -->
+        <!-- Data Page -->
         <div id="page-data" class="page-section pt-24 pb-20">
             <div class="container mx-auto px-4">
                 <div class="text-center max-w-3xl mx-auto mb-12 fade-in-section">
                     <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Data Terpilah: Potret Wanita & Anak</h2>
-                    <p class="text-slate-400">Data adalah fondasi dari setiap aksi kami. Berikut adalah data statistik yang bersumber dari BPS dan Dinas Terkait Kabupaten Kepulauan Anambas.</p>
+                    <p class="text-slate-400">Data statistik bersumber dari BPS dan Dinas Terkait Kabupaten Kepulauan Anambas.</p>
                 </div>
                 <div class="max-w-6xl mx-auto fade-in-section">
                     <div id="data-filter-container" class="flex justify-center flex-wrap gap-2 sm:gap-3 mb-10">
@@ -518,35 +440,23 @@
                         <button data-category="Kekerasan & Anak" class="data-filter-btn font-semibold px-4 py-2 rounded-lg text-sm">Kekerasan & Anak</button>
                         <button data-category="Lingkungan" class="data-filter-btn font-semibold px-4 py-2 rounded-lg text-sm">Lingkungan</button>
                     </div>
-                    <div id="data-content-area" class="card-base rounded-xl p-4 sm:p-8 min-h-[500px]">
-                       <!-- Chart Loaded by JS -->
-                    </div>
+                    <div id="data-content-area" class="card-base rounded-xl p-4 sm:p-8 min-h-[500px]"></div>
                 </div>
             </div>
         </div>
 
-        <!-- ========================================= -->
-        <!-- HALAMAN PENGURUS (Pengurus Page) -->
-        <!-- ========================================= -->
+        <!-- Pengurus Page -->
         <div id="page-pengurus" class="page-section pt-24 pb-20 bg-slate-900">
             <div class="container mx-auto px-4">
                 <div class="text-center max-w-2xl mx-auto mb-16 fade-in-section">
                     <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Struktur Organisasi</h2>
                     <p class="text-slate-400">Sinergi kekuatan wanita Anambas yang berdedikasi memajukan peran wanita.</p>
                 </div>
-                
-                <!-- Pengurus Inti -->
                 <h3 class="text-2xl font-bold text-center text-white mb-8 border-b border-slate-700 pb-4 inline-block mx-auto">Pengurus Inti</h3>
                 <div id="pengurus-inti-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-5xl mx-auto justify-center">
                     <div class="col-span-full h-40 bg-slate-800 rounded-xl animate-pulse"></div>
                 </div>
-
-                <!-- Container Bidang-Bidang (Ditambahkan) -->
-                <div id="pengurus-bidang-container" class="space-y-16 mb-24 mt-12">
-                    <!-- Data bidang akan dirender di sini oleh JS -->
-                </div>
-
-                <!-- Organisasi Anggota -->
+                <div id="pengurus-bidang-container" class="space-y-16 mb-24 mt-12"></div>
                 <h3 class="text-2xl font-bold text-center text-white mb-8 border-b border-slate-700 pb-4 inline-block mx-auto">Organisasi Anggota</h3>
                 <div id="organisasi-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
                     <div class="col-span-full h-32 bg-slate-800 rounded-xl animate-pulse"></div>
@@ -554,92 +464,56 @@
             </div>
         </div>
 
-        <!-- ========================================= -->
-        <!-- HALAMAN KEGIATAN (Full Gallery Page) -->
-        <!-- ========================================= -->
+        <!-- Kegiatan Page -->
         <div id="page-kegiatan" class="page-section pt-24 pb-20">
             <div class="container mx-auto px-4">
                 <div class="text-center max-w-2xl mx-auto mb-10 fade-in-section">
                     <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Galeri Kegiatan</h2>
                     <p class="text-slate-400">Dokumentasi aksi dan kontribusi nyata kami untuk masyarakat Kepulauan Anambas.</p>
                 </div>
-                
-                <!-- Search & Filter -->
                 <div class="bg-slate-800 p-4 rounded-xl shadow-lg mb-10 fade-in-section border border-slate-700">
                     <div class="flex flex-col sm:flex-row gap-4">
                         <div class="relative flex-grow">
                             <input type="search" id="search-kegiatan" placeholder="Cari nama kegiatan..." class="w-full bg-slate-900 border border-slate-600 rounded-lg py-3 pl-10 pr-4 text-white focus:ring-2 focus:ring-pink-500 focus:outline-none transition-colors">
                             <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
                         </div>
-                        <select id="filter-tahun" class="bg-slate-900 border border-slate-600 rounded-lg py-3 px-4 text-white focus:ring-2 focus:ring-pink-500 focus:outline-none transition-colors sm:w-48">
-                            <option value="">Semua Tahun</option>
-                        </select>
+                        <select id="filter-tahun" class="bg-slate-900 border border-slate-600 rounded-lg py-3 px-4 text-white focus:ring-2 focus:ring-pink-500 focus:outline-none transition-colors sm:w-48"><option value="">Semua Tahun</option></select>
                     </div>
                 </div>
-                
-                <!-- Grid Kegiatan -->
-                <!-- PERBAIKAN: Mengubah grid halaman arsip menjadi 4 kolom (lg:grid-cols-4) -->
+                <!-- 4 Kolom di Halaman Kegiatan -->
                 <div id="kegiatan-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 min-h-[400px]">
-                    <div class="card-base rounded-xl overflow-hidden h-96">
-                        <div class="h-56 bg-slate-700 animate-pulse"></div>
-                        <div class="p-6 space-y-3">
-                            <div class="h-4 w-1/3 bg-slate-700 animate-pulse rounded"></div>
-                            <div class="h-6 w-full bg-slate-700 animate-pulse rounded"></div>
-                            <div class="h-4 w-2/3 bg-slate-700 animate-pulse rounded"></div>
-                        </div>
-                    </div>
-                    <!-- Placeholder cards logic handles loading state -->
+                    <div class="card-base rounded-xl overflow-hidden h-96"><div class="h-56 bg-slate-700 animate-pulse"></div><div class="p-6 space-y-3"><div class="h-4 w-1/3 bg-slate-700 animate-pulse rounded"></div><div class="h-6 w-full bg-slate-700 animate-pulse rounded"></div><div class="h-4 w-2/3 bg-slate-700 animate-pulse rounded"></div></div></div>
                 </div>
-                
-                <!-- Pagination -->
                 <div id="pagination-controls" class="flex justify-center items-center gap-2 mt-12 fade-in-section hidden"></div>
             </div>
         </div>
 
-        <!-- ========================================= -->
-        <!-- HALAMAN DETAIL KEGIATAN -->
-        <!-- ========================================= -->
-        <div id="page-detail-kegiatan" class="page-section pt-24 pb-20">
-            <!-- Content Injected by JS -->
-        </div>
+        <!-- Detail Kegiatan Page -->
+        <div id="page-detail-kegiatan" class="page-section pt-24 pb-20"></div>
 
-        <!-- ========================================= -->
-        <!-- HALAMAN SiMANJA -->
-        <!-- ========================================= -->
+        <!-- SiMANJA Page -->
         <div id="page-simanja" class="page-section pt-24 pb-20 bg-slate-900">
             <div class="container mx-auto px-4 h-full flex flex-col justify-center">
                 <div class="max-w-4xl mx-auto text-center fade-in-section bg-gradient-to-br from-slate-800 to-slate-900 p-8 sm:p-16 rounded-3xl border border-slate-700 shadow-2xl relative overflow-hidden">
-                    <!-- Deco -->
                     <div class="absolute top-0 right-0 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
-                    
                     <div class="relative z-10">
-                        <div class="inline-block p-4 rounded-full bg-slate-800 mb-6 shadow-inner border border-slate-700">
-                            <i class="fas fa-laptop-code text-4xl text-pink-500"></i>
-                        </div>
+                        <div class="inline-block p-4 rounded-full bg-slate-800 mb-6 shadow-inner border border-slate-700"><i class="fas fa-laptop-code text-4xl text-pink-500"></i></div>
                         <h2 class="text-3xl sm:text-5xl font-bold mb-6 text-white">SiMANJA GOW</h2>
                         <p class="text-xl text-pink-400 mb-8 font-semibold">Sistem Informasi Manajemen Jaringan GOW</p>
                         <div class="text-slate-400 mb-10 leading-relaxed text-lg space-y-4">
                             <p>Sebagai wujud inovasi, GOW Anambas menghadirkan <strong class="font-semibold text-white">SiMANJA</strong> (Sistem Informasi Manajemen Jaringan GOW), sebuah platform digital eksklusif yang dirancang untuk memperkuat sinergi dan efektivitas organisasi. Platform ini berfungsi sebagai pusat data terpadu, memudahkan koordinasi program, serta mendukung tata kelola modern melalui digitalisasi administrasi.</p>
                         </div>
-                        <a href="https://simanjagow.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary inline-flex items-center px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-xl">
-                            <i class="fas fa-rocket mr-3"></i> Login ke SiMANJA GOW
-                        </a>
+                        <a href="https://simanjagow.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary inline-flex items-center px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-xl"><i class="fas fa-rocket mr-3"></i> Login ke SiMANJA GOW</a>
                         <p class="mt-6 text-sm text-slate-500">Akses khusus untuk pengurus dan anggota terdaftar.</p>
                     </div>
                 </div>
             </div>
         </div>
-
     </main>
 
     <div id="modal-placeholder"></div>
+    <button id="back-to-top" title="Kembali ke atas"><i class="fas fa-chevron-up"></i></button>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" title="Kembali ke atas">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- Footer -->
     <footer id="kontak" class="bg-slate-950 border-t border-slate-800 relative overflow-hidden mt-auto">
         <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600"></div>
         <div class="container mx-auto px-4 py-12 sm:py-16">
@@ -649,17 +523,14 @@
                     <div class="w-16 h-1 bg-pink-500 mx-auto rounded-full"></div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Instagram -->
                     <a href="https://www.instagram.com/gow_anambaskab" target="_blank" class="social-stat-card rounded-2xl p-5 flex items-center gap-5 group">
                         <div class="w-14 h-14 rounded-full bg-pink-600/20 text-pink-500 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform"> <i class="fab fa-instagram"></i> </div>
                         <div class="flex-1"> <p class="text-slate-400 text-xs font-bold uppercase mb-1">Instagram</p> <div class="flex items-baseline gap-1"> <span class="text-3xl font-bold text-white counter-anim" data-target="1518">0</span> <span class="text-sm text-slate-500 font-medium">Pengikut</span> </div> </div>
                     </a>
-                    <!-- Facebook -->
                     <a href="https://www.facebook.com/share/14JrYrAff1V/" target="_blank" class="social-stat-card rounded-2xl p-5 flex items-center gap-5 group">
                         <div class="w-14 h-14 rounded-full bg-blue-600/20 text-blue-500 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform"> <i class="fab fa-facebook-f"></i> </div>
                         <div class="flex-1"> <p class="text-slate-400 text-xs font-bold uppercase mb-1">Facebook</p> <div class="flex items-baseline gap-1"> <span class="text-3xl font-bold text-white counter-anim" data-target="111">0</span> <span class="text-sm text-slate-500 font-medium">Pengikut</span> </div> </div>
                     </a>
-                    <!-- Email -->
                     <a href="mailto:gow.anambas@gmail.com" class="social-stat-card rounded-2xl p-5 flex items-center gap-5 group">
                         <div class="w-14 h-14 rounded-full bg-amber-500/20 text-amber-500 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform"> <i class="fas fa-envelope"></i> </div>
                         <div class="flex-1"> <p class="text-slate-400 text-xs font-bold uppercase mb-1">Email Resmi</p> <div class="flex items-baseline gap-1"> <span class="text-lg font-bold text-white truncate">gow.anambas@gmail.com</span> </div> <p class="text-xs text-slate-500 mt-0.5">Hubungi Kami</p> </div>
@@ -705,13 +576,13 @@
         let allKegiatan = [];
         let currentFilteredKegiatan = [];
         let currentPage = 1;
-        // PERBAIKAN: Mengubah itemsPerPage menjadi 8 agar pas dengan grid 4 kolom (2 baris)
+        // PENTING: Menampilkan 8 item per halaman di halaman galeri (agar pas 2 baris x 4 kolom)
         const itemsPerPage = 8;
         let dataChart = null; 
         let currentSlide = 0;
         let slideInterval;
 
-        // --- PROFIL ORGANISASI LENGKAP (Updated Data) ---
+        // --- PROFIL ORGANISASI LENGKAP ---
         const organisasiProfiles = { 
             "PKK": "Gerakan nasional yang bertujuan memberdayakan keluarga untuk meningkatkan kesejahteraan menuju terwujudnya keluarga yang beriman dan bertaqwa kepada Tuhan Yang Maha Esa, berakhlak mulia dan berbudi luhur, sehat sejahtera, maju dan mandiri, kesetaraan dan keadilan gender serta kesadaran hukum dan lingkungan.", 
             "DWP": "Organisasi kemasyarakatan yang menghimpun dan membina istri Aparatur Sipil Negara (ASN) dengan tujuan meningkatkan kualitas sumber daya anggota keluarga PNS untuk mencapai kesejahteraan nasional. DWP memiliki peran strategis dalam mendukung pembangunan melalui program pendidikan, ekonomi, dan sosial budaya.", 
@@ -735,47 +606,30 @@
         // --- ROUTING LOGIC (SPA) ---
         const router = () => { 
             const hash = window.location.hash || '#/';
-            
-            // Hide all sections
             document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
-            document.getElementById('mobile-menu').classList.add('hidden'); // Auto hide mobile menu
-            
-            // Update active nav link
+            document.getElementById('mobile-menu').classList.add('hidden');
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === hash) link.classList.add('active');
             });
 
-            // Logic Switch
             if (hash === '#/' || hash === '#/beranda') {
-                document.getElementById('page-home').classList.add('active');
-                window.scrollTo(0, 0);
+                document.getElementById('page-home').classList.add('active'); window.scrollTo(0, 0);
             } else if (hash === '#/tentang') {
-                document.getElementById('page-tentang').classList.add('active');
-                window.scrollTo(0, 0);
+                document.getElementById('page-tentang').classList.add('active'); window.scrollTo(0, 0);
             } else if (hash === '#/program') {
-                document.getElementById('page-program').classList.add('active');
-                window.scrollTo(0, 0);
+                document.getElementById('page-program').classList.add('active'); window.scrollTo(0, 0);
             } else if (hash === '#/data') {
-                document.getElementById('page-data').classList.add('active');
-                renderDataContent('Kependudukan'); // Init chart if needed
-                window.scrollTo(0, 0);
+                document.getElementById('page-data').classList.add('active'); renderDataContent('Kependudukan'); window.scrollTo(0, 0);
             } else if (hash === '#/pengurus') {
-                document.getElementById('page-pengurus').classList.add('active');
-                window.scrollTo(0, 0);
+                document.getElementById('page-pengurus').classList.add('active'); window.scrollTo(0, 0);
             } else if (hash === '#/kegiatan') {
-                document.getElementById('page-kegiatan').classList.add('active');
-                applyFilters(); // Re-apply grid logic
-                window.scrollTo(0, 0);
+                document.getElementById('page-kegiatan').classList.add('active'); applyFilters(); window.scrollTo(0, 0);
             } else if (hash.startsWith('#/kegiatan/')) {
-                document.getElementById('page-detail-kegiatan').classList.add('active');
-                renderDetailPage(hash.split('/')[2]);
-                window.scrollTo(0, 0);
+                document.getElementById('page-detail-kegiatan').classList.add('active'); renderDetailPage(hash.split('/')[2]); window.scrollTo(0, 0);
             } else if (hash === '#/simanja') {
-                document.getElementById('page-simanja').classList.add('active');
-                window.scrollTo(0, 0);
+                document.getElementById('page-simanja').classList.add('active'); window.scrollTo(0, 0);
             } else {
-                // 404 Redirect to home
                 window.location.hash = '#/';
             }
         };
@@ -783,15 +637,7 @@
         // --- LOADERS ---
         const loadStatistik = () => { 
             const els = { organisasi: document.getElementById('total-organisasi'), pengurus: document.getElementById('total-pengurus'), kegiatan: document.getElementById('total-kegiatan') }; 
-            
-            // Helper untuk update counter secara real time dan memastikan animasi (jika ada) menggunakan target yang benar
-            const updateCounter = (el, count) => {
-                if(el) {
-                    el.setAttribute('data-target', count);
-                    el.innerText = count;
-                }
-            };
-
+            const updateCounter = (el, count) => { if(el) { el.setAttribute('data-target', count); el.innerText = count; } };
             onSnapshot(getCollectionRef('organisasi'), (snap) => { updateCounter(els.organisasi, snap.size); }); 
             onSnapshot(getCollectionRef('pengurus'), (snap) => { updateCounter(els.pengurus, snap.size); }); 
             onSnapshot(getCollectionRef('kegiatan'), (snap) => { updateCounter(els.kegiatan, snap.size); }); 
@@ -800,133 +646,39 @@
         const loadPengurusInti = () => { 
             const intiGrid = document.getElementById('pengurus-inti-grid'); 
             const bidangContainer = document.getElementById('pengurus-bidang-container');
-            
             if (!intiGrid || !bidangContainer) return; 
 
-            // Helper untuk membuat kartu pengurus
             const createCard = (p, isBidang = false) => {
                 const imgSize = isBidang ? 'w-24 h-24' : 'w-32 h-32';
                 const fontSize = isBidang ? 'text-lg' : 'text-xl';
                 const cardPadding = isBidang ? 'p-6' : 'p-8';
                 const initial = (p.nama || '?').charAt(0);
-                
-                const avatar = p.foto ? 
-                    `<img src="${p.foto}" class="${imgSize} rounded-full object-cover mx-auto mb-4 border-4 border-slate-700 shadow-lg" onerror="this.src='https://placehold.co/128x128/334155/e5e7eb?text=${initial}'">` : 
-                    `<div class="${imgSize} rounded-full bg-gradient-to-br from-pink-500 to-fuchsia-600 flex items-center justify-center mx-auto mb-4 border-4 border-slate-700 shadow-lg"><span class="text-3xl font-bold">${initial}</span></div>`;
-                
-                return `
-                <div class="card-base text-center ${cardPadding} rounded-2xl fade-in-section transform hover:scale-105 transition-transform duration-300 h-full flex flex-col items-center justify-start">
-                    ${avatar}
-                    <h3 class="${fontSize} font-bold text-white leading-tight mb-2">${p.nama || 'Nama Tidak Tersedia'}</h3>
-                    <p class="text-amber-400 font-medium text-sm uppercase tracking-wide bg-slate-800/50 px-3 py-1 rounded-full border border-slate-700">${p.jabatan || '-'}</p>
-                </div>`;
+                const avatar = p.foto ? `<img src="${p.foto}" class="${imgSize} rounded-full object-cover mx-auto mb-4 border-4 border-slate-700 shadow-lg" onerror="this.src='https://placehold.co/128x128/334155/e5e7eb?text=${initial}'">` : `<div class="${imgSize} rounded-full bg-gradient-to-br from-pink-500 to-fuchsia-600 flex items-center justify-center mx-auto mb-4 border-4 border-slate-700 shadow-lg"><span class="text-3xl font-bold">${initial}</span></div>`;
+                return `<div class="card-base text-center ${cardPadding} rounded-2xl fade-in-section transform hover:scale-105 transition-transform duration-300 h-full flex flex-col items-center justify-start">${avatar}<h3 class="${fontSize} font-bold text-white leading-tight mb-2">${p.nama || 'Nama Tidak Tersedia'}</h3><p class="text-amber-400 font-medium text-sm uppercase tracking-wide bg-slate-800/50 px-3 py-1 rounded-full border border-slate-700">${p.jabatan || '-'}</p></div>`;
             };
 
             onSnapshot(getCollectionRef('pengurus'), (snapshot) => { 
                 let docs = snapshot.docs.map(d => d.data());
-                
-                // Urutkan berdasarkan field 'order' jika ada, atau createdAt
                 docs.sort((a, b) => (a.order || a.createdAt || 0) - (b.order || b.createdAt || 0));
-
-                // 1. Identifikasi Pengurus Inti
                 const pengurusInti = docs.filter(p => {
                     const kat = (p.kategori || '').toLowerCase().trim();
                     const jab = (p.jabatan || '').toLowerCase().trim();
-                    
                     const isIntiByKat = kat === 'inti' || kat === 'pengurus inti';
-                    // Logika jabatan inti: Ketua Umum/Harian, Sekretaris/Bendahara (tanpa embel-embel bidang)
                     const isIntiByJab = (jab.includes('ketua umum') || jab.includes('ketua harian') || (jab.includes('sekretaris') && !jab.includes('bidang')) || (jab.includes('bendahara') && !jab.includes('bidang')));
-
                     return isIntiByKat || isIntiByJab;
                 }); 
-                
-                if (pengurusInti.length === 0) { 
-                    intiGrid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data pengurus inti belum tersedia.</p>'; 
-                } else {
-                    intiGrid.innerHTML = pengurusInti.map(p => createCard(p)).join(''); 
-                }
+                if (pengurusInti.length === 0) { intiGrid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data pengurus inti belum tersedia.</p>'; } else { intiGrid.innerHTML = pengurusInti.map(p => createCard(p)).join(''); }
 
-                // 2. Filter & Grouping Bidang-Bidang (Sisanya)
                 const pengurusBidang = docs.filter(p => !pengurusInti.includes(p));
-                
-                // MAPPING MANUAL NAMA KE BIDANG (Sesuai Permintaan)
-                // Kunci: Nama Panggilan Unik (huruf kecil), Nilai: Nama Bidang
-                const memberMapping = {
-                    // Bidang Organisasi Dan Kaderisasi
-                    "raja peni": "Bidang Organisasi Dan Kaderisasi",
-                    "agustinayati": "Bidang Organisasi Dan Kaderisasi",
-                    "armiyati": "Bidang Organisasi Dan Kaderisasi",
-                    "nopa": "Bidang Organisasi Dan Kaderisasi",
-                    "evi rio": "Bidang Organisasi Dan Kaderisasi", // Spesifik agar tidak tertukar dengan Evi Susanti
-                    "raja rita": "Bidang Organisasi Dan Kaderisasi",
+                const memberMapping = { "raja peni": "Bidang Organisasi Dan Kaderisasi", "agustinayati": "Bidang Organisasi Dan Kaderisasi", "armiyati": "Bidang Organisasi Dan Kaderisasi", "nopa": "Bidang Organisasi Dan Kaderisasi", "evi rio": "Bidang Organisasi Dan Kaderisasi", "raja rita": "Bidang Organisasi Dan Kaderisasi", "artita": "Bidang Pendidikan, IPTEK & Sosbud", "isnaniar": "Bidang Pendidikan, IPTEK & Sosbud", "sri widarti": "Bidang Pendidikan, IPTEK & Sosbud", "munjiah": "Bidang Pendidikan, IPTEK & Sosbud", "marwidt": "Bidang Pendidikan, IPTEK & Sosbud", "jamilatul": "Bidang Pendidikan, IPTEK & Sosbud", "anisa": "Bidang Pendidikan, IPTEK & Sosbud", "veronika": "Bidang Kesehatan, Keluarga & KB", "ifa fatimah": "Bidang Kesehatan, Keluarga & KB", "welsy": "Bidang Kesehatan, Keluarga & KB", "winda": "Bidang Kesehatan, Keluarga & KB", "kasmiati": "Bidang Kesehatan, Keluarga & KB", "esa yulia": "Bidang Kesehatan, Keluarga & KB", "rahayu": "Bidang Keagamaan Dan Moral", "asniani": "Bidang Keagamaan Dan Moral", "novia": "Bidang Keagamaan Dan Moral", "lenti": "Bidang Keagamaan Dan Moral", "setti": "Bidang Keagamaan Dan Moral", "nini": "Bidang Keagamaan Dan Moral", "dewi nolly": "Bidang Ekonomi, Koperasi & Naker", "vivien": "Bidang Ekonomi, Koperasi & Naker", "trisnawati": "Bidang Ekonomi, Koperasi & Naker", "raja juliana": "Bidang Ekonomi, Koperasi & Naker", "winarti": "Bidang Ekonomi, Koperasi & Naker", "fahira": "Bidang Ekonomi, Koperasi & Naker", "andriani": "Bidang Ekonomi, Koperasi & Naker", "indah srie": "Bidang Informasi, Komunikasi & Humas", "yurnida": "Bidang Informasi, Komunikasi & Humas", "melda": "Bidang Informasi, Komunikasi & Humas", "meitha": "Bidang Informasi, Komunikasi & Humas", "nuri": "Bidang Informasi, Komunikasi & Humas", "mirna": "Bidang Informasi, Komunikasi & Humas", "mardiah": "Bidang Informasi, Komunikasi & Humas", "nikmatun": "Bidang Informasi, Komunikasi & Humas", "yessi": "Bidang Hukum, HAM & Gender", "badariah": "Bidang Hukum, HAM & Gender", "wan ramsinar": "Bidang Hukum, HAM & Gender", "syarifah": "Bidang Hukum, HAM & Gender", "evi susanti": "Bidang Hukum, HAM & Gender", "yuliana sabri": "Bidang Hukum, HAM & Gender" };
 
-                    // Bidang Pendidikan, IPTEK & Sosbud
-                    "artita": "Bidang Pendidikan, IPTEK & Sosbud",
-                    "isnaniar": "Bidang Pendidikan, IPTEK & Sosbud",
-                    "sri widarti": "Bidang Pendidikan, IPTEK & Sosbud",
-                    "munjiah": "Bidang Pendidikan, IPTEK & Sosbud",
-                    "marwidt": "Bidang Pendidikan, IPTEK & Sosbud",
-                    "jamilatul": "Bidang Pendidikan, IPTEK & Sosbud",
-                    "anisa": "Bidang Pendidikan, IPTEK & Sosbud",
-
-                    // Bidang Kesehatan, Keluarga & KB
-                    "veronika": "Bidang Kesehatan, Keluarga & KB",
-                    "ifa fatimah": "Bidang Kesehatan, Keluarga & KB",
-                    "welsy": "Bidang Kesehatan, Keluarga & KB",
-                    "winda": "Bidang Kesehatan, Keluarga & KB",
-                    "kasmiati": "Bidang Kesehatan, Keluarga & KB",
-                    "esa yulia": "Bidang Kesehatan, Keluarga & KB",
-
-                    // Bidang Keagamaan Dan Moral
-                    "rahayu": "Bidang Keagamaan Dan Moral",
-                    "asniani": "Bidang Keagamaan Dan Moral",
-                    "novia": "Bidang Keagamaan Dan Moral",
-                    "lenti": "Bidang Keagamaan Dan Moral", // SUDAH DIPERBAIKI: Cukup 'lenti' agar lebih fleksibel
-                    "setti": "Bidang Keagamaan Dan Moral",
-                    "nini": "Bidang Keagamaan Dan Moral",
-
-                    // Bidang Ekonomi, Koperasi & Naker
-                    "dewi nolly": "Bidang Ekonomi, Koperasi & Naker",
-                    "vivien": "Bidang Ekonomi, Koperasi & Naker",
-                    "trisnawati": "Bidang Ekonomi, Koperasi & Naker",
-                    "raja juliana": "Bidang Ekonomi, Koperasi & Naker",
-                    "winarti": "Bidang Ekonomi, Koperasi & Naker",
-                    "fahira": "Bidang Ekonomi, Koperasi & Naker",
-                    "andriani": "Bidang Ekonomi, Koperasi & Naker",
-
-                    // Bidang Informasi, Komunikasi & Humas
-                    "indah srie": "Bidang Informasi, Komunikasi & Humas",
-                    "yurnida": "Bidang Informasi, Komunikasi & Humas",
-                    "melda": "Bidang Informasi, Komunikasi & Humas",
-                    "meitha": "Bidang Informasi, Komunikasi & Humas",
-                    "nuri": "Bidang Informasi, Komunikasi & Humas",
-                    "mirna": "Bidang Informasi, Komunikasi & Humas",
-                    "mardiah": "Bidang Informasi, Komunikasi & Humas",
-                    "nikmatun": "Bidang Informasi, Komunikasi & Humas",
-
-                    // Bidang Hukum, HAM & Gender
-                    "yessi": "Bidang Hukum, HAM & Gender",
-                    "badariah": "Bidang Hukum, HAM & Gender",
-                    "wan ramsinar": "Bidang Hukum, HAM & Gender",
-                    "syarifah": "Bidang Hukum, HAM & Gender",
-                    "evi susanti": "Bidang Hukum, HAM & Gender", // Spesifik
-                    "yuliana sabri": "Bidang Hukum, HAM & Gender"
-                };
-
-                // Grouping berdasarkan nama bidang
                 const bidangGroups = pengurusBidang.reduce((acc, curr) => {
-                    let namaBidang = curr.bidang; // Coba ambil dari database dulu
+                    let namaBidang = curr.bidang; 
                     const namaLower = (curr.nama || '').toLowerCase().trim();
                     const jabatanLower = (curr.jabatan || '').toLowerCase();
-
-                    // 1. Cek Mapping Manual Berdasarkan Nama (Prioritas Utama)
-                    // Menggunakan .includes untuk mencocokkan sebagian nama (misal "Ny. Lenti..." contains "lenti")
                     const mappedKey = Object.keys(memberMapping).find(key => namaLower.includes(key));
                     
-                    if (mappedKey) {
-                        namaBidang = memberMapping[mappedKey];
-                    } 
-                    // 2. Jika tidak ada di mapping, tebak dari Jabatan
+                    if (mappedKey) { namaBidang = memberMapping[mappedKey]; } 
                     else if (!namaBidang) {
                         if (jabatanLower.includes('organisasi')) namaBidang = 'Bidang Organisasi Dan Kaderisasi';
                         else if (jabatanLower.includes('pendidikan') || jabatanLower.includes('iptek')) namaBidang = 'Bidang Pendidikan, IPTEK & Sosbud';
@@ -938,76 +690,20 @@
                         else if (jabatanLower.includes('agama') || jabatanLower.includes('moral')) namaBidang = 'Bidang Keagamaan Dan Moral';
                         else namaBidang = 'Anggota Lainnya';
                     }
-
-                    // FILTER: HANYA MASUKKAN JIKA BUKAN 'Anggota Lainnya' dan BUKAN Undefined
-                    if (namaBidang && namaBidang !== 'Anggota Lainnya') {
-                        if (!acc[namaBidang]) acc[namaBidang] = [];
-                        acc[namaBidang].push(curr);
-                    }
-                    
+                    if (namaBidang && namaBidang !== 'Anggota Lainnya') { if (!acc[namaBidang]) acc[namaBidang] = []; acc[namaBidang].push(curr); }
                     return acc;
                 }, {});
 
-                // Urutan prioritas bidang agar tampil rapi sesuai struktur umum
-                const urutanBidang = [
-                    'Bidang Organisasi Dan Kaderisasi', 
-                    'Bidang Pendidikan, IPTEK & Sosbud',
-                    'Bidang Kesehatan, Keluarga & KB',
-                    'Bidang Keagamaan Dan Moral',
-                    'Bidang Ekonomi, Koperasi & Naker',
-                    'Bidang Informasi, Komunikasi & Humas',
-                    'Bidang Hukum, HAM & Gender'
-                ];
+                const urutanBidang = ['Bidang Organisasi Dan Kaderisasi', 'Bidang Pendidikan, IPTEK & Sosbud', 'Bidang Kesehatan, Keluarga & KB', 'Bidang Keagamaan Dan Moral', 'Bidang Ekonomi, Koperasi & Naker', 'Bidang Informasi, Komunikasi & Humas', 'Bidang Hukum, HAM & Gender'];
 
-                // Render Bidang
-                if (Object.keys(bidangGroups).length === 0) {
-                    bidangContainer.innerHTML = ''; 
-                } else {
-                    // Sorting keys
-                    const sortedKeys = Object.keys(bidangGroups).sort((a, b) => {
-                        let indexA = urutanBidang.indexOf(a);
-                        let indexB = urutanBidang.indexOf(b);
-                        if (indexA === -1) indexA = 999;
-                        if (indexB === -1) indexB = 999;
-                        return indexA - indexB;
-                    });
-
+                if (Object.keys(bidangGroups).length === 0) { bidangContainer.innerHTML = ''; } else {
+                    const sortedKeys = Object.keys(bidangGroups).sort((a, b) => { let indexA = urutanBidang.indexOf(a); let indexB = urutanBidang.indexOf(b); if (indexA === -1) indexA = 999; if (indexB === -1) indexB = 999; return indexA - indexB; });
                     bidangContainer.innerHTML = sortedKeys.map(namaBidang => {
                         const members = bidangGroups[namaBidang];
-                        
-                        // Sort anggota di dalam bidang
-                        members.sort((a, b) => {
-                            const rank = (jab) => {
-                                const j = (jab || '').toLowerCase();
-                                if (j.includes('ketua') || j.includes('koordinator')) return 1;
-                                if (j.includes('wakil')) return 2;
-                                if (j.includes('sekretaris')) return 3;
-                                return 4;
-                            };
-                            return rank(a.jabatan) - rank(b.jabatan);
-                        });
-
-                        return `
-                        <div class="relative fade-in-section">
-                            <!-- Judul Bidang -->
-                            <div class="flex flex-col items-center justify-center mb-10 text-center px-4">
-                                <div class="flex items-center w-full max-w-lg mb-2">
-                                    <div class="hidden sm:block h-px flex-1 bg-gradient-to-r from-transparent to-pink-500"></div>
-                                    <h4 class="text-lg sm:text-xl font-bold text-white mx-4 uppercase tracking-widest relative z-10 px-4 py-2 border border-pink-500/30 rounded-lg bg-slate-800 shadow-[0_0_15px_rgba(236,72,153,0.1)]">
-                                        ${namaBidang}
-                                    </h4>
-                                    <div class="hidden sm:block h-px flex-1 bg-gradient-to-l from-transparent to-pink-500"></div>
-                                </div>
-                            </div>
-                            
-                            <!-- Grid Anggota Bidang -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center max-w-6xl mx-auto px-4">
-                                ${members.map(p => createCard(p, true)).join('')}
-                            </div>
-                        </div>`;
+                        members.sort((a, b) => { const rank = (jab) => { const j = (jab || '').toLowerCase(); if (j.includes('ketua') || j.includes('koordinator')) return 1; if (j.includes('wakil')) return 2; if (j.includes('sekretaris')) return 3; return 4; }; return rank(a.jabatan) - rank(b.jabatan); });
+                        return `<div class="relative fade-in-section"><div class="flex flex-col items-center justify-center mb-10 text-center px-4"><div class="flex items-center w-full max-w-lg mb-2"><div class="hidden sm:block h-px flex-1 bg-gradient-to-r from-transparent to-pink-500"></div><h4 class="text-lg sm:text-xl font-bold text-white mx-4 uppercase tracking-widest relative z-10 px-4 py-2 border border-pink-500/30 rounded-lg bg-slate-800 shadow-[0_0_15px_rgba(236,72,153,0.1)]">${namaBidang}</h4><div class="hidden sm:block h-px flex-1 bg-gradient-to-l from-transparent to-pink-500"></div></div></div><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center max-w-6xl mx-auto px-4">${members.map(p => createCard(p, true)).join('')}</div></div>`;
                     }).join('');
                 }
-
                 observeSections(); 
             }); 
         };
@@ -1019,26 +715,11 @@
                 let docs = snapshot.docs.map(d => ({id: d.id, ...d.data()}));
                 docs.sort((a, b) => (a.nama || "").localeCompare(b.nama || ""));
                 grid.innerHTML = docs.map(org => { 
-                    // Logika Khusus: Perbesar logo jika nama organisasi mengandung 'DWP'
                     const lowerName = (org.nama || '').toLowerCase();
                     const isDWP = lowerName.includes('dwp') || lowerName.includes('dharma wanita');
-                    
-                    // Gunakan zoom 135% untuk DWP, dan 110% untuk yang lain
                     const zoomClass = isDWP ? 'scale-[1.35]' : 'scale-110';
-                    
-                    const logoHtml = org.logo ? 
-                        `<img src="${org.logo}" class="w-full h-full object-contain transform ${zoomClass}" alt="${org.nama}" onerror="this.parentElement.innerHTML = '<i class=\\'fas fa-sitemap text-3xl text-slate-400\\'></i>'">` : 
-                        `<i class="fas fa-sitemap text-3xl text-slate-400"></i>`; 
-                    
-                    return `
-                    <button data-org-id="${org.id}" class="org-card card-base text-center p-4 rounded-xl flex flex-col items-center justify-start fade-in-section h-auto min-h-[180px] group hover:bg-slate-800 transition-all duration-300 hover:-translate-y-1">
-                        <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center mb-4 overflow-hidden p-1 shadow-lg group-hover:scale-105 transition-transform border-4 border-slate-700">
-                            ${logoHtml}
-                        </div>
-                        <h4 class="font-bold text-sm leading-snug text-slate-200 group-hover:text-white transition-colors line-clamp-3">
-                            ${org.nama}
-                        </h4>
-                    </button>`; 
+                    const logoHtml = org.logo ? `<img src="${org.logo}" class="w-full h-full object-contain transform ${zoomClass}" alt="${org.nama}" onerror="this.parentElement.innerHTML = '<i class=\\'fas fa-sitemap text-3xl text-slate-400\\'></i>'">` : `<i class="fas fa-sitemap text-3xl text-slate-400"></i>`; 
+                    return `<button data-org-id="${org.id}" class="org-card card-base text-center p-4 rounded-xl flex flex-col items-center justify-start fade-in-section h-auto min-h-[180px] group hover:bg-slate-800 transition-all duration-300 hover:-translate-y-1"><div class="w-24 h-24 rounded-full bg-white flex items-center justify-center mb-4 overflow-hidden p-1 shadow-lg group-hover:scale-105 transition-transform border-4 border-slate-700">${logoHtml}</div><h4 class="font-bold text-sm leading-snug text-slate-200 group-hover:text-white transition-colors line-clamp-3">${org.nama}</h4></button>`; 
                 }).join(''); 
                 observeSections(); 
                 document.querySelectorAll('.org-card').forEach(card => card.addEventListener('click', () => renderOrganisasiDetail(card.dataset.orgId))); 
@@ -1048,23 +729,13 @@
         const loadKegiatan = () => { 
             onSnapshot(getCollectionRef('kegiatan'), (snapshot) => { 
                 allKegiatan = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); 
-                allKegiatan.sort((a, b) => {
-                    const dateA = a.tanggal ? new Date(a.tanggal) : 0;
-                    const dateB = b.tanggal ? new Date(b.tanggal) : 0;
-                    return dateB - dateA;
-                });
-
-                // Populate Year Filter
+                allKegiatan.sort((a, b) => { const dateA = a.tanggal ? new Date(a.tanggal) : 0; const dateB = b.tanggal ? new Date(b.tanggal) : 0; return dateB - dateA; });
                 const filterTahun = document.getElementById('filter-tahun'); 
                 const years = [...new Set(allKegiatan.map(k => k.tanggal ? new Date(k.tanggal).getFullYear() : null).filter(Boolean))]; 
                 filterTahun.innerHTML = '<option value="">Semua Tahun</option>'; 
                 years.sort((a, b) => b - a).forEach(year => { filterTahun.innerHTML += `<option value="${year}">${year}</option>`; }); 
-                
-                // Render Home Preview (Top 4)
-                // PERBAIKAN: Slice diubah menjadi 4 data
+                // PENTING: Tampilkan 4 kegiatan di Home
                 renderHomeKegiatan(allKegiatan.slice(0, 4));
-
-                // Init Filter for Full List
                 applyFilters(); 
             }); 
         };
@@ -1074,18 +745,7 @@
             if (kegiatanList.length === 0) { grid.innerHTML = `<p class="col-span-full text-center text-slate-500">Belum ada kegiatan.</p>`; return; }
             grid.innerHTML = kegiatanList.map(k => {
                 const tanggal = k.tanggal ? new Date(k.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
-                return `
-                <a href="#/kegiatan/${k.id}" class="bg-slate-800 rounded-xl overflow-hidden group hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-300 border border-slate-700">
-                    <div class="overflow-hidden h-48 relative">
-                        <img src="${k.foto}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/e5e7eb?text=Kegiatan'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
-                    </div>
-                    <div class="p-6">
-                        <p class="text-xs font-bold text-pink-500 mb-2 uppercase tracking-wider"><i class="far fa-calendar-alt mr-1"></i> ${tanggal}</p>
-                        <h3 class="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-pink-400 transition-colors">${k.nama}</h3>
-                        <p class="text-slate-400 text-sm line-clamp-2">${k.deskripsi || 'Tidak ada deskripsi singkat.'}</p>
-                    </div>
-                </a>`;
+                return `<a href="#/kegiatan/${k.id}" class="bg-slate-800 rounded-xl overflow-hidden group hover:shadow-2xl hover:shadow-pink-500/10 transition-all duration-300 border border-slate-700"><div class="overflow-hidden h-48 relative"><img src="${k.foto}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/e5e7eb?text=Kegiatan'"><div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div></div><div class="p-6"><p class="text-xs font-bold text-pink-500 mb-2 uppercase tracking-wider"><i class="far fa-calendar-alt mr-1"></i> ${tanggal}</p><h3 class="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-pink-400 transition-colors">${k.nama}</h3><p class="text-slate-400 text-sm line-clamp-2">${k.deskripsi || 'Tidak ada deskripsi singkat.'}</p></div></a>`;
             }).join('');
         };
 
@@ -1094,17 +754,7 @@
             if (kegiatanList.length === 0) { grid.innerHTML = `<p class="col-span-full text-center text-slate-400 py-10 border border-dashed border-slate-700 rounded-lg">Tidak ada kegiatan yang cocok dengan pencarian.</p>`; return; } 
             grid.innerHTML = kegiatanList.map(k => { 
                 const tanggal = k.tanggal ? new Date(k.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : ''; 
-                return `<a href="#/kegiatan/${k.id}" class="card-base rounded-xl overflow-hidden group fade-in-section flex flex-col h-full">
-                    <div class="overflow-hidden h-56 relative">
-                        <img src="${k.foto}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/e5e7eb?text=Kegiatan'">
-                        <div class="absolute top-2 right-2 bg-slate-900/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs text-white border border-slate-700"><i class="fas fa-map-marker-alt text-blue-400 mr-1"></i>${k.lokasi || 'Anambas'}</div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <p class="text-sm text-slate-400 mb-2"><i class="fas fa-calendar-alt mr-2 text-amber-400"></i>${tanggal}</p>
-                        <h3 class="text-xl font-bold mb-3 line-clamp-2 text-white group-hover:text-pink-400 transition-colors">${k.nama}</h3>
-                        <div class="mt-auto pt-4 border-t border-slate-700 text-sm text-pink-500 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center">Lihat Detail <i class="fas fa-arrow-right ml-2"></i></div>
-                    </div>
-                </a>`; 
+                return `<a href="#/kegiatan/${k.id}" class="card-base rounded-xl overflow-hidden group fade-in-section flex flex-col h-full"><div class="overflow-hidden h-56 relative"><img src="${k.foto}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/334155/e5e7eb?text=Kegiatan'"><div class="absolute top-2 right-2 bg-slate-900/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs text-white border border-slate-700"><i class="fas fa-map-marker-alt text-blue-400 mr-1"></i>${k.lokasi || 'Anambas'}</div></div><div class="p-6 flex-1 flex flex-col"><p class="text-sm text-slate-400 mb-2"><i class="fas fa-calendar-alt mr-2 text-amber-400"></i>${tanggal}</p><h3 class="text-xl font-bold mb-3 line-clamp-2 text-white group-hover:text-pink-400 transition-colors">${k.nama}</h3><div class="mt-auto pt-4 border-t border-slate-700 text-sm text-pink-500 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center">Lihat Detail <i class="fas fa-arrow-right ml-2"></i></div></div></a>`; 
             }).join(''); 
             observeSections(); 
         };
@@ -1116,18 +766,13 @@
             paginationContainer.classList.remove('hidden');
             let paginationHTML = `<button class="pagination-btn" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>`;
             for (let i = 1; i <= totalPages; i++) {
-                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
-                    paginationHTML += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
-                } else if (i === currentPage - 2 || i === currentPage + 2) {
-                    paginationHTML += `<span class="text-slate-500 px-1">...</span>`;
-                }
+                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) { paginationHTML += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`; } 
+                else if (i === currentPage - 2 || i === currentPage + 2) { paginationHTML += `<span class="text-slate-500 px-1">...</span>`; }
             }
             paginationHTML += `<button class="pagination-btn" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>`;
             paginationContainer.innerHTML = paginationHTML;
             paginationContainer.querySelectorAll('.pagination-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    if (!btn.disabled) { currentPage = parseInt(btn.dataset.page); updatePaginatedView(); document.getElementById('kegiatan-grid').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-                });
+                btn.addEventListener('click', () => { if (!btn.disabled) { currentPage = parseInt(btn.dataset.page); updatePaginatedView(); document.getElementById('kegiatan-grid').scrollIntoView({ behavior: 'smooth', block: 'start' }); } });
             });
         };
 
@@ -1174,24 +819,27 @@
                     const tanggal = data.tanggal ? new Date(data.tanggal).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : 'N/A'; 
                     const mapHtml = (data.koordinat?.lat && data.koordinat?.lng) ? `<div class="mt-8 p-4 bg-slate-800 rounded-xl border border-slate-700"><h3 class="text-xl font-bold mb-4 text-white"><i class="fas fa-map-marked-alt mr-2 text-blue-400"></i>Lokasi Kegiatan</h3><div id="map" class="w-full h-80 rounded-lg z-0"></div></div>` : ''; 
                     
+                    // PENTING: Judul berada di bawah foto
                     container.innerHTML = `
                     <div class="container mx-auto px-4">
                         <div class="max-w-4xl mx-auto">
                             <div class="mb-8"><a href="#/kegiatan" class="text-pink-400 hover:text-pink-300 font-semibold flex items-center"><i class="fas fa-arrow-left mr-2"></i> Kembali ke Arsip</a></div>
                             <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
-                                <div class="relative h-64 sm:h-96">
+                                <!-- Bagian Foto (Tanpa Teks Overlay) -->
+                                <div class="relative h-64 sm:h-[500px]">
                                     <img src="${data.foto}" alt="${data.nama}" class="w-full h-full object-cover" onerror="this.style.display='none'">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
-                                    <div class="absolute bottom-0 left-0 p-6 sm:p-10 w-full">
-                                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-2 drop-shadow-lg">${data.nama}</h1>
-                                        <div class="flex flex-wrap gap-4 text-sm font-medium text-slate-300">
-                                            <span class="bg-slate-800/80 backdrop-blur px-3 py-1 rounded-full"><i class="fas fa-calendar-alt mr-2 text-amber-400"></i>${tanggal}</span>
-                                            <span class="bg-slate-800/80 backdrop-blur px-3 py-1 rounded-full"><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>${data.lokasi || 'N/A'}</span>
-                                        </div>
-                                    </div>
                                 </div>
+                                
+                                <!-- Bagian Konten (Judul & Deskripsi) -->
                                 <div class="p-6 sm:p-10">
-                                    <div class="prose prose-lg prose-invert max-w-none text-slate-300 leading-relaxed text-justify whitespace-pre-line border-b border-slate-800 pb-8 mb-8">${data.deskripsi || ''}</div>
+                                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">${data.nama}</h1>
+                                    
+                                    <div class="flex flex-wrap gap-4 text-sm font-medium text-slate-300 mb-8 border-b border-slate-800 pb-6">
+                                        <span class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700"><i class="fas fa-calendar-alt mr-2 text-amber-400"></i>${tanggal}</span>
+                                        <span class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700"><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>${data.lokasi || 'N/A'}</span>
+                                    </div>
+
+                                    <div class="prose prose-lg prose-invert max-w-none text-slate-300 leading-relaxed text-justify whitespace-pre-line mb-8">${data.deskripsi || ''}</div>
                                     ${mapHtml}
                                 </div>
                             </div>
@@ -1222,30 +870,7 @@
                 const profile = organisasiProfiles[org.nama.toUpperCase().replace(/\s/g, '')] || organisasiProfiles[org.nama] || "Informasi profil lengkap organisasi belum tersedia saat ini."; 
                 const avatar = ketua.foto ? `<img src="${ketua.foto}" class="w-20 h-20 rounded-full object-cover border-4 border-slate-700" onerror="this.src='https://placehold.co/80x80/ec4899/ffffff?text=${(ketua.nama || '?').charAt(0)}'">` : `<div class="w-20 h-20 rounded-full bg-pink-500 flex items-center justify-center text-3xl font-bold border-4 border-slate-700">${(ketua.nama || '?').charAt(0)}</div>`; 
                 
-                placeholder.innerHTML = ` 
-                <div id="org-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 modal-overlay transition-opacity duration-300"> 
-                    <div class="bg-slate-800 border border-slate-700 rounded-2xl w-full max-w-lg p-6 transform scale-95 opacity-0 modal-content shadow-2xl relative"> 
-                        <button id="close-modal-top" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
-                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 mb-6"> 
-                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-700 shadow-lg">
-                                <img src="${org.logo || 'https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'}" class="w-20 h-20 object-contain" onerror="this.src='https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'"> 
-                            </div>
-                            <div> 
-                                <h2 class="text-2xl font-bold text-white mb-2 leading-tight">${org.nama}</h2> 
-                                <div class="max-h-32 overflow-y-auto pr-2 modal-text-scroll text-sm text-slate-400 leading-relaxed">${profile}</div>
-                            </div> 
-                        </div> 
-                        <div class="bg-slate-900/50 rounded-xl p-4 border border-slate-700/50">
-                            <p class="text-xs text-slate-500 uppercase tracking-widest font-bold text-center mb-3">Ketua Organisasi</p>
-                            <div class="flex items-center justify-center gap-4"> ${avatar} 
-                                <div class="text-left">
-                                    <p class="font-bold text-lg text-amber-400">${ketua.nama || '-'}</p>
-                                    <p class="text-xs text-slate-400">Masa Bakti 2025-2030</p>
-                                </div> 
-                            </div> 
-                        </div>
-                    </div> 
-                </div>`; 
+                placeholder.innerHTML = `<div id="org-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 modal-overlay transition-opacity duration-300"><div class="bg-slate-800 border border-slate-700 rounded-2xl w-full max-w-lg p-6 transform scale-95 opacity-0 modal-content shadow-2xl relative"><button id="close-modal-top" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fas fa-times text-xl"></i></button><div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 mb-6"><div class="p-3 bg-slate-900 rounded-xl border border-slate-700 shadow-lg"><img src="${org.logo || 'https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'}" class="w-20 h-20 object-contain" onerror="this.src='https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'"></div><div><h2 class="text-2xl font-bold text-white mb-2 leading-tight">${org.nama}</h2><div class="max-h-32 overflow-y-auto pr-2 modal-text-scroll text-sm text-slate-400 leading-relaxed">${profile}</div></div></div><div class="bg-slate-900/50 rounded-xl p-4 border border-slate-700/50"><p class="text-xs text-slate-500 uppercase tracking-widest font-bold text-center mb-3">Ketua Organisasi</p><div class="flex items-center justify-center gap-4"> ${avatar}<div class="text-left"><p class="font-bold text-lg text-amber-400">${ketua.nama || '-'}</p><p class="text-xs text-slate-400">Masa Bakti 2025-2030</p></div></div></div></div></div>`; 
                 const modal = document.getElementById('org-modal'); 
                 const modalContent = modal.querySelector('.modal-content'); 
                 requestAnimationFrame(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('scale-95', 'opacity-0'); }); 
@@ -1255,7 +880,6 @@
             } 
         };
 
-        // --- DATA VISUALIZATION ---
         const fullDataByCategory = {
             'Kependudukan': { sumber: 'Sumber: Dinas Kependudukan dan Pencatatan Sipil, BPS', indicators: { 'Komposisi Penduduk': { type: 'kabupaten', labels: ['Laki-laki', 'Perempuan'], wawasan: { default: '<p>💡 Jumlah balita (0-4 tahun) di Anambas pada tahun 2024 cukup seimbang antara laki-laki dan perempuan.</p>' }, datasets: [{ label: '2023', color: 'rgba(59, 130, 246, 0.7)' }, { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }], data: [[2050, 1959], [1997, 1899]] }, 'Kepala Rumah Tangga': { type: 'kabupaten', labels: ['Laki-laki', 'Perempuan'], wawasan: { default: '<p>💡 Dominasi kepala rumah tangga laki-laki (13.231) dibanding perempuan (2.813) pada tahun 2024.</p>' }, datasets: [{ label: '2023', color: 'rgba(59, 130, 246, 0.7)' }, { label: '2024', color: 'rgba(236, 72, 153, 0.7)' }], data: [[12909, 2690], [13231, 2813]] }, 'Kepemilikan Akta & KIA': { type: 'kabupaten', labels: ['Memiliki Akta', 'Tidak Memiliki Akta', 'Memiliki KIA', 'Tidak Memiliki KIA'], wawasan: { default: '<p>💡 Sebagian besar anak (0-17 tahun) sudah memiliki akta kelahiran, dan cakupan KIA terus meningkat.</p>' }, datasets: [{ label: '2024', color: 'rgba(16, 185, 129, 0.7)' }], data: [[15817, 130, 12235, 2753]] }, 'Penduduk Menurut Kelompok Umur': { type: 'kabupaten', labels: ['0-4', '5-9', '10-14', '15-19', '20-50', '51+'], wawasan: { default: '<p>💡 Sebaran penduduk berdasarkan kelompok umur.</p>' }, datasets: [{ label: 'Laki-laki (2024)', color: 'rgba(59, 130, 246, 0.7)' }, { label: 'Perempuan (2024)', color: 'rgba(236, 72, 153, 0.7)' }], data: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] } } },
             'Pembangunan Manusia': { sumber: 'Sumber: BPS Provinsi Kepulauan Riau', indicators: { 'Indeks Pembangunan': { type: 'kabupaten', labels: ['IPM', 'IPG', 'IDG'], wawasan: { default: '<p>💡 Capaian Indeks Pembangunan Gender (IPG) tahun 2024 mencapai 92.02, menunjukkan kesetaraan yang cukup baik.</p>' }, datasets: [{ label: '2023', color: 'rgba(16, 185, 129, 0.7)' }, { label: '2024', color: 'rgba(245, 158, 11, 0.7)' }], data: [[70.26, 91.58, 62.29], [70.93, 92.02, 58.3]] } } },
@@ -1273,58 +897,12 @@
             const data = fullDataByCategory[category];
             if (!data) return;
             const indicators = Object.keys(data.indicators);
-            contentArea.innerHTML = `
-                <div class="mb-4"><select id="indicator-select" class="w-full bg-slate-900 border border-slate-700 p-2 rounded text-white">${indicators.map(i => `<option value="${i}">${i}</option>`).join('')}</select></div>
-                <div class="h-80 relative"><canvas id="chart-canvas"></canvas></div>
-                <div class="mt-4 bg-slate-900 p-4 rounded text-sm text-slate-300 border-l-4 border-pink-500" id="wawasan-box"></div>
-            `;
+            contentArea.innerHTML = `<div class="mb-4"><select id="indicator-select" class="w-full bg-slate-900 border border-slate-700 p-2 rounded text-white">${indicators.map(i => `<option value="${i}">${i}</option>`).join('')}</select></div><div class="h-80 relative"><canvas id="chart-canvas"></canvas></div><div class="mt-4 bg-slate-900 p-4 rounded text-sm text-slate-300 border-l-4 border-pink-500" id="wawasan-box"></div>`;
             const renderChart = (indName) => {
                 const ind = data.indicators[indName];
                 const ctx = document.getElementById('chart-canvas').getContext('2d');
                 if (dataChart) dataChart.destroy();
-                dataChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: { 
-                        labels: ind.labels, 
-                        datasets: ind.datasets.map((d, i) => ({ 
-                            label: d.label, 
-                            data: ind.data[i], 
-                            backgroundColor: d.color 
-                        })) 
-                    },
-                    options: { 
-                        responsive: true, 
-                        maintainAspectRatio: false, 
-                        scales: { 
-                            y: { 
-                                beginAtZero: true, 
-                                grid: { color: '#334155' }, 
-                                ticks: { color: '#94a3b8' } 
-                            }, 
-                            x: { 
-                                grid: { display: false }, 
-                                ticks: { color: '#94a3b8' } 
-                            } 
-                        }, 
-                        plugins: { 
-                            legend: { labels: { color: '#cbd5e1' } },
-                            // Konfigurasi DataLabels agar angka jelas terbaca
-                            datalabels: {
-                                color: '#ffffff', // Warna teks Putih
-                                anchor: 'center',
-                                align: 'center',
-                                rotation: 0, // Posisi tegak (bisa diubah ke -90 jika data padat)
-                                font: { weight: 'bold', size: 12 },
-                                textStrokeColor: '#000000', // Garis tepi Hitam
-                                textStrokeWidth: 3, // Ketebalan garis tepi
-                                formatter: (value) => {
-                                    if (value === null || value === undefined) return '';
-                                    return value > 1000 ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : value;
-                                }
-                            } 
-                        } 
-                    }
-                });
+                dataChart = new Chart(ctx, { type: 'bar', data: { labels: ind.labels, datasets: ind.datasets.map((d, i) => ({ label: d.label, data: ind.data[i], backgroundColor: d.color })) }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, grid: { color: '#334155' }, ticks: { color: '#94a3b8' } }, x: { grid: { display: false }, ticks: { color: '#94a3b8' } } }, plugins: { legend: { labels: { color: '#cbd5e1' } }, datalabels: { color: '#ffffff', anchor: 'center', align: 'center', rotation: 0, font: { weight: 'bold', size: 12 }, textStrokeColor: '#000000', textStrokeWidth: 3, formatter: (value) => { if (value === null || value === undefined) return ''; return value > 1000 ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : value; } } } } });
                 document.getElementById('wawasan-box').innerHTML = ind.wawasan.default + `<br><small class="text-slate-500 mt-2 block">${data.sumber}</small>`;
             };
             renderChart(indicators[0]);
