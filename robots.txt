@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: [https://gowanambaskab.id/sitemap.xml](https://gowanambaskab.id/sitemap.xml)
