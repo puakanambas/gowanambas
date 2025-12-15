@@ -235,19 +235,26 @@
         /* Section gelap jadi transparan putih agar background pink body terlihat */
         body.light-mode .bg-slate-900 { background-color: rgba(255, 255, 255, 0.5) !important; }
         
-        /* Kartu: Putih Solid dengan Shadow Pink Halus */
-        body.light-mode .bg-slate-800 { background-color: #ffffff !important; border-color: #fda4af !important; /* Rose-300 */ }
+        /* FIX: Kartu & Modal pada Mode Terang */
+        /* Menggunakan Gradient Putih ke Pink Tipis agar kartu terlihat 'berisi' dan elegan, tidak flat putih */
+        body.light-mode .bg-slate-800, 
+        body.light-mode .card-base,
+        body.light-mode .modal-content { 
+            background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%) !important; /* White to Rose-50 */
+            border-color: #fecdd3 !important; /* Rose-200 */
+        }
+
         body.light-mode .bg-slate-800\/40 { background-color: rgba(255, 255, 255, 0.9) !important; border-color: #fda4af !important; }
         
         /* FIX: Kartu Arti & Makna Logo (bg-slate-800/50) pada Mode Terang */
         /* Mengubah background transparan gelap menjadi putih bersih dengan border rose agar senada */
         body.light-mode .bg-slate-800\/50 {
-            background-color: #ffffff !important;
+            background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%) !important;
             border-color: #fecdd3 !important; /* Rose-200 */
             box-shadow: 0 4px 6px -1px rgba(244, 63, 94, 0.05);
         }
         body.light-mode .bg-slate-800\/50:hover {
-            background-color: #fff1f2 !important; /* Rose-50 saat hover */
+            background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%) !important; /* Rose-50 to Rose-100 */
             border-color: #be185d !important; /* Pink-700 */
             box-shadow: 0 10px 15px -3px rgba(244, 63, 94, 0.1);
         }
@@ -260,13 +267,17 @@
 
         body.light-mode .border-slate-700, body.light-mode .border-slate-800 { border-color: #fecdd3 !important; } /* Rose-200 */
         
-        /* Card Base styling */
+        /* Card Base styling Hover Override */
+        /* Penting: Override hover bg-slate-800 bawaan HTML agar kartu berubah warna saat disorot di mode terang */
         body.light-mode .card-base { 
-            background: #ffffff !important; 
-            border-color: #fecdd3 !important; 
             box-shadow: 0 10px 15px -3px rgba(244, 63, 94, 0.05), 0 4px 6px -2px rgba(244, 63, 94, 0.025); 
         }
-        body.light-mode .card-base:hover { border-color: #be185d !important; box-shadow: 0 20px 25px -5px rgba(244, 63, 94, 0.15); }
+        body.light-mode .card-base:hover,
+        body.light-mode .org-card:hover { 
+            background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%) !important; /* Rose-50 to Rose-100 */
+            border-color: #be185d !important; 
+            box-shadow: 0 20px 25px -5px rgba(244, 63, 94, 0.15); 
+        }
         
         /* Nav Links */
         body.light-mode .nav-link { color: #475569 !important; }
@@ -560,7 +571,7 @@
         <div id="page-tentang" class="page-section pt-24 pb-20">
             <div class="container mx-auto px-4">
                 <div class="text-center max-w-3xl mx-auto mb-16 fade-in-section">
-                    <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Tentang GOW Anambas</h2>
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Tentang GOW Kabupaten Anambas</h2>
                     <div class="w-20 h-1 bg-pink-500 mx-auto rounded-full mb-6"></div>
                     <p class="text-slate-400 text-lg">GOW Kabupaten Kepulauan Anambas resmi berdiri sejak ditetapkannya akta pendirian sebagai wadah permanen yang berasaskan Pancasila dan UUD 1945 untuk memperkuat kolaborasi antar organisasi wanita di Anambas.</p>
                 </div>
@@ -812,10 +823,10 @@
                 <div class="text-center md:text-left">
                     <div class="flex items-center justify-center md:justify-start space-x-3 mb-4">
                         <img src="https://iili.io/FPZFHv9.png" alt="Logo GOW" class="h-10">
-                        <span class="text-slate-300 font-semibold tracking-wider">GOW ANAMBAS</span>
+                        <span class="text-slate-300 font-semibold tracking-wider">GOW KABUPATEN KEPULAUAN ANAMBAS</span>
                     </div>
-                    <p class="text-slate-500 text-sm mb-2"><i class="fas fa-map-marker-alt mr-2 text-pink-500"></i>Jl. Hangtuah Kelurahan Tarempa, Kecamatan Siantan, Kabupaten Kepulauan Anambas, Kode Pos 29791</p>
-                    <p class="text-slate-600 text-sm">&copy; <span id="copyright-year"></span> GOW ANAMBAS. All Rights Reserved.</p>
+                    <p class="text-slate-500 text-sm mb-2"><i class="fas fa-map-marker-alt mr-2 text-pink-500"></i>Jl. Hangtuah Kel. Tarempa, Kec. Siantan, Kab. Kepulauan Anambas, Kode Pos 29791</p>
+                    <p class="text-slate-600 text-sm">&copy; <span id="copyright-year"></span> GOW Kepulauan Anambas. All Rights Reserved.</p>
                 </div>
                 <div class="flex justify-center md:justify-end gap-4">
                     <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
@@ -1142,8 +1153,9 @@
                 const profile = organisasiProfiles[org.nama.toUpperCase().replace(/\s/g, '')] || organisasiProfiles[org.nama] || "Informasi profil lengkap organisasi belum tersedia saat ini."; 
                 const avatar = ketua.foto ? `<img src="${ketua.foto}" class="w-20 h-20 rounded-full object-cover border-4 border-slate-700" onerror="this.src='https://placehold.co/80x80/ec4899/ffffff?text=${(ketua.nama || '?').charAt(0)}'">` : `<div class="w-20 h-20 rounded-full bg-pink-500 flex items-center justify-center text-3xl font-bold border-4 border-slate-700">${(ketua.nama || '?').charAt(0)}</div>`; 
                 
-                // FIX: Mengganti text-amber-400 menjadi text-pink-500 pada Modal juga agar konsisten
-                placeholder.innerHTML = `<div id="org-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 modal-overlay transition-opacity duration-300"><div class="bg-slate-800 border border-slate-700 rounded-2xl w-full max-w-lg p-6 transform scale-95 opacity-0 modal-content shadow-2xl relative"><button id="close-modal-top" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fas fa-times text-xl"></i></button><div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 mb-6"><div class="p-3 bg-slate-900 rounded-xl border border-slate-700 shadow-lg"><img src="${org.logo || 'https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'}" class="w-20 h-20 object-contain" onerror="this.src='https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'"></div><div><h2 class="text-2xl font-bold text-white mb-2 leading-tight">${org.nama}</h2><div class="max-h-32 overflow-y-auto pr-2 modal-text-scroll text-sm text-slate-400 leading-relaxed">${profile}</div></div></div><div class="bg-slate-900/50 rounded-xl p-4 border border-slate-700/50"><p class="text-xs text-slate-500 uppercase tracking-widest font-bold text-center mb-3">Ketua Organisasi</p><div class="flex items-center justify-center gap-4"> ${avatar}<div class="text-left"><p class="font-bold text-lg text-pink-500">${ketua.nama || '-'}</p><p class="text-xs text-slate-400">Masa Bakti 2025-2030</p></div></div></div></div></div>`; 
+                // FIX: Menghapus baris "Masa Bakti" sesuai permintaan agar tampilan lebih bersih
+                placeholder.innerHTML = `<div id="org-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 modal-overlay transition-opacity duration-300"><div class="bg-slate-800 border border-slate-700 rounded-2xl w-full max-w-lg p-6 transform scale-95 opacity-0 modal-content shadow-2xl relative"><button id="close-modal-top" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fas fa-times text-xl"></i></button><div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 mb-6"><div class="p-3 bg-slate-900 rounded-xl border border-slate-700 shadow-lg"><img src="${org.logo || 'https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'}" class="w-20 h-20 object-contain" onerror="this.src='https://placehold.co/96x96/1e293b/e2e8f0?text=Logo'"></div><div><h2 class="text-2xl font-bold text-white mb-2 leading-tight">${org.nama}</h2><div class="max-h-32 overflow-y-auto pr-2 modal-text-scroll text-sm text-slate-400 leading-relaxed">${profile}</div></div></div><div class="bg-slate-900/50 rounded-xl p-4 border border-slate-700/50"><p class="text-xs text-slate-500 uppercase tracking-widest font-bold text-center mb-3">Ketua Organisasi</p><div class="flex items-center justify-center gap-4"> ${avatar}<div class="text-left"><p class="font-bold text-lg text-pink-500">${ketua.nama || '-'}</p></div></div></div></div></div>`; 
+                
                 const modal = document.getElementById('org-modal'); 
                 const modalContent = modal.querySelector('.modal-content'); 
                 requestAnimationFrame(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('scale-95', 'opacity-0'); }); 
