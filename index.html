@@ -953,16 +953,14 @@
                 if (pengurusInti.length === 0) { intiGrid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data pengurus inti belum tersedia.</p>'; } else { intiGrid.innerHTML = pengurusInti.map(p => createCard(p)).join(''); }
 
                 const pengurusBidang = docs.filter(p => !pengurusInti.includes(p));
-                const memberMapping = { "raja peni": "Bidang Organisasi Dan Kaderisasi", "agustinayati": "Bidang Organisasi Dan Kaderisasi", "armiyati": "Bidang Organisasi Dan Kaderisasi", "nopa": "Bidang Organisasi Dan Kaderisasi", "evi rio": "Bidang Organisasi Dan Kaderisasi", "raja rita": "Bidang Organisasi Dan Kaderisasi", "artita": "Bidang Pendidikan, IPTEK & Sosbud", "isnaniar": "Bidang Pendidikan, IPTEK & Sosbud", "sri widarti": "Bidang Pendidikan, IPTEK & Sosbud", "munjiah": "Bidang Pendidikan, IPTEK & Sosbud", "marwidt": "Bidang Pendidikan, IPTEK & Sosbud", "jamilatul": "Bidang Pendidikan, IPTEK & Sosbud", "anisa": "Bidang Pendidikan, IPTEK & Sosbud", "veronika": "Bidang Kesehatan, Keluarga & KB", "ifa fatimah": "Bidang Kesehatan, Keluarga & KB", "welsy": "Bidang Kesehatan, Keluarga & KB", "winda": "Bidang Kesehatan, Keluarga & KB", "kasmiati": "Bidang Kesehatan, Keluarga & KB", "esa yulia": "Bidang Kesehatan, Keluarga & KB", "rahayu": "Bidang Keagamaan Dan Moral", "asniani": "Bidang Keagamaan Dan Moral", "novia": "Bidang Keagamaan Dan Moral", "lenti": "Bidang Keagamaan Dan Moral", "setti": "Bidang Keagamaan Dan Moral", "nini": "Bidang Keagamaan Dan Moral", "dewi nolly": "Bidang Ekonomi, Koperasi & Naker", "vivien": "Bidang Ekonomi, Koperasi & Naker", "trisnawati": "Bidang Ekonomi, Koperasi & Naker", "raja juliana": "Bidang Ekonomi, Koperasi & Naker", "winarti": "Bidang Ekonomi, Koperasi & Naker", "fahira": "Bidang Ekonomi, Koperasi & Naker", "andriani": "Bidang Ekonomi, Koperasi & Naker", "indah srie": "Bidang Informasi, Komunikasi & Humas", "yurnida": "Bidang Informasi, Komunikasi & Humas", "melda": "Bidang Informasi, Komunikasi & Humas", "meitha": "Bidang Informasi, Komunikasi & Humas", "nuri": "Bidang Informasi, Komunikasi & Humas", "mirna": "Bidang Informasi, Komunikasi & Humas", "mardiah": "Bidang Informasi, Komunikasi & Humas", "nikmatun": "Bidang Informasi, Komunikasi & Humas", "yessi": "Bidang Hukum, HAM & Gender", "badariah": "Bidang Hukum, HAM & Gender", "wan ramsinar": "Bidang Hukum, HAM & Gender", "syarifah": "Bidang Hukum, HAM & Gender", "evi susanti": "Bidang Hukum, HAM & Gender", "yuliana sabri": "Bidang Hukum, HAM & Gender" };
+// LOGIKA LAMA (memberMapping) DIHAPUS AGAR SESUAI DATABASE SIMANJA
 
                 const bidangGroups = pengurusBidang.reduce((acc, curr) => {
                     let namaBidang = curr.bidang; 
-                    const namaLower = (curr.nama || '').toLowerCase().trim();
                     const jabatanLower = (curr.jabatan || '').toLowerCase();
-                    const mappedKey = Object.keys(memberMapping).find(key => namaLower.includes(key));
                     
-                    if (mappedKey) { namaBidang = memberMapping[mappedKey]; } 
-                    else if (!namaBidang) {
+                    // Jika data bidang kosong di database, baru gunakan tebakan manual ini:
+                    if (!namaBidang) {
                         if (jabatanLower.includes('organisasi')) namaBidang = 'Bidang Organisasi Dan Kaderisasi';
                         else if (jabatanLower.includes('pendidikan') || jabatanLower.includes('iptek')) namaBidang = 'Bidang Pendidikan, IPTEK & Sosbud';
                         else if (jabatanLower.includes('ekonomi') || jabatanLower.includes('koperasi')) namaBidang = 'Bidang Ekonomi, Koperasi & Naker';
@@ -1285,5 +1283,6 @@
         });
     </script>
 </body>
+
 
 </html>
