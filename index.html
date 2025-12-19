@@ -14,7 +14,6 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://gowanambaskab.id/" />
     
-    <!-- PENTING: Ganti tulisan di bawah dengan kode dari Google Search Console Anda -->
     <meta name="google-site-verification" content="Dc2tOevfapHhQtcv0sksrbqPAcGPDgfaSfR69dDkq8Q" />
 
     <!-- Open Graph / Facebook / WhatsApp Preview -->
@@ -176,190 +175,74 @@
         #back-to-top:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(219, 39, 119, 0.7); }
 
         /* --- LIGHT MODE OVERRIDES: TEMA ELEGANT SOFT ROSE --- */
-        
-        /* 1. Body: Pink Pastel yang sangat lembut (Rose-50) agar hangat di mata */
         body.light-mode { background-color: #fff1f2; color: #334155; } 
-        
-        /* 2. Header: Putih bersih dengan sentuhan border pink tipis. 
-           Hindari warna blok di header agar tidak sempit. */
-        body.light-mode .header-glass { 
-            background: rgba(255, 255, 255, 0.95); 
-            border-bottom: 1px solid #fecdd3; /* Rose-200 */
-            box-shadow: 0 4px 6px -1px rgba(244, 63, 94, 0.05);
-        }
-        
-        /* Text Color Overrides */
+        body.light-mode .header-glass { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid #fecdd3; box-shadow: 0 4px 6px -1px rgba(244, 63, 94, 0.05); }
         body.light-mode .text-slate-300 { color: #475569 !important; }
         body.light-mode .text-slate-400 { color: #64748b !important; }
         body.light-mode .text-white { color: #0f172a !important; }
-        
-        /* FIX: Menambahkan override warna untuk teks deskripsi program (text-slate-200) agar terbaca di mode terang */
         body.light-mode .text-slate-200 { color: #334155 !important; }
-
-        /* FIX: Override warna Pink agar lebih gelap/kontras di Mode Terang (untuk Jabatan Pengurus) */
         body.light-mode .text-pink-500 { color: #be185d !important; } /* Pink-700 */
-        
-        /* Hero Section Adjustments */
         body.light-mode .hero-section .text-white { color: #1e293b !important; text-shadow: none !important; }
         body.light-mode .hero-section .text-slate-300 { color: #475569 !important; text-shadow: none !important; }
-        
-        /* FIX: Button 'Lihat Kegiatan' di Hero Mode Terang */
-        /* Mengubah background hitam menjadi putih dengan border/teks pink agar sesuai tema dan kontras */
-        body.light-mode .hero-section .bg-slate-800\/80 {
-            background-color: rgba(255, 255, 255, 0.9) !important;
-            color: #be185d !important; /* Pink-700 */
-            border-color: #be185d !important;
-        }
-        body.light-mode .hero-section .bg-slate-800\/80:hover {
-            background-color: #ffffff !important;
-            box-shadow: 0 4px 15px rgba(190, 24, 93, 0.2);
-            color: #9d174d !important; /* Pink-800 */
-        }
-        
-        /* Warna Neon disesuaikan ke tone yang lebih gelap/matang */
+        body.light-mode .hero-section .bg-slate-800\/80 { background-color: rgba(255, 255, 255, 0.9) !important; color: #be185d !important; border-color: #be185d !important; }
+        body.light-mode .hero-section .bg-slate-800\/80:hover { background-color: #ffffff !important; box-shadow: 0 4px 15px rgba(190, 24, 93, 0.2); color: #9d174d !important; }
         body.light-mode .hero-section .text-lime-400 { color: #15803d !important; } 
         body.light-mode .hero-section .text-pink-500 { color: #be185d !important; } 
         body.light-mode .hero-section .text-amber-400 { color: #b45309 !important; } 
         body.light-mode .hero-section .text-blue-400 { color: #1e40af !important; }
-
-        /* Overlay Hero: Gradasi Putih ke Pink Lembut */
-        body.light-mode .hero-overlay { 
-            background: linear-gradient(to bottom, 
-                rgba(255, 255, 255, 0.85) 0%,      
-                rgba(255, 255, 255, 0.4) 50%,      
-                #fff1f2 100%                       
-            ) !important; 
-        }
-
-        /* Background Sections */
-        /* Section gelap jadi transparan putih agar background pink body terlihat */
+        body.light-mode .hero-overlay { background: linear-gradient(to bottom, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.4) 50%, #fff1f2 100% ) !important; }
         body.light-mode .bg-slate-900 { background-color: rgba(255, 255, 255, 0.5) !important; }
-        
-        /* FIX: Kartu & Modal pada Mode Terang */
-        /* Menggunakan Gradient Putih ke Pink Tipis agar kartu terlihat 'berisi' dan elegan, tidak flat putih */
-        body.light-mode .bg-slate-800, 
-        body.light-mode .card-base,
-        body.light-mode .modal-content { 
-            background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%) !important; /* White to Rose-50 */
-            border-color: #fecdd3 !important; /* Rose-200 */
-        }
-
+        body.light-mode .bg-slate-800, body.light-mode .card-base, body.light-mode .modal-content { background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%) !important; border-color: #fecdd3 !important; }
         body.light-mode .bg-slate-800\/40 { background-color: rgba(255, 255, 255, 0.9) !important; border-color: #fda4af !important; }
-        
-        /* FIX: Kartu Arti & Makna Logo (bg-slate-800/50) pada Mode Terang */
-        /* Mengubah background transparan gelap menjadi putih bersih dengan border rose agar senada */
-        body.light-mode .bg-slate-800\/50 {
-            background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%) !important;
-            border-color: #fecdd3 !important; /* Rose-200 */
-            box-shadow: 0 4px 6px -1px rgba(244, 63, 94, 0.05);
-        }
-        body.light-mode .bg-slate-800\/50:hover {
-            background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%) !important; /* Rose-50 to Rose-100 */
-            border-color: #be185d !important; /* Pink-700 */
-            box-shadow: 0 10px 15px -3px rgba(244, 63, 94, 0.1);
-        }
-
-        /* FIX: Mengganti warna text-amber-400 (Kuning) menjadi Pink Tua pada konten body (selain Hero) */
-        /* Agar judul poin-poin logo terbaca jelas di background putih */
-        body.light-mode :not(.hero-section) .text-amber-400 {
-            color: #be185d !important; /* Pink-700 */
-        }
-
-        body.light-mode .border-slate-700, body.light-mode .border-slate-800 { border-color: #fecdd3 !important; } /* Rose-200 */
-        
-        /* Card Base styling Hover Override */
-        /* Penting: Override hover bg-slate-800 bawaan HTML agar kartu berubah warna saat disorot di mode terang */
-        body.light-mode .card-base { 
-            box-shadow: 0 10px 15px -3px rgba(244, 63, 94, 0.05), 0 4px 6px -2px rgba(244, 63, 94, 0.025); 
-        }
-        body.light-mode .card-base:hover,
-        body.light-mode .org-card:hover { 
-            background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%) !important; /* Rose-50 to Rose-100 */
-            border-color: #be185d !important; 
-            box-shadow: 0 20px 25px -5px rgba(244, 63, 94, 0.15); 
-        }
-        
-        /* Nav Links */
+        body.light-mode .bg-slate-800\/50 { background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%) !important; border-color: #fecdd3 !important; box-shadow: 0 4px 6px -1px rgba(244, 63, 94, 0.05); }
+        body.light-mode .bg-slate-800\/50:hover { background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%) !important; border-color: #be185d !important; box-shadow: 0 10px 15px -3px rgba(244, 63, 94, 0.1); }
+        body.light-mode :not(.hero-section) .text-amber-400 { color: #be185d !important; }
+        body.light-mode .border-slate-700, body.light-mode .border-slate-800 { border-color: #fecdd3 !important; }
+        body.light-mode .card-base { box-shadow: 0 10px 15px -3px rgba(244, 63, 94, 0.05), 0 4px 6px -2px rgba(244, 63, 94, 0.025); }
+        body.light-mode .card-base:hover, body.light-mode .org-card:hover { background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%) !important; border-color: #be185d !important; box-shadow: 0 20px 25px -5px rgba(244, 63, 94, 0.15); }
         body.light-mode .nav-link { color: #475569 !important; }
-        body.light-mode .nav-link:hover, body.light-mode .nav-link.active { color: #be185d !important; background-color: #ffe4e6 !important; } /* Rose-100 */
-        
-        /* Pagination & Filters */
+        body.light-mode .nav-link:hover, body.light-mode .nav-link.active { color: #be185d !important; background-color: #ffe4e6 !important; }
         body.light-mode .pagination-btn { background-color: #ffffff; color: #475569; border-color: #fecdd3; }
         body.light-mode .pagination-btn:hover { background-color: #fff1f2; }
-        
-        /* Buttons keep white text */
         body.light-mode .btn-primary, body.light-mode .pagination-btn.active, body.light-mode .data-filter-btn:hover, body.light-mode .data-filter-btn.active { color: #fff !important; }
-
         body.light-mode .data-filter-btn { background-color: #ffffff; color: #475569; border: 1px solid #e2e8f0; }
-        
-        /* --- SECTION SPECIFIC --- */
-
-        /* Sekapur Sirih */
         body.light-mode #sekapur-sirih .absolute.inset-0.bg-\[\#0B1120\] { background-color: #fff1f2 !important; }
-        body.light-mode #sekapur-sirih .bg-white\/5 { 
-            background-color: #ffffff !important; 
-            border-color: #fda4af !important; 
-            box-shadow: 0 20px 25px -5px rgba(244, 63, 94, 0.1) !important; 
-        }
+        body.light-mode #sekapur-sirih .bg-white\/5 { background-color: #ffffff !important; border-color: #fda4af !important; box-shadow: 0 20px 25px -5px rgba(244, 63, 94, 0.1) !important; }
         body.light-mode #sekapur-sirih h2 { color: #1e293b !important; }
         body.light-mode #sekapur-sirih p, body.light-mode #sekapur-sirih .text-slate-300 { color: #334155 !important; }
         body.light-mode #sekapur-sirih .bg-slate-800 { background-color: #fff1f2 !important; }
-
-        /* 3. Footer: Rose Pastel (sedikit lebih gelap dari body) agar 'grounded' */
-        body.light-mode footer { 
-            background-color: #ffe4e6 !important; /* Rose-100 */
-            border-top-color: #fda4af !important; /* Rose-300 */
-        }
-        
-        /* Teks Footer disesuaikan agar kontras dengan pink background */
-        body.light-mode footer .text-slate-300 { color: #881337 !important; } /* Rose-900 (Judul) */
-        body.light-mode footer .text-slate-400 { color: #9f1239 !important; } /* Rose-800 (Teks) */
-        body.light-mode footer .text-slate-500, body.light-mode footer .text-slate-600 { color: #be123c !important; } /* Rose-700 (Subteks) */
-        
-        /* Social Cards di Footer */
-        body.light-mode footer .social-stat-card { 
-            background-color: #ffffff !important; 
-            border-color: #fecdd3 !important; 
-            box-shadow: 0 4px 6px -1px rgba(244, 63, 94, 0.05); 
-        }
+        body.light-mode footer { background-color: #ffe4e6 !important; border-top-color: #fda4af !important; }
+        body.light-mode footer .text-slate-300 { color: #881337 !important; }
+        body.light-mode footer .text-slate-400 { color: #9f1239 !important; }
+        body.light-mode footer .text-slate-500, body.light-mode footer .text-slate-600 { color: #be123c !important; }
+        body.light-mode footer .social-stat-card { background-color: #ffffff !important; border-color: #fecdd3 !important; box-shadow: 0 4px 6px -1px rgba(244, 63, 94, 0.05); }
         body.light-mode footer .social-stat-card:hover { border-color: #be185d !important; transform: translateY(-5px); }
-        body.light-mode footer .social-stat-card .text-white { color: #881337 !important; } /* Angka stat jadi merah tua */
-        
+        body.light-mode footer .social-stat-card .text-white { color: #881337 !important; }
         body.light-mode footer .bg-slate-800 { background-color: #fff1f2 !important; color: #be123c !important; }
         body.light-mode footer .bg-slate-800:hover { color: #ffffff !important; background-color: #be123c !important; }
-
-        /* Mobile Menu */
         body.light-mode #mobile-menu { background-color: #fff1f2 !important; border-top-color: #fda4af; }
-
-        /* Fix Foto Ketua Shadow */
         body.light-mode .from-slate-900\/90 { --tw-gradient-from: transparent !important; }
         body.light-mode .to-slate-900\/90 { --tw-gradient-to: transparent !important; }
-
-        /* FIX: Kartu SiMANJA pada Mode Terang */
-        /* Mengubah gradient gelap menjadi gradient putih-pink lembut agar terlihat premium */
-        body.light-mode #page-simanja .bg-gradient-to-br {
-            background-image: linear-gradient(to bottom right, #ffffff, #ffe4e6) !important; /* White to Rose-100 */
-            border-color: #fda4af !important; /* Rose-300 */
-            box-shadow: 0 20px 25px -5px rgba(244, 63, 94, 0.15), 0 10px 10px -5px rgba(244, 63, 94, 0.1) !important;
-        }
-        
-        /* Ikon Laptop pada kartu SiMANJA */
-        body.light-mode #page-simanja .rounded-full.bg-slate-800 {
-            background-color: #fff1f2 !important; /* Rose-50 */
-            border-color: #fecdd3 !important; /* Rose-200 */
-            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
-        }
-
-        /* FIX: Background Uraian Visi (Blockquote) pada Mode Terang */
-        /* Mengubah background transparan menjadi Pink Pastel agar terlihat jelas di atas kartu putih */
-        body.light-mode blockquote {
-            background-color: #fff1f2 !important; /* Rose-50 */
-            color: #334155 !important; /* Slate-700 agar teks kontras */
-            border-left-color: #be185d !important; /* Pink-700 untuk garis border kiri */
-        }
+        body.light-mode #page-simanja .bg-gradient-to-br { background-image: linear-gradient(to bottom right, #ffffff, #ffe4e6) !important; border-color: #fda4af !important; box-shadow: 0 20px 25px -5px rgba(244, 63, 94, 0.15), 0 10px 10px -5px rgba(244, 63, 94, 0.1) !important; }
+        body.light-mode #page-simanja .rounded-full.bg-slate-800 { background-color: #fff1f2 !important; border-color: #fecdd3 !important; box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05); }
+        body.light-mode blockquote { background-color: #fff1f2 !important; color: #334155 !important; border-left-color: #be185d !important; }
     </style>
 </head>
 <body class="antialiased">
+
+    <!-- Splash Screen Modal (Diambil dari SiMANJA) -->
+    <!-- UPDATE: Mengubah background menjadi transparan (bg-slate-900/20) dengan blur lebih kuat (backdrop-blur-md) -->
+    <div id="welcome-modal" class="hidden fixed inset-0 bg-slate-900/20 z-[9999] flex items-center justify-center p-4 backdrop-blur-md transition-opacity duration-700 opacity-0">
+        <div class="relative max-w-4xl w-full bg-transparent rounded-2xl overflow-hidden shadow-none transform transition-all scale-95" id="welcome-modal-content">
+            <!-- Tombol close dipercantik agar terlihat jelas di background kaca -->
+            <button id="close-welcome" class="absolute top-2 right-2 bg-black/40 hover:bg-pink-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 z-50 border border-white/30 backdrop-blur-sm shadow-lg group">
+                <i class="fas fa-times text-lg group-hover:rotate-90 transition-transform"></i>
+            </button>
+            <div id="welcome-body" class="text-center relative flex justify-center items-center p-4">
+                <!-- Content will be injected here by JS -->
+            </div>
+        </div>
+    </div>
 
     <!-- Header -->
     <header id="header" class="header-glass sticky top-0 z-50 transition-all duration-300">
@@ -454,7 +337,7 @@
                                              alt="Ny. Kustiorini Raja Bayu" 
                                              class="w-full h-full object-cover object-center scale-105 transition-transform duration-700 group-hover:scale-110 group-hover:brightness-110 relative z-0"
                                              onerror="this.src='https://placehold.co/400x500/334155/e5e7eb?text=FOTO+KETUA'">
-                                     
+                                    
                                         <!-- Shadow Bawah: Tinggi dikurangi agar tidak menutupi badan -->
                                         <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-900/90 to-transparent z-20 pointer-events-none"></div>
                                     </div>
@@ -1225,6 +1108,60 @@
             // Auth Init
             try { if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) { await signInWithCustomToken(auth, __initial_auth_token); } else { await signInAnonymously(auth); } } catch (e) { console.error(e); }
 
+            // Splash Screen Logic (Updated)
+            const welcomeModal = document.getElementById('welcome-modal');
+            const welcomeBody = document.getElementById('welcome-body');
+            const closeWelcomeBtn = document.getElementById('close-welcome');
+
+            const initSplashScreen = async () => {
+                try {
+                    // PENTING: Gunakan 'doc(db, ...)' langsung untuk akses root collection 'appSettings'
+                    // Ini memastikan konsistensi dengan Dashboard yang menulis ke root collection
+                    const splashRef = doc(db, 'appSettings', 'splash'); 
+                    const splashDoc = await getDoc(splashRef);
+                    
+                    if (splashDoc.exists()) {
+                        const data = splashDoc.data();
+                        if (data.isActive) {
+                            let contentHtml = '';
+                            if (data.image) {
+                                // UPDATE: Menambahkan wrapper div untuk efek Glassmorphism & Glow pada foto
+                                contentHtml += `
+                                <div class="relative p-1.5 sm:p-3 rounded-2xl bg-white/10 border border-white/20 shadow-[0_0_30px_rgba(236,72,153,0.3)] backdrop-blur-sm animate-fade-in">
+                                    <img src="${data.image}" class="w-auto h-auto max-w-full max-h-[85vh] object-contain mx-auto rounded-xl shadow-2xl" alt="Splash Image">
+                                </div>`;
+                            }
+                            
+                            if (!data.image) return;
+
+                            welcomeBody.innerHTML = contentHtml;
+                            welcomeModal.classList.remove('hidden');
+                            
+                            // Prevent scrolling when modal is open
+                            document.body.style.overflow = 'hidden';
+
+                            // Fade in
+                            setTimeout(() => welcomeModal.classList.remove('opacity-0'), 10);
+                        }
+                    }
+                } catch (error) {
+                    console.error("Error fetching splash screen:", error);
+                }
+            };
+
+            if(closeWelcomeBtn) {
+                closeWelcomeBtn.onclick = () => {
+                    welcomeModal.classList.add('opacity-0');
+                    setTimeout(() => {
+                        welcomeModal.classList.add('hidden');
+                        document.body.style.overflow = ''; // Restore scrolling
+                    }, 500);
+                };
+            }
+            
+            // Panggil initSplashScreen
+            initSplashScreen();
+
             // Event Listeners
             window.addEventListener('hashchange', router);
             document.getElementById('search-kegiatan').addEventListener('input', applyFilters);
@@ -1283,14 +1220,4 @@
         });
     </script>
 </body>
-
-
 </html>
-
-
-
-
-
-
-
-
