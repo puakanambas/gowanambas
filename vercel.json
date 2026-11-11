@@ -1,4 +1,5 @@
 {
+  "installCommand": "echo 'Skipping install'",
   "buildCommand": "echo 'Static build complete'",
   "outputDirectory": ".",
   "cleanUrls": true,
