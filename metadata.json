@@ -1,0 +1,8 @@
+{
+  "name": "GOW Kabupaten Kepulauan Anambas",
+  "description": "Website Resmi Gabungan Organisasi Wanita (GOW) Kabupaten Kepulauan Anambas. Pusat informasi profil, program kerja, kegiatan, dan data pemberdayaan wanita di Anambas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

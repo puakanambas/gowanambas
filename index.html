@@ -589,9 +589,12 @@
         <!-- Data Page -->
         <div id="page-data" class="page-section pt-24 pb-20">
             <div class="container mx-auto px-4">
-                <div class="text-center max-w-3xl mx-auto mb-12 fade-in-section">
+                <div class="text-center max-w-3xl mx-auto mb-10 fade-in-section">
                     <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-lime-400">Data Terpilah: Potret Wanita & Anak</h2>
-                    <p class="text-slate-400">Data statistik bersumber dari BPS dan Dinas Terkait Kabupaten Kepulauan Anambas.</p>
+                    <p class="text-slate-400 mb-4">Data statistik bersumber dari BPS dan Dinas Terkait Kabupaten Kepulauan Anambas.</p>
+                    <button id="btn-admin-data" class="hidden items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-pink-400 hover:text-pink-300 border border-slate-700 hover:border-pink-500/50 shadow-md transition-all duration-200">
+                        <i class="fas fa-user-shield"></i> Kelola Data Terpilah (Admin)
+                    </button>
                 </div>
                 <div class="max-w-6xl mx-auto fade-in-section">
                     <div id="data-filter-container" class="flex justify-center flex-wrap gap-2 sm:gap-3 mb-10">
@@ -709,7 +712,7 @@
                         <span class="text-slate-300 font-semibold tracking-wider">GOW KABUPATEN KEPULAUAN ANAMBAS</span>
                     </div>
                     <p class="text-slate-500 text-sm mb-2"><i class="fas fa-map-marker-alt mr-2 text-pink-500"></i>Jl. Hangtuah Kel. Tarempa, Kec. Siantan, Kab. Kepulauan Anambas, Kode Pos 29791</p>
-                    <p class="text-slate-600 text-sm">&copy; <span id="copyright-year"></span> GOW Kepulauan Anambas. All Rights Reserved.</p>
+                    <p class="text-slate-600 text-sm">&copy; <span id="copyright-year"></span> GOW Kepulauan Anambas. All Rights Reserved. <a href="#/admin" id="secret-admin-link" class="text-slate-700/60 hover:text-pink-500/80 transition-colors ml-1.5 inline-block" title="Admin Portal"><i class="fas fa-lock text-[10px]"></i></a></p>
                 </div>
                 <div class="flex justify-center md:justify-end gap-4">
                     <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
@@ -723,7 +726,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, collection, onSnapshot, doc, getDoc, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         
         const IS_PRODUCTION = true; 
         const productionConfig = { apiKey: "AIzaSyAboBugSdtduTa4MIAeQXFkM8QHdah8lcQ", authDomain: "simanja-gow-app.firebaseapp.com", projectId: "simanja-gow-app", storageBucket: "simanja-gow-app.appspot.com", messagingSenderId: "307105555893", appId: "1:307105555893:web:e5470c451f5c4fdacea5fc" };
@@ -792,6 +795,11 @@
                 document.getElementById('page-detail-kegiatan').classList.add('active'); renderDetailPage(hash.split('/')[2]); window.scrollTo(0, 0);
             } else if (hash === '#/simanja') {
                 document.getElementById('page-simanja').classList.add('active'); window.scrollTo(0, 0);
+            } else if (hash === '#/admin' || hash === '#admin') {
+                document.getElementById('page-data').classList.add('active');
+                renderDataContent('Kependudukan');
+                openAdminDataModal();
+                window.scrollTo(0, 0);
             } else {
                 window.location.hash = '#/';
             }
@@ -801,9 +809,9 @@
         const loadStatistik = () => { 
             const els = { organisasi: document.getElementById('total-organisasi'), pengurus: document.getElementById('total-pengurus'), kegiatan: document.getElementById('total-kegiatan') }; 
             const updateCounter = (el, count) => { if(el) { el.setAttribute('data-target', count); el.innerText = count; } };
-            onSnapshot(getCollectionRef('organisasi'), (snap) => { updateCounter(els.organisasi, snap.size); }); 
-            onSnapshot(getCollectionRef('pengurus'), (snap) => { updateCounter(els.pengurus, snap.size); }); 
-            onSnapshot(getCollectionRef('kegiatan'), (snap) => { updateCounter(els.kegiatan, snap.size); }); 
+            onSnapshot(getCollectionRef('organisasi'), (snap) => { updateCounter(els.organisasi, snap.size); }, (err) => console.warn('organisasi stat error:', err)); 
+            onSnapshot(getCollectionRef('pengurus'), (snap) => { updateCounter(els.pengurus, snap.size); }, (err) => console.warn('pengurus stat error:', err)); 
+            onSnapshot(getCollectionRef('kegiatan'), (snap) => { updateCounter(els.kegiatan, snap.size); }, (err) => console.warn('kegiatan stat error:', err)); 
         };
 
         const loadPengurusInti = () => { 
@@ -869,6 +877,9 @@
                     }).join('');
                 }
                 observeSections(); 
+            }, (err) => {
+                console.warn('pengurus load error:', err);
+                if (intiGrid) intiGrid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data pengurus belum tersedia.</p>';
             }); 
         };
 
@@ -887,6 +898,9 @@
                 }).join(''); 
                 observeSections(); 
                 document.querySelectorAll('.org-card').forEach(card => card.addEventListener('click', () => renderOrganisasiDetail(card.dataset.orgId))); 
+            }, (err) => {
+                console.warn('organisasi load error:', err);
+                if (grid) grid.innerHTML = '<p class="col-span-full text-center text-slate-400">Data organisasi belum tersedia.</p>';
             }); 
         };
 
@@ -901,6 +915,10 @@
                 // PENTING: Tampilkan 4 kegiatan di Home
                 renderHomeKegiatan(allKegiatan.slice(0, 4));
                 applyFilters(); 
+            }, (err) => {
+                console.warn('kegiatan load error:', err);
+                const homeGrid = document.getElementById('home-kegiatan-grid');
+                if (homeGrid) homeGrid.innerHTML = '<p class="col-span-full text-center text-slate-500">Belum ada kegiatan.</p>';
             }); 
         };
 
@@ -1058,21 +1076,626 @@
             'Lingkungan': { sumber: 'Sumber: Dinsos PPPA, BPBD', indicators: { 'Korban Bencana Alam': { type: 'kabupaten', labels: ['Laki-laki', 'Perempuan'], wawasan: { default: '<p>⚠️ Dampak bencana alam (Banjir Bandang, Angin Puting Beliung) terhadap penduduk pada tahun 2023.</p>' }, datasets: [{ label: '2023', color: 'rgba(100, 116, 139, 0.7)' }], data: [[406, 343]] } } }
         };
 
+        // Dynamic Data Terpilah (Fallback to initial data)
+        let currentDataTerpilah = JSON.parse(JSON.stringify(fullDataByCategory));
+
+        const loadDataTerpilah = async () => {
+            try {
+                const res = await fetch('/api/data-terpilah');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && typeof data === 'object') {
+                        currentDataTerpilah = data;
+                        const activeBtn = document.querySelector('.data-filter-btn.active');
+                        const cat = activeBtn ? activeBtn.dataset.category : 'Kependudukan';
+                        renderDataContent(cat);
+                    }
+                }
+            } catch (err) {
+                console.warn('Fallback to local data-terpilah:', err);
+            }
+        };
+
         const renderDataContent = (category) => {
             const contentArea = document.getElementById('data-content-area');
-            const data = fullDataByCategory[category];
+            const data = currentDataTerpilah[category] || fullDataByCategory[category];
             if (!data) return;
             const indicators = Object.keys(data.indicators);
             contentArea.innerHTML = `<div class="mb-4"><select id="indicator-select" class="w-full bg-slate-900 border border-slate-700 p-2 rounded text-white">${indicators.map(i => `<option value="${i}">${i}</option>`).join('')}</select></div><div class="h-80 relative"><canvas id="chart-canvas"></canvas></div><div class="mt-4 bg-slate-900 p-4 rounded text-sm text-slate-300 border-l-4 border-pink-500" id="wawasan-box"></div>`;
             const renderChart = (indName) => {
                 const ind = data.indicators[indName];
+                if (!ind) return;
                 const ctx = document.getElementById('chart-canvas').getContext('2d');
                 if (dataChart) dataChart.destroy();
-                dataChart = new Chart(ctx, { type: 'bar', data: { labels: ind.labels, datasets: ind.datasets.map((d, i) => ({ label: d.label, data: ind.data[i], backgroundColor: d.color })) }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, grid: { color: '#334155' }, ticks: { color: '#94a3b8' } }, x: { grid: { display: false }, ticks: { color: '#94a3b8' } } }, plugins: { legend: { labels: { color: '#cbd5e1' } }, datalabels: { color: '#ffffff', anchor: 'center', align: 'center', rotation: 0, font: { weight: 'bold', size: 12 }, textStrokeColor: '#000000', textStrokeWidth: 3, formatter: (value) => { if (value === null || value === undefined) return ''; return value > 1000 ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : value; } } } } });
-                document.getElementById('wawasan-box').innerHTML = ind.wawasan.default + `<br><small class="text-slate-500 mt-2 block">${data.sumber}</small>`;
+                dataChart = new Chart(ctx, { 
+                    type: 'bar', 
+                    data: { 
+                        labels: ind.labels, 
+                        datasets: ind.datasets.map((d, i) => ({ 
+                            label: d.label, 
+                            data: ind.data[i] || [], 
+                            backgroundColor: d.color || 'rgba(236, 72, 153, 0.7)' 
+                        })) 
+                    }, 
+                    options: { 
+                        responsive: true, 
+                        maintainAspectRatio: false, 
+                        scales: { 
+                            y: { beginAtZero: true, grid: { color: '#334155' }, ticks: { color: '#94a3b8' } }, 
+                            x: { grid: { display: false }, ticks: { color: '#94a3b8' } } 
+                        }, 
+                        plugins: { 
+                            legend: { labels: { color: '#cbd5e1' } }, 
+                            datalabels: { 
+                                color: '#ffffff', 
+                                anchor: 'center', 
+                                align: 'center', 
+                                rotation: 0, 
+                                font: { weight: 'bold', size: 12 }, 
+                                textStrokeColor: '#000000', 
+                                textStrokeWidth: 3, 
+                                formatter: (value) => { 
+                                    if (value === null || value === undefined) return ''; 
+                                    return value > 1000 ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : value; 
+                                } 
+                            } 
+                        } 
+                    } 
+                });
+                document.getElementById('wawasan-box').innerHTML = (ind.wawasan?.default || '') + `<br><small class="text-slate-500 mt-2 block">${data.sumber || ''}</small>`;
             };
             renderChart(indicators[0]);
             document.getElementById('indicator-select').addEventListener('change', (e) => renderChart(e.target.value));
+        };
+
+        // --- ADMIN PANEL MODAL & LOGIC FOR DATA TERPILAH ---
+        const showToast = (message, isError = false) => {
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-6 right-6 z-[10000] px-5 py-3 rounded-xl shadow-2xl text-white font-medium text-sm flex items-center gap-3 transition-all duration-300 transform translate-y-5 opacity-0 ${isError ? 'bg-red-600' : 'bg-emerald-600'}`;
+            toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-circle' : 'fa-check-circle'} text-lg"></i><span>${message}</span>`;
+            document.body.appendChild(toast);
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-5', 'opacity-0');
+            });
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-5');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        };
+
+        const updateAdminUIState = (isAdmin) => {
+            const btnAdminData = document.getElementById('btn-admin-data');
+            if (btnAdminData) {
+                if (isAdmin) {
+                    btnAdminData.classList.remove('hidden');
+                    btnAdminData.classList.add('inline-flex');
+                } else {
+                    btnAdminData.classList.remove('inline-flex');
+                    btnAdminData.classList.add('hidden');
+                }
+            }
+
+            let adminBadge = document.getElementById('admin-session-badge');
+            if (isAdmin) {
+                if (!adminBadge) {
+                    adminBadge = document.createElement('div');
+                    adminBadge.id = 'admin-session-badge';
+                    adminBadge.className = 'fixed bottom-5 left-5 z-50 flex items-center gap-3 bg-slate-900/95 border border-pink-500/40 shadow-2xl backdrop-blur-md px-4 py-2.5 rounded-full text-xs text-slate-200 animate-fade-in';
+                    adminBadge.innerHTML = `
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span class="font-medium text-pink-400">Mode Admin Aktif</span>
+                        <span class="text-slate-600">|</span>
+                        <button id="badge-open-admin" class="hover:text-white text-slate-300 font-semibold underline underline-offset-2 transition-colors cursor-pointer">Kelola Data</button>
+                        <span class="text-slate-600">|</span>
+                        <button id="badge-logout-admin" class="hover:text-red-400 text-slate-400 transition-colors cursor-pointer" title="Keluar"><i class="fas fa-sign-out-alt"></i> Keluar</button>
+                    `;
+                    document.body.appendChild(adminBadge);
+
+                    document.getElementById('badge-open-admin').onclick = openAdminDataModal;
+                    document.getElementById('badge-logout-admin').onclick = async () => {
+                        const token = localStorage.getItem('gow_admin_token');
+                        if (token) {
+                            try {
+                                await fetch('/api/admin/logout', {
+                                    method: 'POST',
+                                    headers: { 'Authorization': `Bearer ${token}` }
+                                });
+                            } catch (e) {}
+                        }
+                        localStorage.removeItem('gow_admin_token');
+                        updateAdminUIState(false);
+                        showToast('Logout admin berhasil');
+                        if (window.location.hash === '#/admin' || window.location.hash === '#admin') {
+                            window.location.hash = '#/data';
+                        }
+                    };
+                }
+            } else {
+                if (adminBadge) {
+                    adminBadge.remove();
+                }
+            }
+        };
+
+        const checkAdminSession = async () => {
+            const token = localStorage.getItem('gow_admin_token');
+            if (!token) {
+                updateAdminUIState(false);
+                return;
+            }
+            try {
+                const res = await fetch('/api/admin/verify', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    updateAdminUIState(true);
+                } else {
+                    localStorage.removeItem('gow_admin_token');
+                    updateAdminUIState(false);
+                }
+            } catch (e) {
+                // Network issue or offline
+            }
+        };
+
+        const openAdminDataModal = async () => {
+            const token = localStorage.getItem('gow_admin_token');
+
+            if (token) {
+                try {
+                    const res = await fetch('/api/admin/verify', {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (res.ok) {
+                        updateAdminUIState(true);
+                        const currentCat = document.querySelector('.data-filter-btn.active')?.dataset.category || 'Kependudukan';
+                        renderAdminEditorModal(currentCat);
+                        return;
+                    }
+                } catch (e) {
+                    // Token expired or invalid
+                }
+                localStorage.removeItem('gow_admin_token');
+                updateAdminUIState(false);
+            }
+
+            renderAdminLoginModal();
+        };
+
+        const renderAdminLoginModal = () => {
+            const modalPlaceholder = document.getElementById('modal-placeholder');
+            modalPlaceholder.innerHTML = `
+            <div id="admin-login-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-[100] modal-overlay transition-opacity duration-300 opacity-0">
+                <div class="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-md p-6 sm:p-8 transform scale-95 opacity-0 modal-content shadow-2xl relative text-left">
+                    <button id="close-admin-login" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-pink-500/20 text-pink-500 flex items-center justify-center text-2xl border border-pink-500/30">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight">Login Admin GOW</h3>
+                            <p class="text-xs text-slate-400">Pengelolaan Data Terpilah</p>
+                        </div>
+                    </div>
+                    
+                    <form id="admin-login-form" class="space-y-4">
+                        <div id="login-error-alert" class="hidden p-3 rounded-lg bg-red-500/20 border border-red-500/40 text-red-300 text-xs flex items-center gap-2">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span id="login-error-msg">Username atau password salah.</span>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Username</label>
+                            <div class="relative">
+                                <input type="text" id="admin-user" required autocomplete="username" class="w-full bg-slate-800 border border-slate-700 rounded-lg py-2.5 px-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 transition-colors" placeholder="Masukkan username admin">
+                                <i class="fas fa-user absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Password</label>
+                            <div class="relative">
+                                <input type="password" id="admin-pass" required autocomplete="current-password" class="w-full bg-slate-800 border border-slate-700 rounded-lg py-2.5 px-3 pr-10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 transition-colors" placeholder="Masukkan password admin">
+                                <button type="button" id="toggle-pass-visibility" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white" title="Lihat password">
+                                    <i class="fas fa-eye text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" id="btn-submit-login" class="btn-primary w-full py-3 rounded-lg font-bold text-white text-sm flex items-center justify-center gap-2 shadow-lg">
+                                <span>Masuk ke Panel Pengelolaan</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>`;
+
+            const modal = document.getElementById('admin-login-modal');
+            const content = modal.querySelector('.modal-content');
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95', 'opacity-0');
+            });
+
+            const closeModal = () => {
+                modal.classList.add('opacity-0');
+                content.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => modalPlaceholder.innerHTML = '', 300);
+            };
+
+            document.getElementById('close-admin-login').onclick = closeModal;
+            modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+
+            const passInput = document.getElementById('admin-pass');
+            const toggleBtn = document.getElementById('toggle-pass-visibility');
+            toggleBtn.onclick = () => {
+                const isPass = passInput.type === 'password';
+                passInput.type = isPass ? 'text' : 'password';
+                toggleBtn.querySelector('i').className = isPass ? 'fas fa-eye-slash text-sm' : 'fas fa-eye text-sm';
+            };
+
+            document.getElementById('admin-login-form').onsubmit = async (e) => {
+                e.preventDefault();
+                const username = document.getElementById('admin-user').value.trim();
+                const password = document.getElementById('admin-pass').value;
+                const submitBtn = document.getElementById('btn-submit-login');
+                const errorBox = document.getElementById('login-error-alert');
+                const errorMsg = document.getElementById('login-error-msg');
+
+                errorBox.classList.add('hidden');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memverifikasi...';
+
+                try {
+                    const res = await fetch('/api/admin/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username, password })
+                    });
+                    const data = await res.json();
+
+                    if (res.ok && data.success && data.token) {
+                        localStorage.setItem('gow_admin_token', data.token);
+                        updateAdminUIState(true);
+                        showToast('Login berhasil! Membuka panel pengelolaan...');
+                        const currentCat = document.querySelector('.data-filter-btn.active')?.dataset.category || 'Kependudukan';
+                        renderAdminEditorModal(currentCat);
+                    } else {
+                        errorBox.classList.remove('hidden');
+                        errorMsg.textContent = data.error || 'Login gagal, periksa kembali data Anda.';
+                    }
+                } catch (err) {
+                    errorBox.classList.remove('hidden');
+                    errorMsg.textContent = 'Gagal terhubung ke server backend.';
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>Masuk ke Panel Pengelolaan</span> <i class="fas fa-arrow-right"></i>';
+                }
+            };
+        };
+
+        const renderAdminEditorModal = (selectedCat = 'Kependudukan', selectedInd = null) => {
+            const modalPlaceholder = document.getElementById('modal-placeholder');
+            const catData = currentDataTerpilah[selectedCat] || fullDataByCategory[selectedCat];
+            const categories = Object.keys(currentDataTerpilah);
+            const indicators = catData ? Object.keys(catData.indicators) : [];
+            const activeIndName = (selectedInd && indicators.includes(selectedInd)) ? selectedInd : (indicators[0] || '');
+            const activeInd = catData && catData.indicators ? catData.indicators[activeIndName] : null;
+
+            let datasetsHtml = '';
+            if (activeInd && activeInd.datasets) {
+                datasetsHtml = activeInd.datasets.map((ds, dsIndex) => {
+                    const values = activeInd.data && activeInd.data[dsIndex] ? activeInd.data[dsIndex] : [];
+                    const labelInputs = (activeInd.labels || []).map((lbl, lblIndex) => {
+                        const val = values[lblIndex] !== undefined ? values[lblIndex] : 0;
+                        return `
+                        <div class="flex-1 min-w-[110px]">
+                            <label class="block text-[11px] font-medium text-slate-400 truncate mb-1" title="${lbl}">${lbl}</label>
+                            <input type="number" step="any" data-ds-idx="${dsIndex}" data-lbl-idx="${lblIndex}" value="${val}" class="ds-value-input w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-white text-sm focus:ring-1 focus:ring-pink-500 focus:outline-none">
+                        </div>`;
+                    }).join('');
+
+                    return `
+                    <div class="p-4 bg-slate-800/80 border border-slate-700/80 rounded-xl space-y-3 mb-3 relative group">
+                        <div class="flex items-center justify-between gap-3">
+                            <div class="flex items-center gap-2 flex-1">
+                                <span class="w-3.5 h-3.5 rounded-full flex-shrink-0" style="background-color: ${ds.color || '#ec4899'}"></span>
+                                <input type="text" data-ds-idx="${dsIndex}" value="${ds.label || ''}" placeholder="Tahun / Periode (misal: 2024)" class="ds-label-input bg-slate-900 border border-slate-700 rounded-lg px-3 py-1 text-sm font-semibold text-white focus:ring-1 focus:ring-pink-500 focus:outline-none flex-1 max-w-xs">
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="color" data-ds-idx="${dsIndex}" value="${ds.color?.startsWith('#') ? ds.color : '#db2777'}" class="ds-color-input w-8 h-8 rounded border border-slate-600 bg-transparent cursor-pointer" title="Warna Batang Grafik">
+                                ${activeInd.datasets.length > 1 ? `
+                                <button type="button" data-ds-idx="${dsIndex}" class="btn-delete-dataset text-slate-400 hover:text-red-400 p-1.5 rounded transition-colors" title="Hapus Tahun Ini">
+                                    <i class="fas fa-trash-alt text-sm"></i>
+                                </button>` : ''}
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 pt-1 border-t border-slate-700/50">
+                            ${labelInputs}
+                        </div>
+                    </div>`;
+                }).join('');
+            }
+
+            modalPlaceholder.innerHTML = `
+            <div id="admin-editor-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 z-[100] modal-overlay transition-opacity duration-300 opacity-0">
+                <div class="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-4xl p-5 sm:p-8 max-h-[92vh] flex flex-col transform scale-95 opacity-0 modal-content shadow-2xl relative text-left">
+                    
+                    <!-- Header -->
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-800 flex-shrink-0">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-500 flex items-center justify-center text-xl border border-pink-500/30">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white leading-tight">Pengelolaan Data Terpilah</h3>
+                                <p class="text-xs text-slate-400">Ubah data, tambah tahun, perbarui angka, wawasan, dan sumber secara langsung.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button id="btn-admin-logout" class="px-3 py-1.5 text-xs text-slate-400 hover:text-red-400 bg-slate-800 hover:bg-slate-800/80 rounded-lg border border-slate-700 flex items-center gap-1.5 transition-colors">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                            <button id="close-admin-editor" class="text-slate-400 hover:text-white p-2">
+                                <i class="fas fa-times text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Scrollable Body -->
+                    <div class="flex-1 overflow-y-auto py-4 pr-1 space-y-6 modal-text-scroll">
+                        <!-- Category & Indicator Pickers -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-800/50 p-4 rounded-xl border border-slate-800">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Pilih Kategori</label>
+                                <select id="admin-cat-select" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white text-sm focus:ring-2 focus:ring-pink-500 focus:outline-none">
+                                    ${categories.map(c => `<option value="${c}" ${c === selectedCat ? 'selected' : ''}>${c}</option>`).join('')}
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Pilih Indikator</label>
+                                <select id="admin-ind-select" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white text-sm focus:ring-2 focus:ring-pink-500 focus:outline-none">
+                                    ${indicators.map(i => `<option value="${i}" ${i === activeIndName ? 'selected' : ''}>${i}</option>`).join('')}
+                                </select>
+                            </div>
+                        </div>
+
+                        ${activeInd ? `
+                        <!-- Datasets Section -->
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div>
+                                    <h4 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                        <i class="fas fa-calendar-alt text-amber-400"></i>
+                                        Tahun / Periode & Nilai Data
+                                    </h4>
+                                    <p class="text-xs text-slate-400 mt-0.5">Label: <span class="text-slate-300">${(activeInd.labels || []).join(', ')}</span></p>
+                                </div>
+                                <button type="button" id="btn-add-dataset" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-pink-400 border border-pink-500/30 flex items-center gap-1.5 transition-colors">
+                                    <i class="fas fa-plus"></i> Tambah Tahun Baru
+                                </button>
+                            </div>
+                            <div id="datasets-container">
+                                ${datasetsHtml}
+                            </div>
+                        </div>
+
+                        <!-- Wawasan Insight Editor -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 flex items-center gap-2">
+                                <i class="fas fa-lightbulb text-yellow-400"></i> Catatan Analisis / Wawasan (Insight)
+                            </label>
+                            <textarea id="admin-wawasan-input" rows="3" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-pink-500 focus:outline-none leading-relaxed" placeholder="Catatan wawasan yang muncul di bawah grafik...">${activeInd.wawasan?.default || ''}</textarea>
+                        </div>
+
+                        <!-- Sumber Data -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 flex items-center gap-2">
+                                <i class="fas fa-info-circle text-blue-400"></i> Sumber Data Kategori
+                            </label>
+                            <input type="text" id="admin-sumber-input" value="${catData.sumber || ''}" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-pink-500 focus:outline-none" placeholder="Sumber data (misal: Sumber BPS / Dinas Kesehatan)">
+                        </div>
+                        ` : `
+                        <div class="py-12 text-center text-slate-400">Indikator tidak ditemukan.</div>
+                        `}
+                    </div>
+
+                    <!-- Footer Actions -->
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800 flex-shrink-0 gap-3">
+                        <button type="button" id="btn-reset-ind" class="px-4 py-2.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors">
+                            <i class="fas fa-undo mr-1"></i> Reset Indikator Ini
+                        </button>
+                        <div class="flex items-center gap-3">
+                            <button type="button" id="btn-cancel-editor" class="px-5 py-2.5 rounded-lg text-sm font-semibold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors">
+                                Tutup
+                            </button>
+                            <button type="button" id="btn-save-data-terpilah" class="btn-primary px-6 py-2.5 rounded-lg text-sm font-bold text-white flex items-center gap-2 shadow-lg">
+                                <i class="fas fa-save"></i>
+                                <span>Simpan Perubahan ke Server</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+            const modal = document.getElementById('admin-editor-modal');
+            const content = modal.querySelector('.modal-content');
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95', 'opacity-0');
+            });
+
+            const closeModal = () => {
+                modal.classList.add('opacity-0');
+                content.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => modalPlaceholder.innerHTML = '', 300);
+            };
+
+            document.getElementById('close-admin-editor').onclick = closeModal;
+            document.getElementById('btn-cancel-editor').onclick = closeModal;
+
+            // Logout
+            document.getElementById('btn-admin-logout').onclick = async () => {
+                const token = localStorage.getItem('gow_admin_token');
+                if (token) {
+                    try {
+                        await fetch('/api/admin/logout', {
+                            method: 'POST',
+                            headers: { 'Authorization': `Bearer ${token}` }
+                        });
+                    } catch (e) {}
+                }
+                localStorage.removeItem('gow_admin_token');
+                updateAdminUIState(false);
+                showToast('Logout berhasil');
+                closeModal();
+                if (window.location.hash === '#/admin' || window.location.hash === '#admin') {
+                    window.location.hash = '#/data';
+                }
+            };
+
+            // Switch Category
+            document.getElementById('admin-cat-select').onchange = (e) => {
+                renderAdminEditorModal(e.target.value);
+            };
+
+            // Switch Indicator
+            document.getElementById('admin-ind-select').onchange = (e) => {
+                renderAdminEditorModal(selectedCat, e.target.value);
+            };
+
+            // Add Dataset / Year
+            const btnAddDs = document.getElementById('btn-add-dataset');
+            if (btnAddDs && activeInd) {
+                btnAddDs.onclick = () => {
+                    const nextYear = new Date().getFullYear();
+                    const newLabel = prompt("Masukkan nama tahun/periode baru (contoh: 2025 atau Semester I 2026):", nextYear.toString());
+                    if (!newLabel || !newLabel.trim()) return;
+
+                    const numLabels = (activeInd.labels || []).length;
+                    const defaultValues = new Array(numLabels).fill(0);
+                    
+                    const colors = [
+                        'rgba(236, 72, 153, 0.7)',
+                        'rgba(59, 130, 246, 0.7)',
+                        'rgba(16, 185, 129, 0.7)',
+                        'rgba(245, 158, 11, 0.7)',
+                        'rgba(147, 51, 234, 0.7)'
+                    ];
+                    const newColor = colors[activeInd.datasets.length % colors.length];
+
+                    activeInd.datasets.push({
+                        label: newLabel.trim(),
+                        color: newColor
+                    });
+                    if (!activeInd.data) activeInd.data = [];
+                    activeInd.data.push(defaultValues);
+
+                    renderAdminEditorModal(selectedCat, activeIndName);
+                    showToast(`Tahun "${newLabel.trim()}" berhasil ditambahkan.`);
+                };
+            }
+
+            // Delete Dataset / Year
+            modal.querySelectorAll('.btn-delete-dataset').forEach(btn => {
+                btn.onclick = () => {
+                    const dsIdx = parseInt(btn.dataset.dsIdx);
+                    const dsLabel = activeInd.datasets[dsIdx]?.label || '';
+                    if (confirm(`Apakah Anda yakin ingin menghapus data tahun "${dsLabel}"?`)) {
+                        activeInd.datasets.splice(dsIdx, 1);
+                        activeInd.data.splice(dsIdx, 1);
+                        renderAdminEditorModal(selectedCat, activeIndName);
+                        showToast(`Data tahun "${dsLabel}" dihapus.`);
+                    }
+                };
+            });
+
+            // Reset current indicator to default backup
+            const btnReset = document.getElementById('btn-reset-ind');
+            if (btnReset && fullDataByCategory[selectedCat]?.indicators[activeIndName]) {
+                btnReset.onclick = () => {
+                    if (confirm(`Kembalikan indikator "${activeIndName}" ke nilai bawaan asli?`)) {
+                        currentDataTerpilah[selectedCat].indicators[activeIndName] = JSON.parse(JSON.stringify(fullDataByCategory[selectedCat].indicators[activeIndName]));
+                        renderAdminEditorModal(selectedCat, activeIndName);
+                        showToast(`Indikator "${activeIndName}" telah direset.`);
+                    }
+                };
+            }
+
+            // Save to Server
+            const btnSave = document.getElementById('btn-save-data-terpilah');
+            if (btnSave && activeInd) {
+                btnSave.onclick = async () => {
+                    modal.querySelectorAll('.ds-label-input').forEach(input => {
+                        const dsIdx = parseInt(input.dataset.dsIdx);
+                        if (activeInd.datasets[dsIdx]) {
+                            activeInd.datasets[dsIdx].label = input.value.trim();
+                        }
+                    });
+                    modal.querySelectorAll('.ds-color-input').forEach(input => {
+                        const dsIdx = parseInt(input.dataset.dsIdx);
+                        if (activeInd.datasets[dsIdx]) {
+                            activeInd.datasets[dsIdx].color = input.value;
+                        }
+                    });
+
+                    modal.querySelectorAll('.ds-value-input').forEach(input => {
+                        const dsIdx = parseInt(input.dataset.dsIdx);
+                        const lblIdx = parseInt(input.dataset.lblIdx);
+                        const val = parseFloat(input.value) || 0;
+                        if (!activeInd.data[dsIdx]) activeInd.data[dsIdx] = [];
+                        activeInd.data[dsIdx][lblIdx] = val;
+                    });
+
+                    const wawasanInput = document.getElementById('admin-wawasan-input');
+                    if (wawasanInput) {
+                        if (!activeInd.wawasan) activeInd.wawasan = {};
+                        activeInd.wawasan.default = wawasanInput.value;
+                    }
+                    const sumberInput = document.getElementById('admin-sumber-input');
+                    if (sumberInput) {
+                        currentDataTerpilah[selectedCat].sumber = sumberInput.value.trim();
+                    }
+
+                    const token = localStorage.getItem('gow_admin_token');
+                    if (!token) {
+                        alert('Sesi admin berakhir. Silakan login kembali.');
+                        renderAdminLoginModal();
+                        return;
+                    }
+
+                    btnSave.disabled = true;
+                    btnSave.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan...';
+
+                    try {
+                        const res = await fetch('/api/admin/data-terpilah', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify(currentDataTerpilah)
+                        });
+
+                        const resData = await res.json();
+                        if (res.ok && resData.success) {
+                            showToast('✅ Data terpilah berhasil disimpan secara permanen!');
+                            renderDataContent(selectedCat);
+                        } else {
+                            showToast(resData.error || 'Gagal menyimpan ke server.', true);
+                        }
+                    } catch (e) {
+                        showToast('Gagal menghubungi server.', true);
+                    } finally {
+                        btnSave.disabled = false;
+                        btnSave.innerHTML = '<i class="fas fa-save"></i> <span>Simpan Perubahan ke Server</span>';
+                    }
+                };
+            }
         };
 
         // --- UTILS & INIT ---
@@ -1105,8 +1728,14 @@
             Chart.register(ChartDataLabels);
             document.getElementById('copyright-year').textContent = new Date().getFullYear();
             
-            // Auth Init
-            try { if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) { await signInWithCustomToken(auth, __initial_auth_token); } else { await signInAnonymously(auth); } } catch (e) { console.error(e); }
+            // Auth Init - only sign in if a custom token is provided; Firestore public data does not require auth
+            try { 
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) { 
+                    await signInWithCustomToken(auth, __initial_auth_token); 
+                } 
+            } catch (e) { 
+                console.warn("Auth initialization skipped:", e); 
+            }
 
             // Splash Screen Logic (Updated)
             const welcomeModal = document.getElementById('welcome-modal');
@@ -1145,7 +1774,7 @@
                         }
                     }
                 } catch (error) {
-                    console.error("Error fetching splash screen:", error);
+                    console.warn("Splash screen not available:", error);
                 }
             };
 
@@ -1214,27 +1843,34 @@
                 }
             });
 
+            // Admin Data Terpilah Button (Only visible when logged in as admin)
+            const btnAdminData = document.getElementById('btn-admin-data');
+            if (btnAdminData) {
+                btnAdminData.addEventListener('click', openAdminDataModal);
+            }
+
+            // Secret Admin Trigger in Footer
+            const secretAdminLink = document.getElementById('secret-admin-link');
+            if (secretAdminLink) {
+                secretAdminLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openAdminDataModal();
+                });
+            }
+
+            // Keyboard shortcut for Admin: Ctrl+Shift+A or Cmd+Shift+A
+            window.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+                    e.preventDefault();
+                    openAdminDataModal();
+                }
+            });
+
             // Initial Load
-            loadStatistik(); loadProgramKerja(); loadPengurusInti(); loadOrganisasi(); loadKegiatan();
+            checkAdminSession();
+            loadStatistik(); loadProgramKerja(); loadPengurusInti(); loadOrganisasi(); loadKegiatan(); loadDataTerpilah();
             initSlideshow(); animateCounters(); observeSections(); router();
         });
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
