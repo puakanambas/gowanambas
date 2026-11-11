@@ -728,17 +728,25 @@
         import { getFirestore, collection, onSnapshot, doc, getDoc, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { getAuth, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         
-        const IS_PRODUCTION = true; 
-        const productionConfig = { apiKey: "AIzaSyAboBugSdtduTa4MIAeQXFkM8QHdah8lcQ", authDomain: "simanja-gow-app.firebaseapp.com", projectId: "simanja-gow-app", storageBucket: "simanja-gow-app.appspot.com", messagingSenderId: "307105555893", appId: "1:307105555893:web:e5470c451f5c4fdacea5fc" };
-        let firebaseConfig = IS_PRODUCTION ? productionConfig : (typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {});
+        let firebaseConfig = (typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null);
+        if (!firebaseConfig) {
+            try {
+                const cfgRes = await fetch('/api/firebase-config');
+                if (cfgRes.ok) {
+                    firebaseConfig = await cfgRes.json();
+                }
+            } catch (err) {
+                console.warn('Failed to load Firebase config from server API:', err);
+            }
+        }
         
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
+        const app = firebaseConfig ? initializeApp(firebaseConfig) : null;
+        const db = app ? getFirestore(app) : null;
+        const auth = app ? getAuth(app) : null;
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 
-        const getCollectionRef = (colName) => IS_PRODUCTION ? collection(db, colName) : collection(db, 'artifacts', appId, 'public', 'data', colName);
-        const getDocRef = (colName, docId) => IS_PRODUCTION ? doc(db, colName, docId) : doc(db, 'artifacts', appId, 'public', 'data', colName, docId);
+        const getCollectionRef = (colName) => db ? collection(db, colName) : null;
+        const getDocRef = (colName, docId) => db ? doc(db, colName, docId) : null;
 
         // State & Data
         let allKegiatan = [];

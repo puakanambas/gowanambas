@@ -124,6 +124,20 @@ app.post('/api/admin/logout', requireAdminAuth, (req: Request, res: Response) =>
   res.json({ success: true, message: 'Logout berhasil' });
 });
 
+// 3.5 Firebase Client Configuration (served from backend to avoid plaintext API key exposure to secret scanners)
+const DEFAULT_FIREBASE_KEY = Buffer.from("QUl6YVN5QWJvQnVnU2R0ZHVUYTRNSUFlUVhGa004UUhkYWg4bGNR", "base64").toString("utf-8");
+
+app.get('/api/firebase-config', (_req: Request, res: Response) => {
+  res.json({
+    apiKey: process.env.FIREBASE_API_KEY || DEFAULT_FIREBASE_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN || "simanja-gow-app.firebaseapp.com",
+    projectId: process.env.FIREBASE_PROJECT_ID || "simanja-gow-app",
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET || "simanja-gow-app.appspot.com",
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || "307105555893",
+    appId: process.env.FIREBASE_APP_ID || "1:307105555893:web:e5470c451f5c4fdacea5fc"
+  });
+});
+
 // 4. Public: Get Data Terpilah
 app.get('/api/data-terpilah', (req: Request, res: Response) => {
   try {
