@@ -37,9 +37,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Leaflet.js & Chart.js -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
@@ -254,14 +252,15 @@
                     </a>
                 </div>
                 <div class="flex items-center space-x-2">
-                    <nav class="hidden lg:flex space-x-1 xl:space-x-4 text-sm font-medium">
-                        <a href="#/" class="nav-link px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Beranda</a>
-                        <a href="#/tentang" class="nav-link px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Tentang</a>
-                        <a href="#/program" class="nav-link px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Program</a>
-                        <a href="#/data" class="nav-link px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Data Terpilah</a>
-                        <a href="#/pengurus" class="nav-link px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Pengurus</a>
-                        <a href="#/kegiatan" class="nav-link px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Kegiatan</a>
-                        <a href="#/simanja" class="nav-link px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">SiMANJA</a>
+                    <nav class="hidden lg:flex space-x-1 xl:space-x-3 text-sm font-medium">
+                        <a href="#/" class="nav-link px-2.5 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Beranda</a>
+                        <a href="#/tentang" class="nav-link px-2.5 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Tentang</a>
+                        <a href="#/program" class="nav-link px-2.5 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Program</a>
+                        <a href="#/data" class="nav-link px-2.5 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Data Terpilah</a>
+                        <a href="#/pengurus" class="nav-link px-2.5 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Pengurus</a>
+                        <a href="#/umkm" class="nav-link px-2.5 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all text-pink-400 font-semibold flex items-center gap-1.5"><i class="fas fa-store text-xs"></i> UMKM Wanita</a>
+                        <a href="#/kegiatan" class="nav-link px-2.5 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">Kegiatan</a>
+                        <a href="#/simanja" class="nav-link px-2.5 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition-all">SiMANJA</a>
                     </nav>
                     <button id="theme-toggle" class="ml-4 p-2 rounded-full text-slate-300 hover:text-white hover:bg-slate-800 transition-all focus:outline-none" title="Ganti Mode (Terang/Gelap)">
                         <i class="fas fa-sun text-xl"></i>
@@ -272,15 +271,15 @@
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-700 bg-slate-900 absolute w-full">
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-700 bg-slate-900 absolute w-full z-50">
             <a href="#/" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700 border-b border-slate-800">Beranda</a>
             <a href="#/tentang" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700 border-b border-slate-800">Tentang Kami</a>
             <a href="#/program" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700 border-b border-slate-800">Program Kerja</a>
             <a href="#/data" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700 border-b border-slate-800">Data Terpilah</a>
             <a href="#/pengurus" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700 border-b border-slate-800">Pengurus</a>
+            <a href="#/umkm" class="nav-link block py-3 px-4 text-base text-pink-400 font-bold hover:bg-slate-700 border-b border-slate-800 flex items-center gap-2"><i class="fas fa-store"></i> Katalog UMKM Wanita</a>
             <a href="#/kegiatan" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700 border-b border-slate-800">Arsip Kegiatan</a>
             <a href="#/simanja" class="nav-link block py-3 px-4 text-base text-slate-300 hover:bg-slate-700 border-b border-slate-800">SiMANJA GOW</a>
-            <!-- Tombol Login SiMANJA dihapus dari menu mobile -->
         </div>
     </header>
 
@@ -626,8 +625,53 @@
                 </div>
                 <div id="pengurus-bidang-container" class="space-y-16 mb-24 mt-12"></div>
                 <h3 class="text-2xl font-bold text-center text-white mb-8 border-b border-slate-700 pb-4 inline-block mx-auto">Organisasi Anggota</h3>
-                <div id="organisasi-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+                <div id="organisasi-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 mb-24">
                     <div class="col-span-full h-32 bg-slate-800 rounded-xl animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- HALAMAN KATALOG UMKM WANITA ANAMBAS -->
+        <!-- ========================================= -->
+        <div id="page-umkm" class="page-section pt-24 pb-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-10 fade-in-section">
+                    <span class="text-lime-400 font-bold text-xs uppercase tracking-widest bg-lime-400/10 px-3.5 py-1.5 rounded-full border border-lime-400/30 mb-3 inline-block">Pemberdayaan Ekonomi Lokal</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-3 text-white leading-tight">Katalog UMKM & Karya Wanita Anambas</h2>
+                    <p class="text-slate-400 text-base">Produk kreatif, kuliner olahan laut, dan kerajinan tangan hasil karya wanita binaan GOW Kabupaten Kepulauan Anambas.</p>
+                    
+                    <!-- Admin Edit Button (Hanya tampil saat mode admin) -->
+                    <div id="admin-umkm-control-bar" class="mt-4 hidden">
+                        <button id="btn-open-admin-umkm" class="bg-gradient-to-r from-pink-600 to-fuchsia-600 hover:from-pink-500 hover:to-fuchsia-500 text-white font-bold py-2.5 px-6 rounded-xl text-xs shadow-lg transition-all flex items-center justify-center gap-2 mx-auto cursor-pointer">
+                            <i class="fas fa-plus-circle text-sm"></i> <span>Kelola / Tambah Produk UMKM (Mode Admin)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter & Search Bar UMKM -->
+                <div class="bg-slate-800 p-4 sm:p-6 rounded-2xl shadow-xl mb-10 fade-in-section border border-slate-700">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <!-- Search Bar -->
+                        <div class="relative w-full md:w-80">
+                            <input type="search" id="search-umkm" placeholder="Cari nama produk / perajin..." class="w-full bg-slate-900 border border-slate-700 rounded-xl py-2.5 pl-10 pr-4 text-white text-sm focus:ring-2 focus:ring-pink-500 focus:outline-none transition-colors">
+                            <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
+                        </div>
+
+                        <!-- Filter Kategori Tabs -->
+                        <div id="umkm-filter-tabs" class="flex flex-wrap items-center justify-center md:justify-end gap-2 w-full md:w-auto">
+                            <button data-umkm-cat="Semua" class="umkm-cat-btn active font-semibold px-3.5 py-2 rounded-lg text-xs">Semua Produk</button>
+                            <button data-umkm-cat="Kuliner & Olahan Laut" class="umkm-cat-btn font-semibold px-3.5 py-2 rounded-lg text-xs">Kuliner & Seafood</button>
+                            <button data-umkm-cat="Kerajinan & Souvenir" class="umkm-cat-btn font-semibold px-3.5 py-2 rounded-lg text-xs">Kerajinan Tangan</button>
+                            <button data-umkm-cat="Busana & Tenun" class="umkm-cat-btn font-semibold px-3.5 py-2 rounded-lg text-xs">Tenun & Busana</button>
+                            <button data-umkm-cat="Kecantikan & Herbal" class="umkm-cat-btn font-semibold px-3.5 py-2 rounded-lg text-xs">Herbal & VCO</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid Katalog UMKM -->
+                <div id="umkm-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 min-h-[400px]">
+                    <div class="col-span-full py-16 text-center text-slate-400"><i class="fas fa-spinner fa-spin text-2xl mb-2"></i><p>Memuat Katalog UMKM...</p></div>
                 </div>
             </div>
         </div>
@@ -777,6 +821,390 @@
             "FPPI": "Forum Pemberdayaan Perempuan Indonesia (FPPI) adalah organisasi yang berjuang untuk kesetaraan dan pemberdayaan perempuan di berbagai sektor, termasuk politik, ekonomi, dan sosial, guna mewujudkan perempuan Indonesia yang mandiri dan bermartabat." 
         };
 
+        // --- KATALOG UMKM WANITA ANAMBAS ---
+        let selectedUmkmCategory = 'Semua';
+
+        const defaultUmkmProducts = [
+            {
+                id: 'umkm-1',
+                nama: 'Luti Gendang Anambas Khas Tarempa',
+                kategori: 'Kuliner & Olahan Laut',
+                pemilik: 'Ibu Rahmawati (UKM Kasih Ibu)',
+                wilayah: 'Tarempa, Siantan',
+                harga: 'Rp 35.000 / porsi (10 pcs)',
+                deskripsi: 'Roti goreng khas Anambas renyah di luar, lembut di dalam dengan isian abon ikan tongkol segar rempah istimewa.',
+                foto: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=600&q=80',
+                wa: '6281270001234'
+            },
+            {
+                id: 'umkm-2',
+                nama: 'Kain Tenun Cual Anambas Motif Flora Laut',
+                kategori: 'Busana & Tenun',
+                pemilik: 'Ibu Kasmawati (Kelompok Tenun Cual Siantan)',
+                wilayah: 'Jemaja Timur',
+                harga: 'Rp 450.000 / lembar',
+                deskripsi: 'Tenun tradisional khas Kepulauan Anambas ditenun tangan dengan benang pewarna alam dan motif khas pesisir.',
+                foto: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=600&q=80',
+                wa: '6281233445566'
+            },
+            {
+                id: 'umkm-3',
+                nama: 'Kerupuk Atom Ikan Tongkol Premium',
+                kategori: 'Kuliner & Olahan Laut',
+                pemilik: 'Ibu Hj. Salmiah (KUB Bahari Murni)',
+                wilayah: 'Palmatak',
+                harga: 'Rp 25.000 / pack 250gr',
+                deskripsi: 'Kerupuk khas Anambas terbuat dari 100% daging ikan segar tanpa pengawet, gurih, renyah, dan kaya protein.',
+                foto: 'https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=600&q=80',
+                wa: '6281388776655'
+            },
+            {
+                id: 'umkm-4',
+                nama: 'Minyak Kelapa Murni (VCO) Anambas Organik',
+                kategori: 'Kecantikan & Herbal',
+                pemilik: 'Ibu Nurhayati (Kelompok Tani Nyamuk)',
+                wilayah: 'Siantan Timur',
+                harga: 'Rp 50.000 / botol 250ml',
+                deskripsi: 'Virgin Coconut Oil diolah secara dingin (cold-pressed) dari kelapa organik pilihan Kepulauan Anambas.',
+                foto: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
+                wa: '6285211223344'
+            },
+            {
+                id: 'umkm-5',
+                nama: 'Anyaman Pandan & Souvenir Kerang Pesisir',
+                kategori: 'Kerajinan & Souvenir',
+                pemilik: 'Ibu Rosdiana (Sentra Kreatif Wanita Kuto Siantan)',
+                wilayah: 'Kuto Siantan',
+                harga: 'Rp 45.000 - Rp 150.000',
+                deskripsi: 'Tas, tempat tisu, dan cenderamata khas hasil kerajinan tangan wanita pesisir menggunakan serat alami pandan laut.',
+                foto: 'https://images.unsplash.com/photo-1590736704728-f4730bb30770?auto=format&fit=crop&w=600&q=80',
+                wa: '6282277889900'
+            },
+            {
+                id: 'umkm-6',
+                nama: 'Sambal Lada Garam Ikan Bilis Anambas',
+                kategori: 'Kuliner & Olahan Laut',
+                pemilik: 'Ibu Fatimah (UKM Dapur Siantan)',
+                wilayah: 'Tarempa',
+                harga: 'Rp 30.000 / jar 150gr',
+                deskripsi: 'Olahan ikan bilis/teri segar khas Anambas digoreng krispi dengan bumbu lada garam pedas gurih nagih.',
+                foto: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+                wa: '6281270001234'
+            },
+            {
+                id: 'umkm-7',
+                nama: 'Batik Motif Gurita & Karal Anambas',
+                kategori: 'Busana & Tenun',
+                pemilik: 'Ibu Halimah (Sanggar Batik Pesisir)',
+                wilayah: 'Letung, Jemaja',
+                harga: 'Rp 225.000 / lembar',
+                deskripsi: 'Batik cap & tulis dengan motif biodiversitas laut Kepulauan Anambas buatan karya tangan ibu-ibu binaan GOW.',
+                foto: 'https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&w=600&q=80',
+                wa: '6282165439876'
+            },
+            {
+                id: 'umkm-8',
+                nama: 'Teh Celup Herbal Bunga Rosella Anambas',
+                kategori: 'Kecantikan & Herbal',
+                pemilik: 'Ibu Mariam (Kelompok Herbal Asri Palmatak)',
+                wilayah: 'Palmatak',
+                harga: 'Rp 20.000 / kotak (15 kantong)',
+                deskripsi: 'Minuman kesehatan diproduksi dari kelopak bunga rosella organik kaya antioksidan dan vitamin C.',
+                foto: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&w=600&q=80',
+                wa: '6281388776655'
+            }
+        ];
+
+        let umkmProducts = [];
+        try {
+            const savedUmkm = localStorage.getItem('gow_umkm_custom');
+            if (savedUmkm) {
+                umkmProducts = JSON.parse(savedUmkm);
+            } else {
+                umkmProducts = [...defaultUmkmProducts];
+            }
+        } catch(e) {
+            umkmProducts = [...defaultUmkmProducts];
+        }
+
+        const openAdminUmkmModal = () => {
+            const modalPlaceholder = document.getElementById('modal-placeholder');
+            
+            const renderUmkmListHtml = () => {
+                if (!umkmProducts.length) {
+                    return `<div class="p-4 text-center text-slate-400 text-xs">Belum ada produk UMKM. Silakan tambah produk baru.</div>`;
+                }
+                return umkmProducts.map((p, idx) => `
+                    <div class="bg-slate-800 p-3 rounded-xl border border-slate-700 flex items-center justify-between gap-3 text-xs">
+                        <div class="flex items-center gap-3 overflow-hidden">
+                            <img src="${p.foto}" class="w-12 h-12 rounded-lg object-cover shrink-0 border border-slate-600" onerror="this.src='https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=600&q=80'">
+                            <div class="truncate">
+                                <h4 class="font-bold text-white truncate">${p.nama}</h4>
+                                <p class="text-pink-400 text-[11px] truncate">${p.pemilik} • ${p.harga}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1 shrink-0">
+                            <button onclick="editUmkmItem(${idx})" class="bg-slate-700 hover:bg-pink-600 text-white p-2 rounded-lg transition-colors cursor-pointer" title="Edit"><i class="fas fa-edit"></i></button>
+                            <button onclick="deleteUmkmItem(${idx})" class="bg-slate-700 hover:bg-red-600 text-white p-2 rounded-lg transition-colors cursor-pointer" title="Hapus"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+            };
+
+            modalPlaceholder.innerHTML = `
+            <div id="admin-umkm-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-[100] modal-overlay transition-opacity duration-300">
+                <div class="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-2xl p-6 shadow-2xl relative text-left max-h-[90vh] flex flex-col">
+                    <button id="close-admin-umkm-modal" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors cursor-pointer">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                    
+                    <div class="flex items-center gap-3 mb-4 shrink-0">
+                        <div class="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-xl border border-pink-500/30">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white leading-tight">Kelola Katalog UMKM Wanita</h3>
+                            <p class="text-xs text-slate-400">Tambah, Edit, dan Hapus Produk UMKM yang Tampil di Website</p>
+                        </div>
+                    </div>
+
+                    <div class="overflow-y-auto space-y-6 pr-1 flex-1 custom-scrollbar">
+                        <!-- FORM TAMBAH / EDIT PRODUK -->
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-3">
+                            <h4 id="form-umkm-title" class="font-bold text-sm text-pink-400 flex items-center gap-2">
+                                <i class="fas fa-plus-circle"></i> <span>Tambah Produk UMKM Baru</span>
+                            </h4>
+                            <input type="hidden" id="edit-umkm-index" value="-1">
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-[11px] text-slate-300 font-semibold mb-1">Nama Produk *</label>
+                                    <input type="text" id="form-umkm-nama" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white focus:ring-1 focus:ring-pink-500" placeholder="misal: Luti Gendang Anambas">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] text-slate-300 font-semibold mb-1">Kategori *</label>
+                                    <select id="form-umkm-kategori" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white focus:ring-1 focus:ring-pink-500">
+                                        <option value="Kuliner & Olahan Laut">Kuliner & Olahan Laut</option>
+                                        <option value="Busana & Tenun">Busana & Tenun</option>
+                                        <option value="Kerajinan & Souvenir">Kerajinan & Souvenir</option>
+                                        <option value="Kecantikan & Herbal">Kecantikan & Herbal</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-[11px] text-slate-300 font-semibold mb-1">Pemilik / Nama UKM *</label>
+                                    <input type="text" id="form-umkm-pemilik" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white focus:ring-1 focus:ring-pink-500" placeholder="misal: Ibu Rahmawati (UKM Kasih Ibu)">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] text-slate-300 font-semibold mb-1">Wilayah *</label>
+                                    <input type="text" id="form-umkm-wilayah" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white focus:ring-1 focus:ring-pink-500" placeholder="misal: Tarempa, Siantan">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-[11px] text-slate-300 font-semibold mb-1">Harga *</label>
+                                    <input type="text" id="form-umkm-harga" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white focus:ring-1 focus:ring-pink-500" placeholder="misal: Rp 35.000 / porsi">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] text-slate-300 font-semibold mb-1">No. WhatsApp Pemesanan (Format: 62...) *</label>
+                                    <input type="text" id="form-umkm-wa" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white focus:ring-1 focus:ring-pink-500" placeholder="misal: 6281270001234">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] text-slate-300 font-semibold mb-1">URL Foto Produk</label>
+                                <input type="url" id="form-umkm-foto" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white focus:ring-1 focus:ring-pink-500" placeholder="https://images.unsplash.com/...">
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] text-slate-300 font-semibold mb-1">Deskripsi Produk</label>
+                                <textarea id="form-umkm-deskripsi" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white focus:ring-1 focus:ring-pink-500" placeholder="Penjelasan singkat mengenai keunggulan produk..."></textarea>
+                            </div>
+
+                            <div class="flex items-center gap-2 pt-1">
+                                <button id="btn-save-umkm-item" class="bg-pink-600 hover:bg-pink-500 text-white font-bold py-2 px-4 rounded-lg text-xs transition-colors flex items-center gap-2 cursor-pointer">
+                                    <i class="fas fa-save"></i> <span id="btn-save-umkm-text">Simpan Produk</span>
+                                </button>
+                                <button id="btn-cancel-umkm-edit" class="bg-slate-700 hover:bg-slate-600 text-slate-300 font-semibold py-2 px-3 rounded-lg text-xs hidden cursor-pointer">
+                                    Batal Edit
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- DAFTAR PRODUK YANG SUDAH ADA -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-bold text-xs text-slate-300 uppercase tracking-wider">Daftar Produk (${umkmProducts.length})</h4>
+                                <button id="btn-reset-umkm-default" class="text-[11px] text-amber-400 hover:underline cursor-pointer">Reset ke Bawaan</button>
+                            </div>
+                            <div id="admin-umkm-list-container" class="space-y-2">
+                                ${renderUmkmListHtml()}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+
+            document.getElementById('close-admin-umkm-modal').onclick = () => {
+                modalPlaceholder.innerHTML = '';
+            };
+
+            const resetForm = () => {
+                document.getElementById('edit-umkm-index').value = '-1';
+                document.getElementById('form-umkm-title').innerHTML = '<i class="fas fa-plus-circle"></i> <span>Tambah Produk UMKM Baru</span>';
+                document.getElementById('form-umkm-nama').value = '';
+                document.getElementById('form-umkm-pemilik').value = '';
+                document.getElementById('form-umkm-wilayah').value = '';
+                document.getElementById('form-umkm-harga').value = '';
+                document.getElementById('form-umkm-wa').value = '';
+                document.getElementById('form-umkm-foto').value = '';
+                document.getElementById('form-umkm-deskripsi').value = '';
+                document.getElementById('btn-save-umkm-text').innerText = 'Simpan Produk';
+                document.getElementById('btn-cancel-umkm-edit').classList.add('hidden');
+            };
+
+            document.getElementById('btn-cancel-umkm-edit').onclick = resetForm;
+
+            window.editUmkmItem = (idx) => {
+                const item = umkmProducts[idx];
+                if (!item) return;
+                document.getElementById('edit-umkm-index').value = idx;
+                document.getElementById('form-umkm-title').innerHTML = '<i class="fas fa-edit"></i> <span>Edit Produk UMKM</span>';
+                document.getElementById('form-umkm-nama').value = item.nama || '';
+                document.getElementById('form-umkm-kategori').value = item.kategori || 'Kuliner & Olahan Laut';
+                document.getElementById('form-umkm-pemilik').value = item.pemilik || '';
+                document.getElementById('form-umkm-wilayah').value = item.wilayah || '';
+                document.getElementById('form-umkm-harga').value = item.harga || '';
+                document.getElementById('form-umkm-wa').value = item.wa || '';
+                document.getElementById('form-umkm-foto').value = item.foto || '';
+                document.getElementById('form-umkm-deskripsi').value = item.deskripsi || '';
+                document.getElementById('btn-save-umkm-text').innerText = 'Perbarui Produk';
+                document.getElementById('btn-cancel-umkm-edit').classList.remove('hidden');
+            };
+
+            window.deleteUmkmItem = (idx) => {
+                const item = umkmProducts[idx];
+                if (confirm(`Apakah Anda yakin ingin menghapus produk "${item?.nama || 'ini'}"?`)) {
+                    umkmProducts.splice(idx, 1);
+                    saveUmkmCustomData();
+                    document.getElementById('admin-umkm-list-container').innerHTML = renderUmkmListHtml();
+                    showToast('Produk UMKM berhasil dihapus.');
+                    resetForm();
+                }
+            };
+
+            document.getElementById('btn-reset-umkm-default').onclick = () => {
+                if (confirm('Kembalikan semua katalog UMKM ke data bawaan asli? Data perubahan lokal Anda akan diset ulang.')) {
+                    localStorage.removeItem('gow_umkm_custom');
+                    umkmProducts = [...defaultUmkmProducts];
+                    loadUmkmProducts();
+                    document.getElementById('admin-umkm-list-container').innerHTML = renderUmkmListHtml();
+                    showToast('Katalog UMKM berhasil direset ke bawaan.');
+                    resetForm();
+                }
+            };
+
+            document.getElementById('btn-save-umkm-item').onclick = () => {
+                const idx = parseInt(document.getElementById('edit-umkm-index').value);
+                const nama = document.getElementById('form-umkm-nama').value.trim();
+                const kategori = document.getElementById('form-umkm-kategori').value;
+                const pemilik = document.getElementById('form-umkm-pemilik').value.trim();
+                const wilayah = document.getElementById('form-umkm-wilayah').value.trim() || 'Anambas';
+                const harga = document.getElementById('form-umkm-harga').value.trim() || 'Hubungi Penjual';
+                let wa = document.getElementById('form-umkm-wa').value.trim().replace(/[^0-9]/g, '');
+                if (wa.startsWith('0')) wa = '62' + wa.slice(1);
+                const foto = document.getElementById('form-umkm-foto').value.trim() || 'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=600&q=80';
+                const deskripsi = document.getElementById('form-umkm-deskripsi').value.trim();
+
+                if (!nama || !pemilik) {
+                    alert('Mohon isi Nama Produk dan Pemilik / UKM.');
+                    return;
+                }
+
+                const newItem = {
+                    id: idx >= 0 ? umkmProducts[idx].id : `umkm-custom-${Date.now()}`,
+                    nama,
+                    kategori,
+                    pemilik,
+                    wilayah,
+                    harga,
+                    deskripsi,
+                    foto,
+                    wa
+                };
+
+                if (idx >= 0) {
+                    umkmProducts[idx] = newItem;
+                    showToast(`Produk "${nama}" berhasil diperbarui.`);
+                } else {
+                    umkmProducts.unshift(newItem);
+                    showToast(`Produk "${nama}" berhasil ditambahkan.`);
+                }
+
+                saveUmkmCustomData();
+                document.getElementById('admin-umkm-list-container').innerHTML = renderUmkmListHtml();
+                resetForm();
+            };
+        };
+
+        const saveUmkmCustomData = () => {
+            try {
+                localStorage.setItem('gow_umkm_custom', JSON.stringify(umkmProducts));
+            } catch(e) {}
+            loadUmkmProducts();
+        };
+
+        const loadUmkmProducts = () => {
+            const grid = document.getElementById('umkm-products-grid');
+            if (!grid) return;
+
+            const searchInput = document.getElementById('search-umkm');
+            const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+
+            const filtered = umkmProducts.filter(p => {
+                const matchCat = selectedUmkmCategory === 'Semua' || p.kategori === selectedUmkmCategory;
+                const matchQuery = !query || p.nama.toLowerCase().includes(query) || p.pemilik.toLowerCase().includes(query) || p.deskripsi.toLowerCase().includes(query) || p.wilayah.toLowerCase().includes(query);
+                return matchCat && matchQuery;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-16 text-center text-slate-400 bg-slate-800/40 rounded-3xl border border-slate-700/60 p-8">
+                        <i class="fas fa-search-minus text-4xl text-slate-500 mb-3 block"></i>
+                        <h4 class="text-lg font-bold text-slate-300 mb-1">Produk Tidak Ditemukan</h4>
+                        <p class="text-sm text-slate-400">Coba ubah kata kunci pencarian atau pilih kategori lain.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(p => `
+                <div class="card-base rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-pink-500/50 transition-all duration-300 transform hover:-translate-y-1">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-slate-900">
+                            <img src="${p.foto}" alt="${p.nama}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=600&q=80'">
+                            <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-pink-400 text-[10px] font-bold px-3 py-1 rounded-full border border-pink-500/30 uppercase tracking-wide">${p.kategori}</span>
+                            <span class="absolute bottom-3 right-3 bg-slate-950/90 text-lime-400 font-bold text-xs px-3 py-1 rounded-lg border border-lime-500/30 shadow-lg">${p.harga}</span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-bold text-white mb-2 leading-snug group-hover:text-pink-400 transition-colors">${p.nama}</h3>
+                            <p class="text-xs text-pink-400 font-medium mb-2 flex items-center gap-1.5"><i class="fas fa-store"></i> ${p.pemilik} (${p.wilayah})</p>
+                            <p class="text-slate-400 text-xs leading-relaxed line-clamp-2 mb-4">${p.deskripsi}</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <a href="https://wa.me/${p.wa}?text=Halo%20${encodeURIComponent(p.pemilik)},%20saya%20tertarik%20membeli%20produk%20${encodeURIComponent(p.nama)}%20dari%20Katalog%20GOW%20Anambas." target="_blank" rel="noopener noreferrer" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-colors flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-600/30">
+                            <i class="fab fa-whatsapp text-sm"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        };
+
         // --- ROUTING LOGIC (SPA) ---
         const router = () => { 
             const hash = window.location.hash || '#/';
@@ -797,6 +1225,8 @@
                 document.getElementById('page-data').classList.add('active'); renderDataContent('Kependudukan'); window.scrollTo(0, 0);
             } else if (hash === '#/pengurus') {
                 document.getElementById('page-pengurus').classList.add('active'); window.scrollTo(0, 0);
+            } else if (hash === '#/umkm') {
+                document.getElementById('page-umkm').classList.add('active'); loadUmkmProducts(); window.scrollTo(0, 0);
             } else if (hash === '#/kegiatan') {
                 document.getElementById('page-kegiatan').classList.add('active'); applyFilters(); window.scrollTo(0, 0);
             } else if (hash.startsWith('#/kegiatan/')) {
@@ -1199,6 +1629,15 @@
                 }
             }
 
+            const adminUmkmControl = document.getElementById('admin-umkm-control-bar');
+            if (adminUmkmControl) {
+                if (isAdmin) {
+                    adminUmkmControl.classList.remove('hidden');
+                } else {
+                    adminUmkmControl.classList.add('hidden');
+                }
+            }
+
             let adminBadge = document.getElementById('admin-session-badge');
             if (isAdmin) {
                 if (!adminBadge) {
@@ -1209,13 +1648,16 @@
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                         <span class="font-medium text-pink-400">Mode Admin Aktif</span>
                         <span class="text-slate-600">|</span>
-                        <button id="badge-open-admin" class="hover:text-white text-slate-300 font-semibold underline underline-offset-2 transition-colors cursor-pointer">Kelola Data</button>
+                        <button id="badge-open-admin" class="hover:text-white text-slate-300 font-semibold underline underline-offset-2 transition-colors cursor-pointer">Data Terpilah</button>
+                        <span class="text-slate-600">|</span>
+                        <button id="badge-open-umkm" class="hover:text-white text-slate-300 font-semibold underline underline-offset-2 transition-colors cursor-pointer"><i class="fas fa-store"></i> UMKM</button>
                         <span class="text-slate-600">|</span>
                         <button id="badge-logout-admin" class="hover:text-red-400 text-slate-400 transition-colors cursor-pointer" title="Keluar"><i class="fas fa-sign-out-alt"></i> Keluar</button>
                     `;
                     document.body.appendChild(adminBadge);
 
                     document.getElementById('badge-open-admin').onclick = openAdminDataModal;
+                    document.getElementById('badge-open-umkm').onclick = openAdminUmkmModal;
                     document.getElementById('badge-logout-admin').onclick = async () => {
                         const token = localStorage.getItem('gow_admin_token');
                         if (token) {
@@ -1966,10 +2408,39 @@
                 });
             }
 
+            // UMKM Filter & Search Listeners
+            const searchUmkm = document.getElementById('search-umkm');
+            if (searchUmkm) {
+                searchUmkm.addEventListener('input', loadUmkmProducts);
+            }
+
+            const umkmFilterTabs = document.getElementById('umkm-filter-tabs');
+            if (umkmFilterTabs) {
+                umkmFilterTabs.addEventListener('click', (e) => {
+                    const btn = e.target.closest('.umkm-cat-btn');
+                    if (btn) {
+                        umkmFilterTabs.querySelectorAll('.umkm-cat-btn').forEach(b => {
+                            b.classList.remove('active', 'bg-pink-600', 'text-white');
+                            b.classList.add('bg-slate-700', 'text-slate-300');
+                        });
+                        btn.classList.add('active', 'bg-pink-600', 'text-white');
+                        btn.classList.remove('bg-slate-700', 'text-slate-300');
+
+                        selectedUmkmCategory = btn.dataset.umkmCat || 'Semua';
+                        loadUmkmProducts();
+                    }
+                });
+            }
+
             // Admin Data Terpilah Button (Only visible when logged in as admin)
             const btnAdminData = document.getElementById('btn-admin-data');
             if (btnAdminData) {
                 btnAdminData.addEventListener('click', openAdminDataModal);
+            }
+
+            const btnOpenAdminUmkm = document.getElementById('btn-open-admin-umkm');
+            if (btnOpenAdminUmkm) {
+                btnOpenAdminUmkm.addEventListener('click', openAdminUmkmModal);
             }
 
             // Secret Admin Trigger in Footer
@@ -1991,7 +2462,7 @@
 
             // Initial Load
             checkAdminSession();
-            loadStatistik(); loadProgramKerja(); loadPengurusInti(); loadOrganisasi(); loadKegiatan(); loadDataTerpilah();
+            loadStatistik(); loadProgramKerja(); loadPengurusInti(); loadOrganisasi(); loadKegiatan(); loadDataTerpilah(); loadUmkmProducts();
             initSlideshow(); animateCounters(); observeSections(); router();
         };
 
